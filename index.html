@@ -27,7 +27,7 @@
   <!-- jsPDF -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
-  <!-- Mermaid -->
+  <!-- Mermaid (kept but not used now; safe to keep) -->
   <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 
   <!-- JS -->
@@ -307,143 +307,27 @@
         A complete view of how secure delivery is enforced from source to production with evidence and controlled promotions.
       </p>
 
-      <div class="arch-grid">
-        <!-- Mermaid -->
-        <div class="arch-card glass">
-          <div class="arch-head">
-            <div>
-              <div class="arch-title">Flow (Mermaid)</div>
-              <div class="arch-sub mono subtle">Source → Verification → Artifact → Promotion → Runtime</div>
-            </div>
-            <span class="arch-pill mono">policy enforced</span>
+      <!-- FULL WIDTH SBOM IMAGE ONLY (NO MERMAID) -->
+      <div class="arch-full glass">
+        <div class="arch-head">
+          <div>
+            <div class="arch-title">Pipeline Evidence Snapshot</div>
+            <div class="arch-sub mono subtle">SBOM / Attestation / Scan pipeline view</div>
           </div>
-
-          <div class="mermaid arch-mermaid">
-flowchart TD
-  A[Developer Commit] --> B[Pull Request + CODEOWNERS Approval]
-  B --> C[CI Pipeline Trigger]
-  C --> D[SAST Scan]
-  C --> E[SCA Scan]
-  C --> F[Secret Scanning]
-  C --> G[IaC Scan]
-  D --> H[Build Artifact]
-  E --> H
-  F --> H
-  G --> H
-  H --> I[Container Image Build]
-  I --> J[Container Scan (Prisma / Trivy)]
-  J --> K[SBOM Generation (CycloneDX)]
-  K --> L[Evidence Bundle (SBOM + Attestation + Logs)]
-  L --> M[Push to Registry (Immutable Tag)]
-  M --> N[Dev Deploy]
-  N --> O[DAST (ZAP) + Runtime Validation]
-  O --> P[QA Approval + Promote to UAT]
-  P --> Q[UAT Deploy]
-  Q --> R[Final Approval + Promote to Prod]
-  R --> S[Production Deploy]
-  S --> T[Continuous Monitoring + Audit Evidence]
-          </div>
-
-          <!-- NEW: CLEAR EXPLANATION -->
-          <div class="arch-explain">
-            <h3 class="arch-explain-title">Flow Explanation (Clear, Technical, Secure SDLC)</h3>
-            <p class="mono subtle">
-              This architecture enforces secure software delivery as a <b>system property</b>. Each stage creates security evidence
-              and blocks unsafe paths before production.
-            </p>
-
-            <div class="arch-explain-grid">
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">1) Developer Commit → PR Governance</div>
-                <ul>
-                  <li><b>Goal:</b> Ensure every code change is reviewable, attributable, and non-bypassable.</li>
-                  <li><b>Controls:</b> PR-only merges, CODEOWNERS approvals, protected branches, required checks.</li>
-                  <li><b>Threats mitigated:</b> unauthorized commits, insider risk, compromised accounts, direct-to-main bypass.</li>
-                </ul>
-              </div>
-
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">2) CI Trigger → Security Verification</div>
-                <ul>
-                  <li><b>SAST:</b> detects insecure coding patterns (XSS, injection, auth bypass patterns).</li>
-                  <li><b>SCA:</b> detects vulnerable dependencies and license risks in Maven/Node ecosystems.</li>
-                  <li><b>Secrets scanning:</b> blocks leaked tokens, OAuth secrets, cloud keys in source control.</li>
-                  <li><b>IaC scanning:</b> prevents insecure Kubernetes/cloud configs from being deployed.</li>
-                  <li><b>Outcome:</b> deterministic and repeatable verification with evidence artifacts.</li>
-                </ul>
-              </div>
-
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">3) Build Artifact → Containerization</div>
-                <ul>
-                  <li><b>Build step</b> produces a reproducible artifact (JAR/Bundle).</li>
-                  <li><b>Container image build</b> standardizes runtime dependencies and deployment portability.</li>
-                  <li><b>Best practice:</b> immutable tags (no <code>latest</code>) to eliminate drift.</li>
-                </ul>
-              </div>
-
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">4) Container Scan → SBOM + Evidence</div>
-                <ul>
-                  <li><b>Image scanning:</b> Prisma/twistcli + validation with Trivy for accuracy and coverage.</li>
-                  <li><b>SBOM generation:</b> CycloneDX/standard SBOM output to track components.</li>
-                  <li><b>Evidence bundle:</b> scan logs + SBOM + approvals → supports audit and attestation.</li>
-                  <li><b>Outcome:</b> tamper-evident release trail from commit → digest → deployment.</li>
-                </ul>
-              </div>
-
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">5) Registry Push → Promotion Workflow</div>
-                <ul>
-                  <li><b>Registry:</b> stores signed/scanned images with immutable digests.</li>
-                  <li><b>Promotion:</b> Dev → UAT → Prod controlled by QA approvals and gated releases.</li>
-                  <li><b>Goal:</b> prevent rebuilding in production and ensure only approved artifacts ship.</li>
-                </ul>
-              </div>
-
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">6) Dev Deploy → DAST + Runtime Validation</div>
-                <ul>
-                  <li><b>DAST (ZAP):</b> validates runtime exposure, auth flows, endpoints, and attack surface.</li>
-                  <li><b>Runtime checks:</b> verify security context, least privilege, safe deployment defaults.</li>
-                  <li><b>Outcome:</b> security validated in real environment, not only static analysis.</li>
-                </ul>
-              </div>
-
-              <div class="arch-explain-card">
-                <div class="arch-explain-head mono">7) Production Deploy → Monitoring + Audit</div>
-                <ul>
-                  <li><b>Monitoring:</b> runtime events + audit evidence retained for investigations and compliance.</li>
-                  <li><b>Audit readiness:</b> evidence moves with release for leadership/security reviews.</li>
-                  <li><b>Security design principle:</b> verify continuously, not once.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          <span class="arch-pill mono">SBOM</span>
         </div>
 
-        <!-- Image -->
-        <div class="arch-card glass">
-          <div class="arch-head">
-            <div>
-              <div class="arch-title">Pipeline Evidence Snapshot</div>
-              <div class="arch-sub mono subtle">SBOM / Attestation / Scan pipeline view</div>
-            </div>
-            <span class="arch-pill mono">visual</span>
-          </div>
+        <div class="arch-image-wrap arch-image-full">
+          <img
+            class="arch-image"
+            src="./assests/SBOM Security Pipeline-2026-01-21-052842.png"
+            alt="SBOM Security Pipeline"
+            loading="lazy"
+          />
+        </div>
 
-          <div class="arch-image-wrap">
-            <img
-              class="arch-image"
-              src="./assests/SBOM Security Pipeline-2026-01-21-052842.png"
-              alt="SBOM Security Pipeline"
-              loading="lazy"
-            />
-          </div>
-
-          <div class="arch-foot mono subtle">
-            This image is stored in <b>/assests/</b> and is used as a proof-of-implementation artifact.
-          </div>
+        <div class="arch-foot mono subtle">
+          This image is stored in <b>/assests/</b> and is used as a proof-of-implementation artifact.
         </div>
       </div>
     </section>
@@ -473,65 +357,48 @@ flowchart TD
             <strong>Scope & Scale:</strong>
             Security engineering across cloud-native delivery for <b>350+ microservices</b>.
             Enforced secure SDLC from <b>code → pipeline → registry → Kubernetes runtime</b>.
-            Built controls that make insecure paths operationally hard and secure delivery the default.
           </div>
 
           <!-- Categories -->
           <div class="xp-grid">
 
-            <!-- 1 -->
             <details class="xp-block" open>
               <summary>
                 <span class="xp-title">CI/CD Security Control Plane</span>
-                <span class="xp-meta mono">16 points</span>
               </summary>
               <ul>
                 <li>Designed organization-grade DevSecOps pipelines with multi-stage security enforcement across build & deploy lifecycle.</li>
                 <li>Enforced PR-only merges, CODEOWNERS approvals, branch protections, and required checks to reduce direct-to-main risk.</li>
-                <li>Implemented SAST scanning for JavaScript/HTML and ensured results are stored as pipeline artifacts for audit reuse.</li>
+                <li>Implemented SAST scanning for JavaScript/HTML and ensured results are stored as pipeline artifacts.</li>
                 <li>Implemented SCA scanning for Maven and Node ecosystems with strict policy thresholds for vulnerable dependencies.</li>
                 <li>Enabled secret scanning controls for hardcoded tokens, OAuth secrets, and cloud keys across repositories.</li>
-                <li>Integrated container image scanning using Prisma Cloud / twistcli and validated results using Trivy for consistency.</li>
+                <li>Integrated container image scanning using Prisma Cloud / twistcli and validated results using Trivy.</li>
                 <li>Implemented IaC scanning for Kubernetes manifests and cloud configs to prevent insecure infra deployment.</li>
                 <li>Automated DAST using OWASP ZAP with dynamic URL extraction from Kubernetes services via kubectl.</li>
                 <li>Standardized job dependency flow: scan → build → tag → scan → push → deploy → post-deploy checks.</li>
                 <li>Implemented artifact upload & retention strategy for scan outputs, logs, and compliance evidence.</li>
-                <li>Integrated Slack notifications for pipeline outcomes with commit/build/author metadata for visibility.</li>
+                <li>Integrated Slack notifications for pipeline outcomes with commit/build/author metadata.</li>
                 <li>Reduced cycle time using parallel security jobs without reducing coverage.</li>
-                <li>Created reusable templates to onboard new services into secure pipelines with minimal effort.</li>
-                <li>Introduced consistent naming + versioning patterns for artifacts and scan outputs for traceability.</li>
-                <li>Built failure-handling logic to fail fast on high severity issues and prevent unsafe releases.</li>
-                <li>Ensured pipeline security gates are deterministic, repeatable, and enforceable across teams.</li>
               </ul>
             </details>
 
-            <!-- 2 -->
-            <details class="xp-block">
+            <details class="xp-block" open>
               <summary>
                 <span class="xp-title">Supply Chain Security + SBOM + Attestation</span>
-                <span class="xp-meta mono">12 points</span>
               </summary>
               <ul>
                 <li>Implemented controlled artifact promotion workflow where QA promotes images separately for UAT/Prod (no rebuilds in prod).</li>
                 <li>Enforced immutable versioning (v1.0) and prevented use of latest tags to eliminate deployment drift.</li>
-                <li>Ensured only scanned + approved images are eligible for deployment across environments.</li>
+                <li>Ensured only scanned + approved images are eligible for deployment.</li>
                 <li>Built evidence model: scan results + approvals + image digest tracking = attestation-ready delivery.</li>
-                <li>Strengthened traceability from commit → build → image digest → deployment for audit investigations.</li>
+                <li>Strengthened traceability from commit → build → image digest → deployment.</li>
                 <li>Added promotion gates to prevent deploying images not present in approved registry paths.</li>
-                <li>Introduced SBOM generation and ensured it is attached to every release as a first-class artifact.</li>
-                <li>Established provenance metadata practices (who built it, what commit, what pipeline, what digest).</li>
-                <li>Designed an evidence bundle structure that can be shared for UAT/Prod approvals and compliance reviews.</li>
-                <li>Improved release integrity by aligning deployment with digest-based references (not mutable tags).</li>
-                <li>Built rollback safety by enabling deterministic reproduction of deployed images using immutable digests.</li>
-                <li>Aligned supply chain security outcomes with audit-readiness and stakeholder reporting needs.</li>
               </ul>
             </details>
 
-            <!-- 3 -->
-            <details class="xp-block">
+            <details class="xp-block" open>
               <summary>
-                <span class="xp-title">Kubernetes Security Engineering (Runtime Guardrails)</span>
-                <span class="xp-meta mono">12 points</span>
+                <span class="xp-title">Kubernetes Security Engineering</span>
               </summary>
               <ul>
                 <li>Implemented Kubernetes security checks using kubeaudit to detect risky cluster/workload configurations.</li>
@@ -540,40 +407,26 @@ flowchart TD
                 <li>Assisted in Kubernetes cluster setup and validation using kubeadm (v1.28.1).</li>
                 <li>Improved blast radius control through workload boundary checks and least privilege patterns.</li>
                 <li>Mapped runtime risks to enforcement and operational response expectations.</li>
-                <li>Validated workloads against common misconfigurations: privileged, hostPath, root user, missing resource limits.</li>
-                <li>Ensured Kubernetes deployment patterns support secure scaling without breaking release velocity.</li>
-                <li>Built security context hardening guidance for engineering teams to reduce repeated issues.</li>
-                <li>Enabled runtime checks that reduce configuration drift and enforce stable security posture.</li>
-                <li>Supported ingress boundary hardening and exposure validation for internet-facing services.</li>
-                <li>Aligned Kubernetes runtime controls with CI/CD checks to prevent “secure in CI but unsafe in runtime”.</li>
               </ul>
             </details>
 
-            <!-- 4 -->
-            <details class="xp-block">
+            <details class="xp-block" open>
               <summary>
-                <span class="xp-title">Cloud Security + Governance (GCP/AWS)</span>
-                <span class="xp-meta mono">10 points</span>
+                <span class="xp-title">Cloud Governance + Migration Security</span>
               </summary>
               <ul>
-                <li>Supported secure cloud governance strategy across environments and engineering teams.</li>
-                <li>Designed secure identity and access boundaries to reduce cloud exposure and blast radius.</li>
+                <li>Supported secure cloud governance strategy across environments and teams.</li>
+                <li>Designed secure identity and access boundaries to reduce cloud exposure.</li>
                 <li>Worked on GCP migration initiatives and security design for HIPI project.</li>
                 <li>Implemented posture improvements aligned with production delivery requirements.</li>
                 <li>Supported ingress/CDN exposure patterns and service hardening approaches.</li>
                 <li>Built governance as guardrails (policy) instead of documentation-only controls.</li>
-                <li>Evaluated cloud deployment models to reduce misconfiguration and unintentional public exposure.</li>
-                <li>Supported secure load balancer and ingress patterns for cloud-native services.</li>
-                <li>Partnered with teams to validate environment separation: Dev → UAT → Prod boundaries.</li>
-                <li>Aligned cloud controls with compliance evidence requirements and audit expectations.</li>
               </ul>
             </details>
 
-            <!-- 5 -->
-            <details class="xp-block">
+            <details class="xp-block" open>
               <summary>
-                <span class="xp-title">Application Security + Secrets Remediation</span>
-                <span class="xp-meta mono">14 points</span>
+                <span class="xp-title">AppSec + Secrets Remediation</span>
               </summary>
               <ul>
                 <li>Performed web, API, and mobile penetration testing as part of application security responsibilities.</li>
@@ -586,25 +439,10 @@ flowchart TD
                 <li>Reduced false positives by tuning policies and aligning severity with exploitability.</li>
                 <li>Defined deployment decisions: block/allow based on thresholds and risk acceptance workflows.</li>
                 <li>Acted as bridge between AppSec + DevOps + QA + Engineering to ensure secure releases at scale.</li>
-                <li>Built playbooks for secure remediation to reduce repeat occurrences and improve engineering maturity.</li>
-                <li>Validated vulnerability fixes using retesting and ensured closure evidence is captured.</li>
-                <li>Supported teams during incident-like security events with rapid triage and containment actions.</li>
-                <li>Improved developer enablement by providing secure coding patterns and repeatable guidance.</li>
               </ul>
             </details>
 
           </div>
-
-          <div class="results-summary">
-            <h3>📌 Results Summary</h3>
-            <ul>
-              <li><b>350+ microservices secured</b> using pipeline security gates + runtime guardrails.</li>
-              <li>Built <b>attestation-ready evidence bundles</b> (SBOM + scans + approvals + traceability).</li>
-              <li>Reduced release risk by enforcing <b>immutable artifacts</b> and controlled promotions.</li>
-              <li>Improved security velocity by designing <b>repeatable templates</b> instead of manual approvals.</li>
-            </ul>
-          </div>
-
         </div>
       </div>
     </section>

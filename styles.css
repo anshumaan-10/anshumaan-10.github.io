@@ -1006,3 +1006,20 @@ main{ padding:22px 0 70px; }
     grid-template-columns: 1fr;
   }
 }
+
+/* FULL WIDTH Architecture SBOM block */
+.arch-full{
+  padding:16px;
+  border-radius:18px;
+  margin-top:14px;
+}
+
+.arch-image-full{
+  width:100%;
+}
+
+.arch-image-full img{
+  width:100%;
+  height:auto;
+  display:block;
+}
