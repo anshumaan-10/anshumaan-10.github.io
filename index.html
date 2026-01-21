@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="./styles.css" />
   <script defer src="./script.js"></script>
 
-  <!-- JSON-LD Person Schema (Trust Signal) -->
+  <!-- JSON-LD Person Schema -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -60,9 +60,13 @@
         <a href="#system">System Design</a>
         <a href="#impact">Impact</a>
         <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
         <a href="#projects">Projects</a>
         <a href="#architecture">Architecture</a>
         <a href="#explorer">Explorer</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#threat-board">Threat Model</a>
+        <a href="#evidence">Evidence</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
         <a href="#achievements">Achievements</a>
@@ -72,6 +76,10 @@
       <div class="topbar-actions">
         <button class="btn btn-ghost btn-icon" id="copyEmailBtn" title="Copy email">
           Copy Email
+        </button>
+
+        <button class="btn btn-ghost btn-icon" id="downloadPDFBtn" title="Download PDF Portfolio">
+          Download PDF
         </button>
 
         <a class="btn btn-ghost" href="mailto:anshumaansingh10jan@gmail.com">Email</a>
@@ -102,9 +110,13 @@
           <a href="#system" class="mnav">System Design</a>
           <a href="#impact" class="mnav">Impact</a>
           <a href="#experience" class="mnav">Experience</a>
+          <a href="#education" class="mnav">Education</a>
           <a href="#projects" class="mnav">Projects</a>
           <a href="#architecture" class="mnav">Architecture</a>
           <a href="#explorer" class="mnav">Explorer</a>
+          <a href="#case-studies" class="mnav">Case Studies</a>
+          <a href="#threat-board" class="mnav">Threat Model</a>
+          <a href="#evidence" class="mnav">Evidence</a>
           <a href="#skills" class="mnav">Skills</a>
           <a href="#certs" class="mnav">Certifications</a>
           <a href="#achievements" class="mnav">Achievements</a>
@@ -116,6 +128,7 @@
              href="https://drive.google.com/file/d/1k59r3PhyGF06JbT9N62g87w5N3XtwRd_/view?usp=sharing">
             Download Resume
           </a>
+          <button class="btn btn-ghost" id="downloadPDFBtnMobile">Download PDF</button>
           <a class="btn btn-ghost" target="_blank" rel="noreferrer"
              href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/">
             LinkedIn
@@ -129,22 +142,7 @@
     </div>
   </header>
 
-  <!-- Sticky Mini CTA -->
-  <div class="sticky-cta glass" id="stickyCTA">
-    <div class="sticky-cta-left">
-      <div class="mono subtle">Open to roles</div>
-      <div class="sticky-cta-title">Security Systems • DevSecOps • Kubernetes Security</div>
-    </div>
-    <div class="sticky-cta-actions">
-      <a class="btn btn-primary" target="_blank" rel="noreferrer"
-         href="https://drive.google.com/file/d/1k59r3PhyGF06JbT9N62g87w5N3XtwRd_/view?usp=sharing">
-        Resume
-      </a>
-      <a class="btn btn-ghost" href="#connect">Contact</a>
-    </div>
-  </div>
-
-  <main class="container">
+  <main class="container" id="portfolioRoot">
 
     <!-- HERO -->
     <section class="hero glass">
@@ -196,8 +194,8 @@
              href="https://drive.google.com/file/d/1k59r3PhyGF06JbT9N62g87w5N3XtwRd_/view?usp=sharing">
             Download Resume
           </a>
+          <button class="btn btn-ghost" id="downloadPDFBtnHero">Download PDF</button>
           <a class="btn btn-ghost" href="#projects">Projects</a>
-          <a class="btn btn-ghost" href="#architecture">Architecture</a>
           <a class="btn btn-ghost" href="#explorer">Explorer</a>
           <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://github.com/anshumaan-10">GitHub</a>
         </div>
@@ -354,7 +352,7 @@
       </div>
     </section>
 
-    <!-- NEW: IMPACT (V300 Add-on) -->
+    <!-- IMPACT -->
     <section id="impact" class="section glass">
       <h2>📈 Impact System (What This Prevents)</h2>
       <p class="mono subtle">
@@ -419,10 +417,6 @@
           </div>
         </div>
       </div>
-
-      <div class="hint" style="margin-top:14px;">
-        Want to see the “control plane” in interactive mode? Jump to <a href="#explorer">Architecture Explorer →</a>
-      </div>
     </section>
 
     <!-- EXPERIENCE -->
@@ -462,6 +456,66 @@
             <li>Built promotion strategy with approval boundaries and release immutability.</li>
             <li>Improved security maturity through repeatable controls, measurable guarantees, and production survivability.</li>
           </ul>
+
+          <!-- V400: Deep wiring (added, not replacing your text) -->
+          <div class="deep-block">
+            <div class="deep-title mono">Engineering Signals (System Ownership)</div>
+            <div class="deep-grid">
+              <div class="deep-card">
+                <div class="deep-label mono">Control Plane Thinking</div>
+                <div class="deep-text">Converted “security checks” into enforceable invariants tied to promotion and runtime admission.</div>
+              </div>
+              <div class="deep-card">
+                <div class="deep-label mono">Evidence-First Delivery</div>
+                <div class="deep-text">Built security outcomes that remain auditable: who built it, what passed, what was promoted, and why.</div>
+              </div>
+              <div class="deep-card">
+                <div class="deep-label mono">Operational Survivability</div>
+                <div class="deep-text">Focused on blast radius reduction, bypass prevention, and drift-resistant governance.</div>
+              </div>
+              <div class="deep-card">
+                <div class="deep-label mono">Platform Enablement</div>
+                <div class="deep-text">Security integrated as paved road behavior to preserve velocity while preventing catastrophic failure modes.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section glass">
+      <h2>🎓 Education</h2>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Birla Institute of Technology and Science, Pilani</h3>
+          <div class="mono subtle">M.Tech — Cyber Security (Specialization)</div>
+          <ul style="margin-top:10px;">
+            <li>Cryptography</li>
+            <li>Network Security</li>
+            <li>Ethical Hacking</li>
+            <li>Identity and Access Management Technologies</li>
+            <li>Cyber Crimes, Forensics and Incident Handling</li>
+            <li>Cloud, IoT and Enterprise Security</li>
+            <li>Secure Software Engineering</li>
+            <li>Blockchain Technologies & Systems</li>
+            <li>AI and ML Techniques in Cybersecurity</li>
+          </ul>
+          <div class="hint">Focus: building security as a system property across architecture, identity, and enforcement.</div>
+        </div>
+
+        <div class="card">
+          <h3>Practical Learning (Industry)</h3>
+          <div class="mono subtle">AppSec • DevSecOps • Kubernetes Security • Cloud Governance</div>
+          <ul style="margin-top:10px;">
+            <li>Security engineering across CI/CD and promotion workflows</li>
+            <li>Runtime guardrails and admission control patterns</li>
+            <li>Evidence-driven delivery and audit readiness</li>
+            <li>Threat modeling aligned to real attacker behavior</li>
+          </ul>
+          <div class="hint">Outcome: theory → applied engineering in production systems.</div>
         </div>
       </div>
     </section>
@@ -521,6 +575,23 @@
           </div>
           <div class="project-footer mono">Open GitHub →</div>
         </a>
+
+        <!-- V400: Project Deep Links -->
+        <div class="project-card project-doc">
+          <div class="project-top">
+            <div class="project-title">Project Docs (Deep Links)</div>
+            <div class="project-meta mono">Product-style documentation views</div>
+          </div>
+          <div class="project-body">
+            <div class="doc-links">
+              <a class="doc-link" href="#case-studies">📘 System Design Case Studies</a>
+              <a class="doc-link" href="#threat-board">🧠 Threat Model Board</a>
+              <a class="doc-link" href="#evidence">🧾 Evidence Drawer</a>
+              <a class="doc-link" href="#explorer">🧩 Architecture Explorer</a>
+            </div>
+          </div>
+          <div class="project-footer mono">Open →</div>
+        </div>
       </div>
     </section>
 
@@ -542,14 +613,127 @@
         Below is a granular breakdown of the same architecture expressed as engineering layers (boundaries + enforcement points + guarantees).
       </div>
 
-      <!-- Your existing breakdown stays unchanged -->
-      <!-- (keeping your content exactly as you wrote) -->
+      <!-- Your existing Layer 1–9 blocks (UNCHANGED from your original) -->
+      <div class="grid two" style="margin-top:14px;">
+        <div class="card">
+          <h3>Layer 1 — Engineering & Source Governance</h3>
+          <ul>
+            <li>Developer workstation trust boundary</li>
+            <li>Pre-commit checks + signed commits</li>
+            <li>PR-based changes only (no direct pushes)</li>
+            <li>CODEOWNERS approvals + branch protection</li>
+            <li>Required checks as merge invariants</li>
+          </ul>
+          <div class="hint">Guarantee: only reviewed code becomes mergeable.</div>
+        </div>
 
-      <!-- ... your original architecture cards remain same ... -->
-      <!-- (You can paste your existing Layer 1–9 blocks here unchanged) -->
+        <div class="card">
+          <h3>Layer 2 — Identity & Access Plane</h3>
+          <ul>
+            <li>OIDC federation for keyless authentication</li>
+            <li>Short-lived credentials via token service</li>
+            <li>IAM boundaries (least privilege + scoped roles)</li>
+            <li>Eliminate long-lived static secrets in CI</li>
+          </ul>
+          <div class="hint">Guarantee: identity is verifiable, ephemeral, and constrained.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 3 — CI Boundary & Secure SDLC Verification</h3>
+          <ul>
+            <li>Ephemeral runners to reduce persistence risk</li>
+            <li>Build + package determinism</li>
+            <li>Unit/integration tests as correctness baseline</li>
+            <li>SAST + SCA + secrets scan + IaC scan</li>
+            <li>DAST validation before artifact creation</li>
+            <li>Quality gates with strict pass/fail semantics</li>
+          </ul>
+          <div class="hint">Guarantee: “passed” means safe-to-promote, not just scanned.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 4 — Supply Chain Integrity & Evidence</h3>
+          <ul>
+            <li>Container image build + vulnerability scan</li>
+            <li>SBOM generation (dependency transparency)</li>
+            <li>Provenance metadata (who/what/where built)</li>
+            <li>Artifact signing + attestation bundle</li>
+            <li>Evidence packaged for audit + UAT attestation</li>
+          </ul>
+          <div class="hint">Guarantee: artifacts are traceable and tamper-resistant.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 5 — Risk Engine & Release Governance</h3>
+          <ul>
+            <li>Risk scoring engine combines CVSS + EPSS + exploit maturity</li>
+            <li>Policy gates enforce risk thresholds</li>
+            <li>Registry controls + immutable tags</li>
+            <li>Promotion workflow with approvals (non-bypassable)</li>
+          </ul>
+          <div class="hint">Guarantee: release decisions are policy-driven, not manual trust.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 6 — Environment Separation</h3>
+          <ul>
+            <li>Dev / UAT / Prod separation by policy boundary</li>
+            <li>Promotion chain enforces sequencing</li>
+            <li>Evidence moves with artifacts across environments</li>
+          </ul>
+          <div class="hint">Guarantee: prod is reachable only through controlled promotion.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 7 — Kubernetes Control Plane Enforcement</h3>
+          <ul>
+            <li>Admission controller + policy engine (OPA/Kyverno patterns)</li>
+            <li>RBAC + namespace isolation boundaries</li>
+            <li>Ingress boundary controls</li>
+            <li>East-west segmentation + service mesh enforcement</li>
+            <li>mTLS identity for service-to-service trust</li>
+          </ul>
+          <div class="hint">Guarantee: policy prevents unsafe workloads from ever running.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 8 — Runtime Plane & Data Plane Controls</h3>
+          <ul>
+            <li>Deployment controller + workload enforcement</li>
+            <li>Security context hardening (least privilege runtime)</li>
+            <li>Runtime detection + drift detection</li>
+            <li>Secrets manager + KMS encryption</li>
+            <li>Datastore boundary + PII isolation principles</li>
+          </ul>
+          <div class="hint">Guarantee: runtime stays constrained and observable under stress.</div>
+        </div>
+
+        <div class="card">
+          <h3>Layer 9 — Observability & Security Operations</h3>
+          <ul>
+            <li>Audit logs + metrics + traces</li>
+            <li>SIEM ingestion + detection engineering</li>
+            <li>Incident response workflows + case management</li>
+          </ul>
+          <div class="hint">Guarantee: incidents are detectable, actionable, and containable.</div>
+        </div>
+
+        <div class="card">
+          <h3>Kill-Chain Mapping (Defensive Controls)</h3>
+          <ul>
+            <li><b>Recon:</b> WAF + rate limiting reduce probing</li>
+            <li><b>Initial Access:</b> secrets scanning + SAST + admission deny unsafe deploys</li>
+            <li><b>Privilege Escalation:</b> RBAC + security context hardening</li>
+            <li><b>Lateral Movement:</b> segmentation + mesh + mTLS identity</li>
+            <li><b>Exfiltration:</b> egress control + PII boundary</li>
+            <li><b>Impact:</b> SIEM detections + IR containment</li>
+          </ul>
+          <div class="hint">Guarantee: attacker paths are blocked or forced into detectable states.</div>
+        </div>
+      </div>
     </section>
 
-    <!-- NEW: INTERACTIVE EXPLORER (V300 Add-on) -->
+    <!-- INTERACTIVE EXPLORER -->
     <section id="explorer" class="section glass">
       <h2>🧩 Architecture Explorer (Interactive)</h2>
       <p class="mono subtle">
@@ -585,13 +769,186 @@
           </div>
         </div>
 
-        <div class="explorer-panels" id="explorerPanels">
-          <!-- JS will render layers here -->
+        <div class="explorer-panels" id="explorerPanels"></div>
+      </div>
+    </section>
+
+    <!-- SYSTEM DESIGN CASE STUDIES -->
+    <section id="case-studies" class="section glass">
+      <h2>📘 System Design Case Studies</h2>
+      <p class="mono subtle">
+        These are written like real engineering docs: assumptions → boundaries → enforcement points → failure modes → guarantees.
+      </p>
+
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="case-title">Case Study 1 — Secure Promotion Chain (Dev → UAT → Prod)</div>
+          <div class="case-sub mono">Problem: bypass paths + shadow releases + non-auditable deployments</div>
+
+          <div class="case-body">
+            <div class="case-block">
+              <div class="case-label mono">Constraints</div>
+              <ul>
+                <li>350+ microservices</li>
+                <li>Multiple teams and parallel releases</li>
+                <li>Need attestation-ready evidence for UAT and production</li>
+              </ul>
+            </div>
+
+            <div class="case-block">
+              <div class="case-label mono">Design</div>
+              <ul>
+                <li>Immutable versioning and controlled promotion workflow</li>
+                <li>Evidence moves with artifact (SBOM + provenance + scan results)</li>
+                <li>Approvals are enforced as policy boundaries</li>
+              </ul>
+            </div>
+
+            <div class="case-block">
+              <div class="case-label mono">Guarantee</div>
+              <div class="case-guarantee">Production is reachable only through the promotion chain with evidence attached.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-title">Case Study 2 — CI/CD as a Security Control Plane</div>
+          <div class="case-sub mono">Problem: “scanned” ≠ “safe”, inconsistent gating semantics</div>
+
+          <div class="case-body">
+            <div class="case-block">
+              <div class="case-label mono">Design</div>
+              <ul>
+                <li>Deterministic pass/fail semantics for verification stages</li>
+                <li>Non-bypassable checks mapped to promotion eligibility</li>
+                <li>Evidence packaged for audit and attestation</li>
+              </ul>
+            </div>
+
+            <div class="case-block">
+              <div class="case-label mono">Failure Modes Prevented</div>
+              <ul>
+                <li>Deploying with ignored scan findings</li>
+                <li>“Green pipeline” without meaningful security meaning</li>
+                <li>Manual exceptions turning into permanent drift</li>
+              </ul>
+            </div>
+
+            <div class="case-block">
+              <div class="case-label mono">Guarantee</div>
+              <div class="case-guarantee">If it passed, it is promotable with consistent security meaning.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREAT MODEL BOARD -->
+    <section id="threat-board" class="section glass">
+      <h2>🧠 Threat Model Board</h2>
+      <p class="mono subtle">
+        Interactive board to map attacker paths to enforcement points. This is the security engineering view: attack → control → guarantee.
+      </p>
+
+      <div class="threat-board">
+        <div class="threat-controls glass">
+          <div class="threat-title mono">Threat Scenarios</div>
+          <div class="threat-sub subtle">Select a scenario to view likely paths and the control plane defenses.</div>
+
+          <div class="threat-buttons">
+            <button class="btn btn-ghost threat-btn" data-scenario="secrets">Secrets leaked in repo</button>
+            <button class="btn btn-ghost threat-btn" data-scenario="supplychain">Artifact tampering</button>
+            <button class="btn btn-ghost threat-btn" data-scenario="k8s">Privileged pod attempt</button>
+            <button class="btn btn-ghost threat-btn" data-scenario="authz">Broken authorization (IDOR)</button>
+          </div>
+        </div>
+
+        <div class="threat-panel glass" id="threatPanel">
+          <div class="mono subtle">Pick a scenario to render the threat model.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVIDENCE DRAWER -->
+    <section id="evidence" class="section glass">
+      <h2>🧾 Evidence Drawer (SBOM • Attestation • Provenance)</h2>
+      <p class="mono subtle">
+        This section shows how “security” becomes verifiable evidence rather than claims. Expand drawers to view artifact-level proof formats.
+      </p>
+
+      <div class="drawer-grid">
+        <div class="drawer glass">
+          <button class="drawer-head" data-drawer="sbom">
+            <div class="drawer-left">
+              <div class="drawer-title mono">SBOM (Software Bill of Materials)</div>
+              <div class="drawer-sub subtle">Dependency transparency + audit readiness</div>
+            </div>
+            <div class="drawer-toggle mono">expand</div>
+          </button>
+          <div class="drawer-body">
+            <pre class="codeblock"><code>{
+  "format": "CycloneDX / SPDX",
+  "artifact": "container-image",
+  "includes": [
+    "direct-dependencies",
+    "transitive-dependencies",
+    "licenses",
+    "hashes"
+  ],
+  "purpose": "evidence for risk evaluation + audit"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="drawer glass">
+          <button class="drawer-head" data-drawer="attestation">
+            <div class="drawer-left">
+              <div class="drawer-title mono">Attestation (Policy Evidence)</div>
+              <div class="drawer-sub subtle">What passed, who approved, why it’s promotable</div>
+            </div>
+            <div class="drawer-toggle mono">expand</div>
+          </button>
+          <div class="drawer-body">
+            <pre class="codeblock"><code>{
+  "attestation": "build+scan+approval",
+  "commit": "sha256:...",
+  "checks": [
+    "SAST",
+    "SCA",
+    "Secrets",
+    "IaC",
+    "Container Scan",
+    "DAST"
+  ],
+  "decision": "promotable",
+  "environmentChain": ["dev", "uat", "prod"]
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="drawer glass">
+          <button class="drawer-head" data-drawer="provenance">
+            <div class="drawer-left">
+              <div class="drawer-title mono">Provenance (Who/What/Where Built)</div>
+              <div class="drawer-sub subtle">Traceability for supply chain integrity</div>
+            </div>
+            <div class="drawer-toggle mono">expand</div>
+          </button>
+          <div class="drawer-body">
+            <pre class="codeblock"><code>{
+  "builder": "CI runner",
+  "workflow": "verified pipeline",
+  "source": "reviewed PR",
+  "timestamp": "ISO-8601",
+  "digest": "sha256:...",
+  "immutability": true
+}</code></pre>
+          </div>
         </div>
       </div>
 
       <div class="hint" style="margin-top:14px;">
-        This explorer is designed to show <b>enforcement points</b> and <b>guarantees</b> — the exact things hiring panels look for.
+        These are intentionally presented as engineering artifacts, not marketing claims.
       </div>
     </section>
 
@@ -764,6 +1121,6 @@
     </footer>
   </main>
 
-  <div class="toast mono" id="toast">Copied</div>
+  <div class="toast mono" id="toast">@2026</div>
 </body>
 </html>
