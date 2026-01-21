@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anshumaan Singh | Security Systems Engineer</title>
+  <meta name="description" content="Security Systems Engineer | DevSecOps | Cloud & Application Security" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./styles.css" />
+  <script defer src="./script.js"></script>
+</head>
+
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="topbar glass">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-name">anshumaan</span>
+        <span class="brand-role mono">security-systems</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="#system">System Design</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#connect">Connect</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <a class="btn btn-ghost" href="mailto:anshumaansingh10jan@gmail.com">Email</a>
+        <a class="btn btn-primary" target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/">LinkedIn</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero glass">
+      <div class="hero-left">
+        <h1>Hi 👋, I'm <span class="accent">Anshumaan Singh</span></h1>
+        <div class="subtitle">Security Systems Engineer | DevSecOps | Cloud & Application Security</div>
+
+        <div class="positioning-statement mono">
+          "I engineer security like reliability — as a system property enforced through architecture, policy boundaries, and continuous verification."
+        </div>
+
+        <p class="lead">
+          I design secure-by-default platforms for cloud-native environments where security is not a checklist, but a set of invariants that must remain true under real attacker behavior. I build security control planes across CI/CD, Kubernetes, cloud IAM, and runtime detection so that the insecure path becomes the hard path.
+        </p>
+
+        <div class="meta">
+          <span class="pill">📍 Bengaluru, India</span>
+          <span class="pill">🏢 Information Security Analyst (IC-2) @ ZEE</span>
+          <span class="pill">🧩 Application Security & DevSecOps</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#architecture">View Architecture</a>
+          <a class="btn btn-ghost" href="#projects">Projects</a>
+          <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://github.com/anshumaan-10">GitHub</a>
+        </div>
+
+        <div class="badges">
+          <a target="_blank" rel="noreferrer" href="mailto:anshumaansingh10jan@gmail.com">
+            <img alt="Email" src="https://img.shields.io/badge/Email-anshumaansingh10jan%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" />
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/">
+            <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-Anshumaan%20Singh-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://github.com/anshumaan-10">
+            <img alt="GitHub" src="https://img.shields.io/badge/GitHub-anshumaan--10-181717?style=for-the-badge&logo=github&logoColor=white" />
+          </a>
+          <a target="_blank" rel="noreferrer" href="https://medium.com/@anshumaansingh10jan">
+            <img alt="Medium" src="https://img.shields.io/badge/Medium-%40anshumaansingh10jan-000000?style=for-the-badge&logo=medium&logoColor=white" />
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <img class="hero-gif" alt="Security Engineering" src="https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif" />
+        <div class="hero-card mono">
+          <div class="hero-card-title">secure-by-default</div>
+          <div class="hero-card-body">
+            <div>• trust boundaries → enforced controls</div>
+            <div>• CI/CD → verification + evidence</div>
+            <div>• runtime → least privilege + detection</div>
+            <div>• governance → guardrails, not docs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section glass">
+      <h2>🔥 About Me</h2>
+      <p>
+        I work as a Security Systems Engineer across the SDLC where security is not a gate — it’s a set of <b>system invariants</b> that remain true regardless of code changes, deployments, or operational stress.
+      </p>
+      <p>
+        My focus is building security into architecture and execution: <b>trust boundaries, identity flows, authorization enforcement points, secure defaults, deterministic pipelines, controlled promotions, and runtime guardrails</b>.
+      </p>
+      <p>
+        I don’t optimize for “scanner output.” I optimize for <b>production guarantees</b>: preventing insecure deployments, reducing blast radius, enforcing least privilege, eliminating silent risk drift, and ensuring incidents are detectable and containable.
+      </p>
+    </section>
+
+    <section id="philosophy" class="section glass">
+      <h2>⚖️ Engineering Philosophy</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Shift Smart, Not Just Left</h3>
+          <p>It’s not about burdening developers with more tools; it’s about abstracting security complexity into the platform. If the easiest way to deploy is also the secure way, developers will choose it every time.</p>
+        </div>
+        <div class="card">
+          <h3>Identity is the New Perimeter</h3>
+          <p>In a cloud-native, zero-trust world, network boundaries are porous. Strong, short-lived, verifiable identity (Workload Identity, OIDC) is the only true control plane.</p>
+        </div>
+        <div class="card">
+          <h3>Guardrails over Gates</h3>
+          <p>Gates block progress and create friction. Guardrails keep velocity high while preventing catastrophic failure. I build paved roads where safety is baked in, not bolted on.</p>
+        </div>
+        <div class="card">
+          <h3>Detection as Code</h3>
+          <p>Runtime alerts must be actionable, version-controlled, and mapped to specific failure modes. If an alert doesn't have a defined response playbook, it's just noise.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="system" class="section glass">
+      <h2>🧠 Security System Design (What I Build)</h2>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>1) Secure System Design (Trust Architecture)</h3>
+          <ul>
+            <li>identities and principals (human, service, workload identity)</li>
+            <li>trust zones and cross-boundary flows</li>
+            <li>authorization decision ownership and enforcement points</li>
+            <li>attacker paths (abuse routes, bypass edges, escalation paths)</li>
+          </ul>
+          <div class="hint">Outcome: deny-by-default, scoped permissions, isolation boundaries.</div>
+        </div>
+
+        <div class="card">
+          <h3>2) CI/CD as a Security Control Plane</h3>
+          <ul>
+            <li>only reviewed changes create deployable artifacts</li>
+            <li>policy violations fail early (pre-merge + pre-deploy)</li>
+            <li>artifacts remain traceable to code + approval</li>
+            <li>promotions are controlled, non-bypassable, and auditable</li>
+          </ul>
+          <div class="hint">Outcome: deterministic security pipelines with attestation evidence.</div>
+        </div>
+
+        <div class="card">
+          <h3>3) Supply Chain Hardening & Artifact Integrity</h3>
+          <ul>
+            <li>controlled artifact creation and promotion flows</li>
+            <li>strict versioning and release immutability (no “latest”)</li>
+            <li>provenance-style traceability (what was built, where, by whom)</li>
+            <li>consistent verification gates so “passed” means “safe to ship”</li>
+          </ul>
+          <div class="hint">Outcome: tamper-resistance from build to registry to runtime.</div>
+        </div>
+
+        <div class="card">
+          <h3>4) Kubernetes Security + Runtime Engineering</h3>
+          <ul>
+            <li>admission control guardrails and policy enforcement</li>
+            <li>least privilege runtime execution and workload isolation</li>
+            <li>reducing attack surface and limiting blast radius</li>
+            <li>runtime detection mapped to response actions (not noise)</li>
+          </ul>
+          <div class="hint">Outcome: runtime reality matches security design.</div>
+        </div>
+
+        <div class="card">
+          <h3>5) Application & API Security (Validation-first)</h3>
+          <ul>
+            <li>broken authorization (IDOR / access control)</li>
+            <li>token handling and session trust boundaries</li>
+            <li>OAuth2/JWT weaknesses and misuse patterns</li>
+            <li>API abuse (rate bypass, enumeration, replay, privilege jumps)</li>
+          </ul>
+          <div class="hint">Outcome: durable fixes that hold under real attacker behavior.</div>
+        </div>
+
+        <div class="card">
+          <h3>6) Cloud Governance (GCP-first)</h3>
+          <ul>
+            <li>IAM hardening and scoped access patterns</li>
+            <li>secure defaults enforced via policy</li>
+            <li>drift detection + post-deployment hygiene</li>
+            <li>security posture visibility aligned with operations</li>
+          </ul>
+          <div class="hint">Outcome: governance as guardrails, not documentation.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section glass">
+      <h2>🏢 Experience (Impact)</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-title">ZEE Entertainment Enterprises Ltd — Bengaluru, India</div>
+          <div class="timeline-sub mono">Information Security Analyst (IC-2) | Application Security + DevSecOps | Jun 2023 – Present</div>
+
+          <div class="scope-scale">
+            <strong>Scope & Scale:</strong> Security engineering across cloud-native delivery for <b>350+ microservices</b>. Secure SDLC enforcement from code → pipeline → registry → Kubernetes runtime.
+          </div>
+
+          <ul>
+            <li>Built an end-to-end centralized DevSecOps security pipeline enabling secure-by-default delivery at scale.</li>
+            <li>Implemented policy gates and security verification workflows (SAST/SCA/Secrets/IaC/Container/DAST) with auditable evidence generation.</li>
+            <li>Hardened Kubernetes posture through enforceable policy-as-code guardrails and runtime visibility.</li>
+            <li>Implemented secure artifact promotion strategy (Dev → UAT → Prod) with controlled approvals and immutable versioning.</li>
+            <li>Strengthened GitHub Enterprise security governance with org-level controls, audit visibility, and detection-ready telemetry.</li>
+            <li>Improved operational security maturity through repeatable controls, measurable guarantees, and production survivability.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section glass">
+      <h2>📌 Featured Projects</h2>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>🔐 Enterprise-Level DevSecOps CI/CD Pipeline (Nov 2024)</h3>
+          <p><b>Goal:</b> Build a scalable, non-bypassable security control plane for delivery.</p>
+          <ul>
+            <li>secure PR gates + mandatory reviews + required checks</li>
+            <li>multi-stage CI security verification (SAST/SCA/Secrets/IaC/Container scanning)</li>
+            <li>SBOM generation and artifact evidence packaging</li>
+            <li>controlled promotion workflow across environments (Dev → UAT → Prod)</li>
+          </ul>
+          <div class="hint">Result: deterministic, repeatable security enforcement without blocking delivery speed.</div>
+        </div>
+
+        <div class="card">
+          <h3>☁️ Cloud-Native MERN Stack Deployment with End-to-End DevSecOps (Aug 2024)</h3>
+          <p><b>Goal:</b> Deploy full-stack cloud-native app with secure delivery and observability.</p>
+          <ul>
+            <li>AWS EKS deployment with GitOps workflows</li>
+            <li>automated infra provisioning + secure CI/CD pipelines</li>
+            <li>monitoring and visibility using Prometheus + Grafana</li>
+          </ul>
+          <div class="hint">Result: production-style deployment pipeline with security controls + operational monitoring.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section glass">
+      <h2>🏗️ V11 Reference Architecture</h2>
+      <p class="mono subtle">The V11 Secure-by-Default Delivery Architecture acts as the central nervous system for software delivery.</p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Core Components</h3>
+          <ul>
+            <li><b>Control Plane:</b> CI/CD (GitHub Actions/Jenkins) enforcing policy-as-code.</li>
+            <li><b>Data Plane:</b> Kubernetes (EKS/GKE) with OPA Gatekeeper/Kyverno for admission control.</li>
+            <li><b>Identity Plane:</b> Workload Identity Federation for keyless authentication.</li>
+            <li><b>Observability Plane:</b> Prometheus/Grafana + Security Command Center for drift detection.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Key Guarantees</h3>
+          <ul>
+            <li>No code reaches production without passing through a verifiable chain of trust.</li>
+            <li>All artifacts are signed and have associated SBOMs.</li>
+            <li>Infrastructure is immutable; changes must go through GitOps.</li>
+          </ul>
+        </div>
+      </div>
+
+      <br>
+      <pre class="codeblock"><code>Check the README in my GitHub profile for the full Mermaid diagram of this architecture.</code></pre>
+    </section>
+
+    <section id="skills" class="section glass">
+      <h2>🛠️ Skills</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>🏗 Security Systems Engineering</h3>
+          <ul>
+            <li>secure-by-default architecture</li>
+            <li>trust boundaries + threat modeling</li>
+            <li>security invariants and enforcement points</li>
+            <li>blast radius reduction and containment strategy</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🔁 DevSecOps Engineering</h3>
+          <ul>
+            <li>CI/CD pipeline hardening</li>
+            <li>policy gates and deterministic verification</li>
+            <li>controlled promotion workflows and evidence generation</li>
+            <li>artifact integrity and release governance</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>☸️ Kubernetes Security Engineering</h3>
+          <ul>
+            <li>admission control and policy enforcement</li>
+            <li>workload isolation and least privilege runtime design</li>
+            <li>cluster posture and continuous drift monitoring</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🌐 Application & API Security</h3>
+          <ul>
+            <li>web, API, mobile penetration testing</li>
+            <li>authn/authz validation and abuse case testing</li>
+            <li>OAuth2/JWT trust issues and token misuse patterns</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>☁️ Cloud Security Engineering (GCP-first)</h3>
+          <ul>
+            <li>IAM hardening and privilege reduction</li>
+            <li>secure perimeter and guardrails</li>
+            <li>posture visibility and operational alignment</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🛡 Vulnerability Management</h3>
+          <ul>
+            <li>vulnerability triage and prioritization (CVSS, EPSS)</li>
+            <li>SLA-based remediation workflows</li>
+            <li>risk scoring and engineering-driven mitigation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs" class="section glass">
+      <h2>🏅 Certifications</h2>
+      <div class="badge-row big">
+        <img alt="CKS" src="https://img.shields.io/badge/CKS-Certified%20Kubernetes%20Security%20Specialist-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
+        <img alt="CKA" src="https://img.shields.io/badge/CKA-Certified%20Kubernetes%20Administrator-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
+        <img alt="GCP Security" src="https://img.shields.io/badge/GCP-Professional%20Cloud%20Security%20Engineer-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+        <img alt="GCP PCA" src="https://img.shields.io/badge/GCP-Professional%20Cloud%20Architect-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+        <img alt="GCP ACE" src="https://img.shields.io/badge/GCP-Associate%20Cloud%20Engineer-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+        <img alt="Terraform" src="https://img.shields.io/badge/Terraform-HashiCorp%20Certified-623CE4?style=for-the-badge&logo=terraform&logoColor=white" />
+      </div>
+
+      <ul class="compact">
+        <li>CKS — Sep 2025</li>
+        <li>Google Professional Cloud Security Engineer — May 2025</li>
+        <li>Google Associate Cloud Engineer — Apr 2025</li>
+        <li>Google Professional Cloud Architect — Apr 2025</li>
+        <li>CKA — Jan 2025</li>
+        <li>Terraform Associate (HCTA-003) — Sep 2024</li>
+      </ul>
+    </section>
+
+    <section id="connect" class="section glass">
+      <h2>📫 Connect</h2>
+      <div class="connect-grid">
+        <a class="connect-card" href="mailto:anshumaansingh10jan@gmail.com">
+          <div class="connect-title">Email</div>
+          <div class="connect-value mono">anshumaansingh10jan@gmail.com</div>
+        </a>
+        <a class="connect-card" target="_blank" rel="noreferrer" href="https://linkedin.com/in/anshumaan-singh-6b51b5239">
+          <div class="connect-title">LinkedIn</div>
+          <div class="connect-value mono">/in/anshumaan-singh-6b51b5239</div>
+        </a>
+        <a class="connect-card" target="_blank" rel="noreferrer" href="https://github.com/anshumaan-10">
+          <div class="connect-title">GitHub</div>
+          <div class="connect-value mono">@anshumaan-10</div>
+        </a>
+        <a class="connect-card" target="_blank" rel="noreferrer" href="https://medium.com/@anshumaansingh10jan">
+          <div class="connect-title">Medium</div>
+          <div class="connect-value mono">@anshumaansingh10jan</div>
+        </a>
+      </div>
+
+      <div class="footer-note mono">
+        Want to learn more? <a target="_blank" rel="noreferrer" href="https://drive.google.com/file/d/1FSYPYKnoltpLTqC7Zu6yV3Kdk5scXA3f/view?usp=sharing">View Resume (PDF)</a>
+      </div>
+    </section>
+
+    <footer class="footer mono">
+      <span>© <span id="year"></span> Anshumaan Singh</span>
+      <span class="dot">•</span>
+      <span>Security Systems Engineering</span>
+    </footer>
+  </main>
+</body>
+</html>
