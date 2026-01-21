@@ -3,6 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
+  // Toast
+  const toast = document.getElementById("toast");
+  const showToast = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 1200);
+  };
+
   // Topbar shadow on scroll
   const topbar = document.querySelector(".topbar");
   const onScroll = () => {
@@ -63,7 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDrawer();
+    if (e.key === "Escape") {
+      closeDrawer();
+      closeCmdk();
+    }
   });
 
   // KPI Counters
@@ -103,15 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   counters.forEach((c) => observer.observe(c));
 
-  // Toast
-  const toast = document.getElementById("toast");
-  const showToast = (msg) => {
-    if (!toast) return;
-    toast.textContent = msg;
-    toast.classList.add("show");
-    setTimeout(() => toast.classList.remove("show"), 1200);
-  };
-
   // Copy Email
   const copyEmailBtn = document.getElementById("copyEmailBtn");
   if (copyEmailBtn) {
@@ -125,439 +128,280 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Case study drawers
-  document.querySelectorAll("[data-open]").forEach((btn) => {
+  // THEME TOGGLE (Dark/Light)
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const themeToggleBtnMobile = document.getElementById("themeToggleBtnMobile");
+  const root = document.documentElement;
+
+  const setTheme = (theme) => {
+    root.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+    showToast(theme === "light" ? "Light mode" : "Dark mode");
+  };
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) setTheme(savedTheme);
+
+  const toggleTheme = () => {
+    const current = root.getAttribute("data-theme") || "dark";
+    setTheme(current === "dark" ? "light" : "dark");
+  };
+
+  if (themeToggleBtn) themeToggleBtn.addEventListener("click", toggleTheme);
+  if (themeToggleBtnMobile) themeToggleBtnMobile.addEventListener("click", toggleTheme);
+
+  // ACCENT SWITCHER
+  document.querySelectorAll("[data-accent]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-open");
-      const drawer = document.getElementById(id);
-      if (!drawer) return;
-      drawer.classList.add("open");
-      document.body.classList.add("no-scroll");
+      const accent = btn.getAttribute("data-accent");
+      root.setAttribute("data-accent", accent);
+      localStorage.setItem("accent", accent);
+      showToast(`Accent: ${accent}`);
     });
   });
 
-  document.querySelectorAll("[data-close]").forEach((btn) => {
+  const savedAccent = localStorage.getItem("accent");
+  if (savedAccent) root.setAttribute("data-accent", savedAccent);
+
+  // Evidence Tabs
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const tabPanels = document.querySelectorAll(".tab-panel");
+
+  tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-close");
-      const drawer = document.getElementById(id);
-      if (!drawer) return;
-      drawer.classList.remove("open");
-      document.body.classList.remove("no-scroll");
+      const target = btn.dataset.tab;
+      tabBtns.forEach((b) => b.classList.remove("active"));
+      tabPanels.forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add("active");
     });
   });
 
-  document.querySelectorAll(".drawer, .case-drawer").forEach((drawer) => {
-    drawer.addEventListener("click", (e) => {
-      if (e.target === drawer) {
-        drawer.classList.remove("open");
-        document.body.classList.remove("no-scroll");
-      }
-    });
-  });
+  // Risk Engine Simulator
+  const cvssInput = document.getElementById("cvssInput");
+  const epssInput = document.getElementById("epssInput");
+  const evaluateRiskBtn = document.getElementById("evaluateRiskBtn");
+  const resetRiskBtn = document.getElementById("resetRiskBtn");
 
-  // Explorer Data
-  const layers = [
-    {
-      id: "l1",
-      title: "Layer 1 — Source Governance",
-      tags: ["cicd", "governance"],
-      guarantee: "Only reviewed code becomes mergeable.",
-      enforcement: [
-        "PR-only delivery (no direct pushes)",
-        "CODEOWNERS approvals + branch protections",
-        "Required checks as merge invariants",
-        "Signed commits / provenance alignment"
-      ],
-      failureModes: [
-        "Direct push bypass",
-        "Unreviewed changes reaching main",
-        "Missing required checks"
-      ]
-    },
-    {
-      id: "l2",
-      title: "Layer 2 — Identity & Access Plane",
-      tags: ["identity", "governance"],
-      guarantee: "Identity is ephemeral, scoped, and verifiable.",
-      enforcement: [
-        "OIDC federation for keyless auth",
-        "Short-lived tokens for CI workloads",
-        "Least privilege IAM boundaries",
-        "Remove long-lived secrets from pipelines"
-      ],
-      failureModes: [
-        "Credential leakage in CI",
-        "Over-privileged service accounts",
-        "Static keys reused across systems"
-      ]
-    },
-    {
-      id: "l3",
-      title: "Layer 3 — CI Boundary & Verification",
-      tags: ["cicd"],
-      guarantee: "Passed means promotable (deterministic semantics).",
-      enforcement: [
-        "Ephemeral runners reduce persistence risk",
-        "SAST + SCA + Secrets + IaC scanning",
-        "DAST validation before promotion",
-        "Quality gates with strict fail behavior"
-      ],
-      failureModes: [
-        "Scan results ignored",
-        "Non-deterministic gates",
-        "Builds without evidence"
-      ]
-    },
-    {
-      id: "l4",
-      title: "Layer 4 — Supply Chain Integrity & Evidence",
-      tags: ["supplychain", "cicd"],
-      guarantee: "Artifacts are traceable + tamper-resistant.",
-      enforcement: [
-        "SBOM generation + packaging",
-        "Provenance metadata for builds",
-        "Artifact signing + attestations",
-        "Immutable versioning (no latest)"
-      ],
-      failureModes: [
-        "Tag mutation / overwritten images",
-        "Unknown artifact origin",
-        "No evidence for audit"
-      ]
-    },
-    {
-      id: "l5",
-      title: "Layer 5 — Release Governance & Risk Engine",
-      tags: ["governance", "supplychain"],
-      guarantee: "Release decisions are policy-driven, not manual trust.",
-      enforcement: [
-        "Risk scoring: CVSS + exploit signals",
-        "Policy thresholds for promotion",
-        "Registry controls + immutable tags",
-        "Approval boundaries (non-bypassable)"
-      ],
-      failureModes: [
-        "High-risk artifact promoted",
-        "Manual exception drift",
-        "Policy gaps"
-      ]
-    },
-    {
-      id: "l6",
-      title: "Layer 6 — Environment Separation",
-      tags: ["governance"],
-      guarantee: "Prod reachable only through controlled promotion.",
-      enforcement: [
-        "Dev/UAT/Prod separation by boundary",
-        "Evidence moves with artifacts",
-        "Promotion sequencing enforced"
-      ],
-      failureModes: [
-        "Out-of-band prod deploys",
-        "Missing evidence in UAT/Prod"
-      ]
-    },
-    {
-      id: "l7",
-      title: "Layer 7 — Kubernetes Admission Enforcement",
-      tags: ["kubernetes"],
-      guarantee: "Unsafe workloads never start.",
-      enforcement: [
-        "Admission policies (OPA/Kyverno patterns)",
-        "RBAC + namespace isolation",
-        "Ingress boundary controls",
-        "mTLS identity patterns (service mesh ready)"
-      ],
-      failureModes: [
-        "Privileged pods",
-        "HostPath mounts",
-        "Default service account abuse"
-      ]
-    },
-    {
-      id: "l8",
-      title: "Layer 8 — Runtime Plane Controls",
-      tags: ["kubernetes", "supplychain"],
-      guarantee: "Runtime stays constrained + observable.",
-      enforcement: [
-        "Security context hardening",
-        "Drift detection & runtime detection",
-        "Secrets manager + KMS encryption",
-        "Egress control & data boundary patterns"
-      ],
-      failureModes: [
-        "Privilege escalation at runtime",
-        "Silent drift",
-        "Unbounded egress"
-      ]
-    },
-    {
-      id: "l9",
-      title: "Layer 9 — Observability & Security Operations",
-      tags: ["observability"],
-      guarantee: "Incidents are detectable, actionable, containable.",
-      enforcement: [
-        "Audit logs + metrics + traces",
-        "SIEM ingestion patterns",
-        "Response playbooks mapped to alerts"
-      ],
-      failureModes: [
-        "Noisy alerts",
-        "No response path",
-        "Missing audit telemetry"
-      ]
+  const riskBadge = document.getElementById("riskBadge");
+  const riskTitle = document.getElementById("riskTitle");
+  const riskDesc = document.getElementById("riskDesc");
+
+  const evaluateRisk = () => {
+    const cvss = parseFloat(cvssInput.value);
+    const epss = parseFloat(epssInput.value);
+
+    if (isNaN(cvss) || isNaN(epss)) {
+      riskBadge.textContent = "INVALID";
+      riskTitle.textContent = "Invalid inputs";
+      riskDesc.textContent = "Please enter numeric CVSS and EPSS values.";
+      return;
     }
-  ];
 
-  const explorerPanels = document.getElementById("explorerPanels");
-  const layerSearch = document.getElementById("layerSearch");
-  const chips = document.querySelectorAll(".chip");
-  const expandAllBtn = document.getElementById("expandAllBtn");
-  const collapseAllBtn = document.getElementById("collapseAllBtn");
+    // Simple policy thresholds (you can tune these)
+    const blocks = (cvss >= 7.0 && epss >= 0.50) || (cvss >= 9.0);
 
-  let activeFilter = "all";
-  let searchQuery = "";
-
-  const renderExplorer = () => {
-    if (!explorerPanels) return;
-
-    const filtered = layers.filter((l) => {
-      const matchesFilter = activeFilter === "all" ? true : l.tags.includes(activeFilter);
-      const haystack = `${l.title} ${l.guarantee} ${l.enforcement.join(" ")} ${l.failureModes.join(" ")}`.toLowerCase();
-      const matchesSearch = searchQuery ? haystack.includes(searchQuery.toLowerCase()) : true;
-      return matchesFilter && matchesSearch;
-    });
-
-    explorerPanels.innerHTML = filtered.map((l) => {
-      return `
-        <div class="xpanel glass" data-layer="${l.id}">
-          <button class="xpanel-head" aria-expanded="false">
-            <div class="xpanel-title">
-              <span class="mono xpanel-layer">${l.id.toUpperCase()}</span>
-              <span>${l.title}</span>
-            </div>
-            <span class="xpanel-toggle mono">expand</span>
-          </button>
-
-          <div class="xpanel-body">
-            <div class="xblock">
-              <div class="xlabel mono">guarantee</div>
-              <div class="xvalue">${l.guarantee}</div>
-            </div>
-
-            <div class="xgrid">
-              <div class="xblock">
-                <div class="xlabel mono">enforcement points</div>
-                <ul class="xlist">
-                  ${l.enforcement.map((e) => `<li>${e}</li>`).join("")}
-                </ul>
-              </div>
-
-              <div class="xblock">
-                <div class="xlabel mono">failure modes prevented</div>
-                <ul class="xlist">
-                  ${l.failureModes.map((f) => `<li>${f}</li>`).join("")}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join("");
-
-    document.querySelectorAll(".xpanel-head").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const panel = btn.closest(".xpanel");
-        const expanded = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", String(!expanded));
-        panel.classList.toggle("open");
-        const toggle = btn.querySelector(".xpanel-toggle");
-        if (toggle) toggle.textContent = expanded ? "expand" : "collapse";
-      });
-    });
+    if (blocks) {
+      riskBadge.textContent = "BLOCKED";
+      riskTitle.textContent = "Not promotable";
+      riskDesc.textContent = `Blocked by policy: high risk (CVSS ${cvss.toFixed(1)}, EPSS ${epss.toFixed(2)}).`;
+      showToast("Policy: BLOCKED");
+    } else {
+      riskBadge.textContent = "PROMOTABLE";
+      riskTitle.textContent = "Eligible for promotion";
+      riskDesc.textContent = `Passed policy thresholds (CVSS ${cvss.toFixed(1)}, EPSS ${epss.toFixed(2)}).`;
+      showToast("Policy: PROMOTABLE");
+    }
   };
 
-  if (layerSearch) {
-    layerSearch.addEventListener("input", (e) => {
-      searchQuery = e.target.value || "";
-      renderExplorer();
+  if (evaluateRiskBtn) evaluateRiskBtn.addEventListener("click", evaluateRisk);
+
+  if (resetRiskBtn) {
+    resetRiskBtn.addEventListener("click", () => {
+      cvssInput.value = "7.5";
+      epssInput.value = "0.35";
+      riskBadge.textContent = "—";
+      riskTitle.textContent = "Awaiting evaluation";
+      riskDesc.textContent = "Enter CVSS and EPSS to simulate policy decision.";
+      showToast("Reset");
     });
   }
 
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      activeFilter = chip.dataset.filter || "all";
-      chips.forEach((c) => c.classList.remove("active"));
-      chip.classList.add("active");
-      if (activeFilter === "all") chips.forEach((c) => c.classList.remove("active"));
-      renderExplorer();
-    });
-  });
-
-  if (expandAllBtn) {
-    expandAllBtn.addEventListener("click", () => {
-      document.querySelectorAll(".xpanel").forEach((p) => {
-        p.classList.add("open");
-        const head = p.querySelector(".xpanel-head");
-        const toggle = p.querySelector(".xpanel-toggle");
-        if (head) head.setAttribute("aria-expanded", "true");
-        if (toggle) toggle.textContent = "collapse";
-      });
-    });
-  }
-
-  if (collapseAllBtn) {
-    collapseAllBtn.addEventListener("click", () => {
-      document.querySelectorAll(".xpanel").forEach((p) => {
-        p.classList.remove("open");
-        const head = p.querySelector(".xpanel-head");
-        const toggle = p.querySelector(".xpanel-toggle");
-        if (head) head.setAttribute("aria-expanded", "false");
-        if (toggle) toggle.textContent = "expand";
-      });
-    });
-  }
-
-  renderExplorer();
-
-  // PDF generator (placeholder)
-  const downloadPdf = () => {
-    const content = `
-Anshumaan Singh — Security Systems Engineer
-
-Email: anshumaansingh10jan@gmail.com
-LinkedIn: linkedin.com/in/anshumaan-singh-6b51b5239
-GitHub: github.com/anshumaan-10
-
-Positioning:
-"I engineer security like reliability — as a system property enforced through architecture, policy boundaries, and continuous verification."
-
-Core Impact:
-- Security engineering across 350+ microservices
-- CI/CD control plane with non-bypassable verification gates
-- Supply chain integrity: SBOM + attestations + immutability
-- Kubernetes runtime guardrails: admission controls + least privilege
-- Cloud governance: guardrails as policy, drift prevention, audit visibility
-
-Certifications:
-CKS, CKA, GCP Security, GCP PCA, GCP ACE, Terraform Associate
-    `.trim();
-
-    const blob = new Blob([content], { type: "application/pdf" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Anshumaan_Singh_Portfolio_OnePager.pdf";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-
-    showToast("PDF downloaded");
-  };
-
+  // REAL PDF GENERATOR (jsPDF)
   const downloadPdfBtn = document.getElementById("downloadPdfBtn");
   const downloadPdfBtnHero = document.getElementById("downloadPdfBtnHero");
   const downloadPdfBtnMobile = document.getElementById("downloadPdfBtnMobile");
+
+  const downloadPdf = () => {
+    try {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(16);
+      doc.text("Anshumaan Singh — Security Systems Engineer", 14, 18);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.text("Email: anshumaansingh10jan@gmail.com", 14, 30);
+      doc.text("LinkedIn: linkedin.com/in/anshumaan-singh-6b51b5239", 14, 37);
+      doc.text("GitHub: github.com/anshumaan-10", 14, 44);
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Positioning", 14, 58);
+      doc.setFont("helvetica", "normal");
+      doc.text(
+        "I engineer security like reliability — as a system property enforced through architecture, policy boundaries, and continuous verification.",
+        14,
+        66,
+        { maxWidth: 180 }
+      );
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Core Impact", 14, 88);
+      doc.setFont("helvetica", "normal");
+      const bullets = [
+        "Security engineering across 350+ microservices",
+        "CI/CD control plane with deterministic verification gates",
+        "Supply chain integrity: SBOM + attestations + immutability",
+        "Kubernetes runtime guardrails: admission controls + least privilege",
+        "Cloud governance: policy guardrails + drift resistance"
+      ];
+      let y = 96;
+      bullets.forEach((b) => {
+        doc.text(`• ${b}`, 14, y);
+        y += 7;
+      });
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Certifications", 14, y + 6);
+      doc.setFont("helvetica", "normal");
+      doc.text("CKS, CKA, GCP Security, GCP PCA, Terraform Associate", 14, y + 14);
+
+      doc.save("Anshumaan_Singh_OnePager.pdf");
+      showToast("PDF downloaded");
+    } catch (e) {
+      console.error(e);
+      showToast("PDF failed");
+    }
+  };
 
   if (downloadPdfBtn) downloadPdfBtn.addEventListener("click", downloadPdf);
   if (downloadPdfBtnHero) downloadPdfBtnHero.addEventListener("click", downloadPdf);
   if (downloadPdfBtnMobile) downloadPdfBtnMobile.addEventListener("click", downloadPdf);
 
-  // ===========================
-  // Command Palette (Ctrl + K)
-  // ===========================
-  const palette = document.getElementById("palette");
-  const paletteInput = document.getElementById("paletteInput");
-  const paletteResults = document.getElementById("paletteResults");
-  const paletteCloseBtn = document.getElementById("paletteCloseBtn");
-  const openPaletteBtn = document.getElementById("openPaletteBtn");
+  // CMDK (Command Palette) - FIXED OVERLAP + FULL MODAL
+  const cmdkOverlay = document.getElementById("cmdkOverlay");
+  const cmdkBtn = document.getElementById("cmdkBtn");
+  const cmdkBtnMobile = document.getElementById("cmdkBtnMobile");
+  const cmdkCloseBtn = document.getElementById("cmdkCloseBtn");
+  const cmdkInput = document.getElementById("cmdkInput");
+  const cmdkResults = document.getElementById("cmdkResults");
 
-  const commands = [
-    { label: "Go: About", action: () => location.hash = "#about" },
-    { label: "Go: Ethical Principles", action: () => location.hash = "#principles" },
-    { label: "Go: Implementation Depth", action: () => location.hash = "#implementation" },
-    { label: "Go: Architecture", action: () => location.hash = "#architecture" },
-    { label: "Go: Evidence", action: () => location.hash = "#evidence" },
-    { label: "Go: Metrics", action: () => location.hash = "#metrics" },
-    { label: "Go: Explorer", action: () => location.hash = "#explorer" },
-    { label: "Action: Copy Email", action: async () => {
-        try {
-          await navigator.clipboard.writeText("anshumaansingh10jan@gmail.com");
-          showToast("Email copied");
-        } catch {
-          showToast("Copy failed");
-        }
-      }
-    },
-    { label: "Action: Download One-page PDF", action: downloadPdf }
+  const actions = [
+    { label: "Go: About", type: "scroll", target: "#about" },
+    { label: "Go: Ethical Principles", type: "scroll", target: "#philosophy" },
+    { label: "Go: Implementation Depth", type: "scroll", target: "#implementation" },
+    { label: "Go: Evidence", type: "scroll", target: "#evidence" },
+    { label: "Go: Risk Engine", type: "scroll", target: "#risk-engine" },
+    { label: "Go: Education", type: "scroll", target: "#education" },
+    { label: "Go: Certifications", type: "scroll", target: "#certs" },
+    { label: "Action: Copy Email", type: "copyEmail" },
+    { label: "Action: Download PDF", type: "downloadPdf" },
+    { label: "Action: Toggle Theme", type: "toggleTheme" }
   ];
 
-  const openPalette = () => {
-    if (!palette) return;
-    palette.classList.add("open");
-    palette.setAttribute("aria-hidden", "false");
+  const openCmdk = () => {
+    if (!cmdkOverlay) return;
+    cmdkOverlay.classList.add("open");
+    cmdkOverlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("no-scroll");
-    setTimeout(() => paletteInput && paletteInput.focus(), 40);
-    renderPaletteResults("");
+    renderCmdkResults(actions);
+    setTimeout(() => cmdkInput && cmdkInput.focus(), 20);
   };
 
-  const closePalette = () => {
-    if (!palette) return;
-    palette.classList.remove("open");
-    palette.setAttribute("aria-hidden", "true");
+  const closeCmdk = () => {
+    if (!cmdkOverlay) return;
+    cmdkOverlay.classList.remove("open");
+    cmdkOverlay.setAttribute("aria-hidden", "true");
     document.body.classList.remove("no-scroll");
+    if (cmdkInput) cmdkInput.value = "";
   };
 
-  const renderPaletteResults = (q) => {
-    if (!paletteResults) return;
-    const query = (q || "").toLowerCase();
+  window.closeCmdk = closeCmdk;
 
-    const filtered = commands.filter(c => c.label.toLowerCase().includes(query));
-    paletteResults.innerHTML = filtered.map((c, idx) => {
-      return `<button class="palette-item mono" data-idx="${idx}">${c.label}</button>`;
-    }).join("");
+  const runAction = (action) => {
+    if (!action) return;
 
-    paletteResults.querySelectorAll(".palette-item").forEach((btn) => {
+    if (action.type === "scroll") {
+      const el = document.querySelector(action.target);
+      if (el) {
+        const headerHeight = topbar ? topbar.offsetHeight + 22 : 0;
+        const y = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+
+    if (action.type === "copyEmail") {
+      navigator.clipboard.writeText("anshumaansingh10jan@gmail.com");
+      showToast("Email copied");
+    }
+
+    if (action.type === "downloadPdf") downloadPdf();
+    if (action.type === "toggleTheme") toggleTheme();
+
+    closeCmdk();
+  };
+
+  const renderCmdkResults = (items) => {
+    if (!cmdkResults) return;
+    cmdkResults.innerHTML = items.map((a, idx) => `
+      <button class="cmdk-item" data-idx="${idx}">
+        <span class="mono">${a.label}</span>
+        <span class="cmdk-hint mono subtle">Enter</span>
+      </button>
+    `).join("");
+
+    cmdkResults.querySelectorAll(".cmdk-item").forEach((btn) => {
       btn.addEventListener("click", () => {
         const idx = parseInt(btn.getAttribute("data-idx"), 10);
-        const cmd = filtered[idx];
-        if (cmd) cmd.action();
-        closePalette();
+        runAction(items[idx]);
       });
     });
   };
 
-  if (openPaletteBtn) openPaletteBtn.addEventListener("click", openPalette);
-  if (paletteCloseBtn) paletteCloseBtn.addEventListener("click", closePalette);
+  if (cmdkBtn) cmdkBtn.addEventListener("click", openCmdk);
+  if (cmdkBtnMobile) cmdkBtnMobile.addEventListener("click", openCmdk);
 
-  if (paletteInput) {
-    paletteInput.addEventListener("input", (e) => {
-      renderPaletteResults(e.target.value || "");
-    });
+  if (cmdkCloseBtn) cmdkCloseBtn.addEventListener("click", closeCmdk);
 
-    paletteInput.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closePalette();
-      if (e.key === "Enter") {
-        const first = paletteResults.querySelector(".palette-item");
-        if (first) first.click();
-      }
+  if (cmdkOverlay) {
+    cmdkOverlay.addEventListener("click", (e) => {
+      if (e.target === cmdkOverlay) closeCmdk();
     });
   }
 
   window.addEventListener("keydown", (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
       e.preventDefault();
-      openPalette();
-    }
-    if (e.key === "Escape" && palette && palette.classList.contains("open")) {
-      closePalette();
+      openCmdk();
     }
   });
 
-  if (palette) {
-    palette.addEventListener("click", (e) => {
-      if (e.target === palette) closePalette();
+  if (cmdkInput) {
+    cmdkInput.addEventListener("input", (e) => {
+      const q = (e.target.value || "").toLowerCase().trim();
+      const filtered = actions.filter((a) => a.label.toLowerCase().includes(q));
+      renderCmdkResults(filtered.length ? filtered : actions);
+    });
+
+    cmdkInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        const first = cmdkResults?.querySelector(".cmdk-item");
+        if (first) first.click();
+      }
+      if (e.key === "Escape") closeCmdk();
     });
   }
 });
