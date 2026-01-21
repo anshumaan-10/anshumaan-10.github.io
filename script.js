@@ -126,20 +126,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Sticky CTA show/hide
-  const stickyCTA = document.getElementById("stickyCTA");
-  const hero = document.querySelector(".hero");
-  if (stickyCTA && hero) {
-    const heroObs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) stickyCTA.classList.remove("show");
-        else stickyCTA.classList.add("show");
-      });
-    }, { threshold: 0.2 });
-    heroObs.observe(hero);
-  }
+  // PDF Auto-Generate (client-side print)
+  const triggerPDF = () => {
+    showToast("Preparing PDF…");
+    setTimeout(() => {
+      window.print();
+    }, 350);
+  };
 
-  // Explorer Data (V300)
+  const downloadPDFBtn = document.getElementById("downloadPDFBtn");
+  const downloadPDFBtnHero = document.getElementById("downloadPDFBtnHero");
+  const downloadPDFBtnMobile = document.getElementById("downloadPDFBtnMobile");
+
+  if (downloadPDFBtn) downloadPDFBtn.addEventListener("click", triggerPDF);
+  if (downloadPDFBtnHero) downloadPDFBtnHero.addEventListener("click", triggerPDF);
+  if (downloadPDFBtnMobile) downloadPDFBtnMobile.addEventListener("click", triggerPDF);
+
+  // Explorer Data
   const layers = [
     {
       id: "l1",
@@ -403,4 +406,122 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderExplorer();
+
+  // Threat Model Board
+  const threatPanel = document.getElementById("threatPanel");
+  const threatBtns = document.querySelectorAll(".threat-btn");
+
+  const threatData = {
+    secrets: {
+      title: "Scenario: Secrets leaked in repo",
+      attackPath: [
+        "Attacker discovers token in commit history",
+        "Token used to access CI/CD or cloud resources",
+        "Privilege escalation via over-scoped IAM"
+      ],
+      controls: [
+        "Secrets scanning + PR blocking",
+        "OIDC federation (remove static secrets)",
+        "Least privilege IAM boundaries",
+        "Audit telemetry + detection mapping"
+      ],
+      guarantee: "Secrets are prevented from becoming persistent access paths."
+    },
+    supplychain: {
+      title: "Scenario: Artifact tampering / tag mutation",
+      attackPath: [
+        "Image tag overwritten (mutable tag)",
+        "Artifact promoted without evidence",
+        "Prod runs unverified image"
+      ],
+      controls: [
+        "Immutable versioning (no latest)",
+        "Signing + attestations",
+        "Promotion chain enforcement",
+        "Registry controls + policy gates"
+      ],
+      guarantee: "Only verified, traceable artifacts can be promoted and deployed."
+    },
+    k8s: {
+      title: "Scenario: Privileged pod attempt",
+      attackPath: [
+        "Developer attempts privileged container",
+        "HostPath mounts enable node escape",
+        "Lateral movement across namespaces"
+      ],
+      controls: [
+        "Admission control policies (deny privileged)",
+        "RBAC boundaries + namespace isolation",
+        "Security context enforcement",
+        "Runtime detection + drift monitoring"
+      ],
+      guarantee: "Unsafe workloads are denied before execution."
+    },
+    authz: {
+      title: "Scenario: Broken authorization (IDOR)",
+      attackPath: [
+        "Attacker enumerates resource IDs",
+        "Accesses unauthorized objects",
+        "Escalates by abusing missing checks"
+      ],
+      controls: [
+        "Authorization enforcement points defined",
+        "Threat modeling of trust boundaries",
+        "API abuse testing and validation",
+        "Telemetry mapped to response actions"
+      ],
+      guarantee: "Authorization failures are addressed as system boundaries, not patchwork fixes."
+    }
+  };
+
+  const renderThreat = (key) => {
+    if (!threatPanel) return;
+    const t = threatData[key];
+    if (!t) return;
+
+    threatPanel.innerHTML = `
+      <div class="threat-render">
+        <div class="threat-render-title mono">${t.title}</div>
+
+        <div class="threat-cols">
+          <div class="threat-col">
+            <div class="xlabel mono">attacker path</div>
+            <ul class="xlist">
+              ${t.attackPath.map((a) => `<li>${a}</li>`).join("")}
+            </ul>
+          </div>
+
+          <div class="threat-col">
+            <div class="xlabel mono">control plane defenses</div>
+            <ul class="xlist">
+              ${t.controls.map((c) => `<li>${c}</li>`).join("")}
+            </ul>
+          </div>
+        </div>
+
+        <div class="xblock" style="margin-top:12px;">
+          <div class="xlabel mono">guarantee</div>
+          <div class="xvalue">${t.guarantee}</div>
+        </div>
+      </div>
+    `;
+  };
+
+  threatBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      threatBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderThreat(btn.dataset.scenario);
+    });
+  });
+
+  // Evidence Drawers
+  document.querySelectorAll(".drawer-head").forEach((head) => {
+    head.addEventListener("click", () => {
+      const drawer = head.closest(".drawer");
+      const toggle = head.querySelector(".drawer-toggle");
+      const open = drawer.classList.toggle("open");
+      if (toggle) toggle.textContent = open ? "collapse" : "expand";
+    });
+  });
 });
