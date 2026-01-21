@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // Topbar shadow on scroll
+  // Topbar shadow on scroll 
   const topbar = document.querySelector(".topbar");
   const onScroll = () => {
     if (!topbar) return;
