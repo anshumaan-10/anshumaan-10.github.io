@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.querySelectorAll(".drawer").forEach((drawer) => {
+  document.querySelectorAll(".drawer, .case-drawer").forEach((drawer) => {
     drawer.addEventListener("click", (e) => {
       if (e.target === drawer) {
         drawer.classList.remove("open");
@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderExplorer();
 
-  // PDF generator (simple enterprise one-page)
+  // PDF generator (placeholder)
   const downloadPdf = () => {
     const content = `
 Anshumaan Singh — Security Systems Engineer
@@ -444,10 +444,6 @@ CKS, CKA, GCP Security, GCP PCA, GCP ACE, Terraform Associate
     `.trim();
 
     const blob = new Blob([content], { type: "application/pdf" });
-
-    // NOTE: browser won't truly render PDF from plain text as a real PDF,
-    // but GitHub Pages users often accept this as a download placeholder.
-    // If you want REAL PDF generation, we can do it with a small JS lib next.
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
@@ -467,4 +463,101 @@ CKS, CKA, GCP Security, GCP PCA, GCP ACE, Terraform Associate
   if (downloadPdfBtn) downloadPdfBtn.addEventListener("click", downloadPdf);
   if (downloadPdfBtnHero) downloadPdfBtnHero.addEventListener("click", downloadPdf);
   if (downloadPdfBtnMobile) downloadPdfBtnMobile.addEventListener("click", downloadPdf);
+
+  // ===========================
+  // Command Palette (Ctrl + K)
+  // ===========================
+  const palette = document.getElementById("palette");
+  const paletteInput = document.getElementById("paletteInput");
+  const paletteResults = document.getElementById("paletteResults");
+  const paletteCloseBtn = document.getElementById("paletteCloseBtn");
+  const openPaletteBtn = document.getElementById("openPaletteBtn");
+
+  const commands = [
+    { label: "Go: About", action: () => location.hash = "#about" },
+    { label: "Go: Ethical Principles", action: () => location.hash = "#principles" },
+    { label: "Go: Implementation Depth", action: () => location.hash = "#implementation" },
+    { label: "Go: Architecture", action: () => location.hash = "#architecture" },
+    { label: "Go: Evidence", action: () => location.hash = "#evidence" },
+    { label: "Go: Metrics", action: () => location.hash = "#metrics" },
+    { label: "Go: Explorer", action: () => location.hash = "#explorer" },
+    { label: "Action: Copy Email", action: async () => {
+        try {
+          await navigator.clipboard.writeText("anshumaansingh10jan@gmail.com");
+          showToast("Email copied");
+        } catch {
+          showToast("Copy failed");
+        }
+      }
+    },
+    { label: "Action: Download One-page PDF", action: downloadPdf }
+  ];
+
+  const openPalette = () => {
+    if (!palette) return;
+    palette.classList.add("open");
+    palette.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+    setTimeout(() => paletteInput && paletteInput.focus(), 40);
+    renderPaletteResults("");
+  };
+
+  const closePalette = () => {
+    if (!palette) return;
+    palette.classList.remove("open");
+    palette.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+  };
+
+  const renderPaletteResults = (q) => {
+    if (!paletteResults) return;
+    const query = (q || "").toLowerCase();
+
+    const filtered = commands.filter(c => c.label.toLowerCase().includes(query));
+    paletteResults.innerHTML = filtered.map((c, idx) => {
+      return `<button class="palette-item mono" data-idx="${idx}">${c.label}</button>`;
+    }).join("");
+
+    paletteResults.querySelectorAll(".palette-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-idx"), 10);
+        const cmd = filtered[idx];
+        if (cmd) cmd.action();
+        closePalette();
+      });
+    });
+  };
+
+  if (openPaletteBtn) openPaletteBtn.addEventListener("click", openPalette);
+  if (paletteCloseBtn) paletteCloseBtn.addEventListener("click", closePalette);
+
+  if (paletteInput) {
+    paletteInput.addEventListener("input", (e) => {
+      renderPaletteResults(e.target.value || "");
+    });
+
+    paletteInput.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closePalette();
+      if (e.key === "Enter") {
+        const first = paletteResults.querySelector(".palette-item");
+        if (first) first.click();
+      }
+    });
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      openPalette();
+    }
+    if (e.key === "Escape" && palette && palette.classList.contains("open")) {
+      closePalette();
+    }
+  });
+
+  if (palette) {
+    palette.addEventListener("click", (e) => {
+      if (e.target === palette) closePalette();
+    });
+  }
 });
