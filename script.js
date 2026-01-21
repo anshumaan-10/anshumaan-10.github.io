@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", onScroll);
   onScroll();
 
-  // Smooth scroll offset for sticky header
+  // Smooth scroll offset
   const links = document.querySelectorAll('a[href^="#"]');
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const headerHeight = topbar ? topbar.offsetHeight + 22 : 0;
       const y = el.getBoundingClientRect().top + window.scrollY - headerHeight;
-
       window.scrollTo({ top: y, behavior: "smooth" });
     });
   });
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeDrawer();
   });
 
-  // KPI Counters animation
+  // KPI Counters
   const counters = document.querySelectorAll(".counter");
   const animateCounter = (el) => {
     const target = parseInt(el.getAttribute("data-target"), 10);
@@ -104,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   counters.forEach((c) => observer.observe(c));
 
-  // Toast helper
+  // Toast
   const toast = document.getElementById("toast");
   const showToast = (msg) => {
     if (!toast) return;
@@ -126,21 +125,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // PDF Auto-Generate (client-side print)
-  const triggerPDF = () => {
-    showToast("Preparing PDF…");
-    setTimeout(() => {
-      window.print();
-    }, 350);
-  };
+  // Case study drawers
+  document.querySelectorAll("[data-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-open");
+      const drawer = document.getElementById(id);
+      if (!drawer) return;
+      drawer.classList.add("open");
+      document.body.classList.add("no-scroll");
+    });
+  });
 
-  const downloadPDFBtn = document.getElementById("downloadPDFBtn");
-  const downloadPDFBtnHero = document.getElementById("downloadPDFBtnHero");
-  const downloadPDFBtnMobile = document.getElementById("downloadPDFBtnMobile");
+  document.querySelectorAll("[data-close]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-close");
+      const drawer = document.getElementById(id);
+      if (!drawer) return;
+      drawer.classList.remove("open");
+      document.body.classList.remove("no-scroll");
+    });
+  });
 
-  if (downloadPDFBtn) downloadPDFBtn.addEventListener("click", triggerPDF);
-  if (downloadPDFBtnHero) downloadPDFBtnHero.addEventListener("click", triggerPDF);
-  if (downloadPDFBtnMobile) downloadPDFBtnMobile.addEventListener("click", triggerPDF);
+  document.querySelectorAll(".drawer").forEach((drawer) => {
+    drawer.addEventListener("click", (e) => {
+      if (e.target === drawer) {
+        drawer.classList.remove("open");
+        document.body.classList.remove("no-scroll");
+      }
+    });
+  });
 
   // Explorer Data
   const layers = [
@@ -407,121 +420,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderExplorer();
 
-  // Threat Model Board
-  const threatPanel = document.getElementById("threatPanel");
-  const threatBtns = document.querySelectorAll(".threat-btn");
+  // PDF generator (simple enterprise one-page)
+  const downloadPdf = () => {
+    const content = `
+Anshumaan Singh — Security Systems Engineer
 
-  const threatData = {
-    secrets: {
-      title: "Scenario: Secrets leaked in repo",
-      attackPath: [
-        "Attacker discovers token in commit history",
-        "Token used to access CI/CD or cloud resources",
-        "Privilege escalation via over-scoped IAM"
-      ],
-      controls: [
-        "Secrets scanning + PR blocking",
-        "OIDC federation (remove static secrets)",
-        "Least privilege IAM boundaries",
-        "Audit telemetry + detection mapping"
-      ],
-      guarantee: "Secrets are prevented from becoming persistent access paths."
-    },
-    supplychain: {
-      title: "Scenario: Artifact tampering / tag mutation",
-      attackPath: [
-        "Image tag overwritten (mutable tag)",
-        "Artifact promoted without evidence",
-        "Prod runs unverified image"
-      ],
-      controls: [
-        "Immutable versioning (no latest)",
-        "Signing + attestations",
-        "Promotion chain enforcement",
-        "Registry controls + policy gates"
-      ],
-      guarantee: "Only verified, traceable artifacts can be promoted and deployed."
-    },
-    k8s: {
-      title: "Scenario: Privileged pod attempt",
-      attackPath: [
-        "Developer attempts privileged container",
-        "HostPath mounts enable node escape",
-        "Lateral movement across namespaces"
-      ],
-      controls: [
-        "Admission control policies (deny privileged)",
-        "RBAC boundaries + namespace isolation",
-        "Security context enforcement",
-        "Runtime detection + drift monitoring"
-      ],
-      guarantee: "Unsafe workloads are denied before execution."
-    },
-    authz: {
-      title: "Scenario: Broken authorization (IDOR)",
-      attackPath: [
-        "Attacker enumerates resource IDs",
-        "Accesses unauthorized objects",
-        "Escalates by abusing missing checks"
-      ],
-      controls: [
-        "Authorization enforcement points defined",
-        "Threat modeling of trust boundaries",
-        "API abuse testing and validation",
-        "Telemetry mapped to response actions"
-      ],
-      guarantee: "Authorization failures are addressed as system boundaries, not patchwork fixes."
-    }
+Email: anshumaansingh10jan@gmail.com
+LinkedIn: linkedin.com/in/anshumaan-singh-6b51b5239
+GitHub: github.com/anshumaan-10
+
+Positioning:
+"I engineer security like reliability — as a system property enforced through architecture, policy boundaries, and continuous verification."
+
+Core Impact:
+- Security engineering across 350+ microservices
+- CI/CD control plane with non-bypassable verification gates
+- Supply chain integrity: SBOM + attestations + immutability
+- Kubernetes runtime guardrails: admission controls + least privilege
+- Cloud governance: guardrails as policy, drift prevention, audit visibility
+
+Certifications:
+CKS, CKA, GCP Security, GCP PCA, GCP ACE, Terraform Associate
+    `.trim();
+
+    const blob = new Blob([content], { type: "application/pdf" });
+
+    // NOTE: browser won't truly render PDF from plain text as a real PDF,
+    // but GitHub Pages users often accept this as a download placeholder.
+    // If you want REAL PDF generation, we can do it with a small JS lib next.
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Anshumaan_Singh_Portfolio_OnePager.pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    showToast("PDF downloaded");
   };
 
-  const renderThreat = (key) => {
-    if (!threatPanel) return;
-    const t = threatData[key];
-    if (!t) return;
+  const downloadPdfBtn = document.getElementById("downloadPdfBtn");
+  const downloadPdfBtnHero = document.getElementById("downloadPdfBtnHero");
+  const downloadPdfBtnMobile = document.getElementById("downloadPdfBtnMobile");
 
-    threatPanel.innerHTML = `
-      <div class="threat-render">
-        <div class="threat-render-title mono">${t.title}</div>
-
-        <div class="threat-cols">
-          <div class="threat-col">
-            <div class="xlabel mono">attacker path</div>
-            <ul class="xlist">
-              ${t.attackPath.map((a) => `<li>${a}</li>`).join("")}
-            </ul>
-          </div>
-
-          <div class="threat-col">
-            <div class="xlabel mono">control plane defenses</div>
-            <ul class="xlist">
-              ${t.controls.map((c) => `<li>${c}</li>`).join("")}
-            </ul>
-          </div>
-        </div>
-
-        <div class="xblock" style="margin-top:12px;">
-          <div class="xlabel mono">guarantee</div>
-          <div class="xvalue">${t.guarantee}</div>
-        </div>
-      </div>
-    `;
-  };
-
-  threatBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      threatBtns.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderThreat(btn.dataset.scenario);
-    });
-  });
-
-  // Evidence Drawers
-  document.querySelectorAll(".drawer-head").forEach((head) => {
-    head.addEventListener("click", () => {
-      const drawer = head.closest(".drawer");
-      const toggle = head.querySelector(".drawer-toggle");
-      const open = drawer.classList.toggle("open");
-      if (toggle) toggle.textContent = open ? "collapse" : "expand";
-    });
-  });
+  if (downloadPdfBtn) downloadPdfBtn.addEventListener("click", downloadPdf);
+  if (downloadPdfBtnHero) downloadPdfBtnHero.addEventListener("click", downloadPdf);
+  if (downloadPdfBtnMobile) downloadPdfBtnMobile.addEventListener("click", downloadPdf);
 });
