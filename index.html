@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" href="./styles.css" />
 
-  <!-- Mermaid for embedded architecture -->
+  <!-- Mermaid (kept for embedded technical view) -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <script defer src="./script.js"></script>
 </head>
@@ -101,6 +101,10 @@
     <!-- HERO -->
     <section class="hero glass">
       <div class="hero-left">
+        <div class="hero-tag mono">
+          <span class="dot"></span> secure-by-default • systems engineering • evidence-driven
+        </div>
+
         <h1>Hi 👋, I'm <span class="accent">Anshumaan Singh</span></h1>
         <div class="subtitle">Security Systems Engineer | DevSecOps | Cloud & Application Security</div>
 
@@ -109,34 +113,33 @@
         </div>
 
         <p class="lead">
-          I build <b>secure-by-default delivery systems</b> for cloud-native environments by engineering control planes across
-          <b>CI/CD</b>, <b>artifact integrity</b>, <b>Kubernetes runtime enforcement</b>, and <b>cloud IAM guardrails</b>.
-          My goal is simple: make insecure deployments non-viable and make secure delivery the paved road.
+          I build <b>security control planes</b> across <b>CI/CD</b>, <b>artifact integrity</b>, <b>Kubernetes runtime guardrails</b>,
+          and <b>cloud governance</b> so that insecure paths become operationally hard and secure delivery becomes the default.
         </p>
 
         <div class="meta">
           <span class="pill">📍 Bengaluru, India</span>
           <span class="pill">🏢 InfoSec Analyst (IC-2) @ ZEE</span>
-          <span class="pill">🧩 AppSec + DevSecOps + Platform Guardrails</span>
+          <span class="pill">🧩 AppSec + DevSecOps + Kubernetes Security</span>
         </div>
 
         <!-- KPI Counters -->
         <div class="kpi-grid">
           <div class="kpi-card">
             <div class="kpi-value mono"><span class="counter" data-target="350">0</span>+</div>
-            <div class="kpi-label">Microservices in scope</div>
+            <div class="kpi-label">Microservices secured in scope</div>
           </div>
           <div class="kpi-card">
             <div class="kpi-value mono"><span class="counter" data-target="6">0</span>+</div>
-            <div class="kpi-label">Security gates in CI/CD</div>
+            <div class="kpi-label">CI/CD security gates enforced</div>
           </div>
           <div class="kpi-card">
             <div class="kpi-value mono">Dev → UAT → Prod</div>
-            <div class="kpi-label">Controlled promotion chain</div>
+            <div class="kpi-label">Controlled promotions + approvals</div>
           </div>
           <div class="kpi-card">
-            <div class="kpi-value mono">Evidence-Driven</div>
-            <div class="kpi-label">Attestation + audit traceability</div>
+            <div class="kpi-value mono">SBOM + Evidence</div>
+            <div class="kpi-label">Attestation-ready delivery</div>
           </div>
         </div>
 
@@ -145,8 +148,8 @@
              href="https://drive.google.com/file/d/1k59r3PhyGF06JbT9N62g87w5N3XtwRd_/view?usp=sharing">
             Download Resume
           </a>
-          <a class="btn btn-ghost" href="#projects">View Projects</a>
-          <a class="btn btn-ghost" href="#architecture">View Architecture</a>
+          <a class="btn btn-ghost" href="#projects">Projects</a>
+          <a class="btn btn-ghost" href="#architecture">Architecture</a>
           <a class="btn btn-ghost" target="_blank" rel="noreferrer" href="https://github.com/anshumaan-10">GitHub</a>
         </div>
 
@@ -167,17 +170,26 @@
       </div>
 
       <div class="hero-right">
-        <!-- Photo (Google Drive direct links don't work as <img>, so we keep GIF as fallback) -->
+        <!-- KEEP dev logo GIF (as you asked) -->
         <img class="hero-gif" alt="Security Engineering" src="https://raw.githubusercontent.com/devSouvik/devSouvik/master/gif3.gif" />
 
+        <!-- Your profile photo -->
+        <div class="profile-card">
+          <img class="hero-photo" src="./assets/me.jpg" alt="Anshumaan Singh" />
+          <div class="profile-meta">
+            <div class="profile-name">Anshumaan Singh</div>
+            <div class="profile-role mono">Security Systems Engineer</div>
+          </div>
+        </div>
+
         <div class="hero-card mono">
-          <div class="hero-card-title">secure-by-default invariants</div>
+          <div class="hero-card-title">security invariants</div>
           <div class="hero-card-body">
-            <div>• identity → short-lived, verifiable, keyless</div>
+            <div>• identity → short-lived, keyless, verifiable</div>
             <div>• CI/CD → deterministic verification + evidence</div>
-            <div>• artifacts → immutable + traceable promotions</div>
+            <div>• artifacts → immutable + controlled promotion</div>
             <div>• runtime → least privilege + enforcement</div>
-            <div>• governance → guardrails (policy), not docs</div>
+            <div>• governance → guardrails (policy) not docs</div>
           </div>
         </div>
       </div>
@@ -191,14 +203,12 @@
         <b>system invariants</b> that remain true regardless of code changes, deployments, or operational stress.
       </p>
       <p>
-        My focus is building enforceable controls into architecture and execution:
-        <b>trust boundaries, identity flows, authorization enforcement points, secure defaults, deterministic pipelines,
-        controlled promotions, and runtime guardrails</b>.
+        I focus on enforceable architecture and execution: <b>trust boundaries, identity flows, authorization enforcement points,
+        secure defaults, deterministic pipelines, controlled promotions, and runtime guardrails</b>.
       </p>
       <p>
-        I don’t optimize for scanner output. I optimize for production guarantees:
-        <b>prevent insecure deployments</b>, <b>reduce blast radius</b>, <b>enforce least privilege</b>,
-        <b>eliminate drift</b>, and ensure incidents are <b>detectable + containable</b>.
+        I optimize for production guarantees: preventing insecure deployments, reducing blast radius, enforcing least privilege,
+        eliminating silent drift, and ensuring incidents are detectable and containable.
       </p>
     </section>
 
@@ -228,7 +238,6 @@
     <!-- SYSTEM DESIGN -->
     <section id="system" class="section glass">
       <h2>🧠 Security System Design (What I Build)</h2>
-
       <div class="grid two">
         <div class="card">
           <h3>1) Trust Architecture (Threat Modeling)</h3>
@@ -326,7 +335,7 @@
             </div>
             <div class="impact-card">
               <div class="impact-title mono">GitHub Governance</div>
-              <div class="impact-text">Org-level controls, audit visibility, detection-ready telemetry.</div>
+              <div class="impact-text">Org controls, audit visibility, detection-ready telemetry.</div>
             </div>
           </div>
 
@@ -354,7 +363,7 @@
             <ul>
               <li>Mandatory PR reviews + required checks</li>
               <li>Security verification: SAST/SCA/Secrets/IaC/Container</li>
-              <li>SBOM + evidence packaging for auditability</li>
+              <li>SBOM generation + evidence packaging</li>
               <li>Controlled promotions: Dev → UAT → Prod</li>
             </ul>
           </div>
@@ -398,38 +407,142 @@
     </section>
 
     <!-- ARCHITECTURE -->
-    <section id="architecture" class="section glass">
-      <h2>🏗️ V100 Reference Architecture (Embedded)</h2>
-      <p class="mono subtle">
-        A secure-by-default delivery system is a control plane: code changes become trusted artifacts only through verification + evidence.
-      </p>
+   <section id="architecture" class="section glass">
+  <h2>🏗️ Secure-by-Default Delivery Architecture (Control Plane)</h2>
+  <p class="mono subtle">
+    A security systems architecture that enforces identity, verification, evidence, promotion governance, and runtime guardrails —
+    so “secure delivery” becomes the default behavior of the platform.
+  </p>
 
-      <div class="mermaid-wrap">
-        <div class="mermaid">
-flowchart TD
-  A[Developer Commit] --> B[Pull Request + Reviews]
-  B --> C[CI Security Verification]
-  C --> C1[SAST]
-  C --> C2[SCA]
-  C --> C3[Secrets Scanning]
-  C --> C4[IaC Scan]
-  C --> C5[Container Scan]
-  C --> C6[DAST (pre-prod)]
-  C --> D[Build Artifact + SBOM + Evidence Bundle]
-  D --> E[Artifact Registry (Immutable Tags)]
-  E --> F[Promotion Workflow (Dev → UAT → Prod)]
-  F --> G[Deployment to Kubernetes]
-  G --> H[Admission Control (OPA/Kyverno)]
-  H --> I[Runtime Controls (Least Privilege)]
-  I --> J[Observability + Detection]
-  J --> K[Audit + Attestation + Compliance Evidence]
-        </div>
-      </div>
+  <!-- Primary diagram image (NO mermaid) -->
+  <div class="arch-image-wrap">
+    <img class="arch-image"
+         src="./assests/SBOM%20Security%20Pipeline-2026-01-21-052842.png"
+         alt="Secure Delivery Architecture Diagram" />
+  </div>
 
-      <div class="hint">
-        Guarantee: no code reaches production without a verifiable chain of trust + traceable evidence.
-      </div>
-    </section>
+  <div class="hint">
+    Below is a granular breakdown of the same architecture expressed as engineering layers (boundaries + enforcement points + guarantees).
+  </div>
+
+  <div class="grid two" style="margin-top:14px;">
+    <div class="card">
+      <h3>Layer 1 — Engineering & Source Governance</h3>
+      <ul>
+        <li>Developer workstation trust boundary</li>
+        <li>Pre-commit checks + signed commits</li>
+        <li>PR-based changes only (no direct pushes)</li>
+        <li>CODEOWNERS approvals + branch protection</li>
+        <li>Required checks as merge invariants</li>
+      </ul>
+      <div class="hint">Guarantee: only reviewed code becomes mergeable.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 2 — Identity & Access Plane</h3>
+      <ul>
+        <li>OIDC federation for keyless authentication</li>
+        <li>Short-lived credentials via token service</li>
+        <li>IAM boundaries (least privilege + scoped roles)</li>
+        <li>Eliminate long-lived static secrets in CI</li>
+      </ul>
+      <div class="hint">Guarantee: identity is verifiable, ephemeral, and constrained.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 3 — CI Boundary & Secure SDLC Verification</h3>
+      <ul>
+        <li>Ephemeral runners to reduce persistence risk</li>
+        <li>Build + package determinism</li>
+        <li>Unit/integration tests as correctness baseline</li>
+        <li>SAST + SCA + secrets scan + IaC scan</li>
+        <li>DAST validation before artifact creation</li>
+        <li>Quality gates with strict pass/fail semantics</li>
+      </ul>
+      <div class="hint">Guarantee: “passed” means safe-to-promote, not just scanned.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 4 — Supply Chain Integrity & Evidence</h3>
+      <ul>
+        <li>Container image build + vulnerability scan</li>
+        <li>SBOM generation (dependency transparency)</li>
+        <li>Provenance metadata (who/what/where built)</li>
+        <li>Artifact signing + attestation bundle</li>
+        <li>Evidence packaged for audit + UAT attestation</li>
+      </ul>
+      <div class="hint">Guarantee: artifacts are traceable and tamper-resistant.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 5 — Risk Engine & Release Governance</h3>
+      <ul>
+        <li>Risk scoring engine combines CVSS + EPSS + exploit maturity</li>
+        <li>Policy gates enforce risk thresholds</li>
+        <li>Registry controls + immutable tags</li>
+        <li>Promotion workflow with approvals (non-bypassable)</li>
+      </ul>
+      <div class="hint">Guarantee: release decisions are policy-driven, not manual trust.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 6 — Environment Separation</h3>
+      <ul>
+        <li>Dev / UAT / Prod separation by policy boundary</li>
+        <li>Promotion chain enforces sequencing</li>
+        <li>Evidence moves with artifacts across environments</li>
+      </ul>
+      <div class="hint">Guarantee: prod is reachable only through controlled promotion.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 7 — Kubernetes Control Plane Enforcement</h3>
+      <ul>
+        <li>Admission controller + policy engine (OPA/Kyverno patterns)</li>
+        <li>RBAC + namespace isolation boundaries</li>
+        <li>Ingress boundary controls</li>
+        <li>East-west segmentation + service mesh enforcement</li>
+        <li>mTLS identity for service-to-service trust</li>
+      </ul>
+      <div class="hint">Guarantee: policy prevents unsafe workloads from ever running.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 8 — Runtime Plane & Data Plane Controls</h3>
+      <ul>
+        <li>Deployment controller + workload enforcement</li>
+        <li>Security context hardening (least privilege runtime)</li>
+        <li>Runtime detection + drift detection</li>
+        <li>Secrets manager + KMS encryption</li>
+        <li>Datastore boundary + PII isolation principles</li>
+      </ul>
+      <div class="hint">Guarantee: runtime stays constrained and observable under stress.</div>
+    </div>
+
+    <div class="card">
+      <h3>Layer 9 — Observability & Security Operations</h3>
+      <ul>
+        <li>Audit logs + metrics + traces</li>
+        <li>SIEM ingestion + detection engineering</li>
+        <li>Incident response workflows + case management</li>
+      </ul>
+      <div class="hint">Guarantee: incidents are detectable, actionable, and containable.</div>
+    </div>
+
+    <div class="card">
+      <h3>Kill-Chain Mapping (Defensive Controls)</h3>
+      <ul>
+        <li><b>Recon:</b> WAF + rate limiting reduce probing</li>
+        <li><b>Initial Access:</b> secrets scanning + SAST + admission deny unsafe deploys</li>
+        <li><b>Privilege Escalation:</b> RBAC + security context hardening</li>
+        <li><b>Lateral Movement:</b> segmentation + mesh + mTLS identity</li>
+        <li><b>Exfiltration:</b> egress control + PII boundary</li>
+        <li><b>Impact:</b> SIEM detections + IR containment</li>
+      </ul>
+      <div class="hint">Guarantee: attacker paths are blocked or forced into detectable states.</div>
+    </div>
+  </div>
+</section>
 
     <!-- SKILLS -->
     <section id="skills" class="section glass">
@@ -515,13 +628,16 @@ flowchart TD
         <a class="cert-card" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/862ad232-289a-4675-b883-ae8de8313baf/public_url">
           <div class="cert-title">Terraform</div>
-          <div class="cert-sub mono">HashiCorp Certified Terraform Associate</div>
+          <div class="cert-sub mono">Terraform Associate</div>
           <div class="cert-link mono">View on Credly →</div>
         </a>
       </div>
 
       <div class="hint">
-        Additional proof: <a target="_blank" rel="noreferrer" href="https://www.skills.google/public_profiles/a1969b11-107b-480a-99c1-60362ad409fc">Google Cloud Skills Boost Profile</a>
+        Skills Boost profile:
+        <a target="_blank" rel="noreferrer" href="https://www.skills.google/public_profiles/a1969b11-107b-480a-99c1-60362ad409fc">
+          View Profile →
+        </a>
       </div>
     </section>
 
@@ -552,7 +668,7 @@ flowchart TD
            href="https://drive.google.com/file/d/19-DibRXBykr1xzC5SifNIxbfC4ljBS37/view">
           <div class="project-top">
             <div class="project-title">Winner — GitHub Tech After Dark Quiz</div>
-            <div class="project-meta mono">Community / Engineering Event</div>
+            <div class="project-meta mono">Engineering / Community Event</div>
           </div>
           <div class="project-footer mono">View Proof →</div>
         </a>
