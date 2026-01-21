@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
-
+ 
   // smooth scroll offset for sticky header
   const header = document.querySelector(".topbar");
   const links = document.querySelectorAll('a[href^="#"]');
