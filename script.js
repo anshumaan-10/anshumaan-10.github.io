@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Mermaid init (IMPORTANT)
+  // Mermaid init
   if (window.mermaid) {
     mermaid.initialize({
       startOnLoad: true,
