@@ -24,7 +24,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="./styles.css" />
 
-  <!-- jsPDF (REAL PDF generator) -->
+  <!-- jsPDF -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
   <!-- JS -->
@@ -95,12 +95,10 @@
           Download PDF
         </button>
 
-        <!-- Theme Toggle -->
         <button class="btn btn-ghost btn-icon" id="themeToggleBtn" title="Toggle Dark/Light">
           Theme
         </button>
 
-        <!-- Accent Switcher -->
         <div class="accent-switch">
           <button class="accent-dot accent-violet" data-accent="violet" title="Violet"></button>
           <button class="accent-dot accent-cyan" data-accent="cyan" title="Cyan"></button>
@@ -167,7 +165,7 @@
     </div>
   </header>
 
-  <!-- Command Palette Modal (FIXED OVERLAP) -->
+  <!-- Command Palette Modal -->
   <div class="cmdk-overlay" id="cmdkOverlay" aria-hidden="true">
     <div class="cmdk-modal glass" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="cmdk-head">
@@ -179,9 +177,7 @@
       </div>
 
       <input class="cmdk-input mono" id="cmdkInput" placeholder="Search: about, evidence, risk engine, copy email..." />
-
       <div class="cmdk-results" id="cmdkResults"></div>
-
       <div class="cmdk-tip mono subtle">Tip: Press <b>Enter</b> to run, <b>Esc</b> to close.</div>
     </div>
   </div>
@@ -243,6 +239,17 @@
           <a class="btn btn-ghost" href="#explorer">Explorer</a>
           <button class="btn btn-ghost" id="downloadPdfBtnHero">One-page PDF</button>
         </div>
+
+        <!-- CERT BADGES (LIKE SHIELDS) -->
+        <div class="cert-badges">
+          <img alt="CKS" src="https://img.shields.io/badge/CKS-Certified%20Kubernetes%20Security%20Specialist-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
+          <img alt="CKA" src="https://img.shields.io/badge/CKA-Certified%20Kubernetes%20Administrator-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
+          <img alt="GCP Security" src="https://img.shields.io/badge/GCP-Professional%20Cloud%20Security%20Engineer-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+          <img alt="GCP Architect" src="https://img.shields.io/badge/GCP-Professional%20Cloud%20Architect-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+          <img alt="GCP ACE" src="https://img.shields.io/badge/GCP-Associate%20Cloud%20Engineer-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
+          <img alt="Terraform" src="https://img.shields.io/badge/Terraform-HashiCorp%20Certified-623CE4?style=for-the-badge&logo=terraform&logoColor=white" />
+        </div>
+
       </div>
 
       <div class="hero-right">
@@ -314,7 +321,7 @@
       </div>
     </section>
 
-    <!-- IMPLEMENTATION DEPTH -->
+    <!-- IMPLEMENTATION -->
     <section id="implementation" class="section glass">
       <h2>🧩 Implementation Depth (Task → Subtask → Controls)</h2>
       <p class="mono subtle">
@@ -499,7 +506,7 @@
       </div>
     </section>
 
-    <!-- RISK ENGINE SIMULATOR -->
+    <!-- RISK ENGINE -->
     <section id="risk-engine" class="section glass">
       <h2>🧮 Risk Engine Simulator (CVSS + EPSS → Promotable / Blocked)</h2>
       <p class="mono subtle">
@@ -733,6 +740,6 @@
     </footer>
   </main>
 
-  <div class="toast mono" id="toast">@2026</div>
+  <div class="toast mono" id="toast">Ready</div>
 </body>
 </html>

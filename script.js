@@ -199,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Simple policy thresholds (you can tune these)
     const blocks = (cvss >= 7.0 && epss >= 0.50) || (cvss >= 9.0);
 
     if (blocks) {
@@ -291,7 +290,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (downloadPdfBtnHero) downloadPdfBtnHero.addEventListener("click", downloadPdf);
   if (downloadPdfBtnMobile) downloadPdfBtnMobile.addEventListener("click", downloadPdf);
 
-  // CMDK (Command Palette) - FIXED OVERLAP + FULL MODAL
+  // CMDK (Command Palette)
   const cmdkOverlay = document.getElementById("cmdkOverlay");
   const cmdkBtn = document.getElementById("cmdkBtn");
   const cmdkBtnMobile = document.getElementById("cmdkBtnMobile");
@@ -301,16 +300,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const actions = [
     { label: "Go: About", type: "scroll", target: "#about" },
-    { label: "Go: Ethical Principles", type: "scroll", target: "#philosophy" },
-    { label: "Go: Implementation Depth", type: "scroll", target: "#implementation" },
+    { label: "Go: Philosophy", type: "scroll", target: "#philosophy" },
+    { label: "Go: Implementation", type: "scroll", target: "#implementation" },
     { label: "Go: Evidence", type: "scroll", target: "#evidence" },
     { label: "Go: Risk Engine", type: "scroll", target: "#risk-engine" },
+    { label: "Go: Experience", type: "scroll", target: "#experience" },
     { label: "Go: Education", type: "scroll", target: "#education" },
     { label: "Go: Certifications", type: "scroll", target: "#certs" },
+    { label: "Go: Connect", type: "scroll", target: "#connect" },
     { label: "Action: Copy Email", type: "copyEmail" },
     { label: "Action: Download PDF", type: "downloadPdf" },
     { label: "Action: Toggle Theme", type: "toggleTheme" }
   ];
+
+  const renderCmdkResults = (items) => {
+    if (!cmdkResults) return;
+    cmdkResults.innerHTML = items.map((a, idx) => `
+      <button class="cmdk-item" data-idx="${idx}">
+        <span class="mono">${a.label}</span>
+        <span class="cmdk-hint mono subtle">Enter</span>
+      </button>
+    `).join("");
+
+    cmdkResults.querySelectorAll(".cmdk-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-idx"), 10);
+        runAction(items[idx]);
+      });
+    });
+  };
 
   const openCmdk = () => {
     if (!cmdkOverlay) return;
@@ -354,26 +372,8 @@ document.addEventListener("DOMContentLoaded", () => {
     closeCmdk();
   };
 
-  const renderCmdkResults = (items) => {
-    if (!cmdkResults) return;
-    cmdkResults.innerHTML = items.map((a, idx) => `
-      <button class="cmdk-item" data-idx="${idx}">
-        <span class="mono">${a.label}</span>
-        <span class="cmdk-hint mono subtle">Enter</span>
-      </button>
-    `).join("");
-
-    cmdkResults.querySelectorAll(".cmdk-item").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const idx = parseInt(btn.getAttribute("data-idx"), 10);
-        runAction(items[idx]);
-      });
-    });
-  };
-
   if (cmdkBtn) cmdkBtn.addEventListener("click", openCmdk);
   if (cmdkBtnMobile) cmdkBtnMobile.addEventListener("click", openCmdk);
-
   if (cmdkCloseBtn) cmdkCloseBtn.addEventListener("click", closeCmdk);
 
   if (cmdkOverlay) {
