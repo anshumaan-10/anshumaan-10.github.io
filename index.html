@@ -27,6 +27,9 @@
   <!-- jsPDF -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
+  <!-- Mermaid -->
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
   <!-- JS -->
   <script defer src="./script.js"></script>
 
@@ -67,6 +70,7 @@
         <a href="#philosophy">Philosophy</a>
         <a href="#implementation">Implementation</a>
         <a href="#system">System Design</a>
+        <a href="#architecture">Architecture</a>
         <a href="#case-studies">Case Studies</a>
         <a href="#threat-model">Threat Model</a>
         <a href="#evidence">Evidence</a>
@@ -74,7 +78,6 @@
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#projects">Projects</a>
-        <a href="#architecture">Architecture</a>
         <a href="#explorer">Explorer</a>
         <a href="#skills">Skills</a>
         <a href="#certs">Certifications</a>
@@ -129,18 +132,12 @@
           <a href="#philosophy" class="mnav">Philosophy</a>
           <a href="#implementation" class="mnav">Implementation</a>
           <a href="#system" class="mnav">System Design</a>
-          <a href="#case-studies" class="mnav">Case Studies</a>
-          <a href="#threat-model" class="mnav">Threat Model</a>
+          <a href="#architecture" class="mnav">Architecture</a>
           <a href="#evidence" class="mnav">Evidence</a>
           <a href="#risk-engine" class="mnav">Risk Engine</a>
           <a href="#experience" class="mnav">Experience</a>
           <a href="#education" class="mnav">Education</a>
-          <a href="#projects" class="mnav">Projects</a>
-          <a href="#architecture" class="mnav">Architecture</a>
-          <a href="#explorer" class="mnav">Explorer</a>
-          <a href="#skills" class="mnav">Skills</a>
           <a href="#certs" class="mnav">Certifications</a>
-          <a href="#achievements" class="mnav">Achievements</a>
           <a href="#connect" class="mnav">Connect</a>
         </div>
 
@@ -165,7 +162,7 @@
     </div>
   </header>
 
-  <!-- Command Palette Modal -->
+  <!-- Command Palette -->
   <div class="cmdk-overlay" id="cmdkOverlay" aria-hidden="true">
     <div class="cmdk-modal glass" role="dialog" aria-modal="true" aria-label="Command Palette">
       <div class="cmdk-head">
@@ -209,7 +206,6 @@
           <span class="pill">🧩 AppSec + DevSecOps + Kubernetes Security</span>
         </div>
 
-        <!-- KPI Counters -->
         <div class="kpi-grid">
           <div class="kpi-card">
             <div class="kpi-value mono"><span class="counter" data-target="350">0</span>+</div>
@@ -234,22 +230,10 @@
              href="https://drive.google.com/file/d/1k59r3PhyGF06JbT9N62g87w5N3XtwRd_/view?usp=sharing">
             Download Resume
           </a>
-          <a class="btn btn-ghost" href="#projects">Projects</a>
+          <a class="btn btn-ghost" href="#experience">Experience</a>
           <a class="btn btn-ghost" href="#architecture">Architecture</a>
-          <a class="btn btn-ghost" href="#explorer">Explorer</a>
           <button class="btn btn-ghost" id="downloadPdfBtnHero">One-page PDF</button>
         </div>
-
-        <!-- CERT BADGES (LIKE SHIELDS) -->
-        <div class="cert-badges">
-          <img alt="CKS" src="https://img.shields.io/badge/CKS-Certified%20Kubernetes%20Security%20Specialist-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
-          <img alt="CKA" src="https://img.shields.io/badge/CKA-Certified%20Kubernetes%20Administrator-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white" />
-          <img alt="GCP Security" src="https://img.shields.io/badge/GCP-Professional%20Cloud%20Security%20Engineer-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
-          <img alt="GCP Architect" src="https://img.shields.io/badge/GCP-Professional%20Cloud%20Architect-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
-          <img alt="GCP ACE" src="https://img.shields.io/badge/GCP-Associate%20Cloud%20Engineer-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" />
-          <img alt="Terraform" src="https://img.shields.io/badge/Terraform-HashiCorp%20Certified-623CE4?style=for-the-badge&logo=terraform&logoColor=white" />
-        </div>
-
       </div>
 
       <div class="hero-right">
@@ -291,11 +275,6 @@
         <b>deterministic security gates</b>, and <b>audit-ready evidence</b> that moves with the release from
         <b>Dev → UAT → Prod</b>.
       </p>
-      <p>
-        I prioritize <b>ethical security engineering</b>: controls must be explainable, measurable, and operationally fair.
-        I avoid security theater, minimize unnecessary data collection, and ensure every enforcement mechanism has
-        a documented exception workflow and an accountable owner.
-      </p>
     </section>
 
     <!-- PHILOSOPHY -->
@@ -321,225 +300,72 @@
       </div>
     </section>
 
-    <!-- IMPLEMENTATION -->
-    <section id="implementation" class="section glass">
-      <h2>🧩 Implementation Depth (Task → Subtask → Controls)</h2>
+    <!-- ARCHITECTURE -->
+    <section id="architecture" class="section glass">
+      <h2>🏗️ Reference Architecture: Secure-by-Default Delivery (End-to-End)</h2>
       <p class="mono subtle">
-        A granular breakdown of what I implement as enforceable controls, not documentation.
+        A complete view of how secure delivery is enforced from source to production with evidence and controlled promotions.
       </p>
 
-      <div class="grid two">
-        <div class="card">
-          <h3>CI/CD Security Control Plane</h3>
-          <ul>
-            <li><b>Task:</b> Prevent bypassable releases and enforce deterministic verification</li>
-            <li><b>Subtask:</b> Source governance hardening (PR-only, CODEOWNERS, required checks)</li>
-            <li><b>Subtask:</b> Build integrity (traceable artifacts, reproducible build intent)</li>
-            <li><b>Subtask:</b> Verification gates (SAST/SCA/Secrets/IaC/Container/DAST)</li>
-            <li><b>Subtask:</b> Evidence generation (SBOM + provenance + policy decision output)</li>
-            <li><b>Subtask:</b> Controlled promotion workflow (Dev → UAT → Prod approvals)</li>
-            <li><b>Guarantee:</b> Only verified + approved artifacts become deployable</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Kubernetes Runtime Guardrails</h3>
-          <ul>
-            <li><b>Task:</b> Prevent unsafe workloads from ever executing</li>
-            <li><b>Subtask:</b> Admission control policies (deny privileged, hostPath, root containers)</li>
-            <li><b>Subtask:</b> Least privilege defaults (drop capabilities, read-only filesystem)</li>
-            <li><b>Subtask:</b> RBAC boundaries (namespace isolation, scoped service accounts)</li>
-            <li><b>Subtask:</b> Network boundaries (ingress/egress segmentation patterns)</li>
-            <li><b>Guarantee:</b> Misconfigured workloads fail pre-runtime, not post-incident</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SYSTEM DESIGN -->
-    <section id="system" class="section glass">
-      <h2>🧠 Security System Design (What I Build)</h2>
-      <div class="grid two">
-        <div class="card">
-          <h3>1) Trust Architecture (Threat Modeling)</h3>
-          <ul>
-            <li>identities & principals (human, service, workload)</li>
-            <li>trust zones & cross-boundary flows</li>
-            <li>authorization ownership & enforcement points</li>
-            <li>attacker paths (bypass edges, escalation routes)</li>
-          </ul>
-          <div class="hint">Outcome: deny-by-default boundaries + scoped permissions.</div>
-        </div>
-
-        <div class="card">
-          <h3>2) CI/CD as a Security Control Plane</h3>
-          <ul>
-            <li>only reviewed changes produce deployable artifacts</li>
-            <li>policy violations fail early (pre-merge + pre-deploy)</li>
-            <li>artifacts traceable to commit + approvals</li>
-            <li>promotions controlled and auditable</li>
-          </ul>
-          <div class="hint">Outcome: deterministic security pipelines with evidence.</div>
-        </div>
-
-        <div class="card">
-          <h3>3) Supply Chain Hardening</h3>
-          <ul>
-            <li>controlled artifact creation + promotion flows</li>
-            <li>strict versioning (no “latest”)</li>
-            <li>SBOM generation and evidence packaging</li>
-            <li>verification gates with consistent meaning</li>
-          </ul>
-          <div class="hint">Outcome: tamper resistance from build → registry → runtime.</div>
-        </div>
-
-        <div class="card">
-          <h3>4) Kubernetes Security Engineering</h3>
-          <ul>
-            <li>admission control guardrails (OPA/Kyverno)</li>
-            <li>least privilege runtime execution</li>
-            <li>blast radius reduction & isolation boundaries</li>
-            <li>runtime detections mapped to response actions</li>
-          </ul>
-          <div class="hint">Outcome: runtime reality matches security design.</div>
-        </div>
-
-        <div class="card">
-          <h3>5) Application & API Security</h3>
-          <ul>
-            <li>broken authorization (IDOR / access control)</li>
-            <li>token handling + session trust boundaries</li>
-            <li>OAuth2/JWT misuse patterns</li>
-            <li>API abuse: replay, enumeration, privilege jumps</li>
-          </ul>
-          <div class="hint">Outcome: durable fixes that hold under attacker behavior.</div>
-        </div>
-
-        <div class="card">
-          <h3>6) Cloud Governance (GCP-first)</h3>
-          <ul>
-            <li>IAM hardening + privilege reduction</li>
-            <li>secure defaults via org policies</li>
-            <li>drift detection + posture hygiene</li>
-            <li>telemetry aligned to ops + audit</li>
-          </ul>
-          <div class="hint">Outcome: governance as guardrails, not documentation.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EVIDENCE -->
-    <section id="evidence" class="section glass">
-      <h2>📦 Evidence Bundle Viewer (SBOM • Attestation • Provenance • Policy)</h2>
-      <p class="mono subtle">
-        Evidence is produced as a bundle and travels with the artifact across environments.
-      </p>
-
-      <div class="evidence-tabs glass">
-        <div class="tab-head">
-          <button class="tab-btn active" data-tab="tab-sbom">SBOM</button>
-          <button class="tab-btn" data-tab="tab-att">Attestation</button>
-          <button class="tab-btn" data-tab="tab-prov">Provenance</button>
-          <button class="tab-btn" data-tab="tab-policy">Policy Decision</button>
-        </div>
-
-        <div class="tab-body">
-          <div class="tab-panel active" id="tab-sbom">
-            <div class="mono subtle">Example SBOM Metadata</div>
-            <pre class="codeblock mono">
-{
-  "artifact": "service-image:v1.0",
-  "format": "CycloneDX",
-  "components": 128,
-  "generated_by": "pipeline-sbom-step",
-  "commit": "sha256:...",
-  "generated_at": "UTC"
-}
-            </pre>
+      <div class="arch-grid">
+        <!-- Mermaid -->
+        <div class="arch-card glass">
+          <div class="arch-head">
+            <div>
+              <div class="arch-title">Flow (Mermaid)</div>
+              <div class="arch-sub mono subtle">Source → Verification → Artifact → Promotion → Runtime</div>
+            </div>
+            <span class="arch-pill mono">policy enforced</span>
           </div>
 
-          <div class="tab-panel" id="tab-att">
-            <div class="mono subtle">Example Attestation</div>
-            <pre class="codeblock mono">
-{
-  "checks": {
-    "sast": "pass",
-    "sca": "pass",
-    "secrets": "pass",
-    "iac": "pass",
-    "container_scan": "pass",
-    "dast": "pass"
-  },
-  "policy": "release-policy-v3",
-  "result": "promotable"
-}
-            </pre>
-          </div>
-
-          <div class="tab-panel" id="tab-prov">
-            <div class="mono subtle">Example Provenance</div>
-            <pre class="codeblock mono">
-{
-  "builder": "github-actions",
-  "workflow": "build-and-verify.yml",
-  "identity": "oidc-workload",
-  "repo": "org/service",
-  "artifact_digest": "sha256:...",
-  "approvals": ["codeowners", "required-checks"]
-}
-            </pre>
-          </div>
-
-          <div class="tab-panel" id="tab-policy">
-            <div class="mono subtle">Example Policy Decision Output</div>
-            <pre class="codeblock mono">
-{
-  "policy_engine": "release-risk-engine",
-  "inputs": { "cvss": 8.2, "epss": 0.72 },
-  "decision": "blocked",
-  "reason": "High exploit probability above threshold",
-  "exceptions": "not-approved"
-}
-            </pre>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- RISK ENGINE -->
-    <section id="risk-engine" class="section glass">
-      <h2>🧮 Risk Engine Simulator (CVSS + EPSS → Promotable / Blocked)</h2>
-      <p class="mono subtle">
-        This simulates a policy gate combining severity (CVSS) + exploit likelihood (EPSS).
-      </p>
-
-      <div class="risk-grid">
-        <div class="risk-card">
-          <div class="risk-row">
-            <label class="mono subtle">CVSS (0.0 – 10.0)</label>
-            <input id="cvssInput" class="risk-input mono" type="number" min="0" max="10" step="0.1" value="7.5">
-          </div>
-
-          <div class="risk-row">
-            <label class="mono subtle">EPSS (0.00 – 1.00)</label>
-            <input id="epssInput" class="risk-input mono" type="number" min="0" max="1" step="0.01" value="0.35">
-          </div>
-
-          <div class="risk-actions">
-            <button class="btn btn-primary" id="evaluateRiskBtn">Evaluate</button>
-            <button class="btn btn-ghost" id="resetRiskBtn">Reset</button>
+          <div class="mermaid arch-mermaid">
+flowchart TD
+  A[Developer Commit] --> B[Pull Request + CODEOWNERS Approval]
+  B --> C[CI Pipeline Trigger]
+  C --> D[SAST Scan]
+  C --> E[SCA Scan]
+  C --> F[Secret Scanning]
+  C --> G[IaC Scan]
+  D --> H[Build Artifact]
+  E --> H
+  F --> H
+  G --> H
+  H --> I[Container Image Build]
+  I --> J[Container Scan (Prisma / Trivy)]
+  J --> K[SBOM Generation (CycloneDX)]
+  K --> L[Evidence Bundle (SBOM + Attestation + Logs)]
+  L --> M[Push to Registry (Immutable Tag)]
+  M --> N[Dev Deploy]
+  N --> O[DAST (ZAP) + Runtime Validation]
+  O --> P[QA Approval + Promote to UAT]
+  P --> Q[UAT Deploy]
+  Q --> R[Final Approval + Promote to Prod]
+  R --> S[Production Deploy]
+  S --> T[Continuous Monitoring + Audit Evidence]
           </div>
         </div>
 
-        <div class="risk-result glass" id="riskResult">
-          <div class="risk-badge mono" id="riskBadge">—</div>
-          <div class="risk-title" id="riskTitle">Awaiting evaluation</div>
-          <div class="risk-desc subtle" id="riskDesc">
-            Enter CVSS and EPSS to simulate policy decision.
+        <!-- Image -->
+        <div class="arch-card glass">
+          <div class="arch-head">
+            <div>
+              <div class="arch-title">Pipeline Evidence Snapshot</div>
+              <div class="arch-sub mono subtle">SBOM / Attestation / Scan pipeline view</div>
+            </div>
+            <span class="arch-pill mono">visual</span>
           </div>
 
-          <div class="risk-meta mono subtle" id="riskMeta">
-            policy: release-policy-v3 • thresholds: cvss≥7.0 + epss≥0.50 blocks
+          <div class="arch-image-wrap">
+            <img
+              class="arch-image"
+              src="./assests/SBOM Security Pipeline-2026-01-21-052842.png"
+              alt="SBOM Security Pipeline"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="arch-foot mono subtle">
+            This image is stored in <b>/assests/</b> and is used as a proof-of-implementation artifact.
           </div>
         </div>
       </div>
@@ -548,22 +374,119 @@
     <!-- EXPERIENCE -->
     <section id="experience" class="section glass">
       <h2>🏢 Experience (Impact)</h2>
+      <p class="mono subtle">Categorized impact points with measurable security engineering outcomes.</p>
 
       <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-title">ZEE Entertainment Enterprises Ltd — Bengaluru, India</div>
-          <div class="timeline-sub mono">Information Security Analyst (IC-2) | AppSec + DevSecOps | Jun 2023 – Present</div>
+        <div class="timeline-item glass">
+          <div class="timeline-top">
+            <div>
+              <div class="timeline-title">ZEE Entertainment Enterprises Ltd — Bengaluru, India</div>
+              <div class="timeline-sub mono">Information Security Analyst (IC-2) | AppSec + DevSecOps | Jun 2023 – Present</div>
+            </div>
 
-          <div class="scope-scale">
-            <strong>Scope & Scale:</strong> Security engineering across cloud-native delivery for <b>350+ microservices</b>.
-            Secure SDLC enforcement from code → pipeline → registry → Kubernetes runtime.
+            <div class="timeline-badges">
+              <span class="badge mono">350+ microservices</span>
+              <span class="badge mono">CI/CD gates</span>
+              <span class="badge mono">SBOM + evidence</span>
+              <span class="badge mono">K8s guardrails</span>
+            </div>
           </div>
 
-          <ul>
-            <li>Implemented multi-stage verification (SAST/SCA/Secrets/IaC/Container/DAST) with deterministic pass/fail semantics.</li>
-            <li>Built promotion strategy with approval boundaries and release immutability.</li>
-            <li>Improved security maturity through repeatable controls, measurable guarantees, and production survivability.</li>
-          </ul>
+          <div class="scope-scale">
+            <strong>Scope & Scale:</strong>
+            Security engineering across cloud-native delivery for <b>350+ microservices</b>.
+            Enforced secure SDLC from <b>code → pipeline → registry → Kubernetes runtime</b>.
+          </div>
+
+          <!-- Categories -->
+          <div class="xp-grid">
+
+            <details class="xp-block" open>
+              <summary>
+                <span class="xp-title">CI/CD Security Control Plane</span>
+                <span class="xp-meta mono">12 points</span>
+              </summary>
+              <ul>
+                <li>Designed organization-grade DevSecOps pipelines with multi-stage security enforcement across build & deploy lifecycle.</li>
+                <li>Enforced PR-only merges, CODEOWNERS approvals, branch protections, and required checks to reduce direct-to-main risk.</li>
+                <li>Implemented SAST scanning for JavaScript/HTML and ensured results are stored as pipeline artifacts.</li>
+                <li>Implemented SCA scanning for Maven and Node ecosystems with strict policy thresholds for vulnerable dependencies.</li>
+                <li>Enabled secret scanning controls for hardcoded tokens, OAuth secrets, and cloud keys across repositories.</li>
+                <li>Integrated container image scanning using Prisma Cloud / twistcli and validated results using Trivy.</li>
+                <li>Implemented IaC scanning for Kubernetes manifests and cloud configs to prevent insecure infra deployment.</li>
+                <li>Automated DAST using OWASP ZAP with dynamic URL extraction from Kubernetes services via kubectl.</li>
+                <li>Standardized job dependency flow: scan → build → tag → scan → push → deploy → post-deploy checks.</li>
+                <li>Implemented artifact upload & retention strategy for scan outputs, logs, and compliance evidence.</li>
+                <li>Integrated Slack notifications for pipeline outcomes with commit/build/author metadata.</li>
+                <li>Reduced cycle time using parallel security jobs without reducing coverage.</li>
+              </ul>
+            </details>
+
+            <details class="xp-block">
+              <summary>
+                <span class="xp-title">Supply Chain Security + Artifact Integrity</span>
+                <span class="xp-meta mono">6 points</span>
+              </summary>
+              <ul>
+                <li>Implemented controlled artifact promotion workflow where QA promotes images separately for UAT/Prod.</li>
+                <li>Enforced immutable versioning (v1.0) and prevented use of latest tags to eliminate drift.</li>
+                <li>Ensured only scanned + approved images are eligible for deployment.</li>
+                <li>Built evidence model: scan results + approvals + image digest tracking = attestation-ready delivery.</li>
+                <li>Strengthened traceability from commit → build → image digest → deployment.</li>
+                <li>Added promotion gates to prevent deploying images not present in approved registry paths.</li>
+              </ul>
+            </details>
+
+            <details class="xp-block">
+              <summary>
+                <span class="xp-title">Kubernetes Security Engineering</span>
+                <span class="xp-meta mono">6 points</span>
+              </summary>
+              <ul>
+                <li>Implemented Kubernetes security checks using kubeaudit to detect risky cluster/workload configurations.</li>
+                <li>Reduced runtime risk by preventing privileged workloads and unsafe patterns via baseline enforcement.</li>
+                <li>Standardized secure deployment baselines: probes, limits, safe defaults, namespace patterns.</li>
+                <li>Assisted in Kubernetes cluster setup and validation using kubeadm (v1.28.1).</li>
+                <li>Improved blast radius control through workload boundary checks and least privilege patterns.</li>
+                <li>Mapped runtime risks to enforcement and operational response expectations.</li>
+              </ul>
+            </details>
+
+            <details class="xp-block">
+              <summary>
+                <span class="xp-title">Cloud Governance + Migration Security</span>
+                <span class="xp-meta mono">6 points</span>
+              </summary>
+              <ul>
+                <li>Supported secure cloud governance strategy across environments and teams.</li>
+                <li>Designed secure identity and access boundaries to reduce cloud exposure.</li>
+                <li>Worked on GCP migration initiatives and security design for HIPI project.</li>
+                <li>Implemented posture improvements aligned with production delivery requirements.</li>
+                <li>Supported ingress/CDN exposure patterns and service hardening approaches.</li>
+                <li>Built governance as guardrails (policy) instead of documentation-only controls.</li>
+              </ul>
+            </details>
+
+            <details class="xp-block">
+              <summary>
+                <span class="xp-title">AppSec + Secrets Remediation</span>
+                <span class="xp-meta mono">10 points</span>
+              </summary>
+              <ul>
+                <li>Performed web, API, and mobile penetration testing as part of application security responsibilities.</li>
+                <li>Identified and validated auth, access control, API misuse, and security misconfiguration issues.</li>
+                <li>Supported secure design review and remediation guidance for engineering teams.</li>
+                <li>Led response for hardcoded Azure Storage Account keys found in repositories.</li>
+                <li>Remediated hardcoded OAuth credentials and leaked secrets across source control.</li>
+                <li>Coordinated secret rotation safely without production impact.</li>
+                <li>Improved repo hygiene using scanning + governance + enforcement patterns.</li>
+                <li>Reduced false positives by tuning policies and aligning severity with exploitability.</li>
+                <li>Defined deployment decisions: block/allow based on thresholds and risk acceptance workflows.</li>
+                <li>Acted as bridge between AppSec + DevOps + QA + Engineering to ensure secure releases at scale.</li>
+              </ul>
+            </details>
+
+          </div>
         </div>
       </div>
     </section>
@@ -621,13 +544,12 @@
 
           <div class="edu-desc subtle">
             Undergraduate engineering degree with strong foundations in systems, networks, embedded concepts,
-            signal processing, and computing fundamentals — enabling structured systems thinking applied in security engineering.
+            signal processing, and computing fundamentals.
           </div>
 
           <div class="edu-tags">
             <span class="tag">Systems</span>
             <span class="tag">Networking</span>
-            <span class="tag">Engineering Math</span>
             <span class="tag">Problem Solving</span>
           </div>
         </div>
@@ -637,13 +559,13 @@
     <!-- CERTIFICATIONS -->
     <section id="certs" class="section glass">
       <h2>🏅 Certifications (Verified)</h2>
-      <p class="mono subtle">Clickable cards with verification links.</p>
+      <p class="mono subtle">Clickable cards with verification links (logos from /assests).</p>
 
       <div class="cert-grid-v2">
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/a220e713-9317-4d92-9258-eff6aba09da4/public_url">
           <div class="cert-logo">
-            <img alt="CKS" src="https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/stacked/color/kubernetes-stacked-color.png">
+            <img alt="CKS" src="./assests/cks.jpg">
           </div>
           <div class="cert-body">
             <div class="cert-name">CKS</div>
@@ -655,7 +577,7 @@
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/8b1083d2-d6ca-4fbf-a8a3-ab451139af95/public_url">
           <div class="cert-logo">
-            <img alt="CKA" src="https://raw.githubusercontent.com/cncf/artwork/master/projects/kubernetes/stacked/color/kubernetes-stacked-color.png">
+            <img alt="CKA" src="./assests/cka.jpg">
           </div>
           <div class="cert-body">
             <div class="cert-name">CKA</div>
@@ -667,7 +589,7 @@
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/fe76d723-7a9e-4aa0-88ef-22bcee2be217/public_url">
           <div class="cert-logo">
-            <img alt="Google Cloud" src="https://www.gstatic.com/devrel-devsite/prod/v2b3a62fcb1f1cddf0a07df3f30b6e7b50c4d4c5f4cc1f6cc1cbb8d01f20f3a47/cloud/images/cloud-logo.svg">
+            <img alt="GCP Security" src="./assests/gcp.jpg">
           </div>
           <div class="cert-body">
             <div class="cert-name">GCP Security</div>
@@ -679,7 +601,7 @@
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/3f30d1e8-3ef5-4c45-83cb-aeb0d9247947/public_url">
           <div class="cert-logo">
-            <img alt="Google Cloud" src="https://www.gstatic.com/devrel-devsite/prod/v2b3a62fcb1f1cddf0a07df3f30b6e7b50c4d4c5f4cc1f6cc1cbb8d01f20f3a47/cloud/images/cloud-logo.svg">
+            <img alt="GCP PCA" src="./assests/gcp.jpg">
           </div>
           <div class="cert-body">
             <div class="cert-name">GCP PCA</div>
@@ -691,7 +613,7 @@
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/862ad232-289a-4675-b883-ae8de8313baf/public_url">
           <div class="cert-logo">
-            <img alt="Terraform" src="https://raw.githubusercontent.com/cncf/artwork/master/projects/terraform/icon/color/terraform-icon-color.png">
+            <img alt="Terraform" src="./assests/hashicorp.jpg">
           </div>
           <div class="cert-body">
             <div class="cert-name">Terraform</div>

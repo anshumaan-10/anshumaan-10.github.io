@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // THEME TOGGLE (Dark/Light)
+  // THEME TOGGLE
   const themeToggleBtn = document.getElementById("themeToggleBtn");
   const themeToggleBtnMobile = document.getElementById("themeToggleBtnMobile");
   const root = document.documentElement;
@@ -162,70 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const savedAccent = localStorage.getItem("accent");
   if (savedAccent) root.setAttribute("data-accent", savedAccent);
-
-  // Evidence Tabs
-  const tabBtns = document.querySelectorAll(".tab-btn");
-  const tabPanels = document.querySelectorAll(".tab-panel");
-
-  tabBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const target = btn.dataset.tab;
-      tabBtns.forEach((b) => b.classList.remove("active"));
-      tabPanels.forEach((p) => p.classList.remove("active"));
-      btn.classList.add("active");
-      const panel = document.getElementById(target);
-      if (panel) panel.classList.add("active");
-    });
-  });
-
-  // Risk Engine Simulator
-  const cvssInput = document.getElementById("cvssInput");
-  const epssInput = document.getElementById("epssInput");
-  const evaluateRiskBtn = document.getElementById("evaluateRiskBtn");
-  const resetRiskBtn = document.getElementById("resetRiskBtn");
-
-  const riskBadge = document.getElementById("riskBadge");
-  const riskTitle = document.getElementById("riskTitle");
-  const riskDesc = document.getElementById("riskDesc");
-
-  const evaluateRisk = () => {
-    const cvss = parseFloat(cvssInput.value);
-    const epss = parseFloat(epssInput.value);
-
-    if (isNaN(cvss) || isNaN(epss)) {
-      riskBadge.textContent = "INVALID";
-      riskTitle.textContent = "Invalid inputs";
-      riskDesc.textContent = "Please enter numeric CVSS and EPSS values.";
-      return;
-    }
-
-    const blocks = (cvss >= 7.0 && epss >= 0.50) || (cvss >= 9.0);
-
-    if (blocks) {
-      riskBadge.textContent = "BLOCKED";
-      riskTitle.textContent = "Not promotable";
-      riskDesc.textContent = `Blocked by policy: high risk (CVSS ${cvss.toFixed(1)}, EPSS ${epss.toFixed(2)}).`;
-      showToast("Policy: BLOCKED");
-    } else {
-      riskBadge.textContent = "PROMOTABLE";
-      riskTitle.textContent = "Eligible for promotion";
-      riskDesc.textContent = `Passed policy thresholds (CVSS ${cvss.toFixed(1)}, EPSS ${epss.toFixed(2)}).`;
-      showToast("Policy: PROMOTABLE");
-    }
-  };
-
-  if (evaluateRiskBtn) evaluateRiskBtn.addEventListener("click", evaluateRisk);
-
-  if (resetRiskBtn) {
-    resetRiskBtn.addEventListener("click", () => {
-      cvssInput.value = "7.5";
-      epssInput.value = "0.35";
-      riskBadge.textContent = "—";
-      riskTitle.textContent = "Awaiting evaluation";
-      riskDesc.textContent = "Enter CVSS and EPSS to simulate policy decision.";
-      showToast("Reset");
-    });
-  }
 
   // REAL PDF GENERATOR (jsPDF)
   const downloadPdfBtn = document.getElementById("downloadPdfBtn");
@@ -290,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (downloadPdfBtnHero) downloadPdfBtnHero.addEventListener("click", downloadPdf);
   if (downloadPdfBtnMobile) downloadPdfBtnMobile.addEventListener("click", downloadPdf);
 
-  // CMDK (Command Palette)
+  // CMDK
   const cmdkOverlay = document.getElementById("cmdkOverlay");
   const cmdkBtn = document.getElementById("cmdkBtn");
   const cmdkBtnMobile = document.getElementById("cmdkBtnMobile");
@@ -301,9 +237,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const actions = [
     { label: "Go: About", type: "scroll", target: "#about" },
     { label: "Go: Philosophy", type: "scroll", target: "#philosophy" },
-    { label: "Go: Implementation", type: "scroll", target: "#implementation" },
-    { label: "Go: Evidence", type: "scroll", target: "#evidence" },
-    { label: "Go: Risk Engine", type: "scroll", target: "#risk-engine" },
+    { label: "Go: Architecture", type: "scroll", target: "#architecture" },
     { label: "Go: Experience", type: "scroll", target: "#experience" },
     { label: "Go: Education", type: "scroll", target: "#education" },
     { label: "Go: Certifications", type: "scroll", target: "#certs" },
@@ -312,23 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { label: "Action: Download PDF", type: "downloadPdf" },
     { label: "Action: Toggle Theme", type: "toggleTheme" }
   ];
-
-  const renderCmdkResults = (items) => {
-    if (!cmdkResults) return;
-    cmdkResults.innerHTML = items.map((a, idx) => `
-      <button class="cmdk-item" data-idx="${idx}">
-        <span class="mono">${a.label}</span>
-        <span class="cmdk-hint mono subtle">Enter</span>
-      </button>
-    `).join("");
-
-    cmdkResults.querySelectorAll(".cmdk-item").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const idx = parseInt(btn.getAttribute("data-idx"), 10);
-        runAction(items[idx]);
-      });
-    });
-  };
 
   const openCmdk = () => {
     if (!cmdkOverlay) return;
@@ -372,6 +289,23 @@ document.addEventListener("DOMContentLoaded", () => {
     closeCmdk();
   };
 
+  const renderCmdkResults = (items) => {
+    if (!cmdkResults) return;
+    cmdkResults.innerHTML = items.map((a, idx) => `
+      <button class="cmdk-item" data-idx="${idx}">
+        <span class="mono">${a.label}</span>
+        <span class="cmdk-hint mono subtle">Enter</span>
+      </button>
+    `).join("");
+
+    cmdkResults.querySelectorAll(".cmdk-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const idx = parseInt(btn.getAttribute("data-idx"), 10);
+        runAction(items[idx]);
+      });
+    });
+  };
+
   if (cmdkBtn) cmdkBtn.addEventListener("click", openCmdk);
   if (cmdkBtnMobile) cmdkBtnMobile.addEventListener("click", openCmdk);
   if (cmdkCloseBtn) cmdkCloseBtn.addEventListener("click", closeCmdk);
@@ -402,6 +336,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (first) first.click();
       }
       if (e.key === "Escape") closeCmdk();
+    });
+  }
+
+  // Mermaid init (IMPORTANT)
+  if (window.mermaid) {
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "dark",
+      securityLevel: "loose"
     });
   }
 });

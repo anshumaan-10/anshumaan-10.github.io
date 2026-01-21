@@ -99,7 +99,7 @@ section{
   z-index:-1;
 }
 
-/* ===== TOPBAR (FIXED ALIGNMENT) ===== */
+/* Topbar (FIXED ALIGNMENT + NO OVERLAP) */
 .topbar{
   position:sticky;
   top:14px;
@@ -107,14 +107,12 @@ section{
   margin:14px auto 0;
   border-radius: 999px;
   transition: box-shadow .2s ease, background .2s ease;
-  overflow:hidden;
+  overflow: hidden;
 }
-
 .topbar.scrolled{
   box-shadow: 0 18px 60px rgba(0,0,0,.65);
   background: rgba(10,12,20,.72);
 }
-
 .topbar-inner{
   display:flex;
   align-items:center;
@@ -147,7 +145,7 @@ section{
   font-size:.82rem;
 }
 
-/* Nav: horizontal scroll, no wrap */
+/* Nav becomes scrollable (no wrap) */
 .nav{
   display:flex;
   align-items:center;
@@ -198,7 +196,6 @@ section{
   cursor:pointer;
   background: rgba(255,255,255,.04);
   color: var(--text);
-  flex: 0 0 auto;
 }
 .btn:hover{ transform: translateY(-1px); }
 .btn-primary{
@@ -206,8 +203,12 @@ section{
   color:#071018;
   border: none;
 }
-.btn-ghost{ background: rgba(255,255,255,.04); }
-.btn-icon{ padding: 10px 12px; }
+.btn-ghost{
+  background: rgba(255,255,255,.04);
+}
+.btn-icon{
+  padding: 10px 12px;
+}
 
 /* Accent switch dots */
 .accent-switch{
@@ -388,25 +389,7 @@ main{ padding:22px 0 70px; }
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-  margin-bottom:14px;
-}
-
-/* Certificate badges row */
-.cert-badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top: 10px;
-}
-.cert-badges img{
-  height: 30px;
-  border-radius: 8px;
-  opacity: 0.95;
-  transition: transform .18s ease, opacity .18s ease;
-}
-.cert-badges img:hover{
-  transform: translateY(-2px);
-  opacity: 1;
+  margin-bottom:16px;
 }
 
 /* Hero Right */
@@ -547,102 +530,151 @@ main{ padding:22px 0 70px; }
   text-decoration: underline;
 }
 
-/* Evidence tabs */
-.evidence-tabs{
-  padding: 14px;
-  border-radius: 18px;
-  margin-top: 12px;
+/* ARCHITECTURE SECTION */
+.arch-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top: 14px;
 }
-.tab-head{
+.arch-card{
+  padding:16px;
+  border-radius:18px;
+}
+.arch-head{
   display:flex;
-  gap:10px;
-  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
   margin-bottom: 12px;
 }
-.tab-btn{
-  padding: 10px 12px;
+.arch-title{
+  font-weight: 900;
+  font-size: 1.05rem;
+}
+.arch-sub{
+  margin-top: 6px;
+}
+.arch-pill{
+  padding: 8px 10px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
-  cursor:pointer;
+  background: rgba(0,0,0,.25);
   font-weight: 800;
-  color: rgba(234,240,255,.78);
+  color: rgba(234,240,255,.85);
 }
-.tab-btn.active{
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color:#071018;
-  border: none;
-}
-.tab-panel{ display:none; }
-.tab-panel.active{ display:block; }
 
-/* Codeblock */
-.codeblock{
-  margin-top: 12px;
+/* Mermaid wrapper */
+.arch-mermaid{
   padding: 14px;
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(0,0,0,.35);
-  color: rgba(234,240,255,.88);
-  overflow: auto;
-  font-size: .9rem;
+  overflow:auto;
 }
 
-/* Risk Engine */
-.risk-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
+/* Mermaid theme */
+.mermaid{
+  color: rgba(234,240,255,.9);
+}
+
+/* Image card */
+.arch-image-wrap{
+  border-radius: 16px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.35);
+}
+.arch-image{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.arch-foot{
+  margin-top: 10px;
+}
+
+/* EXPERIENCE UI */
+.timeline{
   margin-top: 14px;
 }
-.risk-card{
+.timeline-item{
   padding: 18px;
   border-radius: 18px;
+}
+.timeline-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  flex-wrap: wrap;
+}
+.timeline-title{
+  font-weight: 900;
+  font-size: 1.05rem;
+}
+.timeline-sub{
+  margin-top: 6px;
+  color: rgba(234,240,255,.70);
+}
+.timeline-badges{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+.badge{
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.25);
+  font-weight: 800;
+  color: rgba(234,240,255,.85);
+  font-size: .86rem;
+}
+.scope-scale{
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 16px;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
 }
-.risk-row{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  margin-bottom: 12px;
+
+.xp-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 14px;
 }
-.risk-input{
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.12);
+.xp-block{
+  border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.03);
-  color: rgba(234,240,255,.9);
-  outline: none;
-}
-.risk-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.risk-result{
-  padding: 18px;
   border-radius: 18px;
+  padding: 14px;
 }
-.risk-badge{
-  display:inline-flex;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.03);
+.xp-block summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+.xp-block summary::-webkit-details-marker{ display:none; }
+.xp-title{
   font-weight: 900;
-  margin-bottom: 10px;
 }
-.risk-title{
-  font-weight: 900;
-  font-size: 1.2rem;
+.xp-meta{
+  color: rgba(234,240,255,.70);
+  font-weight: 800;
 }
-.risk-desc{
-  margin-top: 6px;
+.xp-block ul{
+  margin: 12px 0 0;
+  padding-left: 18px;
 }
-.risk-meta{
-  margin-top: 12px;
+.xp-block li{
+  margin-bottom: 8px;
+  color: rgba(234,240,255,.82);
 }
 
 /* Education */
@@ -733,9 +765,9 @@ main{ padding:22px 0 70px; }
   overflow:hidden;
 }
 .cert-logo img{
-  width: 42px;
-  height: 42px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .cert-body{
   display:flex;
@@ -894,8 +926,9 @@ main{ padding:22px 0 70px; }
   .nav{ display:none; }
   .hamburger{ display:inline-flex; }
   .topbar{ border-radius: 22px; }
-  .risk-grid{ grid-template-columns: 1fr; }
   .cert-grid-v2{ grid-template-columns: 1fr; }
+  .arch-grid{ grid-template-columns: 1fr; }
+  .xp-grid{ grid-template-columns: 1fr; }
 }
 
 @media (max-width: 860px){
