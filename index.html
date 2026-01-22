@@ -27,9 +27,6 @@
   <!-- jsPDF -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
-  <!-- Mermaid (kept but not used now; safe to keep) -->
-  <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-
   <!-- JS -->
   <script defer src="./script.js"></script>
 
@@ -133,11 +130,17 @@
           <a href="#implementation" class="mnav">Implementation</a>
           <a href="#system" class="mnav">System Design</a>
           <a href="#architecture" class="mnav">Architecture</a>
+          <a href="#case-studies" class="mnav">Case Studies</a>
+          <a href="#threat-model" class="mnav">Threat Model</a>
           <a href="#evidence" class="mnav">Evidence</a>
           <a href="#risk-engine" class="mnav">Risk Engine</a>
           <a href="#experience" class="mnav">Experience</a>
           <a href="#education" class="mnav">Education</a>
+          <a href="#projects" class="mnav">Projects</a>
+          <a href="#explorer" class="mnav">Explorer</a>
+          <a href="#skills" class="mnav">Skills</a>
           <a href="#certs" class="mnav">Certifications</a>
+          <a href="#achievements" class="mnav">Achievements</a>
           <a href="#connect" class="mnav">Connect</a>
         </div>
 
@@ -300,6 +303,88 @@
       </div>
     </section>
 
+    <!-- IMPLEMENTATION -->
+    <section id="implementation" class="section glass">
+      <h2>🛠️ Implementation (What I actually built)</h2>
+      <p class="mono subtle">
+        This is the execution layer — real pipelines, real controls, real enforcement. Not slideware.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>CI/CD Security Control Plane</h3>
+          <ul>
+            <li>Engineered multi-stage DevSecOps pipelines enforcing security at build → scan → deploy → validate stages.</li>
+            <li>Implemented PR-only merges + CODEOWNERS approvals + branch protections to eliminate bypass paths.</li>
+            <li>Standardized dependency graph: <b>verify → build → tag → scan → push → deploy → post-deploy validation</b>.</li>
+            <li>Integrated Slack notifications with build metadata (commit, author, workflow run, status).</li>
+            <li>Stored scan results as pipeline artifacts to support audit trails, RCA, and compliance evidence.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Supply Chain Integrity + SBOM</h3>
+          <ul>
+            <li>Enforced immutable image versioning (v1.0) and removed “latest” to eliminate deployment drift.</li>
+            <li>Built controlled promotion workflow: QA promotes scanned images Dev → UAT → Prod (no rebuilds in prod).</li>
+            <li>Ensured only approved + scanned digests are eligible for deployment via registry path enforcement.</li>
+            <li>Created evidence chain: <b>scan outputs + approvals + image digest tracking</b>.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Kubernetes Runtime Guardrails</h3>
+          <ul>
+            <li>Implemented kubeaudit checks to detect risky workload patterns and enforce baseline hygiene.</li>
+            <li>Standardized secure deployment baseline: probes, limits, safe defaults, namespace patterns.</li>
+            <li>Reduced runtime risk by preventing privileged workloads and unsafe configurations.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>AppSec + Secrets Remediation</h3>
+          <ul>
+            <li>Led response for hardcoded Azure storage keys, OAuth secrets, and leaked tokens in repositories.</li>
+            <li>Coordinated secure secret rotation without production impact.</li>
+            <li>Performed web/API/mobile penetration testing and delivered actionable remediation guidance.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEM DESIGN -->
+    <section id="system" class="section glass">
+      <h2>🧠 System Design (Security as a platform property)</h2>
+      <p>
+        I design security like reliability: as a system-level invariant enforced through identity, policy boundaries,
+        deterministic verification, and runtime enforcement.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Core Security Invariants</h3>
+          <ul>
+            <li><b>Identity is the control plane</b> → short-lived credentials, least privilege, verifiable trust.</li>
+            <li><b>Verification is deterministic</b> → CI gates are non-bypassable and produce evidence.</li>
+            <li><b>Artifacts are immutable</b> → digests + version tags + controlled promotion (no rebuilds in prod).</li>
+            <li><b>Runtime is constrained</b> → policy + RBAC + secure contexts reduce attacker movement.</li>
+            <li><b>Everything is auditable</b> → logs + scan outputs + approvals move with the release.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Design Principles I enforce</h3>
+          <ul>
+            <li>Guardrails over manual reviews.</li>
+            <li>Secure paved roads for engineering velocity.</li>
+            <li>Risk-based gating (severity + exploitability + probability).</li>
+            <li>Policy as code, evidence as artifacts.</li>
+            <li>Traceability: commit → build → digest → deployment.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- ARCHITECTURE -->
     <section id="architecture" class="section glass">
       <h2>🏗️ Reference Architecture: Secure-by-Default Delivery (End-to-End)</h2>
@@ -307,7 +392,6 @@
         A complete view of how secure delivery is enforced from source to production with evidence and controlled promotions.
       </p>
 
-      <!-- FULL WIDTH SBOM IMAGE ONLY (NO MERMAID) -->
       <div class="arch-full glass">
         <div class="arch-head">
           <div>
@@ -328,6 +412,197 @@
 
         <div class="arch-foot mono subtle">
           This image is used as a proof-of-implementation artifact.
+        </div>
+      </div>
+
+      <div class="arch-explain">
+        <h3 class="arch-explain-title">Flow Explanation (No insecure release reaches production)</h3>
+        <div class="arch-explain-grid">
+          <div class="arch-explain-card">
+            <div class="arch-explain-head">1) Source Governance</div>
+            <ul>
+              <li>Pre-commit checks + signed commits + PR-only merges</li>
+              <li>CODEOWNERS + branch protection + required checks</li>
+              <li>Main branch becomes single source of truth</li>
+            </ul>
+          </div>
+
+          <div class="arch-explain-card">
+            <div class="arch-explain-head">2) CI Verification Boundary</div>
+            <ul>
+              <li>Ephemeral runners execute deterministic security gates</li>
+              <li>SAST + SCA + Secrets + IaC scanning enforced</li>
+              <li>Quality gate controls pass/fail and stores evidence artifacts</li>
+            </ul>
+          </div>
+
+          <div class="arch-explain-card">
+            <div class="arch-explain-head">3) Supply Chain Integrity</div>
+            <ul>
+              <li>Build once → scan → generate SBOM → attach provenance</li>
+              <li>Image digest tracking + immutability prevents drift</li>
+              <li>Evidence moves with release across Dev → UAT → Prod</li>
+            </ul>
+          </div>
+
+          <div class="arch-explain-card">
+            <div class="arch-explain-head">4) Runtime Enforcement + Operations</div>
+            <ul>
+              <li>Admission policy blocks unsafe workloads before deployment</li>
+              <li>RBAC + namespaces reduce blast radius</li>
+              <li>Audit logs + SIEM detections + IR playbooks contain impact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="case-studies" class="section glass">
+      <h2>📌 Case Studies (Real problems solved)</h2>
+      <p class="mono subtle">
+        Real-world security engineering outcomes across pipelines, supply chain, and Kubernetes delivery.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Secrets Leakage Response</h3>
+          <ul>
+            <li>Detected hardcoded Azure Storage keys + OAuth secrets in repos and validated exposure scope.</li>
+            <li>Coordinated secure rotation and remediation without production downtime.</li>
+            <li>Implemented prevention guardrails: secret scanning + branch protections + required checks.</li>
+            <li>Outcome: reduced recurrence through enforcement + governance + audit evidence.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Prisma twistcli inconsistent vulnerability results</h3>
+          <ul>
+            <li>Observed Prisma returning zero vulnerabilities for known-vulnerable base images.</li>
+            <li>Cross-validated findings using Trivy + public CVE references to confirm true risk.</li>
+            <li>Improved pipeline trust by enforcing scan evidence retention + validation gates.</li>
+            <li>Outcome: fewer production pipeline failures caused by scanner inconsistency.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Controlled Promotions (Dev → UAT → Prod)</h3>
+          <ul>
+            <li>Implemented “build once, promote many” model to prevent rebuild risk and drift.</li>
+            <li>Added approval gates + registry path enforcement to block unauthorized deployment paths.</li>
+            <li>Outcome: digest-level traceability strengthened across environments.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>OWASP ZAP DAST with Kubernetes dynamic URL</h3>
+          <ul>
+            <li>Automated DAST using runtime service discovery via kubectl for real endpoint validation.</li>
+            <li>Ensured post-deploy security checks reflect production-like behavior.</li>
+            <li>Outcome: improved coverage beyond static environment assumptions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREAT MODEL -->
+    <section id="threat-model" class="section glass">
+      <h2>🧨 Threat Model (How attackers actually break systems)</h2>
+      <p>
+        I model threats using attacker behavior, not just compliance checklists. Controls are mapped to kill-chain stages
+        so enforcement blocks real attack paths.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Primary Threat Vectors</h3>
+          <ul>
+            <li>Credential theft (tokens, OAuth secrets, cloud keys)</li>
+            <li>Pipeline compromise (runner persistence, secret exposure)</li>
+            <li>Dependency compromise (typosquatting, malicious packages)</li>
+            <li>Container base image vulnerabilities + drift via latest tags</li>
+            <li>Kubernetes privilege escalation (privileged pods, host mounts)</li>
+            <li>Lateral movement (east-west traffic abuse)</li>
+            <li>Data exfiltration (egress misuse, weak PII boundaries)</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Control Mapping (Kill Chain → Defense)</h3>
+          <ul>
+            <li><b>Recon</b> → WAF + rate limiting</li>
+            <li><b>Initial Access</b> → secrets scanning + SAST + admission deny</li>
+            <li><b>Privilege Escalation</b> → RBAC + securityContext hardening</li>
+            <li><b>Lateral Movement</b> → segmentation + mesh + mTLS</li>
+            <li><b>Exfiltration</b> → egress restrictions + PII boundaries</li>
+            <li><b>Impact</b> → SIEM detections + incident response containment</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVIDENCE -->
+    <section id="evidence" class="section glass">
+      <h2>🧾 Evidence (Audit-ready security delivery)</h2>
+      <p class="mono subtle">
+        Proof that controls exist, ran, and produced outputs. Evidence is attached to releases, not stored in memory.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Evidence Pack includes</h3>
+          <ul>
+            <li>Scan outputs: SAST, SCA, Secrets, IaC, Image scan, DAST reports</li>
+            <li>Build metadata: workflow run ID, commit SHA, branch, actor</li>
+            <li>Artifact metadata: image digest, tags, registry path</li>
+            <li>Promotion approvals: QA / release gates / policy decisions</li>
+            <li>Retention: artifacts stored per pipeline for compliance and RCA</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>SBOM Snapshot (Implementation proof)</h3>
+          <p class="subtle">This image is used as proof-of-implementation artifact.</p>
+          <div class="arch-image-wrap">
+            <img
+              class="arch-image"
+              src="./assests/SBOM Security Pipeline-2026-01-21-052842.png"
+              alt="SBOM Evidence Snapshot"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RISK ENGINE -->
+    <section id="risk-engine" class="section glass">
+      <h2>🧮 Risk Engine (Policy-driven release decisions)</h2>
+      <p>
+        Security gating should reflect exploitability reality. I design release gates using severity + probability +
+        exploit maturity so teams ship safely without unnecessary friction.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Inputs to Risk Scoring</h3>
+          <ul>
+            <li><b>CVSS</b> → technical severity baseline</li>
+            <li><b>EPSS</b> → likelihood of exploitation in the wild</li>
+            <li><b>Exploit maturity</b> → weaponization / public exploit availability</li>
+            <li><b>Reachability</b> → exposed surface + runtime path</li>
+            <li><b>Compensating controls</b> → RBAC, WAF, egress, segmentation</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Policy Gate Outcomes</h3>
+          <ul>
+            <li><b>Block</b> → exploitable critical vulnerabilities or policy violations</li>
+            <li><b>Allow with evidence</b> → low-risk findings with traceability and audit pack</li>
+            <li><b>Allow with exception</b> → tracked risk acceptance + expiry and follow-up actions</li>
+            <li><b>Auto-promote</b> → clean evidence + approved digest across environments</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -359,7 +634,6 @@
             Enforced secure SDLC from <b>code → pipeline → registry → Kubernetes runtime</b>.
           </div>
 
-          <!-- Categories -->
           <div class="xp-grid">
 
             <details class="xp-block" open>
@@ -367,18 +641,18 @@
                 <span class="xp-title">CI/CD Security Control Plane</span>
               </summary>
               <ul>
-                <li>Designed organization-grade DevSecOps pipelines with multi-stage security enforcement across build & deploy lifecycle.</li>
-                <li>Enforced PR-only merges, CODEOWNERS approvals, branch protections, and required checks to reduce direct-to-main risk.</li>
-                <li>Implemented SAST scanning for JavaScript/HTML and ensured results are stored as pipeline artifacts.</li>
-                <li>Implemented SCA scanning for Maven and Node ecosystems with strict policy thresholds for vulnerable dependencies.</li>
-                <li>Enabled secret scanning controls for hardcoded tokens, OAuth secrets, and cloud keys across repositories.</li>
-                <li>Integrated container image scanning using Prisma Cloud / twistcli and validated results using Trivy.</li>
-                <li>Implemented IaC scanning for Kubernetes manifests and cloud configs to prevent insecure infra deployment.</li>
-                <li>Automated DAST using OWASP ZAP with dynamic URL extraction from Kubernetes services via kubectl.</li>
-                <li>Standardized job dependency flow: scan → build → tag → scan → push → deploy → post-deploy checks.</li>
-                <li>Implemented artifact upload & retention strategy for scan outputs, logs, and compliance evidence.</li>
-                <li>Integrated Slack notifications for pipeline outcomes with commit/build/author metadata.</li>
-                <li>Reduced cycle time using parallel security jobs without reducing coverage.</li>
+                <li>Engineered a CI/CD Security Control Plane enabling deterministic enforcement across build, scan, deploy, and post-deploy validation stages.</li>
+                <li>Implemented PR-only merge governance with CODEOWNERS enforcement, branch protections, and required checks to eliminate direct-to-main release risk.</li>
+                <li>Built multi-language SAST coverage for JavaScript/HTML and standardized scan artifact retention for audit evidence and RCA workflows.</li>
+                <li>Implemented SCA enforcement for Maven + Node ecosystems with policy thresholds to block high-risk dependency introduction.</li>
+                <li>Deployed organization-wide secret scanning controls to prevent leakage of OAuth secrets, cloud keys, and hardcoded tokens across repositories.</li>
+                <li>Integrated container vulnerability scanning using Prisma Cloud (twistcli) and enforced cross-validation using Trivy to reduce scanner trust failures.</li>
+                <li>Implemented IaC scanning to prevent insecure Kubernetes manifests and cloud misconfigurations from reaching runtime environments.</li>
+                <li>Automated OWASP ZAP DAST with Kubernetes service discovery (kubectl-based dynamic URL extraction) for post-deploy validation coverage.</li>
+                <li>Standardized pipeline execution order and dependency flow: verify → build → tag → scan → push → deploy → validate → notify.</li>
+                <li>Built evidence retention strategy: scan outputs, logs, approvals, and digests retained as artifacts to support compliance and investigations.</li>
+                <li>Implemented Slack-based release telemetry with commit/build/author context to improve engineering visibility and reduce release ambiguity.</li>
+                <li>Optimized pipeline execution using parallel scanning stages while preserving enforcement integrity and coverage.</li>
               </ul>
             </details>
 
@@ -389,9 +663,9 @@
               <ul>
                 <li>Implemented controlled artifact promotion workflow where QA promotes images separately for UAT/Prod (no rebuilds in prod).</li>
                 <li>Enforced immutable versioning (v1.0) and prevented use of latest tags to eliminate deployment drift.</li>
-                <li>Ensured only scanned + approved images are eligible for deployment.</li>
+                <li>Ensured only scanned + approved images are eligible for deployment using digest-level validation patterns.</li>
                 <li>Built evidence model: scan results + approvals + image digest tracking = attestation-ready delivery.</li>
-                <li>Strengthened traceability from commit → build → image digest → deployment.</li>
+                <li>Strengthened traceability from commit → build → image digest → deployment across environments.</li>
                 <li>Added promotion gates to prevent deploying images not present in approved registry paths.</li>
               </ul>
             </details>
@@ -488,7 +762,7 @@
               <div class="edu-title">
                 <a class="edu-link" target="_blank" rel="noreferrer"
                    href="https://vit.ac.in/">
-                  Vellore Institute of Technology,Chennai
+                  Vellore Institute of Technology, Chennai
                 </a>
               </div>
               <div class="edu-sub mono">
@@ -508,6 +782,122 @@
             <span class="tag">Networking</span>
             <span class="tag">Problem Solving</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section glass">
+      <h2>🧩 Projects</h2>
+      <p class="mono subtle">Engineering projects that demonstrate secure delivery, automation, and system design.</p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Netflix Clone — Secure CI/CD Pipeline</h3>
+          <ul>
+            <li>Built CI/CD pipeline with SAST, SCA, secrets scanning, Trivy image scan, and controlled deployment.</li>
+            <li>Implemented Slack notifications with build + commit metadata.</li>
+            <li>Focused on immutable image tags (v1.0) and evidence retention.</li>
+          </ul>
+          <div class="hint">
+            GitHub:
+            <a target="_blank" rel="noreferrer" href="https://github.com/anshumaan-10/netflix-clone">View Repo →</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Kubernetes Security Validation Toolkit</h3>
+          <ul>
+            <li>Combined kubeaudit + cluster checks for misconfiguration detection.</li>
+            <li>Designed baseline enforcement for risky workload patterns.</li>
+            <li>Mapped findings to remediation playbooks for engineering teams.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPLORER -->
+    <section id="explorer" class="section glass">
+      <h2>🧭 Explorer (What I’m building next)</h2>
+      <p class="mono subtle">
+        Active areas of engineering exploration: making security controls faster, stronger, and more measurable.
+      </p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Secure Build Provenance</h3>
+          <ul>
+            <li>Expanding provenance metadata to include environment and runner identity.</li>
+            <li>Improving attestations for artifact traceability across Dev → UAT → Prod.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Policy as Code Expansion</h3>
+          <ul>
+            <li>Strengthening policy gates for Kubernetes workload hardening.</li>
+            <li>Improving enforcement for registry paths + digest allowlisting.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Risk-based Security Gates</h3>
+          <ul>
+            <li>Reducing false positives by aligning severity with exploitability.</li>
+            <li>Tracking risk acceptance and expiry-based exceptions.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Security Metrics & KPIs</h3>
+          <ul>
+            <li>Measuring gate pass rate, mean time to remediate, recurrence of secrets leakage.</li>
+            <li>Building dashboards for release integrity and evidence coverage.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section glass">
+      <h2>🧰 Skills (Security Systems Engineering)</h2>
+      <p class="mono subtle">Grouped by real-world engineering domains.</p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>DevSecOps + CI/CD</h3>
+          <ul>
+            <li>GitHub Actions, Jenkins, pipeline orchestration</li>
+            <li>Branch protection, CODEOWNERS, PR-only enforcement</li>
+            <li>Artifact retention, evidence generation, release governance</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Supply Chain Security</h3>
+          <ul>
+            <li>SBOM generation, artifact signing, digest traceability</li>
+            <li>Immutable versioning + controlled promotions</li>
+            <li>Container security scanning: Prisma twistcli, Trivy</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Application Security</h3>
+          <ul>
+            <li>Web/API/Mobile penetration testing</li>
+            <li>AuthZ/AuthN testing, misconfigurations, API abuse validation</li>
+            <li>Remediation guidance + secure design reviews</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Kubernetes Security</h3>
+          <ul>
+            <li>RBAC, namespaces, workload hardening baselines</li>
+            <li>kubeaudit-based checks and enforcement patterns</li>
+            <li>Ingress exposure and blast radius reduction</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -566,7 +956,6 @@
           </div>
         </a>
 
-
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/862ad232-289a-4675-b883-ae8de8313baf/public_url">
           <div class="cert-logo">
@@ -582,15 +971,14 @@
         <a class="cert-card-v2" target="_blank" rel="noreferrer"
            href="https://www.credly.com/badges/b80d2f45-a0cd-47c3-9de4-c59d676b4ecc/public_url">
           <div class="cert-logo">
-            <img alt="GCP PCA" src="./assests/gcp.jpg">
+            <img alt="GCP ACE" src="./assests/gcp.jpg">
           </div>
           <div class="cert-body">
-            <div class="cert-name">GCP PCA</div>
+            <div class="cert-name">GCP ACE</div>
             <div class="cert-desc mono">Associate Cloud Engineer</div>
             <div class="cert-meta subtle">Credential verification →</div>
           </div>
         </a>
-
       </div>
 
       <div class="hint">
@@ -599,6 +987,35 @@
            href="https://www.skills.google/public_profiles/a1969b11-107b-480a-99c1-60362ad409fc">
           View Profile →
         </a>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="section glass">
+      <h2>🏆 Achievements</h2>
+      <p class="mono subtle">Verified impact + certifications + security engineering outcomes.</p>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Certifications</h3>
+          <ul>
+            <li>CKS — Certified Kubernetes Security Specialist</li>
+            <li>CKA — Certified Kubernetes Administrator</li>
+            <li>GCP Professional Cloud Security Engineer</li>
+            <li>GCP Professional Cloud Architect</li>
+            <li>Terraform Associate</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Security Engineering Outcomes</h3>
+          <ul>
+            <li>Implemented security enforcement across 350+ microservices delivery scope.</li>
+            <li>Built CI/CD security gates with evidence retention and audit-ready outputs.</li>
+            <li>Enabled controlled promotions with immutability and digest-level traceability.</li>
+            <li>Reduced secrets exposure risk through scanning + governance + rotation response.</li>
+          </ul>
+        </div>
       </div>
     </section>
 

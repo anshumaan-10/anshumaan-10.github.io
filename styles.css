@@ -484,7 +484,10 @@ main{ padding:22px 0 70px; }
   font-size:1.6rem;
   letter-spacing:-0.35px;
 }
-.section p{ color:rgba(234,240,255,.86); }
+.section p{
+  color:rgba(234,240,255,.86);
+  max-width: 78ch;
+}
 
 /* Grid */
 .grid{
@@ -530,16 +533,11 @@ main{ padding:22px 0 70px; }
   text-decoration: underline;
 }
 
-/* ARCHITECTURE SECTION */
-.arch-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:14px;
-  margin-top: 14px;
-}
-.arch-card{
+/* ARCHITECTURE */
+.arch-full{
   padding:16px;
   border-radius:18px;
+  margin-top:14px;
 }
 .arch-head{
   display:flex;
@@ -563,22 +561,20 @@ main{ padding:22px 0 70px; }
   font-weight: 800;
   color: rgba(234,240,255,.85);
 }
-
-/* Mermaid wrapper */
-.arch-mermaid{
-  padding: 14px;
+.arch-image-wrap{
   border-radius: 16px;
+  overflow:hidden;
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(0,0,0,.35);
-  overflow:auto;
 }
-
-/* Mermaid theme */
-.mermaid{
-  color: rgba(234,240,255,.9);
+.arch-image{
+  width:100%;
+  height:auto;
+  display:block;
 }
-
-/* NEW: Architecture explanation */
+.arch-foot{
+  margin-top: 10px;
+}
 .arch-explain{
   margin-top: 14px;
   padding: 14px;
@@ -617,23 +613,7 @@ main{ padding:22px 0 70px; }
   color: rgba(234,240,255,.82);
 }
 
-/* Image card */
-.arch-image-wrap{
-  border-radius: 16px;
-  overflow:hidden;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.35);
-}
-.arch-image{
-  width:100%;
-  height:auto;
-  display:block;
-}
-.arch-foot{
-  margin-top: 10px;
-}
-
-/* EXPERIENCE UI */
+/* EXPERIENCE */
 .timeline{
   margin-top: 14px;
 }
@@ -698,42 +678,22 @@ main{ padding:22px 0 70px; }
   justify-content:space-between;
   align-items:center;
   gap:12px;
+  padding-bottom: 6px;
 }
 .xp-block summary::-webkit-details-marker{ display:none; }
 .xp-title{
   font-weight: 900;
 }
-.xp-meta{
-  color: rgba(234,240,255,.70);
-  font-weight: 800;
+.xp-block[open]{
+  background: rgba(255,255,255,.035);
 }
 .xp-block ul{
   margin: 12px 0 0;
   padding-left: 18px;
 }
 .xp-block li{
-  margin-bottom: 8px;
-  color: rgba(234,240,255,.82);
-}
-
-/* NEW: Results summary */
-.results-summary{
-  margin-top: 16px;
-  padding: 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.25);
-}
-.results-summary h3{
-  margin: 0 0 10px;
-  font-size: 1.05rem;
-}
-.results-summary ul{
-  margin: 0;
-  padding-left: 18px;
-}
-.results-summary li{
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  line-height: 1.55;
   color: rgba(234,240,255,.82);
 }
 
@@ -794,7 +754,7 @@ main{ padding:22px 0 70px; }
   font-size: .86rem;
 }
 
-/* Certifications v2 */
+/* Certifications */
 .cert-grid-v2{
   display:grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -987,7 +947,6 @@ main{ padding:22px 0 70px; }
   .hamburger{ display:inline-flex; }
   .topbar{ border-radius: 22px; }
   .cert-grid-v2{ grid-template-columns: 1fr; }
-  .arch-grid{ grid-template-columns: 1fr; }
   .xp-grid{ grid-template-columns: 1fr; }
 }
 
@@ -1005,21 +964,4 @@ main{ padding:22px 0 70px; }
   .kpi-grid{
     grid-template-columns: 1fr;
   }
-}
-
-/* FULL WIDTH Architecture SBOM block */
-.arch-full{
-  padding:16px;
-  border-radius:18px;
-  margin-top:14px;
-}
-
-.arch-image-full{
-  width:100%;
-}
-
-.arch-image-full img{
-  width:100%;
-  height:auto;
-  display:block;
 }
