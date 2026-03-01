@@ -427,7 +427,7 @@
       <div class="hero-left">
         <div class="hero-tag mono reveal">
           <span class="live-dot" aria-hidden="true"></span>
-          secure-by-default &nbsp;·&nbsp; systems engineering &nbsp;·&nbsp; evidence-driven
+          secure-by-default &nbsp;·&nbsp; zero-trust delivery &nbsp;·&nbsp; evidence-driven
         </div>
 
         <div class="security-status-bar mono reveal" role="status" aria-label="Security system status">
@@ -566,23 +566,21 @@
       <div class="about-grid">
         <div class="about-text">
           <p class="reveal">
-            I engineer security the same way high-scale teams engineer reliability — as a
-            <strong>system property</strong> that is designed, enforced, and continuously verified.
-            My work spans the full SDLC, but my real domain is <strong>security system design</strong>:
-            defining trust boundaries, constraining blast radius, enforcing secure defaults,
-            and ensuring production behavior remains predictable even under adversarial pressure.
+            Most security teams react. Watch alerts. Triage tickets. Ship reports.
+            I build systems where the <strong>dangerous path is operationally hard</strong>
+            before anyone notices it exists.
           </p>
           <p class="reveal">
-            I don't treat security as findings. I treat security as <strong>invariants</strong> —
-            rules that must remain true regardless of code changes, deployments, or operational stress.
-            This means <strong>non-bypassable CI gates</strong>, <strong>tamper-evident artifact chains</strong>,
-            <strong>least-privilege runtime enforcement</strong>, and audit-ready evidence that
-            travels with every release from Dev → UAT → Prod.
+            At ZEE Entertainment I secured 350+ microservices from code commit to production —
+            not by reviewing more, but by making insecure releases
+            <strong>structurally impossible</strong>. No bypass paths. No rebuilds in prod.
+            No “we’ll fix it next sprint.”
           </p>
           <p class="reveal">
-            My operating model: identity as the control plane, verification as deterministic,
-            artifacts as immutable, runtime as constrained, and every control as auditable.
-            Secure delivery becomes the <em>default</em> — not a gate bolted on at the end.
+            I treat security the way reliability engineers treat uptime: with
+            <strong>invariants</strong>. If a control can be bypassed — it isn’t one.
+            If a gate produces noise — it erodes trust. If evidence doesn’t travel with
+            the release — it doesn’t exist. That’s the philosophy behind everything I ship.
           </p>
         </div>
         <div class="about-stats reveal">
@@ -615,36 +613,37 @@
         <h2 id="philosophy-h2">Engineering Philosophy</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <p class="sec-tagline reveal">Six principles tested under production pressure — not borrowed from a framework.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◈</div>
           <h3>Shift Smart, Not Just Left</h3>
-          <p>Security abstracted into the platform. If the paved road is secure, teams ship faster with less risk.</p>
+          <p>Security bolted to a sprint is a tax. Built into the platform it’s invisible — and teams ship faster because of it.</p>
         </article>
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◈</div>
           <h3>Identity is the Control Plane</h3>
-          <p>Network boundaries are porous. Strong workload identity + OIDC federation = keyless, verifiable trust.</p>
+          <p>Network perimeters trust the packet. I trust the identity. Short-lived, OIDC-federated, cryptographically verifiable — unforgeable by design.</p>
         </article>
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◈</div>
           <h3>Guardrails over Gates</h3>
-          <p>Guardrails preserve velocity while preventing catastrophic failures. Enforce safety without blocking delivery.</p>
+          <p>Gates block. Guardrails guide. One kills velocity — the other multiplies it. Build systems where the safe path is also the easiest path.</p>
         </article>
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◈</div>
           <h3>Detection as Code</h3>
-          <p>Alerts must map to response playbooks. If an alert has no action, it becomes noise and erodes trust.</p>
+          <p>An alert no one acts on is just log noise with extra steps. Every detection I ship maps to a playbook and a decision — not a Slack ping.</p>
         </article>
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◈</div>
           <h3>Evidence over Assertions</h3>
-          <p>Compliance via documentation is theater. Real assurance comes from automated, tamper-evident evidence.</p>
+          <p>Don’t tell auditors you’re secure — show them. SBOM linked to commit. Scan output signed. Promotion gate logged. Theater out. Evidence in.</p>
         </article>
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◈</div>
           <h3>Risk-based, Not Fear-based</h3>
-          <p>Blocking everything breaks delivery. Use CVSSv3 + EPSS + reachability to gate on real risk, not scanner noise.</p>
+          <p>Not every critical CVE is worth blocking. Not every low is safe to ship. CVSS + EPSS + reachability = one decision: block, allow with evidence, or accept with expiry.</p>
         </article>
       </div>
     </section>
@@ -656,7 +655,7 @@
         <h2 id="build-h2">What I Built</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Real pipelines · real controls · real enforcement. Not slideware.</p>
+      <p class="mono muted reveal">Real pipelines. Real enforcement. Built for 350+ services — not a conference slide.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">⬡</div>
@@ -706,7 +705,7 @@
         <h2 id="system-h2">System Design</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="reveal">Security like reliability: a system-level invariant enforced through identity, policy boundaries, deterministic verification, and runtime enforcement.</p>
+      <p class="reveal">I don’t patch systems. I design them to <strong>hold under pressure</strong> — where invariants replace assumptions and every control is structural, not procedural.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◬</div>
@@ -740,7 +739,7 @@
         <h2 id="architecture-h2">Reference Architecture</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">End-to-end secure delivery: source → CI/CD → registry → production with evidence.</p>
+      <p class="mono muted reveal">Source to prod. No untrusted artifact reaches runtime. Every transition has a gate and a receipt.</p>
 
       <div class="arch-hero glass reveal" id="archHeroCard">
         <div class="arch-hero-head">
@@ -771,7 +770,7 @@
       </div>
 
       <div class="arch-flow reveal">
-        <h3 class="arch-flow-title mono">// No insecure release reaches production</h3>
+        <h3 class="arch-flow-title mono">// Every release is trustworthy — or it doesn't ship.</h3>
         <div class="arch-steps">
           <div class="arch-step tilt-el reveal">
             <div class="step-num mono" aria-hidden="true">01</div>
@@ -820,7 +819,7 @@
         <h2 id="cases-h2">Case Studies</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Real-world security engineering outcomes — not hypotheticals.</p>
+      <p class="mono muted reveal">Not hypotheticals. Not labs. These happened — here’s what I did.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <span class="case-badge mono">INCIDENT</span>
@@ -872,7 +871,7 @@
         <h2 id="threat-h2">Threat Model</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="reveal">Modeling threats using attacker behavior, not compliance checklists. Controls mapped to kill-chain stages.</p>
+      <p class="reveal">I model threats the way attackers think — not the way auditors check boxes. Kill-chain mapped. Response-ready. No theoretical vectors that can’t be exploited.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">⚠</div>
@@ -909,7 +908,7 @@
         <h2 id="evidence-h2">Evidence</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Proof controls ran and produced outputs. Evidence travels with every release.</p>
+      <p class="mono muted reveal">Saying you ran the scan isn’t evidence. Here’s what real pipeline evidence looks like.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">📋</div>
@@ -942,7 +941,7 @@
         <h2 id="risk-h2">Risk Engine</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="reveal">Gates use severity + probability + exploit maturity so teams ship safely without unnecessary friction.</p>
+      <p class="reveal">Not every critical CVE should block a release. Not every low-severity is safe to ignore. This is how I separate signal from noise and keep engineering teams moving.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">⚙</div>
@@ -975,7 +974,7 @@
         <h2 id="exp-h2">Experience</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Measurable security engineering outcomes — real delivery, real impact.</p>
+      <p class="mono muted reveal">Two years. One team. One mission: make insecure releases structurally impossible across 350+ microservices.</p>
 
       <div class="timeline">
         <div class="timeline-item glass reveal">
@@ -1124,11 +1123,11 @@
         <h2 id="projects-h2">Projects</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Demonstrating secure delivery, automation, and systems thinking.</p>
+      <p class="mono muted reveal">Code I wrote. Problems I solved. You can see the commits.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">▶</div>
-          <h3>Netflix Clone — Secure CI/CD Pipeline</h3>
+          <h3>Netflix Clone — Secure CI/CD from Scratch</h3>
           <ul>
             <li>CI/CD: SAST, SCA, secrets scanning, Trivy image scan, controlled deployment.</li>
             <li>Slack notifications with build + commit metadata for full visibility.</li>
@@ -1178,7 +1177,7 @@
         <h2 id="explorer-h2">Explorer — What's Next</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Active engineering exploration for faster, stronger, measurable security controls.</p>
+      <p class="mono muted reveal">What I’m actively pulling apart, rebuilding, and planning to ship next.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
           <div class="card-icon" aria-hidden="true">◉</div>
@@ -1222,7 +1221,7 @@
         <h2 id="skills-h2">Skills</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Grouped by real-world security engineering domains.</p>
+      <p class="mono muted reveal">Tools I’ve shipped in production. Not a wish list.</p>
       <div class="skills-grid stagger">
         <div class="skill-group reveal">
           <div class="sg-logo-bar">
@@ -1362,7 +1361,7 @@
         <h2 id="certs-h2">Certifications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Click any card to verify on Credly.</p>
+      <p class="mono muted reveal">Six industry exams. All passed. Click any to verify.</p>
       <div class="cert-grid stagger">
         <a class="cert-card tilt-el reveal"
            href="https://www.credly.com/badges/a220e713-9317-4d92-9258-eff6aba09da4/public_url"
@@ -1477,15 +1476,16 @@
         <h2 id="writing-h2">Writing &amp; Publications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Security engineering depth on Medium &nbsp;·&nbsp; 221 followers &nbsp;·&nbsp; 700+ total claps.</p>
+      <p class="mono muted reveal">I write the articles I needed when I was building this. 221 followers · 700+ claps.</p>
 
       <div class="pub-grid stagger">
 
-        <!-- Article 1: 115 claps -->
-        <a class="pub-card tilt-el reveal" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener noreferrer" aria-label="Kubernetes Runtime Security: CrowdStrike Falcon on Kubernetes">
+        <!-- Article 1: 115 claps — Most Read -->
+        <a class="pub-card pub-card--featured tilt-el reveal" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener noreferrer" aria-label="Kubernetes Runtime Security: CrowdStrike Falcon on Kubernetes">
           <div class="pub-card-top">
             <span class="pub-topic k8s">Runtime Security</span>
             <span class="pub-claps">👏 115</span>
+            <span class="pub-badge-new mono" style="background:rgba(251,191,36,.12);color:#fbbf24;border-color:rgba(251,191,36,.3)">Most Read</span>
           </div>
           <div class="pub-tools">
             <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" width="20" height="20" loading="lazy" title="Kubernetes" />
@@ -1621,7 +1621,7 @@
         <h2 id="connect-h2">Connect</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="reveal">Open to collaborate, speak, write, or discuss security engineering at scale.</p>
+      <p class="reveal">If you’re building security that has to hold under pressure — or breaking systems to find out what doesn’t — I want to hear from you.</p>
       <div class="connect-grid stagger">
         <a class="connect-card tilt-el reveal" href="mailto:anshumaansingh10jan@gmail.com" aria-label="Send email">
           <span class="cc-icon" aria-hidden="true">✉</span>

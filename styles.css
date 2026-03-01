@@ -926,6 +926,12 @@ main.container { padding-top:20px; }
 /* ── SECTION HEADER ── */
 .sec-header { display:flex; align-items:baseline; gap:14px; margin-bottom:8px; }
 .sec-rule   { height:1px; background:linear-gradient(90deg,var(--accent-soft),transparent); margin:12px 0 24px; }
+/* section tagline — one-liner opener beneath each h2 */
+.sec-tagline {
+  font-size:.94rem; color:var(--text-muted); margin:-8px 0 24px;
+  letter-spacing:.01em; line-height:1.6;
+}
+.sec-tagline strong { color:var(--text); }
 
 /* ── ABOUT STATS GRID ── */
 .stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
@@ -1125,6 +1131,17 @@ main.container { padding-top:20px; }
 }
 .pub-card:hover { border-color:var(--border2); box-shadow:var(--shadow-accent); transform:translateY(-3px); }
 .pub-card:hover::before { transform:scaleX(1); }
+/* featured card: full-width hero treatment */
+.pub-card--featured {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, var(--surface) 0%, rgba(var(--accent-r),var(--accent-g),var(--accent-b),.05) 100%);
+  border-color: rgba(var(--accent-r),var(--accent-g),var(--accent-b),.22);
+  padding: 28px 32px;
+}
+.pub-card--featured::before { background: linear-gradient(90deg, var(--accent), #a78bfa, #22d3ee); }
+.pub-card--featured:hover::before { transform:scaleX(1); }
+.pub-card--featured .pub-title  { font-size:1.12rem; }
+.pub-card--featured .pub-claps  { background:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.12); color:var(--accent); border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.25); }
 .pub-card-top { display:flex; justify-content:space-between; align-items:center; gap:8px; }
 .pub-topic {
   font-size:.65rem; font-family:var(--font-mono); font-weight:700;
