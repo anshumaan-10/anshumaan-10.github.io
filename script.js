@@ -662,3 +662,120 @@ $$("img[src*='simpleicons']").forEach(img => {
 
 /* ── INITIAL CALL ── */
 onScroll();
+
+
+/* ─────────────────────────────────────────────────
+   MATRIX RAIN — Hacker Background
+   Security-themed: binary, hex, CVE chars, symbols
+   ───────────────────────────────────────────────── */
+(function initMatrixRain() {
+  const canvas = document.getElementById("matrix-bg");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  // Character pools
+  const BINARY   = "01";
+  const HEX      = "0123456789ABCDEF";
+  const SECURITY = "$#[]{}|/\\!@%^*+=-~<>?;:._,";
+  const LABELS   = ["CVE","RCE","XSS","LFI","RFI","IAM","TLS","JWT","K8S","SSH",
+                    "GPG","AES","RSA","SBOM","SAST","DAST","OWASP","SOC2","0x"];
+
+  // Build full char pool: 50% binary, 30% hex, 20% security
+  const CHARS = [];
+  for (let i = 0; i < 200; i++) {
+    if      (i < 100) CHARS.push(BINARY[Math.random() > .5 ? 1 : 0]);
+    else if (i < 160) CHARS.push(HEX[Math.floor(Math.random() * HEX.length)]);
+    else              CHARS.push(SECURITY[Math.floor(Math.random() * SECURITY.length)]);
+  }
+
+  const FONT_SIZE  = 14;
+  const LABEL_PROB = 0.003;  // occasional security label burst
+  const BASE_SPEED = 0.4;    // rows per frame (fractional)
+  const OPACITY_CANVAS = 0.55;
+
+  let cols, drops, speeds, chars;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    cols   = Math.floor(canvas.width  / FONT_SIZE);
+    drops  = new Float32Array(cols).fill(-1);
+    speeds = new Float32Array(cols).map(() => BASE_SPEED * (.5 + Math.random() * 1.2));
+    chars  = Array.from({length: cols}, () => randomChar());
+
+    // Stagger start positions so they don't all start at once
+    for (let i = 0; i < cols; i++) {
+      drops[i] = -Math.floor(Math.random() * (canvas.height / FONT_SIZE));
+    }
+  }
+
+  function randomChar() {
+    if (Math.random() < LABEL_PROB) {
+      return LABELS[Math.floor(Math.random() * LABELS.length)];
+    }
+    return CHARS[Math.floor(Math.random() * CHARS.length)];
+  }
+
+  function draw() {
+    // Fade trail — very dark with slight green
+    ctx.fillStyle = "rgba(4, 8, 12, 0.18)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = `600 ${FONT_SIZE}px 'JetBrains Mono', monospace`;
+
+    for (let i = 0; i < cols; i++) {
+      const y = drops[i] * FONT_SIZE;
+      if (y < -FONT_SIZE) { drops[i] += speeds[i]; continue; }
+
+      const ch = chars[i];
+      const isHead = drops[i] > 0;
+
+      if (isHead) {
+        // Bright head — white-green
+        ctx.fillStyle = "rgba(180, 255, 200, 0.92)";
+        ctx.shadowBlur   = 12;
+        ctx.shadowColor  = "#00ff41";
+      } else {
+        // Body gradient fading
+        const progress = y / canvas.height;
+        const alpha = Math.max(0.04, 0.55 * (1 - progress * 0.7));
+        ctx.fillStyle   = `rgba(0, 255, 65, ${alpha})`;
+        ctx.shadowBlur  = 4;
+        ctx.shadowColor = "transparent";
+      }
+
+      ctx.fillText(ch, i * FONT_SIZE, y);
+      ctx.shadowBlur = 0;
+
+      // Randomise char each frame occasionally
+      if (Math.random() < 0.04) chars[i] = randomChar();
+
+      // Advance drop
+      drops[i] += speeds[i];
+
+      // Reset after off-screen — random delay before next drop
+      if (y > canvas.height + FONT_SIZE * 5) {
+        drops[i] = -(Math.floor(Math.random() * 20) + 2);
+        chars[i] = randomChar();
+      }
+    }
+  }
+
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+
+  // Throttle to ~30fps for performance
+  let last = 0;
+  function loop(ts) {
+    if (ts - last > 33) { draw(); last = ts; }
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // Pause when tab is hidden (save CPU)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) cancelAnimationFrame(loop);
+    else requestAnimationFrame(loop);
+  });
+})();

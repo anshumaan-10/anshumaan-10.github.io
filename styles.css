@@ -3846,3 +3846,248 @@ strong { color: var(--text) !important; font-weight: 600 !important; }
 .cases-grid .case-card:nth-child(2) { animation-delay: .12s; }
 .cases-grid .case-card:nth-child(3) { animation-delay: .19s; }
 .cases-grid .case-card:nth-child(4) { animation-delay: .26s; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   HACKER BACKGROUND — v1  (matrix rain, scanlines, glitch)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Matrix canvas ── */
+#matrix-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+}
+[data-theme='light'] #matrix-bg { display: none; }
+
+/* ── Scanlines overlay ── */
+.scanlines {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  animation: scanmove 8s linear infinite;
+}
+@keyframes scanmove {
+  from { background-position: 0 0; }
+  to   { background-position: 0 80px; }
+}
+[data-theme='light'] .scanlines { display: none; }
+
+/* ── Terminal hex grid ── */
+.terminal-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,255,65,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,65,.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%);
+  animation: grid-pulse 4s ease-in-out infinite;
+}
+@keyframes grid-pulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+[data-theme='light'] .terminal-grid { display: none; }
+
+/* ── Background: darken + green tint ── */
+[data-theme='dark'] body {
+  background: #030508 !important;
+}
+[data-theme='dark']:root,
+html[data-theme='dark'] {
+  --bg: #030508 !important;
+}
+
+/* ── Glitch text — hero name ── */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow: hidden;
+  opacity: 0;
+}
+.glitch-text::before {
+  color: #00ff41;
+  -webkit-text-fill-color: #00ff41;
+  background: none;
+  text-shadow: -2px 0 #00ff41;
+  clip-path: inset(0 0 100% 0);
+  animation: glitch-before 6s steps(1) infinite;
+}
+.glitch-text::after {
+  color: #ff003c;
+  -webkit-text-fill-color: #ff003c;
+  background: none;
+  text-shadow: 2px 0 #ff003c;
+  clip-path: inset(0 0 100% 0);
+  animation: glitch-after 6s steps(1) infinite;
+}
+@keyframes glitch-before {
+  0%,100%             { clip-path: inset(0 0 100% 0); opacity: 0; }
+  /* burst 1 — around 15% */
+  14%                 { clip-path: inset(8%  0 74% 0); opacity: .9; transform: translate(-3px, 0); }
+  16%                 { clip-path: inset(55% 0 28% 0); opacity: .9; transform: translate( 2px, 0); }
+  18%                 { clip-path: inset(0   0 100% 0); opacity: 0;  transform: none; }
+  /* burst 2 — around 55% */
+  54%                 { clip-path: inset(35% 0 42% 0); opacity: .8; transform: translate(-2px, 0); }
+  56%                 { clip-path: inset(70% 0 5%  0); opacity: .8; transform: translate( 3px, 0); }
+  58%                 { clip-path: inset(0   0 100% 0); opacity: 0; transform: none; }
+  /* burst 3 — around 82% */
+  80%                 { clip-path: inset(20% 0 63% 0); opacity: .7; transform: translate(-1px, 0); }
+  82%                 { clip-path: inset(0   0 100% 0); opacity: 0; transform: none; }
+}
+@keyframes glitch-after {
+  0%,100%             { clip-path: inset(0 0 100% 0); opacity: 0; }
+  15%                 { clip-path: inset(62% 0 18% 0); opacity: .9; transform: translate(3px, 0); }
+  17%                 { clip-path: inset(30% 0 52% 0); opacity: .9; transform: translate(-2px, 0); }
+  19%                 { clip-path: inset(0   0 100% 0); opacity: 0; transform: none; }
+  55%                 { clip-path: inset(10% 0 78% 0); opacity: .8; transform: translate(2px, 0); }
+  57%                 { clip-path: inset(48% 0 38% 0); opacity: .8; transform: translate(-3px, 0); }
+  59%                 { clip-path: inset(0   0 100% 0); opacity: 0; transform: none; }
+  81%                 { clip-path: inset(75% 0 3%  0); opacity: .7; transform: translate(1px, 0); }
+  83%                 { clip-path: inset(0   0 100% 0); opacity: 0; transform: none; }
+}
+
+/* ── Phosphor glow on terminal elements ── */
+.mono, .hero-tag, .security-status-bar, code, .loader-text,
+.tcmd, .tout, .tp, .t-cursor-line, .kpi-lbl, .stat-key,
+.writing-header-stat, .phil-num, .pub-meta, .case-badge {
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.18) !important;
+}
+
+/* ── Terminal: hero security status bar glow ── */
+.security-status-bar {
+  border-color: rgba(0, 255, 65, 0.2) !important;
+  background: rgba(0, 20, 5, 0.5) !important;
+}
+.ssb-dot.green {
+  background: #00ff41 !important;
+  box-shadow: 0 0 6px #00ff41, 0 0 12px rgba(0,255,65,.4) !important;
+}
+
+/* ── Terminal code block: green phosphor ── */
+.terminal-block, .terminal,
+.term-body, .term-window {
+  border-color: rgba(0, 255, 65, 0.15) !important;
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.06),
+              inset 0 0 40px rgba(0,20,8,0.3) !important;
+}
+.tp     { color: #00ff41 !important; text-shadow: 0 0 8px rgba(0,255,65,.5) !important; }
+.tcmd   { color: #7fff7f !important; }
+.tout   { color: #39c06a !important; }
+.tout-ok{ color: #00ff88 !important; text-shadow: 0 0 6px rgba(0,255,136,.4) !important; }
+.t-cursor-line .tcursor {
+  background: #00ff41 !important;
+  box-shadow: 0 0 8px rgba(0,255,65,.6) !important;
+}
+
+/* ── Accent lines: green tint on borders ── */
+[data-theme='dark'] .sec-rule {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0,255,65,.25) 20%,
+    rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4) 50%,
+    rgba(0,255,65,.25) 80%,
+    transparent 100%
+  ) !important;
+}
+
+/* ── Card: subtle green glow on hover ── */
+[data-theme='dark'] .phil-card:hover,
+[data-theme='dark'] .case-card:hover,
+[data-theme='dark'] .pub-card:hover,
+[data-theme='dark'] .cert-card:hover,
+[data-theme='dark'] .skill-group:hover {
+  box-shadow: 0 0 20px rgba(0,255,65,.04),
+              0 8px 32px rgba(0,0,0,.5) !important;
+}
+
+/* ── Loader: green terminal style ── */
+[data-theme='dark'] .loader {
+  background: #030508 !important;
+}
+[data-theme='dark'] .loader-text {
+  color: #00ff41 !important;
+  text-shadow: 0 0 10px rgba(0,255,65,.5);
+}
+[data-theme='dark'] .loader-bar {
+  border-color: rgba(0,255,65,.25) !important;
+}
+[data-theme='dark'] .loader-fill {
+  background: linear-gradient(90deg, #00ff41, #39ffb0) !important;
+  box-shadow: 0 0 10px rgba(0,255,65,.5) !important;
+}
+
+/* ── Cursor: green in dark mode ── */
+[data-theme='dark'] .cursor-dot  { background: #00ff41 !important; }
+[data-theme='dark'] .cursor-ring { border-color: rgba(0,255,65,.4) !important; }
+
+/* ── Hero name gradient: add green spark ── */
+[data-theme='dark'] .name-gradient {
+  background: linear-gradient(135deg,
+    #e8eaf0 0%,
+    rgb(var(--accent-r),var(--accent-g),var(--accent-b)) 40%,
+    #22d3ee 70%,
+    #39ff14 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* ── Scroll progress: green trail ── */
+[data-theme='dark'] .scroll-progress {
+  background: linear-gradient(90deg, #00ff41, #8B5CF6, #22d3ee) !important;
+}
+
+/* ── Nav active: green glow ── */
+[data-theme='dark'] .nav-link.active {
+  color: #00ff41 !important;
+  text-shadow: 0 0 8px rgba(0,255,65,.5) !important;
+}
+
+/* ── Impact banner: green top accent line ── */
+[data-theme='dark'] .impact-banner {
+  border-top-color: rgba(0,255,65,.2) !important;
+  border-bottom-color: rgba(0,255,65,.12) !important;
+}
+
+/* ── Print: never print background effects ── */
+@media print {
+  #matrix-bg, .scanlines, .terminal-grid { display: none !important; }
+}
+
+/* ── Reduced motion: disable matrix + glitch ── */
+@media (prefers-reduced-motion: reduce) {
+  #matrix-bg { display: none !important; }
+  .scanlines  { animation: none !important; }
+  .glitch-text::before,
+  .glitch-text::after { animation: none !important; opacity: 0 !important; }
+}
