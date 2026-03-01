@@ -565,7 +565,7 @@
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="about-grid">
         <div class="about-text">
-          <p class="reveal">
+          <p class="about-manifesto reveal">
             Most security teams react. Watch alerts. Triage tickets. Ship reports.
             I build systems where the <strong>dangerous path is operationally hard</strong>
             before anyone notices it exists.
@@ -831,16 +831,16 @@
     </section>
 
     <!-- CASE STUDIES -->
-    <section id="case-studies" class="section glass" aria-label="Case studies" aria-labelledby="cases-h2">
+    <section id="case-studies" class="section glass case-studies-section" aria-label="Case studies" aria-labelledby="cases-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">06</span>
         <h2 id="cases-h2">Case Studies</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Not hypotheticals. Not labs. These happened — here’s what I did.</p>
-      <div class="grid-2 stagger">
-        <article class="card tilt-el reveal">
-          <span class="case-badge mono">INCIDENT</span>
+      <div class="cases-grid stagger">
+        <article class="case-card tilt-el reveal">
+          <span class="case-badge badge-incident mono">INCIDENT</span>
           <h3>Secrets Leakage Response</h3>
           <ul>
             <li>Detected hardcoded Azure Storage keys + OAuth secrets — validated exposure scope.</li>
@@ -849,8 +849,8 @@
           </ul>
           <p class="case-outcome">✓ Reduced recurrence through enforcement + governance</p>
         </article>
-        <article class="card tilt-el reveal">
-          <span class="case-badge mono">INVESTIGATION</span>
+        <article class="case-card tilt-el reveal">
+          <span class="case-badge badge-investigation mono">INVESTIGATION</span>
           <h3>Scanner Inconsistency Analysis</h3>
           <ul>
             <li>Prisma returned zero CVEs for known-vulnerable images — root-caused the gap.</li>
@@ -859,8 +859,8 @@
           </ul>
           <p class="case-outcome">✓ Fewer failures from scanner inconsistency</p>
         </article>
-        <article class="card tilt-el reveal">
-          <span class="case-badge mono">DESIGN</span>
+        <article class="case-card tilt-el reveal">
+          <span class="case-badge badge-design mono">DESIGN</span>
           <h3>Controlled Promotions</h3>
           <ul>
             <li>"Build once, promote many" — no rebuilds in prod, no drift.</li>
@@ -869,8 +869,8 @@
           </ul>
           <p class="case-outcome">✓ Full commit-to-production traceability</p>
         </article>
-        <article class="card tilt-el reveal">
-          <span class="case-badge mono">AUTOMATION</span>
+        <article class="case-card tilt-el reveal">
+          <span class="case-badge badge-automation mono">AUTOMATION</span>
           <h3>OWASP ZAP DAST + K8s</h3>
           <ul>
             <li>Automated DAST via kubectl runtime service discovery for real endpoints.</li>
@@ -1507,7 +1507,7 @@
       <div class="pub-grid stagger">
 
         <!-- Article 1: 115 claps — Most Read -->
-        <a class="pub-card pub-card--featured tilt-el reveal" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener noreferrer" aria-label="Kubernetes Runtime Security: CrowdStrike Falcon on Kubernetes">
+        <a class="pub-card pub-card--featured pub-card--wide tilt-el reveal" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener noreferrer" aria-label="Kubernetes Runtime Security: CrowdStrike Falcon on Kubernetes">
           <div class="pub-card-top">
             <span class="pub-topic k8s">Runtime Security</span>
             <span class="pub-claps">👏 115</span>
