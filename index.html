@@ -244,21 +244,25 @@
   <div class="scanlines" aria-hidden="true"></div>
   <div class="terminal-grid" aria-hidden="true"></div>
 
-  <!-- PAGE LOADER -->
+  <!-- PAGE LOADER — terminal boot -->
   <div class="loader" id="loader" aria-hidden="true" role="status">
-    <div class="loader-inner">
-      <div class="loader-shield">
-        <svg viewBox="0 0 60 68" fill="none" xmlns="http://www.w3.org/2000/svg" width="52" height="52">
-          <path d="M30 4L56 15V35C56 50 43 63 30 67C17 63 4 50 4 35V15L30 4Z" stroke="url(#lshg)" stroke-width="2.5" fill="none"/>
-          <path d="M20 34L27 42L42 27" stroke="url(#lshg2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <defs>
-            <linearGradient id="lshg" x1="4" y1="4" x2="56" y2="67"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient>
-            <linearGradient id="lshg2" x1="20" y1="27" x2="42" y2="42"><stop offset="0%" stop-color="#8B5CF6"/><stop offset="100%" stop-color="#22D3EE"/></linearGradient>
-          </defs>
-        </svg>
+    <div class="loader-terminal">
+      <div class="lt-header">
+        <span class="lt-dot lt-red"></span>
+        <span class="lt-dot lt-yellow"></span>
+        <span class="lt-dot lt-green"></span>
+        <span class="lt-title mono">anshumaan@security-node:~</span>
       </div>
-      <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
-      <div class="loader-text mono" id="loaderText">Initializing security context<span class="loader-dots">...</span></div>
+      <div class="lt-body" id="loaderTerminal">
+        <div class="lt-line"><span class="lt-prompt">$</span> <span class="lt-cmd">sudo init security-context --env=production</span></div>
+        <div class="lt-line lt-out">[OK] Kernel security modules loaded</div>
+        <div class="lt-line lt-out">[OK] Identity federation verified</div>
+        <div class="lt-line lt-out">[OK] Certificate chain valid &nbsp;CKS &middot; CKA &middot; GCP</div>
+        <div class="lt-line lt-out" id="ltScan">[..] Scanning 350+ microservices<span class="loader-dots">...</span></div>
+        <div class="lt-line lt-ok" id="ltDone" style="display:none">[OK] All gates active. Zero incidents. Launching...</div>
+        <div class="lt-line"><span class="lt-prompt">$</span> <span class="lt-cursor-blink" aria-hidden="true">&#9608;</span></div>
+      </div>
+      <div class="lt-progress"><div class="lt-fill" id="loaderFill"></div></div>
     </div>
   </div>
 
@@ -432,7 +436,7 @@
       <div class="hero-left">
         <div class="hero-tag mono reveal">
           <span class="live-dot" aria-hidden="true"></span>
-          secure-by-default &nbsp;·&nbsp; zero-trust delivery &nbsp;·&nbsp; evidence-driven
+          <span class="ht-slash">//</span> secure-by-default &nbsp;<span class="ht-div">·</span>&nbsp; zero-trust &nbsp;<span class="ht-div">·</span>&nbsp; evidence-driven &nbsp;<span class="ht-div">·</span>&nbsp; <span class="ht-active">active</span>
         </div>
 
         <div class="security-status-bar mono reveal" role="status" aria-label="Security system status">
@@ -565,7 +569,7 @@
     <section id="about" class="section glass" aria-label="About Anshumaan Singh" aria-labelledby="about-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">01</span>
-        <h2 id="about-h2">About Me</h2>
+        <h2 id="about-h2"><span class="h2-prompt" aria-hidden="true">whoami</span> About Me</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="about-grid">
@@ -615,15 +619,15 @@
     <div class="impact-banner" aria-hidden="true">
       <div class="impact-banner-inner">
         <div class="impact-stat">
-          <span class="impact-num">350<span style="font-size:.55em;vertical-align:middle">+</span></span>
+          <span class="impact-hex mono">0x15E</span><span class="impact-num">350<span style="font-size:.55em;vertical-align:middle">+</span></span>
           <span class="impact-label">Microservices secured end-to-end</span>
         </div>
         <div class="impact-stat">
-          <span class="impact-num">100<span style="font-size:.55em;vertical-align:middle">%</span></span>
+          <span class="impact-hex mono">0x64</span><span class="impact-num">100<span style="font-size:.55em;vertical-align:middle">%</span></span>
           <span class="impact-label">CIS Kubernetes Benchmark</span>
         </div>
         <div class="impact-stat">
-          <span class="impact-num">0</span>
+          <span class="impact-hex mono">0x00</span><span class="impact-num">0</span>
           <span class="impact-label">Production incidents on my watch</span>
         </div>
       </div>
@@ -633,7 +637,7 @@
     <section id="philosophy" class="section glass" aria-label="Engineering philosophy" aria-labelledby="philosophy-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">02</span>
-        <h2 id="philosophy-h2">Engineering Philosophy</h2>
+        <h2 id="philosophy-h2"><span class="h2-prompt" aria-hidden="true">cat principles.md</span> Engineering Philosophy</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="sec-tagline reveal">Six principles tested under production pressure — not borrowed from a framework.</p>
@@ -675,7 +679,7 @@
     <section id="build" class="section glass" aria-label="What I built" aria-labelledby="build-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">03</span>
-        <h2 id="build-h2">What I Built</h2>
+        <h2 id="build-h2"><span class="h2-prompt" aria-hidden="true">git log --all</span> What I Built</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Real pipelines. Real enforcement. Built for 350+ services — not a conference slide.</p>
@@ -839,7 +843,7 @@
     <section id="case-studies" class="section glass case-studies-section" aria-label="Case studies" aria-labelledby="cases-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">06</span>
-        <h2 id="cases-h2">Case Studies</h2>
+        <h2 id="cases-h2"><span class="h2-prompt" aria-hidden="true">tail -f incidents.log</span> Case Studies</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Not hypotheticals. Not labs. These happened — here’s what I did.</p>
@@ -891,7 +895,7 @@
     <section id="threat-model" class="section glass" aria-label="Threat modeling" aria-labelledby="threat-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">07</span>
-        <h2 id="threat-h2">Threat Model</h2>
+        <h2 id="threat-h2"><span class="h2-prompt" aria-hidden="true">nmap --threat-model</span> Threat Model</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="reveal">I model threats the way attackers think — not the way auditors check boxes. Kill-chain mapped. Response-ready. No theoretical vectors that can’t be exploited.</p>
@@ -961,7 +965,7 @@
     <section id="risk-engine" class="section glass" aria-label="Risk scoring" aria-labelledby="risk-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">09</span>
-        <h2 id="risk-h2">Risk Engine</h2>
+        <h2 id="risk-h2"><span class="h2-prompt" aria-hidden="true">./score-risk.sh</span> Risk Engine</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="reveal">Not every critical CVE should block a release. Not every low-severity is safe to ignore. This is how I separate signal from noise and keep engineering teams moving.</p>
@@ -994,7 +998,7 @@
     <section id="experience" class="section glass" aria-label="Professional experience" aria-labelledby="exp-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">10</span>
-        <h2 id="exp-h2">Experience</h2>
+        <h2 id="exp-h2"><span class="h2-prompt" aria-hidden="true">git log --author=anshumaan</span> Experience</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Two years. One team. One mission: make insecure releases structurally impossible across 350+ microservices.</p>
@@ -1094,7 +1098,7 @@
     <section id="education" class="section glass" aria-label="Education" aria-labelledby="edu-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">11</span>
-        <h2 id="edu-h2">Education</h2>
+        <h2 id="edu-h2"><span class="h2-prompt" aria-hidden="true">cat education.json</span> Education</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="edu-list stagger">
@@ -1143,7 +1147,7 @@
     <section id="projects" class="section glass" aria-label="Engineering projects" aria-labelledby="projects-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">12</span>
-        <h2 id="projects-h2">Projects</h2>
+        <h2 id="projects-h2"><span class="h2-prompt" aria-hidden="true">ls -la ~/repos</span> Projects</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Code I wrote. Problems I solved. You can see the commits.</p>
@@ -1241,7 +1245,7 @@
     <section id="skills" class="section glass" aria-label="Technical skills" aria-labelledby="skills-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">14</span>
-        <h2 id="skills-h2">Skills</h2>
+        <h2 id="skills-h2"><span class="h2-prompt" aria-hidden="true">dpkg -l | grep security</span> Skills</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Tools I’ve shipped in production. Not a wish list.</p>
@@ -1381,9 +1385,10 @@
     <section id="certs" class="section glass" aria-label="Certifications" aria-labelledby="certs-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">15</span>
-        <h2 id="certs-h2">Certifications</h2>
+        <h2 id="certs-h2"><span class="h2-prompt" aria-hidden="true">verify --clearance-level</span> Certifications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="clearance-strip reveal" aria-hidden="true"><span class="cs-label mono">ACCESS LEVEL</span><span class="cs-badges"><span class="cs-b">CKS</span><span class="cs-b">CKA</span><span class="cs-b">GCP-SEC</span><span class="cs-b">GCP-PCA</span><span class="cs-b">GCP-ACE</span><span class="cs-b">TF-ASC</span></span><span class="cs-status mono">CLEARANCE: GRANTED</span></div>
       <p class="mono muted reveal">Six industry exams. All passed. Click any to verify.</p>
       <div class="cert-grid stagger">
         <a class="cert-card tilt-el reveal"
@@ -1463,7 +1468,7 @@
     <section id="achievements" class="section glass" aria-label="Achievements" aria-labelledby="ach-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">16</span>
-        <h2 id="ach-h2">Achievements</h2>
+        <h2 id="ach-h2"><span class="h2-prompt" aria-hidden="true">grep -r "WIN" ./career/</span> Achievements</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="grid-2 stagger">
@@ -1496,7 +1501,7 @@
     <section id="writing" class="section glass" aria-label="Published writing" aria-labelledby="writing-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">17</span>
-        <h2 id="writing-h2">Writing &amp; Publications</h2>
+        <h2 id="writing-h2"><span class="h2-prompt" aria-hidden="true">curl medium.com/@anshu</span> Writing &amp; Publications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="writing-header-stat reveal">
@@ -1649,7 +1654,7 @@
     <section id="connect" class="section glass" aria-label="Contact" aria-labelledby="connect-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">18</span>
-        <h2 id="connect-h2">Connect</h2>
+        <h2 id="connect-h2"><span class="h2-prompt" aria-hidden="true">ssh anshumaan@secure-channel</span> Connect</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="reveal">If you’re building security that has to hold under pressure — or breaking systems to find out what doesn’t — I want to hear from you.</p>

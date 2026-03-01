@@ -71,8 +71,29 @@ function showToast(msg) {
 
 /* ── LOADER + HASH-ON-LOAD ── */
 window.addEventListener("load", () => {
-  const loader = byId("loader");
-  if (loader) setTimeout(() => loader.classList.add("hide"), 600);
+  // ── Terminal boot sequence ──
+  const loader   = byId("loader");
+  const fill     = byId("loaderFill");
+  const scanLine = byId("ltScan");
+  const doneLine = byId("ltDone");
+
+  if (loader && fill) {
+    // Animate progress bar
+    let pct = 0;
+    const tick = setInterval(() => {
+      pct = Math.min(pct + (Math.random() * 18 + 6), 100);
+      fill.style.width = pct + "%";
+      if (pct >= 100) {
+        clearInterval(tick);
+        if (scanLine) scanLine.style.display = "none";
+        if (doneLine) doneLine.style.display = "flex";
+        setTimeout(() => loader.classList.add("hide"), 520);
+      }
+    }, 90);
+  } else if (loader) {
+    setTimeout(() => loader.classList.add("hide"), 600);
+  }
+
   const yr = byId("year");
   if (yr) yr.textContent = new Date().getFullYear();
   // If URL has a hash, scroll to it after loader clears
