@@ -606,6 +606,24 @@
       </div>
     </section>
 
+    <!-- IMPACT BANNER -->
+    <div class="impact-banner" aria-hidden="true">
+      <div class="impact-banner-inner">
+        <div class="impact-stat">
+          <span class="impact-num">350<span style="font-size:.55em;vertical-align:middle">+</span></span>
+          <span class="impact-label">Microservices secured end-to-end</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-num">100<span style="font-size:.55em;vertical-align:middle">%</span></span>
+          <span class="impact-label">CIS Kubernetes Benchmark</span>
+        </div>
+        <div class="impact-stat">
+          <span class="impact-num">0</span>
+          <span class="impact-label">Production incidents on my watch</span>
+        </div>
+      </div>
+    </div>
+
     <!-- PHILOSOPHY -->
     <section id="philosophy" class="section glass" aria-label="Engineering philosophy" aria-labelledby="philosophy-h2">
       <header class="sec-header">
@@ -614,36 +632,36 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="sec-tagline reveal">Six principles tested under production pressure — not borrowed from a framework.</p>
-      <div class="grid-2 stagger">
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>Shift Smart, Not Just Left</h3>
-          <p>Security bolted to a sprint is a tax. Built into the platform it’s invisible — and teams ship faster because of it.</p>
+      <div class="philosophy-grid stagger">
+        <article class="phil-card tilt-el reveal">
+          <span class="phil-num">01</span>
+          <p class="phil-title">Shift Smart, Not Just Left</p>
+          <p class="phil-body">Security bolted to a sprint is a tax. Built into the platform it’s invisible — and teams ship faster because of it. The paved road must be the secure road.</p>
         </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>Identity is the Control Plane</h3>
-          <p>Network perimeters trust the packet. I trust the identity. Short-lived, OIDC-federated, cryptographically verifiable — unforgeable by design.</p>
+        <article class="phil-card tilt-el reveal">
+          <span class="phil-num">02</span>
+          <p class="phil-title">Identity is the Control Plane</p>
+          <p class="phil-body">Network perimeters trust the packet. I trust the identity. Short-lived, OIDC-federated, cryptographically verifiable — unforgeable by design.</p>
         </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>Guardrails over Gates</h3>
-          <p>Gates block. Guardrails guide. One kills velocity — the other multiplies it. Build systems where the safe path is also the easiest path.</p>
+        <article class="phil-card tilt-el reveal">
+          <span class="phil-num">03</span>
+          <p class="phil-title">Guardrails over Gates</p>
+          <p class="phil-body">Gates block. Guardrails guide. One kills velocity — the other multiplies it. Build systems where the safe path is also the easiest path.</p>
         </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>Detection as Code</h3>
-          <p>An alert no one acts on is just log noise with extra steps. Every detection I ship maps to a playbook and a decision — not a Slack ping.</p>
+        <article class="phil-card tilt-el reveal">
+          <span class="phil-num">04</span>
+          <p class="phil-title">Detection as Code</p>
+          <p class="phil-body">An alert no one acts on is just log noise with extra steps. Every detection I ship maps to a playbook and a decision — not a Slack ping.</p>
         </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>Evidence over Assertions</h3>
-          <p>Don’t tell auditors you’re secure — show them. SBOM linked to commit. Scan output signed. Promotion gate logged. Theater out. Evidence in.</p>
+        <article class="phil-card tilt-el reveal">
+          <span class="phil-num">05</span>
+          <p class="phil-title">Evidence over Assertions</p>
+          <p class="phil-body">Don’t tell auditors you’re secure — show them. SBOM linked to commit. Scan output signed. Promotion gate logged. Theater out. Evidence in.</p>
         </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◈</div>
-          <h3>Risk-based, Not Fear-based</h3>
-          <p>Not every critical CVE is worth blocking. Not every low is safe to ship. CVSS + EPSS + reachability = one decision: block, allow with evidence, or accept with expiry.</p>
+        <article class="phil-card tilt-el reveal">
+          <span class="phil-num">06</span>
+          <p class="phil-title">Risk-based, Not Fear-based</p>
+          <p class="phil-body">Not every critical CVE is worth blocking. Not every low is safe to ship. CVSS + EPSS + reachability = one decision: block, allow with evidence, or accept with expiry.</p>
         </article>
       </div>
     </section>
@@ -1476,7 +1494,15 @@
         <h2 id="writing-h2">Writing &amp; Publications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">I write the articles I needed when I was building this. 221 followers · 700+ claps.</p>
+      <div class="writing-header-stat reveal">
+        <span><strong>221</strong> followers</span>
+        <span class="whs-sep">/</span>
+        <span><strong>700+</strong> claps</span>
+        <span class="whs-sep">/</span>
+        <span><strong>10+</strong> articles published</span>
+        <span class="whs-sep">/</span>
+        <span>Security engineering depth — written for practitioners, not marketing</span>
+      </div>
 
       <div class="pub-grid stagger">
 
