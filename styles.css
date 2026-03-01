@@ -1156,10 +1156,11 @@ main.container { padding-top:20px; }
 .pub-meta { display:flex; align-items:center; gap:0; font-size:.72rem; color:var(--text-muted); }
 .pub-sep  { margin:0 5px; opacity:.4; }
 .pub-arrow {
-  position:absolute; top:20px; right:20px; font-size:1rem;
+  position:absolute; bottom:20px; right:20px; font-size:1rem;
   color:var(--text-muted); transition:all var(--trans-fast);
 }
 .pub-card:hover .pub-arrow { color:var(--accent); transform:translate(2px,-2px); }
+.pub-card .proj-tags { margin-bottom:28px; }
 .pub-footer {
   display:flex; justify-content:space-between; align-items:center;
   flex-wrap:wrap; gap:16px; margin-top:28px; padding-top:20px;
