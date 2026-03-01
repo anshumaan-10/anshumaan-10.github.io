@@ -25,6 +25,7 @@ const CMDK_ITEMS = [
   { icon:"🏗️", label:"Architecture",      action:()=>scrollTo("architecture") },
   { icon:"💼", label:"Experience",        action:()=>scrollTo("experience") },
   { icon:"📂", label:"Projects",          action:()=>scrollTo("projects") },
+  { icon:"✍️", label:"Writing & Blog",     action:()=>scrollTo("writing") },
   { icon:"🗺️", label:"Explorer",          action:()=>scrollTo("explorer") },
   { icon:"🧠", label:"Skills",            action:()=>scrollTo("skills") },
   { icon:"🏅", label:"Certifications",    action:()=>scrollTo("certs") },
