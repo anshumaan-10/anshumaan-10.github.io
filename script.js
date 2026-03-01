@@ -1,7 +1,7 @@
 /* ============================================================
    Anshumaan Singh Portfolio — script.js
    Maps to index.html IDs / classes.
-   Author: Anshumaan Singh | anshumaan-10.github.io
+   Author: Anshumaan Singh | www.devsecopswithanshu.com
    ============================================================ */
 "use strict";
 
@@ -492,7 +492,7 @@ async function generatePDF() {
     doc.text("Security Systems Engineer · Information Security Analyst (IC-2)", 16, 26);
     doc.setFontSize(8);
     doc.text("ZEE Entertainment Enterprises Ltd · Bengaluru, India", 16, 33);
-    doc.text("anshumaansingh10jan@gmail.com · anshumaan-10.github.io", 16, 39);
+    doc.text("anshumaansingh10jan@gmail.com · www.devsecopswithanshu.com", 16, 39);
 
     let y = 52;
 

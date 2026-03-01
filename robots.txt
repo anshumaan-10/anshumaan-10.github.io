@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anshumaan-10.github.io/sitemap.xml
+Sitemap: https://www.devsecopswithanshu.com/sitemap.xml
