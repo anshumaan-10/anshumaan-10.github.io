@@ -21,19 +21,19 @@ const TYPED_PHRASES = [
 ];
 
 const CMDK_ITEMS = [
-  { icon:"👤", label:"About Me",          action:()=>scrollTo("about") },
-  { icon:"🏗️", label:"Architecture",      action:()=>scrollTo("architecture") },
-  { icon:"💼", label:"Experience",        action:()=>scrollTo("experience") },
-  { icon:"📂", label:"Projects",          action:()=>scrollTo("projects") },
-  { icon:"✍️", label:"Writing & Blog",     action:()=>scrollTo("writing") },
-  { icon:"🗺️", label:"Explorer",          action:()=>scrollTo("explorer") },
-  { icon:"🧠", label:"Skills",            action:()=>scrollTo("skills") },
-  { icon:"🏅", label:"Certifications",    action:()=>scrollTo("certs") },
-  { icon:"🔬", label:"Case Studies",      action:()=>scrollTo("case-studies") },
-  { icon:"📊", label:"Threat Model",      action:()=>scrollTo("threat-model") },
-  { icon:"📈", label:"Risk Engine",       action:()=>scrollTo("risk-engine") },
-  { icon:"🎓", label:"Education",         action:()=>scrollTo("education") },
-  { icon:"📬", label:"Connect",           action:()=>scrollTo("connect") },
+  { icon:"👤", label:"About Me",          action:()=>scrollToSection("about") },
+  { icon:"🏗️", label:"Architecture",      action:()=>scrollToSection("architecture") },
+  { icon:"💼", label:"Experience",        action:()=>scrollToSection("experience") },
+  { icon:"📂", label:"Projects",          action:()=>scrollToSection("projects") },
+  { icon:"✍️", label:"Writing & Blog",     action:()=>scrollToSection("writing") },
+  { icon:"🗺️", label:"Explorer",          action:()=>scrollToSection("explorer") },
+  { icon:"🧠", label:"Skills",            action:()=>scrollToSection("skills") },
+  { icon:"🏅", label:"Certifications",    action:()=>scrollToSection("certs") },
+  { icon:"🔬", label:"Case Studies",      action:()=>scrollToSection("case-studies") },
+  { icon:"📊", label:"Threat Model",      action:()=>scrollToSection("threat-model") },
+  { icon:"📈", label:"Risk Engine",       action:()=>scrollToSection("risk-engine") },
+  { icon:"🎓", label:"Education",         action:()=>scrollToSection("education") },
+  { icon:"📬", label:"Connect",           action:()=>scrollToSection("connect") },
   { icon:"🌓", label:"Toggle Theme",      action:()=>toggleTheme() },
   { icon:"🟣", label:"Violet Accent",     action:()=>setAccent("violet") },
   { icon:"🩵", label:"Cyan Accent",       action:()=>setAccent("cyan") },
@@ -50,7 +50,7 @@ const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const byId = id => document.getElementById(id);
 
-function scrollTo(id) {
+function scrollToSection(id) {
   const el = byId(id);
   if (!el) return;
   const y = el.getBoundingClientRect().top + window.scrollY - TOPBAR_H - 8;
@@ -78,7 +78,7 @@ window.addEventListener("load", () => {
   // If URL has a hash, scroll to it after loader clears
   if (location.hash) {
     const id = location.hash.slice(1);
-    setTimeout(() => scrollTo(id), 900);
+    setTimeout(() => scrollToSection(id), 900);
   }
   // Trigger counters that are already in viewport on page load
   setTimeout(() => {
@@ -118,7 +118,7 @@ $$("a[href^='#']").forEach(a => {
   a.addEventListener("click", e => {
     const id = a.getAttribute("href").slice(1);
     if (document.getElementById(id)) {
-      e.preventDefault(); scrollTo(id);
+      e.preventDefault(); scrollToSection(id);
     }
   });
 });
@@ -638,6 +638,27 @@ byId("backToTop")?.addEventListener("click", () => window.scrollTo({ top:0, beha
   }, { threshold: 0.3 });
   $$(".sb-fill[data-pct]").forEach(el => sbObs.observe(el));
 })();
+
+/* ── LOGO IMAGE FALLBACK — hide broken simpleicons silently ── */
+$$("img[src*='simpleicons']").forEach(img => {
+  img.addEventListener("error", function() {
+    this.style.display = "none";
+    // Show a text badge fallback
+    const badge = document.createElement("span");
+    badge.textContent = this.alt || this.title || "?";
+    badge.title = this.alt || this.title || "";
+    badge.style.cssText = `
+      display:inline-flex;align-items:center;justify-content:center;
+      width:${this.width || 22}px;height:${this.height || 22}px;
+      background:rgba(var(--accent-r,139),var(--accent-g,92),var(--accent-b,246),.15);
+      border:1px solid rgba(var(--accent-r,139),var(--accent-g,92),var(--accent-b,246),.3);
+      border-radius:4px;font-size:9px;font-family:var(--font-mono,'monospace');
+      color:var(--accent,#8B5CF6);font-weight:600;letter-spacing:-.02em;
+      vertical-align:middle;flex-shrink:0;
+    `;
+    this.parentNode.insertBefore(badge, this.nextSibling);
+  });
+});
 
 /* ── INITIAL CALL ── */
 onScroll();
