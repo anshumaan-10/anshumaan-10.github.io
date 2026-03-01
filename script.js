@@ -57,8 +57,8 @@ function scrollTo(id) {
 }
 
 function showToast(msg) {
-  let t = $(".toast");
-  if (!t) { t = document.createElement("div"); t.className = "toast"; document.body.appendChild(t); }
+  const t = byId("toast") || $(".toast");
+  if (!t) return;
   t.textContent = msg;
   t.classList.add("show");
   clearTimeout(t.__tid);
@@ -85,6 +85,13 @@ function onScroll() {
   // Topbar shadow
   const tb = $(".topbar");
   if (tb) tb.classList.toggle("shadow", window.scrollY > 12);
+
+  // Back to top
+  const btt = byId("backToTop");
+  if (btt) {
+    btt.classList.toggle("visible", window.scrollY > 400);
+    btt.setAttribute("aria-hidden", window.scrollY <= 400 ? "true" : "false");
+  }
 
   highlightNav();
   highlightDots();
@@ -154,11 +161,13 @@ const drawerClose = byId("drawerCloseBtn");
 
 function openDrawer()  {
   drawer?.classList.add("open");
+  hamburger?.classList.add("open");
   hamburger?.setAttribute("aria-expanded", "true");
   document.body.style.overflow = "hidden";
 }
 function closeDrawer() {
   drawer?.classList.remove("open");
+  hamburger?.classList.remove("open");
   hamburger?.setAttribute("aria-expanded", "false");
   document.body.style.overflow = "";
 }
@@ -577,6 +586,42 @@ async function generatePDF() {
 ["downloadPdfBtn", "downloadPdfBtnMobile", "downloadPdfBtnHero"].forEach(id => {
   byId(id)?.addEventListener("click", generatePDF);
 });
+
+/* ── BACK TO TOP ── */
+byId("backToTop")?.addEventListener("click", () => window.scrollTo({ top:0, behavior:"smooth" }));
+
+/* ── LIGHTBOX ── */
+(function initLightbox() {
+  const lightbox      = byId("archLightbox");
+  const lightboxBg    = byId("lightboxBg");
+  const lightboxClose = byId("lightboxClose");
+  const archImgWrap   = byId("archImgWrap");
+
+  function openLightbox()  { lightbox?.classList.add("open"); document.body.style.overflow = "hidden"; }
+  function closeLightbox() { lightbox?.classList.remove("open"); document.body.style.overflow = ""; }
+
+  archImgWrap?.addEventListener("click", openLightbox);
+  archImgWrap?.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLightbox(); } });
+  lightboxBg?.addEventListener("click", closeLightbox);
+  lightboxClose?.addEventListener("click", closeLightbox);
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && lightbox?.classList.contains("open")) closeLightbox();
+  });
+})();
+
+/* ── SKILL BARS ── */
+(function initSkillBars() {
+  const sbObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const pct = e.target.dataset.pct || "0";
+        e.target.style.width = pct + "%";
+        sbObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  $$(".sb-fill[data-pct]").forEach(el => sbObs.observe(el));
+})();
 
 /* ── INITIAL CALL ── */
 onScroll();
