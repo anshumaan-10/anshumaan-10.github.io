@@ -1142,6 +1142,13 @@ main.container { padding-top:20px; }
   background:var(--surface2); padding:3px 10px; border-radius:var(--r-full);
   white-space:nowrap; flex-shrink:0;
 }
+.pub-badge-new {
+  font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:#4ade80; background:rgba(74,222,128,.12); border:1px solid rgba(74,222,128,.28);
+  padding:2px 9px; border-radius:var(--r-full); white-space:nowrap; flex-shrink:0;
+}
+/* Quora brand colour */
+.quora-icon { color:#a82400 !important; }
 .pub-tools {
   display:flex; align-items:center; gap:8px; flex-wrap:wrap; min-height:26px;
 }
