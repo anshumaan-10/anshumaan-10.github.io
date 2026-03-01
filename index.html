@@ -12,7 +12,7 @@
   <meta name="author" content="Anshumaan Singh" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow" />
-  <meta name="theme-color" content="#8B5CF6" />
+  <meta name="theme-color" content="#020408" />
   <meta name="color-scheme" content="dark light" />
   <meta name="rating" content="general" />
   <meta name="revisit-after" content="7 days" />
@@ -58,7 +58,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
 
   <!-- ═══ FAVICON ═══ -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 
   <!-- ═══ CSS ═══ -->
   <link rel="stylesheet" href="./styles.css" />
@@ -255,8 +255,8 @@
       </div>
       <div class="lt-body" id="loaderTerminal">
         <div class="lt-line"><span class="lt-prompt">$</span> <span class="lt-cmd">sudo init security-context --env=production</span></div>
-        <div class="lt-line lt-out">[OK] Kernel security modules loaded</div>
-        <div class="lt-line lt-out">[OK] Identity federation verified</div>
+        <div class="lt-line lt-out">[OK] Kernel security modules loaded — v2.6.0</div>
+        <div class="lt-line lt-out">[OK] Identity federation verified — sha256:a3f2b1</div>
         <div class="lt-line lt-out">[OK] Certificate chain valid &nbsp;CKS &middot; CKA &middot; GCP</div>
         <div class="lt-line lt-out" id="ltScan">[..] Scanning 350+ microservices<span class="loader-dots">...</span></div>
         <div class="lt-line lt-ok" id="ltDone" style="display:none">[OK] All gates active. Zero incidents. Launching...</div>
@@ -267,7 +267,7 @@
   </div>
 
   <!-- SCROLL PROGRESS -->
-  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-hidden="true"></div>
+  <div class="scroll-progress v7-progress" id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-hidden="true"></div>
 
   <!-- CUSTOM CURSOR -->
   <div class="cursor-dot"  id="cursorDot"  aria-hidden="true"></div>
@@ -302,14 +302,14 @@
         </div>
         <div class="brand-text">
           <span class="brand-name">anshumaan<span class="brand-dot-inline accent-color">.</span>dev</span>
-          <span class="brand-role mono">security-systems</span>
+          <span class="brand-role mono">security-systems<span class="brand-ver" aria-hidden="true"> v2.6.0</span></span>
         </div>
-        <span class="status-pill" title="Open to connect">
+        <span class="status-pill v7-pill" title="Open to connect">
           <span class="status-dot" aria-hidden="true"></span>open to connect
         </span>
       </a>
 
-      <nav class="nav" id="desktopNav" aria-label="Main navigation">
+      <nav class="nav" id="desktopNav" aria-label="Main navigation"><span class="nav-sys-label mono" aria-hidden="true">// nav</span>
         <a href="#about"        class="nav-link" data-nav="about">About</a>
         <a href="#philosophy"   class="nav-link" data-nav="philosophy">Think</a>
         <a href="#build"        class="nav-link" data-nav="build">Build</a>
@@ -456,10 +456,10 @@
         </h1>
 
         <div class="hero-subtitle reveal" aria-live="polite">
-          <span class="typing-out" id="typingTarget"></span><span class="type-caret" aria-hidden="true"></span>
+          <span class="typing-out" id="typingTarget"></span><span class="type-caret hero-typed-cursor" aria-hidden="true"></span>
         </div>
 
-        <blockquote class="quote-block reveal">
+        <blockquote class="quote-block v7-quote reveal">
           <span class="q-mark" aria-hidden="true">"</span>
           I engineer security the same way high-scale teams engineer reliability — as a
           system property designed, enforced, and continuously verified. Production
@@ -482,21 +482,21 @@
           <span class="pill green-pill" role="listitem">🟢 Open to connect</span>
         </div>
 
-        <div class="kpi-grid reveal" role="list" aria-label="Key metrics">
+        <div class="kpi-grid v7-kpi reveal" role="list" aria-label="Key metrics">
           <div class="kpi-card" role="listitem">
-            <div class="kpi-val mono"><span class="counter" data-target="350">0</span>+</div>
+            <div class="kpi-val v7-val mono"><span class="counter" data-target="350">0</span>+</div>
             <div class="kpi-lbl">Microservices secured</div>
           </div>
           <div class="kpi-card" role="listitem">
-            <div class="kpi-val mono"><span class="counter" data-target="6">0</span>+</div>
+            <div class="kpi-val v7-val mono"><span class="counter" data-target="6">0</span>+</div>
             <div class="kpi-lbl">CI/CD security gates</div>
           </div>
           <div class="kpi-card" role="listitem">
-            <div class="kpi-val mono"><span class="counter" data-target="6">0</span></div>
+            <div class="kpi-val v7-val mono"><span class="counter" data-target="6">0</span></div>
             <div class="kpi-lbl">Pro certifications</div>
           </div>
           <div class="kpi-card" role="listitem">
-            <div class="kpi-val mono"><span class="counter" data-target="2">0</span>+</div>
+            <div class="kpi-val v7-val mono"><span class="counter" data-target="2">0</span>+</div>
             <div class="kpi-lbl">Years in security</div>
           </div>
         </div>
@@ -586,6 +586,7 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="whoami-block mono reveal" aria-label="Identity summary"><span class="wb-prompt">$ whoami</span><div class="wb-output"><span class="wb-field">name</span><span class="wb-val">Anshumaan Singh</span><span class="wb-field">role</span><span class="wb-val">InfoSec Analyst IC-2 — ZEE Entertainment</span><span class="wb-field">scope</span><span class="wb-val">350+ microservices · CI/CD · K8s · Cloud · AppSec</span><span class="wb-field">certs</span><span class="wb-val">CKS · CKA · GCP-SEC · GCP-PCA · GCP-ACE · TF-ASC</span><span class="wb-field">location</span><span class="wb-val">Bengaluru, India</span><span class="wb-field">status</span><span class="wb-val wb-ok">ACTIVE ✓</span></div></div>
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// output</span><span class="sdc-line"></span></div>
       <div class="about-grid">
         <div class="about-text">
           <p class="about-manifesto reveal">
@@ -630,7 +631,7 @@
     </section>
 
     <!-- IMPACT BANNER -->
-    <div class="impact-banner" aria-hidden="true">
+    <div class="impact-banner v7-impact" aria-hidden="true">
       <div class="impact-banner-inner">
         <div class="impact-stat">
           <span class="impact-hex mono">0x15E</span><span class="impact-num">350<span style="font-size:.55em;vertical-align:middle">+</span></span>
@@ -655,7 +656,8 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="sec-tagline reveal">Six principles tested under production pressure — not borrowed from a framework.</p>
-      <div class="philosophy-grid stagger">
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// principles</span><span class="sdc-line"></span></div>
+        <div class="philosophy-grid stagger">
         <article class="phil-card tilt-el reveal">
           <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>01</span>
           <p class="phil-title">Shift Smart, Not Just Left</p>
@@ -861,7 +863,8 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Not hypotheticals. Not labs. These happened — here’s what I did.</p>
-      <div class="cases-grid stagger">
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// incident reports</span><span class="sdc-line"></span></div>
+        <div class="cases-grid stagger">
         <article class="case-card tilt-el reveal">
           <div class="case-report-id mono">RPT-2024-001</div>
           <span class="case-badge badge-incident mono">INCIDENT</span>
@@ -1119,6 +1122,7 @@
         <h2 id="edu-h2"><span class="h2-prompt" aria-hidden="true">cat education.json</span> Education</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// academic records</span><span class="sdc-line"></span></div>
       <div class="edu-list stagger">
         <article class="edu-card tilt-el reveal">
           <div class="edu-card-head">
@@ -1267,6 +1271,7 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Tools I’ve shipped in production. Not a wish list.</p>
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// installed packages</span><span class="sdc-line"></span></div>
       <div class="cmd-out mono reveal" aria-hidden="true"><span class="co-prompt">$</span> dpkg -l | grep security-tools | awk '{print $2, $3}' | sort<span class="co-verified">// 40+ packages &middot; all production-verified</span></div>
       <div class="skills-grid stagger">
         <div class="skill-group reveal">
@@ -1407,8 +1412,9 @@
         <h2 id="certs-h2"><span class="h2-prompt" aria-hidden="true">verify --clearance-level</span> Certifications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <div class="clearance-strip reveal" aria-hidden="true"><span class="cs-label mono">ACCESS LEVEL</span><span class="cs-badges"><span class="cs-b">CKS</span><span class="cs-b">CKA</span><span class="cs-b">GCP-SEC</span><span class="cs-b">GCP-PCA</span><span class="cs-b">GCP-ACE</span><span class="cs-b">TF-ASC</span></span><span class="cs-status mono">CLEARANCE: GRANTED</span></div>
+      <div class="clearance-strip reveal" aria-hidden="true"><span class="cs-label mono">// CLEARANCE_LEVEL</span><span class="cs-badges"><span class="cs-b">CKS</span><span class="cs-b">CKA</span><span class="cs-b">GCP-SEC</span><span class="cs-b">GCP-PCA</span><span class="cs-b">GCP-ACE</span><span class="cs-b">TF-ASC</span></span><span class="cs-status mono">CLEARANCE: GRANTED</span></div>
       <p class="mono muted reveal">Six industry exams. All passed. Click any to verify.</p>
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// verified credentials</span><span class="sdc-line"></span></div>
       <div class="cert-grid stagger">
         <a class="cert-card tilt-el reveal"
            href="https://www.credly.com/badges/a220e713-9317-4d92-9258-eff6aba09da4/public_url"
@@ -1523,6 +1529,7 @@
         <h2 id="writing-h2"><span class="h2-prompt" aria-hidden="true">curl medium.com/@anshu</span> Writing &amp; Publications</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// articles fetched</span><span class="sdc-line"></span></div>
       <div class="writing-header-stat reveal">
         <span><strong>221</strong> followers</span>
         <span class="whs-sep">/</span>
@@ -1533,7 +1540,8 @@
         <span>Security engineering depth — written for practitioners, not marketing</span>
       </div>
 
-      <div class="pub-grid stagger">
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// articles fetched</span><span class="sdc-line"></span></div>
+        <div class="pub-grid stagger">
 
         <!-- Article 1: 115 claps — Most Read -->
         <a class="pub-card pub-card--featured pub-card--wide tilt-el reveal" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener noreferrer" aria-label="Kubernetes Runtime Security: CrowdStrike Falcon on Kubernetes">
@@ -1677,7 +1685,8 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="reveal">If you’re building security that has to hold under pressure — or breaking systems to find out what doesn’t — I want to hear from you.</p>
-      <div class="connect-grid stagger">
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// open channels</span><span class="sdc-line"></span></div>
+        <div class="connect-grid stagger">
         <a class="connect-card tilt-el reveal" href="mailto:anshumaansingh10jan@gmail.com" aria-label="Send email">
           <span class="cc-icon" aria-hidden="true">✉</span>
           <p class="cc-title">Email</p>
@@ -1717,7 +1726,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="site-footer" role="contentinfo">
+    <footer class="site-footer v7-footer" role="contentinfo">
       <div class="footer-inner mono">
         <span>© <span id="year"></span> Anshumaan Singh</span>
         <span class="dot-sep" aria-hidden="true">·</span>

@@ -869,3 +869,193 @@ onScroll();
     delay += li.classList.contains("t-section") ? 150 : 220;
   });
 })();
+
+
+/* ─────────────────────────────────────────────────────
+   HACKER PORTFOLIO V7 — ENHANCED JS
+   ───────────────────────────────────────────────────── */
+
+/* ── 1. CURSOR V7: bigger glow on hover ── */
+(function initCursorV7() {
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function tick() {
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    dot.style.transform  = `translate(${mx - 2.5}px,${my - 2.5}px)`;
+    ring.style.transform = `translate(${rx - 13}px,${ry - 13}px)`;
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  document.querySelectorAll('a,button,details').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width  = '40px';
+      ring.style.height = '40px';
+      ring.style.borderColor = 'rgba(0,255,65,.5)';
+      ring.style.margin = '-7px';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width  = '';
+      ring.style.height = '';
+      ring.style.borderColor = '';
+      ring.style.margin = '';
+    });
+  });
+})();
+
+/* ── 2. SCROLL REVEAL V7: stagger by index ── */
+(function initRevealV7() {
+  const els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (!e.isIntersecting) return;
+      const siblings = e.target.parentElement
+        ? [...e.target.parentElement.querySelectorAll('.reveal')]
+        : [];
+      const idx = siblings.indexOf(e.target);
+      setTimeout(() => {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }, Math.min(idx * 60, 400));
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+})();
+
+/* ── 3. KPI COUNTER ANIMATION V7 ── */
+(function initKPICounters() {
+  document.querySelectorAll('.v7-val').forEach(el => {
+    const text = el.textContent.trim();
+    const match = text.match(/^(0x)?(\d+)(.*)$/);
+    if (!match) return;
+    const prefix = match[1] || '';
+    const target = parseInt(match[2], prefix === '0x' ? 16 : 10);
+    const suffix = match[3] || '';
+    el.setAttribute('data-target', target);
+    el.setAttribute('data-prefix', prefix);
+    el.setAttribute('data-suffix', suffix);
+    el.textContent = prefix + '0' + suffix;
+
+    const obs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      obs.unobserve(el);
+      let start = 0;
+      const dur = 1400;
+      const startTime = performance.now();
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / dur, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = Math.round(ease * target);
+        el.textContent = prefix + val + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = prefix + target + suffix;
+      }
+      requestAnimationFrame(step);
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  });
+})();
+
+/* ── 4. SKILL BAR ANIMATION V7 ── */
+(function initSkillBarsV7() {
+  document.querySelectorAll('.sb-fill').forEach(bar => {
+    const pct = bar.getAttribute('data-pct') || '0';
+    bar.style.width = '0%';
+    bar.style.transition = 'none';
+    const obs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return;
+      obs.unobserve(bar);
+      setTimeout(() => {
+        bar.style.transition = 'width 1.2s cubic-bezier(0.4,0,0.2,1)';
+        bar.style.width = pct + '%';
+      }, 100);
+    }, { threshold: 0.5 });
+    obs.observe(bar);
+  });
+})();
+
+/* ── 5. SECTION ACTIVE NAV V7 ── */
+(function initActiveNavV7() {
+  const navLinks = document.querySelectorAll('.nav-link[data-nav]');
+  const sections = [...navLinks].map(l => document.getElementById(l.dataset.nav)).filter(Boolean);
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      navLinks.forEach(l => l.classList.toggle('active', l.dataset.nav === e.target.id));
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => obs.observe(s));
+})();
+
+/* ── 6. GLITCH EFFECT V7: intensify on scroll ── */
+(function initGlitchV7() {
+  const glitch = document.querySelector('.glitch-text');
+  if (!glitch) return;
+  let lastY = 0;
+  window.addEventListener('scroll', () => {
+    const dy = Math.abs(window.scrollY - lastY);
+    lastY = window.scrollY;
+    if (dy > 30) {
+      glitch.classList.add('glitch-active');
+      setTimeout(() => glitch.classList.remove('glitch-active'), 400);
+    }
+  }, { passive: true });
+})();
+
+/* ── 7. TILT CARDS V7 ── */
+(function initTiltV7() {
+  document.querySelectorAll('.tilt-el').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const r  = el.getBoundingClientRect();
+      const cx = r.left + r.width  / 2;
+      const cy = r.top  + r.height / 2;
+      const dx = (e.clientX - cx) / (r.width  / 2);
+      const dy = (e.clientY - cy) / (r.height / 2);
+      el.style.transform = `perspective(800px) rotateY(${dx * 4}deg) rotateX(${-dy * 4}deg) translateZ(4px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+})();
+
+/* ── 8. TYPING TARGET V7: multi-phrase typewriter ── */
+(function initTyperV7() {
+  const el = document.getElementById('typingTarget');
+  if (!el) return;
+  const phrases = [
+    'DevSecOps engineer',
+    'K8s security specialist',
+    'supply-chain defender',
+    'CI/CD gate-keeper',
+    'zero-trust architect',
+    'SBOM practitioner',
+    'cloud security engineer',
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  function tick() {
+    const phrase = phrases[pi % phrases.length];
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci >= phrase.length) { deleting = true; setTimeout(tick, 1800); return; }
+      setTimeout(tick, 60 + Math.random() * 40);
+    } else {
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi++; setTimeout(tick, 400); return; }
+      setTimeout(tick, 35);
+    }
+  }
+  tick();
+})();
