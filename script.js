@@ -55,6 +55,9 @@ function scrollTo(id) {
   if (!el) return;
   const y = el.getBoundingClientRect().top + window.scrollY - TOPBAR_H - 8;
   window.scrollTo({ top: y, behavior: "smooth" });
+  // Update URL hash so the browser address bar reflects the section
+  const hash = (id === 'top') ? location.pathname : '#' + id;
+  history.pushState({ section: id }, '', hash);
 }
 
 function showToast(msg) {
@@ -66,12 +69,24 @@ function showToast(msg) {
   t.__tid = setTimeout(() => t.classList.remove("show"), 2800);
 }
 
-/* ── LOADER ── */
+/* ── LOADER + HASH-ON-LOAD ── */
 window.addEventListener("load", () => {
   const loader = byId("loader");
   if (loader) setTimeout(() => loader.classList.add("hide"), 600);
   const yr = byId("year");
   if (yr) yr.textContent = new Date().getFullYear();
+  // If URL has a hash, scroll to it after loader clears
+  if (location.hash) {
+    const id = location.hash.slice(1);
+    setTimeout(() => scrollTo(id), 900);
+  }
+  // Trigger counters that are already in viewport on page load
+  setTimeout(() => {
+    $$(".counter[data-target]").forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) animateCounter(el);
+    });
+  }, 700);
 });
 
 /* ── SCROLL PROGRESS ── */
@@ -256,7 +271,7 @@ const counterObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { animateCounter(e.target); counterObs.unobserve(e.target); }
   });
-}, { threshold: 0.5 });
+}, { threshold: 0.1 });
 
 $$(".counter[data-target]").forEach(el => counterObs.observe(el));
 

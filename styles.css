@@ -39,7 +39,7 @@
   --trans-slow: 500ms cubic-bezier(.4,0,.2,1);
 
   --topbar-h: 68px;
-  --container-w: 1200px;
+  --container-w: min(1320px, 98vw);
 }
 
 /* ── THEMES ── */
@@ -87,7 +87,7 @@ strong { color:var(--text); font-weight:600; }
 .accent-text { color:var(--accent); }
 
 /* ── UTILITIES ── */
-.container { max-width:var(--container-w); margin:0 auto; padding:0 24px; }
+.container { max-width:var(--container-w); margin:0 auto; padding:0 clamp(12px,2.5vw,40px); }
 .grid-2 { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr)); gap:20px; }
 .w-full { width:100%; }
 
@@ -356,7 +356,7 @@ main.container { padding-top:20px; }
 
 /* ── SECTION BASE ── */
 .section {
-  border-radius:var(--r-xl); padding:clamp(36px,5vw,56px);
+  border-radius:var(--r-xl); padding:clamp(28px,4vw,48px);
   margin-bottom:clamp(20px,4vw,32px);
   position:relative; overflow:hidden;
 }
@@ -836,7 +836,8 @@ main.container { padding-top:20px; }
    ═══════════════════════════════════════════════════════ */
 
 /* ── GOLD ACCENT TOKEN ── */
-[data-accent='gold'] { --accent-r:245; --accent-g:158; --accent-b:11; }
+[data-accent='gold']   { --accent-r:245; --accent-g:158; --accent-b:11; }
+[data-accent='cyan']   { --accent-r:6;   --accent-g:182; --accent-b:212; }
 
 /* ── ACCENT DOT COLORS (HTML uses .violet .cyan .gold directly) ── */
 .accent-dot.violet { background:rgb(139,92,246); }
@@ -1234,3 +1235,308 @@ main.container { padding-top:20px; }
 .tilt-el { transform-style:preserve-3d; will-change:transform; }
 .cmdk-btn { gap:4px; font-size:.8rem; }
 @media (max-width:640px) { .nav-resume { display:none; } }
+
+/* ══════════════════════════════════════════════════════
+   HACKER · SECURITY · ENGINEERING VISUAL OVERHAUL
+   ══════════════════════════════════════════════════════ */
+
+/* ── SCANLINE OVERLAY (subtle CRT hacker feel) ── */
+body::after {
+  content:'';
+  position:fixed; inset:0; z-index:9998; pointer-events:none;
+  background:repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  animation:scanline-drift 12s linear infinite;
+}
+@keyframes scanline-drift {
+  0%   { background-position:0 0; }
+  100% { background-position:0 80px; }
+}
+[data-theme='light'] body::after { opacity:.12; }
+
+/* ── MATRIX BINARY RAIN BANNER (section divider decoration) ── */
+.sec-rule {
+  height:2px !important;
+  background:linear-gradient(90deg,
+    var(--accent),
+    rgba(var(--accent-r),var(--accent-g),var(--accent-b),.6) 40%,
+    rgba(34,211,238,.4) 70%,
+    transparent
+  ) !important;
+  margin:12px 0 24px !important;
+  position:relative;
+}
+.sec-rule::after {
+  content:'';
+  position:absolute; right:0; top:-3px; width:8px; height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 8px var(--accent-glow);
+  animation:pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%,100%{ transform:scale(1); opacity:.7; }
+  50%    { transform:scale(1.6); opacity:1; }
+}
+
+/* ── SECTION HEADER enhancement ── */
+.sec-header {
+  display:flex; align-items:baseline; gap:14px; margin-bottom:10px;
+}
+.sec-num {
+  font-family:var(--font-mono) !important;
+  font-size:.65rem !important; letter-spacing:.15em; padding-top:0 !important;
+  color:var(--accent) !important; opacity:1 !important;
+  background:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.12);
+  border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.3);
+  padding:3px 8px !important; border-radius:4px;
+  position:relative;
+}
+.sec-num::before {
+  content:'[ '; color:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.5);
+}
+.sec-num::after {
+  content:' ]'; color:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.5);
+}
+
+/* ── CARD NEON GLOW HOVER ── */
+.card:hover, .skill-group:hover, .cert-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4),
+    0 8px 32px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.18),
+    0 0 60px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.06) !important;
+}
+
+/* ── SECTION GLASS DEPTH enhancement ── */
+.section.glass {
+  background:rgba(255,255,255,.03) !important;
+  border:1px solid rgba(255,255,255,.07) !important;
+  backdrop-filter:blur(2px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 20px 60px rgba(0,0,0,.25);
+}
+.section.glass:hover {
+  border-color:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.12) !important;
+}
+
+/* ── NEON HERO NAME GLOW ── */
+.name-gradient {
+  filter:drop-shadow(0 0 20px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.35));
+}
+
+/* ── HERO TERMINAL GLOW ── */
+.terminal {
+  border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.25) !important;
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.08),
+    0 0 40px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.08),
+    inset 0 0 60px rgba(0,0,0,.3) !important;
+}
+.term-title { color:var(--accent) !important; }
+
+/* ── TOPBAR enhanced ── */
+.topbar {
+  border-bottom:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.12) !important;
+}
+.brand-dot-inline { animation:pulse-dot 3s ease-in-out infinite; }
+
+/* ── SKILL BAR NEON FILL ── */
+.sb-fill {
+  background:linear-gradient(90deg,
+    var(--accent),
+    rgba(34,211,238,.8)
+  ) !important;
+  box-shadow:0 0 12px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4);
+}
+
+/* ── NAV LINK hover effect ── */
+.nav-link:hover {
+  color:var(--accent) !important;
+  text-shadow:0 0 12px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.5);
+}
+
+/* ── CONNECT CARD improvements ── */
+.connect-card {
+  text-decoration:none !important;
+}
+.connect-card:hover .cc-icon {
+  filter:drop-shadow(0 0 8px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.7));
+  transform:scale(1.1);
+  transition:all .2s;
+}
+
+/* ── CERT CARD improvements ── */
+.cert-card { text-decoration: none !important; }
+
+/* ── CODE / MONO text subtle glow ── */
+.mono { text-shadow:0 0 6px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.08); }
+
+/* ── PROJECT CARD TOOL BAR improvements ── */
+.proj-tool-bar, .sg-logo-bar {
+  background:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.04) !important;
+  border-color:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.15) !important;
+}
+
+/* ── PUB CARD topic glow ── */
+.pub-topic.k8s        { box-shadow:0 0 10px rgba(50,108,229,.2); }
+.pub-topic.devsecops  { box-shadow:0 0 10px rgba(139,92,246,.2); }
+.pub-topic.cloud      { box-shadow:0 0 10px rgba(66,133,244,.2); }
+.pub-topic.compliance { box-shadow:0 0 10px rgba(34,197,94,.2); }
+.pub-topic.multi      { box-shadow:0 0 10px rgba(245,158,11,.2); }
+
+/* ── STATUS PILL pulse ── */
+.status-pill {
+  border:1px solid rgba(34,197,94,.3) !important;
+  animation:pill-glow 3s ease-in-out infinite;
+}
+@keyframes pill-glow {
+  0%,100%{ box-shadow:0 0 0 rgba(34,197,94,0); }
+  50%    { box-shadow:0 0 12px rgba(34,197,94,.25); }
+}
+
+/* ── BACKGROUND ORB improvements ── */
+.bg-orb { filter:blur(80px) !important; }
+.orb-1 { background:radial-gradient(circle at center,rgba(var(--accent-r),var(--accent-g),var(--accent-b),.15),transparent 70%) !important; }
+.orb-2 { background:radial-gradient(circle at center,rgba(6,182,212,.1),transparent 70%) !important; }
+.orb-3 { background:radial-gradient(circle at center,rgba(16,185,129,.08),transparent 70%) !important; }
+
+/* ── LOADER enhancement ── */
+.loader-fill { 
+  background:linear-gradient(90deg,var(--accent),rgba(34,211,238,.8)) !important;
+  box-shadow:0 0 16px var(--accent-glow);
+}
+
+/* ── KPI CARD accent number glow ── */
+.kpi-val { 
+  text-shadow:0 0 20px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4);
+}
+
+/* ── HERO TAG badge ── */
+.hero-tag {
+  border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.3) !important;
+  box-shadow:0 0 20px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.08);
+}
+.live-dot {
+  box-shadow:0 0 0 3px rgba(34,197,94,.2);
+  animation:live-pulse 1.5s ease-in-out infinite;
+}
+@keyframes live-pulse {
+  0%,100%{ box-shadow:0 0 0 2px rgba(34,197,94,.2); }
+  50%    { box-shadow:0 0 0 5px rgba(34,197,94,.1); }
+}
+
+/* ── BACK TO TOP neon button ── */
+.back-to-top.visible {
+  box-shadow:0 0 16px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4) !important;
+}
+
+/* ── SCROLL PROGRESS neon ── */
+.scroll-progress {
+  background:linear-gradient(90deg, var(--accent), rgba(34,211,238,.8)) !important;
+  box-shadow:0 0 8px var(--accent-glow);
+}
+
+/* ── SECTION DOT improvements ── */
+.sdot.active {
+  box-shadow:0 0 10px var(--accent-glow);
+}
+
+/* ── TAG hover glow ── */
+.stag:hover, .tag:hover, .ptag:hover, .pub-tool-badge:hover {
+  border-color:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4);
+  color:var(--accent);
+  box-shadow:0 0 8px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.15);
+  transition:all .15s;
+}
+
+/* ── CASE BADGE neon ── */
+.case-badge {
+  letter-spacing:.12em;
+  box-shadow:0 0 8px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.2);
+}
+
+/* ── QUOTE ACCENT glow ── */
+.q-mark { text-shadow:0 0 12px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.5); }
+
+/* ── ARCH HERO CARD ── */
+.arch-hero {
+  border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.2) !important;
+  box-shadow:0 0 40px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.06);
+}
+
+/* ── PROFILE CARD glow ── */
+.photo-ring {
+  border-color:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.5) !important;
+  box-shadow:0 0 20px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.2);
+}
+
+/* ── BUTTON primary pulse ── */
+.btn-primary {
+  box-shadow:0 0 20px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.3);
+}
+.btn-primary:hover {
+  box-shadow:0 0 32px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.5) !important;
+}
+
+/* ── EXPERIENCE TIMELINE glow ── */
+.tl-head { border-bottom:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.15); padding-bottom:14px; margin-bottom:16px; }
+
+/* ── BADGE / PILL glow ── */
+.badge, .cert-pip {
+  box-shadow:0 0 6px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.15);
+}
+.cert-pip {
+  border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4) !important;
+}
+
+/* ── WRITING FOOTER improvement ── */
+.pub-footer .btn-outline:hover {
+  box-shadow:0 0 16px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.3) !important;
+}
+
+/* ── DATA SCIENCE / METRICS feel – stat-val glow ── */
+.stat-val { text-shadow:0 0 24px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4); }
+
+/* ── TECH BADGE improvements ── */
+.tech-badge {
+  border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.2) !important;
+  box-shadow:0 0 6px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.08);
+}
+
+/* ── RESPONSIVE: reduce horizontal whitespace further on mid screens ── */
+@media (min-width:900px) and (max-width:1200px) {
+  .container { padding:0 clamp(16px,2vw,28px); }
+  .section { padding:clamp(24px,3.5vw,44px); }
+}
+@media (min-width:1200px) {
+  .hero { gap:40px; }
+}
+
+/* ── SECURITY STATUS BAR ── */
+.security-status-bar {
+  display:flex; flex-wrap:wrap; align-items:center; gap:8px 16px;
+  padding:6px 12px; margin-bottom:14px;
+  background:rgba(34,197,94,.06); border:1px solid rgba(34,197,94,.2);
+  border-radius:var(--r); font-size:.72rem; color:var(--text-muted);
+  letter-spacing:.04em;
+}
+.ssb-item { display:flex; align-items:center; gap:5px; }
+.ssb-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.ssb-dot.green {
+  background:rgb(34,197,94);
+  box-shadow:0 0 6px rgba(34,197,94,.7);
+  animation:live-pulse 2s ease infinite;
+}
+.ssb-dot.accent {
+  background:var(--accent);
+  box-shadow:0 0 6px var(--accent-glow);
+  animation:live-pulse 2.4s ease infinite;
+}
+.ssb-sep { color:rgba(255,255,255,.15); }
+@media (max-width:600px) { .security-status-bar { display:none; } }

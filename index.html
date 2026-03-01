@@ -66,6 +66,13 @@
   <!-- ═══ PRELOAD ═══ -->
   <link rel="preload" as="image" href="./assests/me.jpg" />
 
+  <!-- ═══ SEO EXTRAS ═══ -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="me" href="https://github.com/anshumaan-10" />
+  <link rel="me" href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" />
+  <link rel="me" href="https://medium.com/@anshumaansingh10jan" />
+  <link rel="author" href="https://www.devsecopswithanshu.com/" />
+
   <!-- ═══ SCRIPTS ═══ -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script defer src="./script.js"></script>
@@ -184,6 +191,23 @@
       { "@type": "ListItem", "position": 4, "name": "Projects",      "item": "https://www.devsecopswithanshu.com/#projects" },
       { "@type": "ListItem", "position": 5, "name": "Certifications","item": "https://www.devsecopswithanshu.com/#certs" },
       { "@type": "ListItem", "position": 6, "name": "Contact",       "item": "https://www.devsecopswithanshu.com/#connect" }
+    ]
+  }
+  </script>
+
+  <!-- ═══ JSON-LD: Articles (Writing section) ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Anshumaan Singh — Security Engineering Articles on Medium",
+    "url": "https://medium.com/@anshumaansingh10jan",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"url":"https://medium.com/@anshumaansingh10jan","name":"Kubernetes Runtime Security: CrowdStrike Falcon via Helm"},
+      {"@type":"ListItem","position":2,"url":"https://medium.com/@anshumaansingh10jan","name":"100 Essential Linux Commands for Security and DevSecOps"},
+      {"@type":"ListItem","position":3,"url":"https://medium.com/@anshumaansingh10jan","name":"Mastering Google Cloud Security: Best Practices for GCP"},
+      {"@type":"ListItem","position":4,"url":"https://medium.com/@anshumaansingh10jan","name":"A Deep Dive into Security Compliance — ISO 27001 SOC 2 HIPAA PCI DSS"},
+      {"@type":"ListItem","position":5,"url":"https://medium.com/@anshumaansingh10jan","name":"Cloud Security That Actually Prevents Incidents"}
     ]
   }
   </script>
@@ -380,6 +404,16 @@
         <div class="hero-tag mono reveal">
           <span class="live-dot" aria-hidden="true"></span>
           secure-by-default &nbsp;·&nbsp; systems engineering &nbsp;·&nbsp; evidence-driven
+        </div>
+
+        <div class="security-status-bar mono reveal" role="status" aria-label="Security system status">
+          <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>CI/CD Gates Active</span>
+          <span class="ssb-sep" aria-hidden="true">|</span>
+          <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>350+ Services Secured</span>
+          <span class="ssb-sep" aria-hidden="true">|</span>
+          <span class="ssb-item"><span class="ssb-dot accent" aria-hidden="true"></span>SBOM Enabled</span>
+          <span class="ssb-sep" aria-hidden="true">|</span>
+          <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>Zero Prod Incidents</span>
         </div>
 
         <h1 class="hero-h1 reveal" itemprop="name">
