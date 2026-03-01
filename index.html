@@ -428,7 +428,7 @@
   <main class="container" id="main-content" tabindex="-1">
 
     <!-- HERO -->
-    <section class="hero glass" id="top" aria-label="Introduction" itemscope itemtype="https://schema.org/Person">
+    <section class="hero hero--fullpage glass" id="top" aria-label="Introduction" itemscope itemtype="https://schema.org/Person">
       <meta itemprop="name"     content="Anshumaan Singh" />
       <meta itemprop="jobTitle" content="Security Systems Engineer" />
       <meta itemprop="url"      content="https://www.devsecopswithanshu.com/" />
@@ -449,7 +449,8 @@
           <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>Zero Prod Incidents</span>
         </div>
 
-        <p class="hero-greeting mono reveal" aria-hidden="true">Hi, I'm</p>
+        <div class="access-node reveal" aria-hidden="true"><span class="an-bracket">[</span><span class="an-status">ACCESS</span><span class="an-ok">GRANTED</span><span class="an-bracket">]</span><span class="an-sep">::</span><span class="an-node">security-node-BLR-01</span></div>
+        <p class="hero-greeting mono reveal" aria-hidden="true">root@security ~ $</p>
         <h1 class="reveal" itemprop="name">
           <span class="name-gradient glitch-text" data-text="Anshumaan Singh">Anshumaan Singh</span>
         </h1>
@@ -505,7 +506,7 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             View Resume
           </a>
-          <a class="btn btn-outline magnetic" href="#experience">Explore Work →</a>
+          <a class="btn btn-outline magnetic" href="#experience"><span class="btn-prefix mono" aria-hidden="true">./</span>Explore Work</a>
           <button class="btn btn-ghost magnetic" id="downloadPdfBtnHero"
             title="Generate one-page PDF resume">⬇ PDF</button>
         </div>
@@ -537,21 +538,33 @@
             <span class="term-btn t-red"    aria-hidden="true"></span>
             <span class="term-btn t-yellow" aria-hidden="true"></span>
             <span class="term-btn t-green"  aria-hidden="true"></span>
-            <span class="term-title mono">security-invariants.sh</span>
+            <span class="term-title mono">anshumaan@sec-node:~$ threat-status</span>
           </div>
           <ol class="term-body" id="termLines" aria-hidden="true">
-            <li><span class="tp">$</span> <span class="tcmd">enforce identity</span></li>
-            <li class="tout">↳ short-lived · keyless · verifiable</li>
-            <li><span class="tp">$</span> <span class="tcmd">verify pipeline</span></li>
-            <li class="tout">↳ deterministic gates + evidence</li>
-            <li><span class="tp">$</span> <span class="tcmd">lock artifacts</span></li>
-            <li class="tout">↳ immutable + controlled promotion</li>
-            <li><span class="tp">$</span> <span class="tcmd">runtime policy</span></li>
-            <li class="tout">↳ least privilege + enforcement</li>
-            <li><span class="tp">$</span> <span class="tcmd">audit status</span></li>
-            <li class="tout tout-ok">↳ guardrails active ✓</li>
-            <li class="t-cursor-line"><span class="tp">$</span> <span class="tcursor" aria-hidden="true">█</span></li>
+            <li><span class="tp">root@sec-node</span><span class="tp-at">:</span><span class="tp-path">~/devsecops</span><span class="tp-sym">$</span> <span class="tcmd">./security-invariants.sh --env=prod</span></li>
+            <li class="tout t-section">[IDENTITY]</li>
+            <li class="tout">&nbsp;&nbsp;↳ OIDC-federated · short-lived · keyless</li>
+            <li class="tout t-section">[PIPELINE]</li>
+            <li class="tout">&nbsp;&nbsp;↳ 350+ gates active · evidence retained</li>
+            <li class="tout t-section">[ARTIFACTS]</li>
+            <li class="tout">&nbsp;&nbsp;↳ immutable tags · digest-verified</li>
+            <li class="tout t-section">[K8S RUNTIME]</li>
+            <li class="tout">&nbsp;&nbsp;↳ CIS 100% · OWASP 93% · kubeaudit pass</li>
+            <li class="tout t-section">[CLOUD]</li>
+            <li class="tout">&nbsp;&nbsp;↳ GCP · Conditional Access · IAM hardened</li>
+            <li class="tout tout-ok">[STATUS] ALL SYSTEMS NOMINAL ✓</li>
+            <li class="tout tout-ok">[INCIDENTS] 0 in production history</li>
+            <li class="t-cursor-line"><span class="tp-sym">$</span> <span class="tcursor" aria-hidden="true">█</span></li>
           </ol>
+        </div>
+        <div class="live-log glass reveal" aria-label="Live security event feed" aria-live="polite">
+          <div class="ll-header mono"><span class="ll-blink" aria-hidden="true">●</span> LIVE SECURITY FEED</div>
+          <div class="ll-body" id="liveLogBody">
+            <div class="ll-entry ll-ok"><span class="ll-ts mono">00:00:01</span> Pipeline scan completed — no criticals</div>
+            <div class="ll-entry ll-ok"><span class="ll-ts mono">00:00:02</span> SBOM generated — digest attached</div>
+            <div class="ll-entry ll-warn"><span class="ll-ts mono">00:00:03</span> CVE detected — EPSS 0.001 — accepted</div>
+            <div class="ll-entry ll-ok"><span class="ll-ts mono">00:00:04</span> Image promoted to UAT — gates passed</div>
+          </div>
         </div>
 
         <div class="tech-orbit reveal" aria-label="Key technologies" role="list">
@@ -572,6 +585,7 @@
         <h2 id="about-h2"><span class="h2-prompt" aria-hidden="true">whoami</span> About Me</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="whoami-block mono reveal" aria-label="Identity summary"><span class="wb-prompt">$ whoami</span><div class="wb-output"><span class="wb-field">name</span><span class="wb-val">Anshumaan Singh</span><span class="wb-field">role</span><span class="wb-val">InfoSec Analyst IC-2 — ZEE Entertainment</span><span class="wb-field">scope</span><span class="wb-val">350+ microservices · CI/CD · K8s · Cloud · AppSec</span><span class="wb-field">certs</span><span class="wb-val">CKS · CKA · GCP-SEC · GCP-PCA · GCP-ACE · TF-ASC</span><span class="wb-field">location</span><span class="wb-val">Bengaluru, India</span><span class="wb-field">status</span><span class="wb-val wb-ok">ACTIVE ✓</span></div></div>
       <div class="about-grid">
         <div class="about-text">
           <p class="about-manifesto reveal">
@@ -643,32 +657,32 @@
       <p class="sec-tagline reveal">Six principles tested under production pressure — not borrowed from a framework.</p>
       <div class="philosophy-grid stagger">
         <article class="phil-card tilt-el reveal">
-          <span class="phil-num">01</span>
+          <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>01</span>
           <p class="phil-title">Shift Smart, Not Just Left</p>
           <p class="phil-body">Security bolted to a sprint is a tax. Built into the platform it’s invisible — and teams ship faster because of it. The paved road must be the secure road.</p>
         </article>
         <article class="phil-card tilt-el reveal">
-          <span class="phil-num">02</span>
+          <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>02</span>
           <p class="phil-title">Identity is the Control Plane</p>
           <p class="phil-body">Network perimeters trust the packet. I trust the identity. Short-lived, OIDC-federated, cryptographically verifiable — unforgeable by design.</p>
         </article>
         <article class="phil-card tilt-el reveal">
-          <span class="phil-num">03</span>
+          <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>03</span>
           <p class="phil-title">Guardrails over Gates</p>
           <p class="phil-body">Gates block. Guardrails guide. One kills velocity — the other multiplies it. Build systems where the safe path is also the easiest path.</p>
         </article>
         <article class="phil-card tilt-el reveal">
-          <span class="phil-num">04</span>
+          <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>04</span>
           <p class="phil-title">Detection as Code</p>
           <p class="phil-body">An alert no one acts on is just log noise with extra steps. Every detection I ship maps to a playbook and a decision — not a Slack ping.</p>
         </article>
         <article class="phil-card tilt-el reveal">
-          <span class="phil-num">05</span>
+          <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>05</span>
           <p class="phil-title">Evidence over Assertions</p>
           <p class="phil-body">Don’t tell auditors you’re secure — show them. SBOM linked to commit. Scan output signed. Promotion gate logged. Theater out. Evidence in.</p>
         </article>
         <article class="phil-card tilt-el reveal">
-          <span class="phil-num">06</span>
+          <span class="phil-num"><span class="pn-rule" aria-hidden="true">RULE_</span>06</span>
           <p class="phil-title">Risk-based, Not Fear-based</p>
           <p class="phil-body">Not every critical CVE is worth blocking. Not every low is safe to ship. CVSS + EPSS + reachability = one decision: block, allow with evidence, or accept with expiry.</p>
         </article>
@@ -849,6 +863,7 @@
       <p class="mono muted reveal">Not hypotheticals. Not labs. These happened — here’s what I did.</p>
       <div class="cases-grid stagger">
         <article class="case-card tilt-el reveal">
+          <div class="case-report-id mono">RPT-2024-001</div>
           <span class="case-badge badge-incident mono">INCIDENT</span>
           <h3>Secrets Leakage Response</h3>
           <ul>
@@ -859,6 +874,7 @@
           <p class="case-outcome">✓ Reduced recurrence through enforcement + governance</p>
         </article>
         <article class="case-card tilt-el reveal">
+          <div class="case-report-id mono">RPT-2024-002</div>
           <span class="case-badge badge-investigation mono">INVESTIGATION</span>
           <h3>Scanner Inconsistency Analysis</h3>
           <ul>
@@ -869,6 +885,7 @@
           <p class="case-outcome">✓ Fewer failures from scanner inconsistency</p>
         </article>
         <article class="case-card tilt-el reveal">
+          <div class="case-report-id mono">RPT-2024-003</div>
           <span class="case-badge badge-design mono">DESIGN</span>
           <h3>Controlled Promotions</h3>
           <ul>
@@ -879,6 +896,7 @@
           <p class="case-outcome">✓ Full commit-to-production traceability</p>
         </article>
         <article class="case-card tilt-el reveal">
+          <div class="case-report-id mono">RPT-2024-004</div>
           <span class="case-badge badge-automation mono">AUTOMATION</span>
           <h3>OWASP ZAP DAST + K8s</h3>
           <ul>
@@ -901,7 +919,7 @@
       <p class="reveal">I model threats the way attackers think — not the way auditors check boxes. Kill-chain mapped. Response-ready. No theoretical vectors that can’t be exploited.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">⚠</div>
+          <div class="threat-sev sev-critical mono">SEVERITY: CRITICAL</div>
           <h3>Primary Threat Vectors</h3>
           <ul>
             <li>Credential theft — tokens, OAuth secrets, cloud keys</li>
@@ -1007,7 +1025,7 @@
         <div class="timeline-item glass reveal">
           <div class="tl-head">
             <div>
-              <p class="tl-company">ZEE Entertainment Enterprises Ltd</p>
+              <p class="tl-company">ZEE Entertainment Enterprises Ltd<span class="tl-hash mono" aria-hidden="true"> #a3f2b1</span></p>
               <p class="tl-role">Information Security Analyst (IC-2)</p>
               <p class="tl-meta mono">AppSec + DevSecOps &nbsp;·&nbsp; Jun 2023 – Present &nbsp;·&nbsp; Bengaluru, India</p>
             </div>

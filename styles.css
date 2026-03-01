@@ -4732,3 +4732,408 @@ html[data-theme='dark'] {
   .lt-body { padding: 12px; min-height: 120px; }
   .lt-line { font-size: .72rem; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   HACKER PORTFOLIO V6 — MAXIMUM HACKER VIBE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ──────────── HERO: FULL VIEWPORT ──────────── */
+.hero--fullpage {
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-top: calc(var(--topbar-h) + 32px) !important;
+  padding-bottom: 48px !important;
+}
+
+/* ──────────── ACCESS NODE BANNER ──────────── */
+.access-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+  padding: 4px 12px;
+  background: rgba(0,255,65,.06);
+  border: 1px solid rgba(0,255,65,.2);
+  width: fit-content;
+  animation: blink-border 2s ease-in-out infinite;
+}
+@keyframes blink-border {
+  0%,100% { border-color: rgba(0,255,65,.2); }
+  50%      { border-color: rgba(0,255,65,.5); box-shadow: 0 0 12px rgba(0,255,65,.15); }
+}
+.an-bracket { color: rgba(0,255,65,.4); }
+.an-status  { color: #fbbf24; letter-spacing: .14em; }
+.an-ok      { color: #00ff41; text-shadow: 0 0 8px rgba(0,255,65,.6); letter-spacing: .14em; }
+.an-sep     { color: rgba(0,255,65,.3); }
+.an-node    { color: rgba(0,255,65,.6); }
+
+/* ──────────── HERO GREETING: shell prompt ──────────── */
+[data-theme='dark'] .hero-greeting {
+  font-size: .8rem !important;
+  color: #00ff41 !important;
+  letter-spacing: .04em;
+}
+[data-theme='dark'] .hero-greeting::before { content: ''; }
+
+/* ──────────── HERO NAME: full neon glow ──────────── */
+[data-theme='dark'] h1 {
+  filter: drop-shadow(0 0 30px rgba(0,255,65,.12));
+}
+[data-theme='dark'] .name-gradient {
+  background: linear-gradient(135deg,
+    #ffffff 0%,
+    #a78bfa 25%,
+    #22d3ee 55%,
+    #00ff41 85%,
+    #ffffff 100%
+  ) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  background-size: 200% 200% !important;
+  animation: name-shimmer 6s ease-in-out infinite !important;
+}
+@keyframes name-shimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ──────────── HERO CTA: button prefix ──────────── */
+.btn-prefix { font-size: .7em; opacity: .6; margin-right: 2px; }
+
+/* ──────────── TERMINAL V2: full security output ──────────── */
+.tp-at   { color: rgba(0,255,65,.3); }
+.tp-path { color: #22d3ee; }
+.tp-sym  { color: #00ff41; font-weight: 700; margin-left: 4px; }
+.t-section {
+  color: rgba(0,255,65,.4) !important;
+  font-size: .7rem !important;
+  letter-spacing: .1em !important;
+  margin-top: 4px !important;
+  border-bottom: 1px solid rgba(0,255,65,.1);
+  padding-bottom: 2px;
+}
+[data-theme='dark'] .terminal {
+  background: #000 !important;
+  border: 1px solid rgba(0,255,65,.2) !important;
+  box-shadow:
+    0 0 0 1px rgba(0,255,65,.06),
+    0 0 40px rgba(0,255,65,.08),
+    inset 0 0 30px rgba(0,4,2,.8) !important;
+}
+[data-theme='dark'] .term-bar {
+  background: #070f07 !important;
+  border-bottom: 1px solid rgba(0,255,65,.15) !important;
+}
+[data-theme='dark'] .term-title {
+  color: rgba(0,255,65,.4) !important;
+  font-size: .68rem !important;
+}
+
+/* ──────────── LIVE SECURITY FEED ──────────── */
+.live-log {
+  background: rgba(0,4,2,.85) !important;
+  border: 1px solid rgba(0,255,65,.15) !important;
+  border-radius: var(--r) !important;
+  padding: 0 !important;
+  overflow: hidden;
+  max-height: 140px;
+}
+.ll-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(0,8,4,.8);
+  border-bottom: 1px solid rgba(0,255,65,.12);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: rgba(0,255,65,.6);
+}
+.ll-blink {
+  color: #00ff41;
+  animation: blink .8s step-end infinite;
+  font-size: .55rem;
+}
+.ll-body {
+  padding: 8px 0;
+  overflow-y: auto;
+  max-height: 108px;
+  scrollbar-width: none;
+}
+.ll-body::-webkit-scrollbar { display: none; }
+.ll-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 14px;
+  font-family: var(--font-mono);
+  font-size: .7rem;
+  line-height: 1.6;
+  animation: ll-slide-in .3s ease both;
+}
+@keyframes ll-slide-in {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.ll-ok   { color: rgba(0,255,136,.7); }
+.ll-ok::before   { content: '[OK]'; color: #00ff88; margin-right: 6px; font-weight: 700; }
+.ll-warn { color: rgba(255,217,61,.7); }
+.ll-warn::before { content: '[!!]'; color: #ffd93d; margin-right: 6px; font-weight: 700; }
+.ll-err  { color: rgba(255,107,107,.7); }
+.ll-err::before  { content: '[!!]'; color: #ff6b6b; margin-right: 6px; font-weight: 700; }
+.ll-ts { color: rgba(0,255,65,.3); font-size: .62rem; flex-shrink: 0; }
+
+/* ──────────── WHOAMI BLOCK ──────────── */
+.whoami-block {
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  background: rgba(0,6,2,.8);
+  border: 1px solid rgba(0,255,65,.15);
+  border-left: 3px solid rgba(0,255,65,.5);
+  font-size: .82rem;
+}
+.wb-prompt {
+  display: block;
+  color: #00ff41;
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: .85rem;
+}
+.wb-prompt::before { content: ''; }
+.wb-output {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px 20px;
+  align-items: start;
+}
+.wb-field {
+  color: rgba(0,255,65,.45);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: .65rem;
+  padding-top: 2px;
+  white-space: nowrap;
+}
+.wb-field::after { content: ':'; }
+.wb-val { color: rgba(0,255,136,.85); font-size: .78rem; }
+.wb-ok  { color: #00ff88 !important; font-weight: 700; text-shadow: 0 0 8px rgba(0,255,136,.4); }
+
+/* ──────────── PHILOSOPHY: RULE_ prefix ──────────── */
+.pn-rule {
+  font-size: .55em;
+  color: rgba(0,255,65,.35);
+  letter-spacing: .15em;
+  display: block;
+  margin-bottom: 2px;
+}
+[data-theme='dark'] .phil-card {
+  border-left: 2px solid rgba(0,255,65,.12) !important;
+}
+[data-theme='dark'] .phil-card:hover {
+  border-left-color: rgba(0,255,65,.4) !important;
+}
+
+/* ──────────── CASE STUDIES: report ID ──────────── */
+.case-report-id {
+  font-size: .62rem;
+  color: rgba(0,255,65,.3);
+  letter-spacing: .12em;
+  margin-bottom: 6px;
+}
+[data-theme='dark'] .case-card {
+  border-top: 1px solid rgba(0,255,65,.08) !important;
+}
+
+/* ──────────── SKILL SECTION: cmd output ──────────── */
+.cmd-out {
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  background: rgba(0,6,2,.7);
+  border: 1px solid rgba(0,255,65,.1);
+  font-size: .75rem;
+  color: rgba(0,255,65,.5);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.co-prompt { color: #00ff41; font-weight: 700; margin-right: 6px; }
+.co-verified { color: rgba(0,255,136,.5); margin-left: 12px; }
+
+/* ──────────── THREAT MODEL: severity badge ──────────── */
+.threat-sev {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  border: 1px solid;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+.sev-critical {
+  background: rgba(255,0,0,.08);
+  border-color: rgba(255,80,80,.35);
+  color: #ff6b6b;
+  text-shadow: 0 0 6px rgba(255,0,0,.3);
+}
+.sev-high {
+  background: rgba(255,140,0,.08);
+  border-color: rgba(255,140,0,.3);
+  color: #ffa040;
+}
+
+/* ──────────── GIT TIMELINE: commit hash ──────────── */
+.tl-hash {
+  font-size: .72rem;
+  color: rgba(0,255,65,.3);
+  font-weight: 400;
+  letter-spacing: .04em;
+}
+
+/* ──────────── HERO-RIGHT: TECH ORBIT — hacker pill ──────────── */
+[data-theme='dark'] .tech-badge {
+  background: rgba(0,255,65,.06) !important;
+  border: 1px solid rgba(0,255,65,.15) !important;
+  color: rgba(0,255,65,.6) !important;
+  font-family: var(--font-mono) !important;
+  font-size: .7rem !important;
+}
+[data-theme='dark'] .tech-badge:hover {
+  background: rgba(0,255,65,.12) !important;
+  color: #00ff41 !important;
+  border-color: rgba(0,255,65,.35) !important;
+}
+
+/* ──────────── PROFILE CARD: override glow ──────────── */
+[data-theme='dark'] .profile-card {
+  background: rgba(0,6,2,.85) !important;
+  border: 1px solid rgba(0,255,65,.15) !important;
+}
+[data-theme='dark'] .profile-name { color: #c8ffc8 !important; }
+[data-theme='dark'] .profile-role { color: rgba(0,255,65,.6) !important; }
+[data-theme='dark'] .photo-ring {
+  border-color: rgba(0,255,65,.25) !important;
+  animation: ring-pulse 2.5s ease-in-out infinite !important;
+}
+@keyframes ring-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,255,65,0); }
+  50%      { box-shadow: 0 0 0 8px rgba(0,255,65,.06); }
+}
+
+/* ──────────── SECTION SEC-NUM: HEX style ──────────── */
+[data-theme='dark'] .sec-num {
+  color: transparent !important;
+  -webkit-text-stroke: 1px rgba(0,255,65,.2) !important;
+}
+
+/* ──────────── H2: green accent ──────────── */
+[data-theme='dark'] h2 {
+  color: #d8ffd8 !important;
+}
+
+/* ──────────── TAGS: hacker green ──────────── */
+[data-theme='dark'] .tag,
+[data-theme='dark'] .ptag,
+[data-theme='dark'] .stag,
+[data-theme='dark'] .badge,
+[data-theme='dark'] .cert-pip {
+  background: rgba(0,255,65,.07) !important;
+  border: 1px solid rgba(0,255,65,.15) !important;
+  color: rgba(0,255,65,.65) !important;
+  font-family: var(--font-mono) !important;
+}
+
+/* ──────────── MUTED: green tinted ──────────── */
+[data-theme='dark'] .muted,
+[data-theme='dark'] p.muted {
+  color: #2e5a2e !important;
+}
+[data-theme='dark'] p.mono.muted.reveal {
+  color: rgba(0,255,65,.38) !important;
+}
+
+/* ──────────── LIVE-DOT: green pulse ──────────── */
+[data-theme='dark'] .live-dot {
+  background: #00ff41 !important;
+  box-shadow: 0 0 0 0 rgba(0,255,65,.5) !important;
+  animation: dot-ping 1.5s ease-in-out infinite !important;
+}
+@keyframes dot-ping {
+  0%   { box-shadow: 0 0 0 0 rgba(0,255,65,.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(0,255,65,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,255,65,0); }
+}
+
+/* ──────────── SECTION GLASS: deeper dark ──────────── */
+[data-theme='dark'] section.glass {
+  background: rgba(0,4,2,.65) !important;
+}
+
+/* ──────────── TOPBAR brand: blinking cursor ──────────── */
+[data-theme='dark'] .brand-text::after {
+  content: '_';
+  animation: blink .9s step-end infinite;
+  color: #00ff41;
+  margin-left: 1px;
+}
+
+/* ──────────── CONNECT: SSH feel ──────────── */
+[data-theme='dark'] .connect-card {
+  border-left: 2px solid rgba(0,255,65,.15) !important;
+}
+[data-theme='dark'] .connect-card:hover {
+  border-left-color: #00ff41 !important;
+  box-shadow: 0 0 20px rgba(0,255,65,.06) !important;
+}
+
+/* ──────────── FOOTER: terminal prompt ──────────── */
+[data-theme='dark'] .footer-inner::before {
+  content: 'root@devsecopswithanshu:~$ ';
+  color: #00ff41;
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ──────────── EDUCATION: file card ──────────── */
+[data-theme='dark'] .edu-card {
+  border-left: 2px solid rgba(0,255,65,.12) !important;
+}
+[data-theme='dark'] .edu-name a,
+[data-theme='dark'] .edu-name { color: #c8ffc8 !important; }
+[data-theme='dark'] .edu-badge {
+  background: rgba(0,255,65,.08) !important;
+  border: 1px solid rgba(0,255,65,.2) !important;
+  color: rgba(0,255,65,.7) !important;
+}
+
+/* ──────────── PROJECTS: repo card ──────────── */
+[data-theme='dark'] .card-footer-link a {
+  color: #00ff41 !important;
+  font-family: var(--font-mono) !important;
+  font-size: .78rem !important;
+}
+[data-theme='dark'] .card-footer-link a:hover {
+  text-shadow: 0 0 8px rgba(0,255,65,.4) !important;
+}
+
+/* ──────────── MOBILE ──────────── */
+@media (max-width: 640px) {
+  .wb-output { grid-template-columns: auto 1fr; gap: 4px 12px; }
+  .wb-field { font-size: .6rem; }
+  .live-log { display: none; }
+  .access-node { font-size: .6rem; padding: 3px 8px; }
+  .cmd-out { font-size: .68rem; white-space: normal; }
+  .hero--fullpage { min-height: auto !important; align-items: flex-start !important; }
+}

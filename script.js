@@ -800,3 +800,72 @@ onScroll();
     else requestAnimationFrame(loop);
   });
 })();
+
+
+/* ─────────────────────────────────────────────────
+   LIVE SECURITY FEED — auto-updates every 3s
+   ───────────────────────────────────────────────── */
+(function initLiveFeed() {
+  const body = document.getElementById("liveLogBody");
+  if (!body) return;
+
+  const events = [
+    { type: "ok",   msg: "Pipeline scan \u2014 0 criticals \u2014 promoted" },
+    { type: "ok",   msg: "SBOM generated \u2014 digest: sha256:a3f2b1..4d" },
+    { type: "ok",   msg: "K8s audit: 100% CIS compliant \u2014 pass" },
+    { type: "warn", msg: "CVE-2024-3094 detected \u2014 EPSS 0.002 \u2014 accepted" },
+    { type: "ok",   msg: "Secret scan: 0 exposed credentials found" },
+    { type: "ok",   msg: "Image digest verified \u2014 UAT gate passed" },
+    { type: "warn", msg: "IaC scan: 1 low-sev misconfiguration \u2014 patched" },
+    { type: "ok",   msg: "OWASP ZAP DAST \u2014 93% coverage \u2014 no blockers" },
+    { type: "ok",   msg: "Artifact promoted Dev\u2192UAT\u2192Prod \u2014 evidence retained" },
+    { type: "ok",   msg: "Golden image build \u2014 CIS hardened \u2014 deployed" },
+    { type: "warn", msg: "Anomaly detected \u2014 SIEM alert \u2014 false positive" },
+    { type: "ok",   msg: "Runtime policy enforced \u2014 no privilege escalation" },
+    { type: "ok",   msg: "Conditional Access: all sessions verified" },
+    { type: "ok",   msg: "GitHub Enterprise audit log \u2014 no anomalies" },
+    { type: "ok",   msg: "kubeaudit pass \u2014 0 risky workloads" },
+  ];
+
+  let idx = events.length; // start after initial entries
+
+  function pad(n) { return String(n).padStart(2, "0"); }
+  function ts() {
+    const d = new Date();
+    return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+
+  function addEntry() {
+    const e = events[idx % events.length];
+    idx++;
+    const div = document.createElement("div");
+    div.className = `ll-entry ll-${e.type}`;
+    div.innerHTML = `<span class="ll-ts mono">${ts()}</span> ${e.msg}`;
+    body.appendChild(div);
+    // keep max 12 entries
+    while (body.children.length > 12) body.removeChild(body.firstChild);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  // Add new entry every 2.8s
+  setInterval(addEntry, 2800);
+})();
+
+/* ─────────────────────────────────────────────────
+   HERO TERMINAL: type-in effect on term-body lines
+   ───────────────────────────────────────────────── */
+(function animateTerminal() {
+  const term = document.getElementById("termLines");
+  if (!term) return;
+  const lines = [...term.querySelectorAll("li")];
+  lines.forEach(l => { l.style.opacity = "0"; });
+
+  let delay = 800;
+  lines.forEach((li, i) => {
+    setTimeout(() => {
+      li.style.opacity = "1";
+      li.style.transition = "opacity 0.2s ease";
+    }, delay);
+    delay += li.classList.contains("t-section") ? 150 : 220;
+  });
+})();
