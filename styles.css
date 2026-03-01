@@ -402,6 +402,12 @@ main.container { padding-top:20px; }
 }
 .glitch::before { left:2px;  animation:glitch-a 5s infinite; }
 .glitch::after  { left:-2px; animation:glitch-b 5s .1s infinite; }
+/* glitch-text alias (hero name) */
+.glitch-text { position:relative; }
+.glitch-text::before,.glitch-text::after { content:attr(data-text); position:absolute; left:0; top:0; background:inherit; -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; opacity:0; }
+.glitch-text::before { left:2px;  animation:glitch-a 5s infinite; }
+.glitch-text::after  { left:-2px; animation:glitch-b 5s .1s infinite; }
+
 @keyframes glitch-a { 0%,90%,100%{opacity:0;clip-path:none} 91%,92%{opacity:.8;clip-path:polygon(0 20%,100% 20%,100% 30%,0 30%)} 93%,94%{opacity:.8;clip-path:polygon(0 60%,100% 60%,100% 70%,0 70%)} }
 @keyframes glitch-b { 0%,90%,100%{opacity:0;clip-path:none} 91.5%,92.5%{opacity:.8;clip-path:polygon(0 40%,100% 40%,100% 50%,0 50%)} 93.5%,94.5%{opacity:.8;clip-path:polygon(0 75%,100% 75%,100% 85%,0 85%)} }
 
@@ -1205,3 +1211,26 @@ main.container { padding-top:20px; }
   .pub-grid   { grid-template-columns:1fr; }
   .pub-footer { flex-direction:column; align-items:flex-start; }
 }
+
+/* ═══ MISSING UTILITY CLASSES (audit fix) ═══ */
+.skip-link {
+  position:absolute; top:-100%; left:16px; z-index:9999;
+  background:var(--accent); color:#fff; padding:8px 16px;
+  border-radius:var(--r); font-size:.85rem; font-weight:600;
+  text-decoration:none; transition:top .15s;
+}
+.skip-link:focus { top:8px; }
+.icon-btn {
+  padding:0 !important; width:32px; height:32px;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+.grid-noise {
+  position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.2;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,255,255,.012) 1px,rgba(255,255,255,.012) 2px);
+}
+.typing-out { font-weight:600; color:var(--text); }
+.counter { font-variant-numeric:tabular-nums; }
+.hero-left { display:flex; flex-direction:column; }
+.tilt-el { transform-style:preserve-3d; will-change:transform; }
+.cmdk-btn { gap:4px; font-size:.8rem; }
+@media (max-width:640px) { .nav-resume { display:none; } }
