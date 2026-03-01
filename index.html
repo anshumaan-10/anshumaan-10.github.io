@@ -932,7 +932,7 @@
           </ul>
         </article>
         <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">🛡</div>
+          <div class="threat-sev sev-high mono">SEVERITY: HIGH</div>
           <h3>Kill Chain Defense Mapping</h3>
           <ul>
             <li><strong>Recon</strong> → WAF + rate limiting + minimal exposure</li>
@@ -1267,6 +1267,7 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Tools I’ve shipped in production. Not a wish list.</p>
+      <div class="cmd-out mono reveal" aria-hidden="true"><span class="co-prompt">$</span> dpkg -l | grep security-tools | awk '{print $2, $3}' | sort<span class="co-verified">// 40+ packages &middot; all production-verified</span></div>
       <div class="skills-grid stagger">
         <div class="skill-group reveal">
           <div class="sg-logo-bar">
