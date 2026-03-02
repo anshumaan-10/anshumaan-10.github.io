@@ -1569,3 +1569,272 @@ onScroll();
   s.textContent = `.rt-badge{font-size:.62rem;color:rgba(0,255,65,.5);background:rgba(0,200,60,.06);border:1px solid rgba(0,200,60,.12);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
   document.head.appendChild(s);
 })();
+
+
+/* ══ V12 JS ══ */
+
+// ── Command Palette ─────────────────────────────────────────────────────────
+(function initCommandPalette() {
+  const COMMANDS = [
+    { icon: '🏠', label: 'Home / Hero',        hint: '#hero',         action: () => scrollTo(0,0) },
+    { icon: '👤', label: 'About',              hint: '#about',        action: () => document.getElementById('about')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '🛠', label: 'What I Built',       hint: '#build',        action: () => document.getElementById('build')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '🏗', label: 'Architecture',       hint: '#architecture', action: () => document.getElementById('architecture')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '📦', label: 'SBOM Pipeline',      hint: '#sbom-flow',    action: () => document.getElementById('sbom-flow')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '🔬', label: 'Evidence',           hint: '#evidence',     action: () => document.getElementById('evidence')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '📊', label: 'Risk Engine',        hint: '#risk-engine',  action: () => document.getElementById('risk-engine')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '💼', label: 'Experience',         hint: '#experience',   action: () => document.getElementById('experience')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '🎓', label: 'Education',          hint: '#education',    action: () => document.getElementById('education')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '🚀', label: 'Projects',           hint: '#projects',     action: () => document.getElementById('projects')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '💻', label: 'Terminal Explorer',  hint: '#explorer',     action: () => document.getElementById('explorer')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '📈', label: 'Skills',             hint: '#skills',       action: () => document.getElementById('skills')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '🏆', label: 'Certifications',     hint: '#certs',        action: () => document.getElementById('certs')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '⭐', label: 'Achievements',       hint: '#achievements', action: () => document.getElementById('achievements')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '❓', label: 'FAQ',                hint: '#faq',          action: () => document.getElementById('faq')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '✍️', label: 'Writing',            hint: '#writing',      action: () => document.getElementById('writing')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '📬', label: 'Contact / Connect',  hint: '#connect',      action: () => document.getElementById('connect')?.scrollIntoView({behavior:'smooth'}) },
+    { icon: '📄', label: 'View Resume PDF',    hint: 'Google Drive',  action: () => window.open('https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view','_blank') },
+    { icon: '🔗', label: 'LinkedIn',           hint: 'linkedin.com',  action: () => window.open('https://www.linkedin.com/in/anshumaan-singh-6b51b5239/','_blank') },
+    { icon: '🐙', label: 'GitHub',             hint: 'github.com',    action: () => window.open('https://github.com/anshumaan-10','_blank') },
+    { icon: '📧', label: 'Email',              hint: 'anshumaansingh10jan@gmail.com', action: () => location.href='mailto:anshumaansingh10jan@gmail.com' },
+    { icon: '🌙', label: 'Toggle Dark/Light',  hint: 'theme',         action: () => document.body.classList.toggle('light-mode') },
+    { icon: '🖨', label: 'Print / Save as PDF',hint: 'window.print',  action: () => window.print() },
+    { icon: '🔝', label: 'Back to Top',        hint: 'scroll top',    action: () => scrollTo({top:0,behavior:'smooth'}) },
+    { icon: '🎮', label: 'Easter Egg — Matrix Rain', hint: 'try me', action: () => { closePalette(); triggerMatrix(); } },
+  ];
+
+  const overlay = document.getElementById('cmdOverlay');
+  const input   = document.getElementById('cmdInput');
+  const list    = document.getElementById('cmdList');
+  if (!overlay || !input || !list) return;
+
+  let activeIdx = 0;
+  let filtered  = [...COMMANDS];
+
+  function renderList(items) {
+    filtered = items;
+    activeIdx = 0;
+    list.innerHTML = '';
+    if (!items.length) {
+      list.innerHTML = '<li class="cmd-empty">No results — try "resume", "github", or a section name</li>';
+      return;
+    }
+    items.forEach((cmd, i) => {
+      const li = document.createElement('li');
+      li.className = 'cmd-item' + (i === 0 ? ' cmd-active' : '');
+      li.setAttribute('role', 'option');
+      li.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      li.innerHTML = `<span class="cmd-item-icon" aria-hidden="true">${cmd.icon}</span>
+        <span class="cmd-item-label">${cmd.label}</span>
+        <span class="cmd-item-hint">${cmd.hint}</span>`;
+      li.addEventListener('click', () => { cmd.action(); closePalette(); });
+      li.addEventListener('mouseenter', () => setActive(i));
+      list.appendChild(li);
+    });
+  }
+
+  function setActive(i) {
+    const items = list.querySelectorAll('.cmd-item');
+    items.forEach((el, j) => {
+      el.classList.toggle('cmd-active', j === i);
+      el.setAttribute('aria-selected', j === i ? 'true' : 'false');
+    });
+    activeIdx = i;
+    items[i]?.scrollIntoView({ block: 'nearest' });
+  }
+
+  function openPalette() {
+    overlay.hidden = false;
+    input.value = '';
+    renderList(COMMANDS);
+    requestAnimationFrame(() => input.focus());
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePalette() {
+    overlay.hidden = true;
+    document.body.style.overflow = '';
+    input.blur();
+  }
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    renderList(q ? COMMANDS.filter(c =>
+      c.label.toLowerCase().includes(q) ||
+      c.hint.toLowerCase().includes(q)
+    ) : COMMANDS);
+  });
+
+  input.addEventListener('keydown', e => {
+    const items = list.querySelectorAll('.cmd-item');
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(activeIdx+1, items.length-1)); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(activeIdx-1, 0)); }
+    else if (e.key === 'Enter') { e.preventDefault(); filtered[activeIdx]?.action(); closePalette(); }
+    else if (e.key === 'Escape') { closePalette(); }
+  });
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) closePalette(); });
+
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      overlay.hidden ? openPalette() : closePalette();
+    }
+    if (e.key === 'Escape' && !overlay.hidden) closePalette();
+  });
+
+  // Make openPalette globally accessible for Easter egg command
+  window._openCmdPalette = openPalette;
+  window._closeCmdPalette = closePalette;
+})();
+
+// ── Matrix Rain (Konami Code Easter Egg) ────────────────────────────────────
+(function initMatrixRain() {
+  const KONAMI = [38,38,40,40,37,39,37,39,66,65];
+  let kIdx = 0;
+  let matrixRunning = false;
+  let raf = null;
+
+  window.triggerMatrix = function() {
+    if (matrixRunning) return;
+    const canvas = document.getElementById('matrixCanvas');
+    const exitEl = document.getElementById('matrixExit');
+    if (!canvas || !exitEl) return;
+
+    canvas.hidden = false;
+    exitEl.hidden = false;
+    matrixRunning = true;
+    document.body.style.overflow = 'hidden';
+
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>{}[]|/\\';
+    const cols  = Math.floor(canvas.width / 14);
+    const drops = Array(cols).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0,0,0,0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff41';
+      ctx.font = '14px JetBrains Mono, monospace';
+      for (let i = 0; i < drops.length; i++) {
+        const ch = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillStyle = drops[i] * 14 < 40 ? '#5fffb8' : '#00ff41';
+        ctx.fillText(ch, i * 14, drops[i] * 14);
+        if (drops[i] * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+      raf = requestAnimationFrame(draw);
+    }
+    raf = requestAnimationFrame(draw);
+
+    function stopMatrix() {
+      cancelAnimationFrame(raf);
+      canvas.hidden = true;
+      exitEl.hidden = true;
+      matrixRunning = false;
+      document.body.style.overflow = '';
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      document.removeEventListener('keydown', stopMatrix);
+      canvas.removeEventListener('click', stopMatrix);
+    }
+    setTimeout(() => {
+      document.addEventListener('keydown', stopMatrix);
+      canvas.addEventListener('click', stopMatrix);
+      canvas.style.pointerEvents = 'all';
+    }, 600);
+  };
+
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === KONAMI[kIdx]) {
+      kIdx++;
+      if (kIdx === KONAMI.length) {
+        kIdx = 0;
+        window.triggerMatrix();
+      }
+    } else {
+      kIdx = e.keyCode === KONAMI[0] ? 1 : 0;
+    }
+  });
+})();
+
+// ── Floating Hire CTA ────────────────────────────────────────────────────────
+(function initHireFloat() {
+  const el = document.getElementById('hireFloat');
+  if (!el) return;
+  const SHOW_AFTER = 800;
+  let visible = false;
+  window.addEventListener('scroll', () => {
+    const should = window.scrollY > SHOW_AFTER;
+    if (should !== visible) {
+      el.classList.toggle('visible', should);
+      visible = should;
+    }
+  }, { passive: true });
+})();
+
+// ── Security Activity Heatmap ────────────────────────────────────────────────
+(function initActivityHeatmap() {
+  const grid = document.getElementById('activityGrid');
+  const countEl = document.getElementById('ahCount');
+  if (!grid) return;
+
+  // Seed-based deterministic random for consistent display
+  function seededRand(seed) {
+    let s = seed;
+    return function() {
+      s = (s * 1664525 + 1013904223) & 0xffffffff;
+      return (s >>> 0) / 0xffffffff;
+    };
+  }
+
+  const rand = seededRand(0xA5EC507);
+  const WEEKS = 52;
+  const DAYS  = 7;
+  const cells = WEEKS * DAYS;
+  let totalContribs = 0;
+  const fragment = document.createDocumentFragment();
+
+  // Weight toward recent weeks being more active
+  for (let d = 0; d < DAYS; d++) {
+    for (let w = 0; w < WEEKS; w++) {
+      const recency = w / WEEKS; // 0=oldest, 1=newest
+      const r = rand();
+      let level = 0;
+      if (r < 0.25) level = 0;
+      else if (r < 0.45) level = 1;
+      else if (r < 0.65) level = 2;
+      else if (r < 0.82) level = 3;
+      else level = 4;
+      // Boost recent weeks
+      if (recency > 0.75 && level < 2) level = Math.min(4, level + 1);
+      // Sparse early weeks
+      if (recency < 0.15 && level > 2) level = 2;
+
+      totalContribs += level;
+      const cell = document.createElement('div');
+      cell.className = `ah-cell ah-l${level}`;
+      const weeksAgo = WEEKS - w;
+      cell.title = `${level === 0 ? 'No' : level === 1 ? 'Light' : level === 2 ? 'Moderate' : level === 3 ? 'Active' : 'Intense'} security engineering ${weeksAgo === 1 ? 'this week' : weeksAgo + ' weeks ago'}`;
+      fragment.appendChild(cell);
+    }
+  }
+
+  grid.appendChild(fragment);
+  if (countEl) countEl.textContent = `${totalContribs.toLocaleString()} security engineering actions`;
+})();
+
+// ── Cmd+K hint tooltip on page load ─────────────────────────────────────────
+(function showCmdHint() {
+  if (sessionStorage.getItem('cmdHintShown')) return;
+  sessionStorage.setItem('cmdHintShown', '1');
+  setTimeout(() => {
+    const t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = '⌘K or Ctrl+K — open command palette';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }, 2800);
+})();

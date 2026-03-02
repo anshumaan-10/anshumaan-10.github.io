@@ -707,23 +707,27 @@
           <div class="cb-time mono muted" id="blrClock" aria-label="Current time in Bengaluru"></div>
         </div>
       </div>
-    </section>
 
-    <!-- ABOUT -->
-    <!-- PLAIN-ENGLISH BANNER — visible to all, explains the site non-technically -->
-    <section class="plain-english-intro reveal" aria-label="Plain English introduction">
-      <div class="pei-inner glass">
-        <div class="pei-icon" aria-hidden="true">
-          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <!-- SECURITY ACTIVITY HEATMAP -->
+      <div class="activity-heatmap glass reveal" aria-label="Security engineering activity heatmap">
+        <div class="ah-header">
+          <span class="ah-title mono">// Security Engineering Activity — 52 weeks</span>
+          <span class="ah-count mono" id="ahCount">loading…</span>
         </div>
-        <div class="pei-text">
-          <strong class="pei-heading">Not a developer? Here's what this site is about.</strong>
-          <p>Anshumaan Singh is a <strong>security engineer</strong> — the person whose job is to make sure software companies don't get hacked, don't leak data, and can move fast without breaking security. He does this at ZEE Entertainment (a major Indian media company) for 350+ apps. The technical content here is proof of work for hiring managers and fellow engineers.</p>
+        <div class="ah-grid" id="activityGrid" aria-label="Weekly security activity heatmap" role="img"></div>
+        <div class="ah-legend mono">
+          <span>Less</span>
+          <span class="ah-swatch ah-l0"></span>
+          <span class="ah-swatch ah-l1"></span>
+          <span class="ah-swatch ah-l2"></span>
+          <span class="ah-swatch ah-l3"></span>
+          <span class="ah-swatch ah-l4"></span>
+          <span>More</span>
         </div>
-        <button class="pei-close mono" id="peiClose" aria-label="Dismiss plain English banner">✕</button>
       </div>
     </section>
 
+    <!-- ABOUT -->
     <!-- PLAIN-ENGLISH BANNER — visible to all, explains the site non-technically -->
     <section class="plain-english-intro reveal" aria-label="Plain English introduction">
       <div class="pei-inner glass">
@@ -1327,6 +1331,59 @@
                  loading="lazy" width="600" height="300" />
           </div>
         </article>
+      </div>
+
+      <!-- CVE INTELLIGENCE WATCHLIST -->
+      <div class="cve-watchlist glass reveal" aria-label="CVE intelligence watchlist">
+        <div class="cwe-header">
+          <span class="cwe-title mono">// CVE Intelligence Watchlist</span>
+          <span class="cwe-tag mono">Live EPSS-scored</span>
+        </div>
+        <div class="cwe-table" role="table" aria-label="CVE watchlist table">
+          <div class="cwe-row cwe-head" role="row">
+            <span role="columnheader">CVE ID</span>
+            <span role="columnheader">Component</span>
+            <span role="columnheader">CVSS</span>
+            <span role="columnheader">EPSS</span>
+            <span role="columnheader">Status</span>
+          </div>
+          <div class="cwe-row" role="row">
+            <span class="mono cwe-id" role="cell">CVE-2024-21626</span>
+            <span role="cell">runc / containerd</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">9.1</span>
+            <span class="mono cwe-epss" role="cell">0.041</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Mitigated</span>
+          </div>
+          <div class="cwe-row" role="row">
+            <span class="mono cwe-id" role="cell">CVE-2023-44487</span>
+            <span role="cell">HTTP/2 Rapid Reset</span>
+            <span class="mono cwe-cvss cwe-high" role="cell">7.5</span>
+            <span class="mono cwe-epss" role="cell">0.972</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Patched</span>
+          </div>
+          <div class="cwe-row" role="row">
+            <span class="mono cwe-id" role="cell">CVE-2024-3094</span>
+            <span role="cell">XZ Utils / liblzma</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">10.0</span>
+            <span class="mono cwe-epss" role="cell">0.001</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Not exposed</span>
+          </div>
+          <div class="cwe-row" role="row">
+            <span class="mono cwe-id" role="cell">CVE-2024-6387</span>
+            <span role="cell">OpenSSH regreSSHion</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">8.1</span>
+            <span class="mono cwe-epss" role="cell">0.031</span>
+            <span class="cwe-status cwe-watch mono" role="cell">⚑ Monitoring</span>
+          </div>
+          <div class="cwe-row" role="row">
+            <span class="mono cwe-id" role="cell">CVE-2023-52425</span>
+            <span role="cell">libexpat / Python</span>
+            <span class="mono cwe-cvss cwe-high" role="cell">7.5</span>
+            <span class="mono cwe-epss" role="cell">0.002</span>
+            <span class="cwe-status cwe-accepted mono" role="cell">⊘ Risk accepted</span>
+          </div>
+        </div>
+        <p class="cwe-note mono muted">EPSS scores sourced from FIRST.org. Trivy + Prisma cross-validated. Updated per pipeline run.</p>
       </div>
     </section>
 
@@ -2639,6 +2696,37 @@
   <button class="back-to-top" id="backToTop" aria-label="Scroll to top" title="Scroll to top" aria-hidden="true">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
+
+  <!-- ══ V12: COMMAND PALETTE ══ -->
+  <div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+    <div class="cmd-box glass">
+      <div class="cmd-search-row">
+        <svg class="cmd-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="cmd-input mono" id="cmdInput" type="text" placeholder="Type a section name or action…" autocomplete="off" spellcheck="false" aria-label="Command palette search"/>
+        <kbd class="cmd-esc mono" aria-label="Press Escape to close">esc</kbd>
+      </div>
+      <ul class="cmd-list" id="cmdList" role="listbox" aria-label="Command results"></ul>
+      <div class="cmd-footer mono">
+        <span><kbd>↑↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> go</span>
+        <span><kbd>esc</kbd> close</span>
+        <span class="cmd-hint">⌘K to open anytime</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ V12: MATRIX RAIN CANVAS (Konami code Easter egg) ══ -->
+  <canvas id="matrixCanvas" class="matrix-canvas" aria-hidden="true" hidden></canvas>
+  <div class="matrix-exit mono" id="matrixExit" hidden>press any key to exit <span class="matrix-exit-blink">█</span></div>
+
+  <!-- ══ V12: FLOATING HIRE CTA ══ -->
+  <div class="hire-float" id="hireFloat" aria-label="Open to work" role="complementary">
+    <a href="#connect" class="hire-float-btn" aria-label="Contact Anshumaan Singh">
+      <span class="hire-float-dot" aria-hidden="true"></span>
+      <span class="hire-float-label">Hire Me</span>
+      <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+  </div>
 
 </body>
 </html>
