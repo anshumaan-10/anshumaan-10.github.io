@@ -10358,3 +10358,84 @@ html.lenis { height: auto; }
   h2::after { transition: none !important; }
   .char { transition: none !important; }
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   CRITICAL FIXES — Profile photo always visible, hire float, skills
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Profile photo: ALWAYS visible — never hidden by reveal animation */
+.profile-photo,
+.profile-photo-wrap img,
+.profile-card .profile-photo {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  transition: box-shadow .3s, border-color .3s !important;
+}
+.profile-photo-wrap {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hire Me float: ensure visible in both dark + light mode */
+[data-theme="light"] .hire-float-btn {
+  background: #22c55e !important;
+  color: #fff !important;
+  box-shadow: 0 4px 24px rgba(34,197,94,.4), 0 0 0 3px rgba(34,197,94,.15) !important;
+}
+[data-theme="light"] .hire-float-dot {
+  background: #fff !important;
+}
+
+/* Skills section alignment improvements */
+.skills-bars { width: 100%; }
+.sb-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.sb-label { min-width: 220px; font-size: .82rem; white-space: nowrap; }
+.sb-track { flex: 1; background: rgba(255,255,255,.07); border-radius: 100px; height: 6px; overflow: hidden; }
+.sb-fill  { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent), rgba(var(--accent-r),var(--accent-g),var(--accent-b),.6)); transition: width 1.2s cubic-bezier(.22,1,.36,1); width: 0; }
+.sb-pct   { min-width: 36px; text-align: right; font-size: .75rem; color: var(--text-muted); font-family: var(--font-mono); }
+
+/* Tech stack icons grid better alignment */
+.tech-stack-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.tech-stack-icons > div,
+.tech-stack-icons > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: .68rem;
+  color: var(--text-muted);
+  min-width: 52px;
+  text-align: center;
+}
+
+/* OTW banner positioning fix */
+.otw-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+@media (max-width: 600px) {
+  .otw-banner { white-space: normal; flex-wrap: wrap; }
+}
+
+/* Hire float always on top */
+.hire-float { z-index: 9000 !important; }
+
+/* Footer bottom improvement */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+

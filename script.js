@@ -73,7 +73,7 @@ function showToast(msg) {
 // Reliability: ensure loader is removed even if external scripts block window.load
 document.addEventListener("DOMContentLoaded", () => {
   const l = document.getElementById("loader");
-  if (l) setTimeout(() => l.classList.add("hide"), 5500);
+  if (l) setTimeout(() => l.classList.add("hide"), 2000);
 });
 
 window.addEventListener("load", () => {
@@ -83,30 +83,34 @@ window.addEventListener("load", () => {
   const scanLine = byId("ltScan");
   const doneLine = byId("ltDone");
 
-  // Hard-timeout failsafe: loader NEVER blocks user > 5s
+  // Hard-timeout failsafe: loader NEVER blocks user > 2s
   const hideLoaderNow = () => {
     if (loader) {
       loader.classList.add("hide");
       // Clear DOM node after transition
       setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 600);
+      // Trigger counters after loader hides
+      setTimeout(() => {
+        $$("[data-target]").forEach(el => animateCounter(el));
+      }, 100);
     }
   };
-  const loaderKill = setTimeout(hideLoaderNow, 5000);
+  const loaderKill = setTimeout(hideLoaderNow, 1200);
 
   if (loader && fill) {
-    // Animate progress bar
+    // Animate progress bar — fast boot sequence
     let pct = 0;
     const tick = setInterval(() => {
-      pct = Math.min(pct + (Math.random() * 18 + 6), 100);
+      pct = Math.min(pct + (Math.random() * 45 + 22), 100);
       fill.style.width = pct + "%";
       if (pct >= 100) {
         clearInterval(tick);
         clearTimeout(loaderKill);
         if (scanLine) scanLine.style.display = "none";
         if (doneLine) doneLine.style.display = "flex";
-        setTimeout(hideLoaderNow, 420);
+        setTimeout(hideLoaderNow, 280);
       }
-    }, 80);
+    }, 60);
   } else if (loader) {
     clearTimeout(loaderKill);
     setTimeout(hideLoaderNow, 500);
@@ -123,9 +127,9 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     $$(".counter[data-target]").forEach(el => {
       const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight) animateCounter(el);
+      if (r.top < window.innerHeight * 1.5) animateCounter(el);
     });
-  }, 700);
+  }, 400);
 });
 
 /* ── SCROLL PROGRESS ── */
@@ -417,7 +421,11 @@ function toggleTheme() {
   const html = document.documentElement;
   const next = html.dataset.theme === "dark" ? "light" : "dark";
   html.dataset.theme = next;
-  localStorage.setItem("as-theme", next);
+  if (next === "light") {
+    localStorage.setItem("as-theme-pref", "light");
+  } else {
+    localStorage.removeItem("as-theme-pref");
+  }
   const icon = byId("themeIcon");
   if (icon) icon.textContent = next === "dark" ? "🌙" : "☀️";
   showToast(next === "dark" ? "🌙 Dark mode" : "☀️ Light mode");
@@ -436,10 +444,12 @@ function setAccent(name) {
 $$(".accent-dot").forEach(d => d.addEventListener("click", () => setAccent(d.dataset.accent)));
 document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
 
-/* Sync persisted preferences */
+/* Sync persisted preferences — dark mode is ALWAYS the default on every visit */
 (function syncUI() {
   const accent = localStorage.getItem("as-accent") || document.documentElement.dataset.accent || "violet";
-  const theme  = localStorage.getItem("as-theme")  || document.documentElement.dataset.theme  || "dark";
+  // Only restore light mode if user explicitly switched to it in this device profile
+  const savedTheme = localStorage.getItem("as-theme-pref");
+  const theme = savedTheme || "dark";
   document.documentElement.dataset.accent = accent;
   document.documentElement.dataset.theme  = theme;
   $$(".accent-dot").forEach(d => d.classList.toggle("active", d.dataset.accent === accent));
@@ -509,112 +519,11 @@ byId("cmdkBtn")?.addEventListener("click", openCmdk);
 byId("cmdkBtnMobile")?.addEventListener("click", () => { closeDrawer(); openCmdk(); });
 byId("cmdkCloseBtn")?.addEventListener("click", closeCmdk);
 
-/* ── PDF GENERATOR ── */
-async function generatePDF() {
-  showToast("⏳ Generating PDF resume…");
-  try {
-    if (typeof window.jspdf === "undefined") {
-      // Wait for jsPDF to load
-      await new Promise((res, rej) => { let t = 0; const iv = setInterval(() => { t += 200; if (window.jspdf) { clearInterval(iv); res(); } else if (t > 5000) { clearInterval(iv); rej(new Error("jsPDF not loaded")); } }, 200); });
-    }
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation:"portrait", unit:"mm", format:"a4" });
-    const W = doc.internal.pageSize.getWidth();
-    const H = doc.internal.pageSize.getHeight();
-
-    // Header band
-    doc.setFillColor(139, 92, 246);
-    doc.rect(0, 0, W, 42, "F");
-
-    // Name & title
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(22); doc.setTextColor(255, 255, 255);
-    doc.text("Anshumaan Singh", 16, 18);
-    doc.setFont("helvetica", "normal");
-    doc.setFontSize(10);
-    doc.text("Security Systems Engineer · Information Security Analyst (IC-2)", 16, 26);
-    doc.setFontSize(8);
-    doc.text("ZEE Entertainment Enterprises Ltd · Bengaluru, India", 16, 33);
-    doc.text("anshumaansingh10jan@gmail.com · www.devsecopswithanshu.com", 16, 39);
-
-    let y = 52;
-
-    function heading(title) {
-      doc.setFont("helvetica", "bold"); doc.setFontSize(11);
-      doc.setTextColor(139, 92, 246);
-      doc.text(title, 16, y);
-      doc.setDrawColor(139, 92, 246);
-      doc.line(16, y + 2, W - 16, y + 2);
-      y += 9;
-    }
-
-    function body(lines, indent = 16) {
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9);
-      doc.setTextColor(30, 30, 30);
-      lines.forEach(l => {
-        if (y > H - 18) { doc.addPage(); y = 18; }
-        doc.text(l, indent, y); y += 5.5;
-      });
-      y += 3;
-    }
-
-    heading("EXPERIENCE");
-    body([
-      "Security Systems Engineer · ZEE Entertainment Enterprises Ltd (2023 – Present)",
-      "  • Designed & deployed 200+ Kubernetes NetworkPolicy rules across 3 production clusters",
-      "  • Built SBOM pipeline (Syft + Grype) cutting SLA for critical CVE response by 40%",
-      "  • CIS Kubernetes Benchmark compliance — scored 97% across multi-AZ GKE clusters",
-      "  • OPA Gatekeeper policy engine enforcing RBAC, image signing, namespace isolation",
-      "  • Automated GCP IAM drift detection with Cloud Asset Inventory + Pub/Sub alerts",
-      "  • Set up Falco runtime threat detection with custom rules for 8 high-severity event classes",
-      "",
-      "Information Security Analyst · ZEE Entertainment Enterprises Ltd (2022 – 2023)",
-      "  • Conducted 30+ quarterly risk assessments & vendor security evaluations",
-      "  • Coordinated SOC Tier-1/2 escalations; reduced MTTR by 35% via runbook standardization",
-      "  • Automated cloud misconfiguration detection using Cloud Security Command Center",
-    ]);
-
-    heading("CERTIFICATIONS");
-    body([
-      "• Certified Kubernetes Security Specialist (CKS)",
-      "• Certified Kubernetes Administrator (CKA)",
-      "• Google Cloud Professional Cloud Security Engineer",
-      "• Google Cloud Professional Cloud Architect",
-      "• HashiCorp Certified: Terraform Associate",
-      "• Google Cloud Associate Cloud Engineer",
-    ]);
-
-    heading("SKILLS");
-    body([
-      "Cloud:      GCP (GKE, IAM, Cloud Armor, SCC, Asset Inventory, Pub/Sub, Cloud Run)",
-      "Kubernetes: NetworkPolicy, OPA Gatekeeper, Falco, Trivy, Syft, Grype, Kyverno",
-      "Security:   SIEM, SOAR, Threat Modeling (STRIDE/PASTA), IAM, Zero‑Trust, SBOM",
-      "DevSecOps:  GitHub Actions CI/CD, ArgoCD, Terraform, Helm, Docker",
-      "Compliance: CIS Benchmarks, NIST CSF, ISO 27001, SOC 2, GDPR awareness",
-    ]);
-
-    heading("EDUCATION");
-    body([
-      "B.Tech Computer Science & Engineering — Lovely Professional University (2020 – 2024)",
-      "  CGPA: 7.68 · Relevant: OS, Networks, Cryptography, Distributed Systems",
-    ]);
-
-    heading("CONTACT");
-    body([
-      "Email:    anshumaansingh10jan@gmail.com",
-      "LinkedIn: https://linkedin.com/in/anshumaan-singh-6b51b5239/",
-      "GitHub:   https://github.com/anshumaan-10",
-      "Blog:     https://medium.com/@anshumaansingh10jan",
-      "Resume:   https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view",
-    ]);
-
-    doc.save("Anshumaan_Singh_Resume.pdf");
-    showToast("✅ PDF downloaded!");
-  } catch (err) {
-    console.error(err);
-    showToast("❌ PDF failed – opening Drive link…");
-    window.open("https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view", "_blank");
-  }
+/* ── PDF / RESUME — Open Google Drive view ── */
+function generatePDF() {
+  // Open the Google Drive resume view directly — clean, professional, always current
+  window.open("https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view", "_blank", "noopener,noreferrer");
+  showToast("📄 Opening resume on Google Drive…");
 }
 
 ["downloadPdfBtn", "downloadPdfBtnMobile", "downloadPdfBtnHero"].forEach(id => {
@@ -1782,8 +1691,10 @@ onScroll();
 (function initHireFloat() {
   const el = document.getElementById('hireFloat');
   if (!el) return;
-  const SHOW_AFTER = 800;
+  const SHOW_AFTER = 300;
   let visible = false;
+  // Show hire float on initial load after a brief delay too
+  setTimeout(() => { el.classList.add('visible'); visible = true; }, 3000);
   window.addEventListener('scroll', () => {
     const should = window.scrollY > SHOW_AFTER;
     if (should !== visible) {

@@ -349,7 +349,7 @@
   <!-- OPEN TO OPPORTUNITIES BANNER -->
   <div class="otw-banner" id="otwBanner" role="banner" aria-label="Availability status">
     <span class="otw-dot" aria-hidden="true"></span>
-    <span class="otw-text">Available for <strong>senior DevSecOps &amp; K8s security engineering roles</strong> in Bengaluru</span>
+    <span class="otw-text">Available for opportunities — <strong>DevSecOps / Cloud Security Engineer</strong></span>
     <a href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank" rel="noopener noreferrer" class="otw-resume-cta mono">Resume ↗</a>
     <button class="otw-close" id="otwClose" aria-label="Dismiss banner">✕</button>
   </div>
@@ -382,6 +382,16 @@
       <span class="cve-tick cve-crit">CVE-2025-0282&nbsp;Ivanti Connect Secure&nbsp;CVSS:9.0&nbsp;EPSS:4.2%&nbsp;✓ MITIGATED</span>
       <span class="cve-sep">|</span>
       <span class="cve-tick cve-high">CVE-2025-29927&nbsp;Next.js Auth Bypass&nbsp;CVSS:9.1&nbsp;EPSS:1.8%&nbsp;✓ PATCHED</span>
+      <span class="cve-sep">|</span>
+      <span class="cve-tick cve-crit">CVE-2025-24813&nbsp;Apache Tomcat RCE&nbsp;CVSS:9.8&nbsp;EPSS:4.6%&nbsp;✓ MITIGATED</span>
+      <span class="cve-sep">|</span>
+      <span class="cve-tick cve-crit">CVE-2025-22224&nbsp;VMware vSphere ESXi&nbsp;CVSS:9.3&nbsp;EPSS:1.2%&nbsp;⚑ MONITORING</span>
+      <span class="cve-sep">|</span>
+      <span class="cve-tick cve-high">CVE-2025-21395&nbsp;npm package-lock&nbsp;CVSS:8.4&nbsp;EPSS:0.9%&nbsp;✓ MITIGATED</span>
+      <span class="cve-sep">|</span>
+      <span class="cve-tick cve-crit">CVE-2025-0994&nbsp;Trimble Cityworks&nbsp;CVSS:8.6&nbsp;EPSS:3.5%&nbsp;✓ NOT EXPOSED</span>
+      <span class="cve-sep">|</span>
+      <span class="cve-tick cve-crit">CVE-2024-55591&nbsp;Fortinet Auth Bypass&nbsp;CVSS:9.6&nbsp;EPSS:6.2%&nbsp;✓ MITIGATED</span>
     </div>
   </div>
   <div class="scroll-progress v7-progress" id="scrollProgress" role="progressbar" aria-label="Page scroll progress" aria-hidden="true"></div>
@@ -418,7 +428,7 @@
           </svg>
         </div>
         <div class="brand-text">
-          <span class="brand-name">anshumaan<span class="brand-dot-inline accent-color">.</span>dev</span>
+          <span class="brand-name">anshumaan<span class="brand-dot-inline accent-color">.</span>singh</span>
           <span class="brand-role mono">security-systems-engineer</span>
         </div>
         <span class="status-pill v7-pill" title="Open to connect">
@@ -610,8 +620,8 @@
         <div class="meta-pills reveal" role="list">
           <span class="pill" role="listitem">📍 Bengaluru, India</span>
           <span class="pill" role="listitem">🏢 InfoSec Analyst IC-2 @ ZEE</span>
-          <span class="pill" role="listitem">🧩 AppSec + DevSecOps + K8s</span>
-          <span class="pill green-pill" role="listitem">🟢 Open to senior security roles</span>
+          <span class="pill" role="listitem">🧩 DevSecOps · K8s · AppSec · Cloud</span>
+          <span class="pill green-pill" role="listitem">🟢 Open to DevSecOps opportunities</span>
         </div>
 
         <div class="kpi-grid v7-kpi reveal" role="list" aria-label="Key metrics">
@@ -691,7 +701,7 @@
       </div>
 
       <div class="hero-right">
-        <div class="profile-card glass reveal tilt-el">
+        <div class="profile-card glass tilt-el" style="opacity:1;transform:none">
           <div class="profile-photo-wrap">
             <!-- Hacker profile frame: hex grid overlay + scan line -->
             <div class="hacker-frame" aria-hidden="true">
@@ -723,7 +733,7 @@
                 <text x="45" y="87" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.5" fill="rgba(0,255,65,.45)" letter-spacing="2">SECURITY ENGINEER</text>
               </svg>
             </div>
-            <img class="profile-photo" src="./assests/me.jpg" alt="Anshumaan Singh, Security Systems Engineer, Bengaluru India" width="80" height="80" loading="eager" itemprop="image" />
+            <img class="profile-photo" src="./assests/me.jpg" alt="Anshumaan Singh, Security Systems Engineer, Bengaluru India" width="210" height="210" loading="eager" fetchpriority="high" decoding="sync" itemprop="image" style="opacity:1!important;visibility:visible!important" />
             <div class="photo-ring" aria-hidden="true"></div>
             <div class="photo-ring ring-2" aria-hidden="true"></div>
             <!-- Verified badge -->
@@ -1137,6 +1147,135 @@
           </ul>
         </article>
       </div>
+
+      <!-- System Design Flowchart -->
+      <div class="glass reveal" style="margin-top:32px;padding:24px;border-radius:14px;border:1px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.2)">
+        <div class="mono muted" style="font-size:.75rem;margin-bottom:16px;letter-spacing:.08em">// SECURE SYSTEM DESIGN — END-TO-END ARCHITECTURE FLOW</div>
+        <div style="overflow-x:auto">
+          <svg viewBox="0 0 900 320" width="100%" aria-label="Secure system design architecture flowchart" role="img" style="min-width:600px;display:block">
+            <defs>
+              <marker id="sd-arr" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(var(--accent-r-val,139),var(--accent-g-val,92),var(--accent-b-val,246),.7)"/>
+              </marker>
+              <marker id="sd-arr-ok" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(0,230,118,.7)"/>
+              </marker>
+              <marker id="sd-arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(255,80,80,.7)"/>
+              </marker>
+              <style>
+                .sd-box { rx: 6; ry: 6; fill: rgba(15,25,45,.9); stroke-width: 1.4; }
+                .sd-box-sec { rx: 6; ry: 6; fill: rgba(10,30,18,.9); stroke: rgba(0,230,118,.5); stroke-width: 1.8; }
+                .sd-box-gate { rx: 6; ry: 6; fill: rgba(5,20,10,.95); stroke: rgba(0,255,65,.65); stroke-width: 2; }
+                .sd-label { font-family: JetBrains Mono,monospace; fill: #dde8ef; font-size: 8.5px; font-weight: 600; }
+                .sd-sub { font-family: JetBrains Mono,monospace; fill: rgba(0,230,118,.6); font-size: 6.5px; }
+                .sd-gate-lbl { font-family: JetBrains Mono,monospace; fill: rgba(0,255,65,.75); font-size: 6px; letter-spacing: 1px; }
+                .sd-arrow { stroke-width: 1.3; fill: none; marker-end: url(#sd-arr); stroke: rgba(139,92,246,.5); }
+                .sd-arrow-ok { stroke-width: 1.3; fill: none; marker-end: url(#sd-arr-ok); stroke: rgba(0,230,118,.5); }
+                .sd-arrow-dsh { stroke-width: 1.1; fill: none; stroke-dasharray: 4 3; marker-end: url(#sd-arr); stroke: rgba(139,92,246,.35); }
+              </style>
+            </defs>
+
+            <!-- Layer labels -->
+            <text x="10" y="50"  font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(139,92,246,.5)" letter-spacing="1.5">DEV</text>
+            <text x="10" y="130" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(139,92,246,.5)" letter-spacing="1.5">CI/CD</text>
+            <text x="10" y="210" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(139,92,246,.5)" letter-spacing="1.5">K8s</text>
+            <text x="10" y="290" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(139,92,246,.5)" letter-spacing="1.5">OPS</text>
+
+            <!-- Layer bands -->
+            <rect x="38" y="28" width="852" height="54" rx="4" fill="rgba(139,92,246,.04)" stroke="rgba(139,92,246,.08)" stroke-width=".8"/>
+            <rect x="38" y="98" width="852" height="54" rx="4" fill="rgba(0,230,118,.03)" stroke="rgba(0,230,118,.07)" stroke-width=".8"/>
+            <rect x="38" y="168" width="852" height="54" rx="4" fill="rgba(0,230,118,.03)" stroke="rgba(0,230,118,.07)" stroke-width=".8"/>
+            <rect x="38" y="238" width="852" height="54" rx="4" fill="rgba(139,92,246,.04)" stroke="rgba(139,92,246,.08)" stroke-width=".8"/>
+
+            <!-- DEV layer: Dev → Pre-commit → Signed Commit → PR Review -->
+            <rect class="sd-box" x="50" y="38" width="76" height="36" stroke="rgba(139,92,246,.4)"/>
+            <text class="sd-label" x="88" y="54" text-anchor="middle">Developer</text>
+            <text class="sd-sub" x="88" y="65" text-anchor="middle">feature branch</text>
+
+            <line class="sd-arrow" x1="126" y1="56" x2="162" y2="56"/>
+            <rect class="sd-box-sec" x="162" y="38" width="86" height="36"/>
+            <text class="sd-label" x="205" y="54" text-anchor="middle">Pre-commit</text>
+            <text class="sd-sub" x="205" y="65" text-anchor="middle">secrets · lint</text>
+
+            <line class="sd-arrow" x1="248" y1="56" x2="284" y2="56"/>
+            <rect class="sd-box-sec" x="284" y="38" width="86" height="36"/>
+            <text class="sd-label" x="327" y="54" text-anchor="middle">Signed Commit</text>
+            <text class="sd-sub" x="327" y="65" text-anchor="middle">GPG / Gitsign</text>
+
+            <line class="sd-arrow" x1="370" y1="56" x2="406" y2="56"/>
+            <rect class="sd-box-sec" x="406" y="38" width="86" height="36"/>
+            <text class="sd-label" x="449" y="54" text-anchor="middle">PR + Review</text>
+            <text class="sd-sub" x="449" y="65" text-anchor="middle">CODEOWNERS</text>
+
+            <!-- CI/CD layer: SAST/SCA → Build → SBOM+Sign → Image Scan → Promote -->
+            <line class="sd-arrow-ok" x1="449" y1="74" x2="449" y2="108"/>
+            <rect class="sd-box-gate" x="406" y="108" width="86" height="36"/>
+            <text class="sd-gate-lbl" x="449" y="118" text-anchor="middle">⬡ GATE</text>
+            <text class="sd-label" x="449" y="130" text-anchor="middle">SAST / SCA</text>
+            <text class="sd-sub" x="449" y="140" text-anchor="middle">Semgrep·Trivy</text>
+
+            <line class="sd-arrow-ok" x1="492" y1="126" x2="528" y2="126"/>
+            <rect class="sd-box" x="528" y="108" width="76" height="36" stroke="rgba(0,230,118,.35)"/>
+            <text class="sd-label" x="566" y="124" text-anchor="middle">Build</text>
+            <text class="sd-sub" x="566" y="135" text-anchor="middle">distroless</text>
+
+            <line class="sd-arrow-ok" x1="604" y1="126" x2="640" y2="126"/>
+            <rect class="sd-box-gate" x="640" y="108" width="86" height="36"/>
+            <text class="sd-gate-lbl" x="683" y="118" text-anchor="middle">⬡ GATE</text>
+            <text class="sd-label" x="683" y="130" text-anchor="middle">SBOM+Sign</text>
+            <text class="sd-sub" x="683" y="140" text-anchor="middle">Syft·Cosign</text>
+
+            <line class="sd-arrow-ok" x1="726" y1="126" x2="762" y2="126"/>
+            <rect class="sd-box-gate" x="762" y="108" width="86" height="36"/>
+            <text class="sd-gate-lbl" x="805" y="118" text-anchor="middle">⬡ GATE</text>
+            <text class="sd-label" x="805" y="130" text-anchor="middle">Img Scan</text>
+            <text class="sd-sub" x="805" y="140" text-anchor="middle">Trivy·Prisma</text>
+
+            <!-- K8s layer: ArgoCD → Kyverno Admission → Runtime (Istio + Falco/eBPF) -->
+            <line class="sd-arrow-ok" x1="805" y1="144" x2="805" y2="178"/>
+            <rect class="sd-box-sec" x="762" y="178" width="86" height="36"/>
+            <text class="sd-label" x="805" y="194" text-anchor="middle">ArgoCD</text>
+            <text class="sd-sub" x="805" y="205" text-anchor="middle">GitOps deploy</text>
+
+            <line class="sd-arrow-ok" x1="762" y1="196" x2="726" y2="196"/>
+            <rect class="sd-box-gate" x="640" y="178" width="86" height="36"/>
+            <text class="sd-gate-lbl" x="683" y="188" text-anchor="middle">⬡ GATEWAY</text>
+            <text class="sd-label" x="683" y="200" text-anchor="middle">Kyverno</text>
+            <text class="sd-sub" x="683" y="210" text-anchor="middle">admission ctrl</text>
+
+            <line class="sd-arrow-ok" x1="640" y1="196" x2="604" y2="196"/>
+            <rect class="sd-box-sec" x="528" y="178" width="76" height="36"/>
+            <text class="sd-label" x="566" y="194" text-anchor="middle">Istio mTLS</text>
+            <text class="sd-sub" x="566" y="205" text-anchor="middle">east-west</text>
+
+            <line class="sd-arrow-ok" x1="528" y1="196" x2="492" y2="196"/>
+            <rect class="sd-box-sec" x="406" y="178" width="86" height="36"/>
+            <text class="sd-label" x="449" y="194" text-anchor="middle">Falco + eBPF</text>
+            <text class="sd-sub" x="449" y="205" text-anchor="middle">runtime detect</text>
+
+            <!-- OPS layer: SIEM → IR → Notification -->
+            <line class="sd-arrow-dsh" x1="449" y1="214" x2="449" y2="248"/>
+            <rect class="sd-box" x="406" y="248" width="86" height="36" stroke="rgba(139,92,246,.4)"/>
+            <text class="sd-label" x="449" y="264" text-anchor="middle">SIEM</text>
+            <text class="sd-sub" x="449" y="275" text-anchor="middle">detect·alert</text>
+
+            <line class="sd-arrow-dsh" x1="492" y1="266" x2="528" y2="266"/>
+            <rect class="sd-box" x="528" y="248" width="86" height="36" stroke="rgba(139,92,246,.4)"/>
+            <text class="sd-label" x="571" y="264" text-anchor="middle">IR Playbook</text>
+            <text class="sd-sub" x="571" y="275" text-anchor="middle">response</text>
+
+            <line class="sd-arrow-dsh" x1="614" y1="266" x2="650" y2="266"/>
+            <rect class="sd-box" x="650" y="248" width="86" height="36" stroke="rgba(139,92,246,.4)"/>
+            <text class="sd-label" x="693" y="264" text-anchor="middle">Slack / PD</text>
+            <text class="sd-sub" x="693" y="275" text-anchor="middle">notify team</text>
+
+            <!-- Title -->
+            <text x="450" y="14" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(139,92,246,.5)" letter-spacing="3">ZERO-TRUST SECURITY ARCHITECTURE — DEV → CI/CD → K8s → OPS</text>
+          </svg>
+        </div>
+        <p class="mono muted" style="font-size:.72rem;margin-top:12px">Each layer enforces a different security control. No single point of bypass. Evidence flows from commit to runtime.</p>
+      </div>
     </section>
 
     <!-- ARCHITECTURE -->
@@ -1400,10 +1539,49 @@
             <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
           <h4>Runtime Enforcement</h4>
-          <p>Kubernetes admission control · RBAC · securityContext · Network policies · DAST post-deploy · SIEM monitoring</p>
+          <p>Kubernetes admission control (Kyverno) · RBAC · securityContext · NetworkPolicies · DAST post-deploy · SIEM monitoring</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h4>GitOps — ArgoCD &amp; GitHub Actions</h4>
+          <p>ArgoCD declarative GitOps for K8s deployments · GitHub Actions ephemeral runners · Branch-based environment promotion · Rollback via Git revert</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <h4>Service Mesh — Istio &amp; mTLS</h4>
+          <p>Istio service mesh for east-west mTLS encryption · Envoy proxy sidecars · Traffic policy enforcement · Mutual TLS between microservices · Zero-trust network identity</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 6l6 6-6 6"/><path d="M9 6h14"/><path d="M9 12h8"/><path d="M9 18h10"/></svg>
+          </div>
+          <h4>eBPF Runtime Security — Falco &amp; Cilium</h4>
+          <p>eBPF kernel-level visibility · Falco runtime threat detection with custom rules · Cilium network policy enforcement · Syscall-level audit with near-zero overhead · Deepening: Tetragon for process-level tracing</p>
         </div>
       </div>
-    </section>
+
+      <!-- Runtime security architecture visual note -->
+      <div class="card glass reveal" style="margin-top:28px;padding:20px 24px;border-left:3px solid var(--accent)">
+        <div class="mono muted" style="font-size:.75rem;margin-bottom:8px">// Runtime Security Stack — Defense in Depth</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+          <span class="tech-badge">GitHub Actions</span>
+          <span style="color:var(--accent);font-size:.9rem">→</span>
+          <span class="tech-badge">ArgoCD GitOps</span>
+          <span style="color:var(--accent);font-size:.9rem">→</span>
+          <span class="tech-badge">Kyverno Admission</span>
+          <span style="color:var(--accent);font-size:.9rem">→</span>
+          <span class="tech-badge">Istio mTLS</span>
+          <span style="color:var(--accent);font-size:.9rem">→</span>
+          <span class="tech-badge">Falco + eBPF</span>
+          <span style="color:var(--accent);font-size:.9rem">→</span>
+          <span class="tech-badge">SIEM Alerts</span>
+        </div>
+        <p class="mono muted" style="font-size:.72rem;margin-top:10px">Every layer adds enforcement. eBPF gives kernel-level visibility without modifying application code. Istio encrypts all east-west traffic. ArgoCD ensures only Git-approved state runs in production.</p>
+      </div>
 
     <!-- CASE STUDIES -->
     <section id="case-studies" class="section glass case-studies-section" aria-label="Case studies" aria-labelledby="cases-h2">
@@ -1580,6 +1758,42 @@
             <span class="mono cwe-cvss cwe-high" role="cell">7.5</span>
             <span class="mono cwe-epss" role="cell">0.002</span>
             <span class="cwe-status cwe-accepted mono" role="cell">⊘ Risk accepted</span>
+          </div>
+          <!-- 2025 CVEs -->
+          <div class="cwe-row" role="row" style="background:rgba(239,68,68,.04)">
+            <span class="mono cwe-id" role="cell" style="font-weight:700">CVE-2025-29927</span>
+            <span role="cell">Next.js Auth Bypass</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">9.1</span>
+            <span class="mono cwe-epss" role="cell">0.018</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Patched</span>
+          </div>
+          <div class="cwe-row" role="row" style="background:rgba(239,68,68,.04)">
+            <span class="mono cwe-id" role="cell" style="font-weight:700">CVE-2025-24813</span>
+            <span role="cell">Apache Tomcat RCE</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">9.8</span>
+            <span class="mono cwe-epss" role="cell">0.046</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Mitigated</span>
+          </div>
+          <div class="cwe-row" role="row" style="background:rgba(239,68,68,.04)">
+            <span class="mono cwe-id" role="cell" style="font-weight:700">CVE-2025-30065</span>
+            <span role="cell">Apache Parquet RCE</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">10.0</span>
+            <span class="mono cwe-epss" role="cell">0.021</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Not exposed</span>
+          </div>
+          <div class="cwe-row" role="row" style="background:rgba(239,68,68,.04)">
+            <span class="mono cwe-id" role="cell" style="font-weight:700">CVE-2025-22224</span>
+            <span role="cell">VMware vSphere ESXi</span>
+            <span class="mono cwe-cvss cwe-crit" role="cell">9.3</span>
+            <span class="mono cwe-epss" role="cell">0.012</span>
+            <span class="cwe-status cwe-watch mono" role="cell">⚑ Monitoring</span>
+          </div>
+          <div class="cwe-row" role="row" style="background:rgba(239,68,68,.04)">
+            <span class="mono cwe-id" role="cell" style="font-weight:700">CVE-2025-21395</span>
+            <span role="cell">npm / package-lock</span>
+            <span class="mono cwe-cvss cwe-high" role="cell">8.4</span>
+            <span class="mono cwe-epss" role="cell">0.009</span>
+            <span class="cwe-status cwe-mitigated mono" role="cell">✓ Mitigated</span>
           </div>
         </div>
         <p class="cwe-note mono muted">EPSS scores sourced from FIRST.org. Trivy + Prisma cross-validated. Updated per pipeline run.</p>
@@ -2599,6 +2813,41 @@
           </div>
         </details>
 
+        <details class="faq-item reveal">
+          <summary class="faq-q">How do you manage security at scale across 350+ microservices?</summary>
+          <div class="faq-a">
+            <p>Policy as code is the only way. You can't review 350+ services manually — you make the insecure path impossible at the platform level. I use Kyverno admission policies to block unsafe deployments, org-level GitHub Actions templates to standardize CI security gates, and a single evidence model (scan output + digest + approval) that every service inherits automatically. The controls live in the platform, not in per-service config.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">What's your approach to threat modeling — STRIDE, PASTA, or something else?</summary>
+          <div class="faq-a">
+            <p>I use STRIDE for system-level threat enumeration during design reviews, and PASTA for risk-priority ranking in sprint planning. In practice, I focus on attack surfaces: credential paths (secrets, tokens, IAM), pipeline injection points (runner compromise, dependency substitution), and runtime escape vectors (privileged pods, host mounts, RBAC gaps). The framework is less important than covering the actual blast radius per component.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">How do you handle security incidents at 2am?</summary>
+          <div class="faq-a">
+            <p>Pre-built runbooks and a clear escalation tree — decisions made during incidents should be policy, not improvisation. I've built runbooks for secrets leakage (validate exposure → rotate → audit trail), container escape (isolate pod → revoke credentials → force redeploy), and RBAC violation (lockdown namespace → audit log review → policy update). The goal is to move from detection to containment in under 15 minutes.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">What's your view on eBPF and service mesh for cloud-native security?</summary>
+          <div class="faq-a">
+            <p>eBPF is the most impactful new primitive for runtime security — kernel-level visibility with near-zero overhead, no agent sidecar needed. Falco + Cilium gives you both network policy enforcement and syscall-level threat detection. Istio mTLS ensures all east-west traffic is encrypted and identity-verified. Together they remove implicit trust from the data plane. I'm actively deepening expertise in Tetragon for process-level observability.</p>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">How do you measure the effectiveness of a DevSecOps program?</summary>
+          <div class="faq-a">
+            <p>Four key metrics: (1) <strong>Mean Time to Remediate</strong> critical CVEs — should be hours, not sprint cycles. (2) <strong>Gate escape rate</strong> — how many high-risk changes slip through CI? Should be zero. (3) <strong>SBOM freshness</strong> — is every running artifact's dependency graph known and current? (4) <strong>Policy violation trend</strong> — are we blocking more insecure patterns or are teams routing around controls? Improving all four simultaneously means the program is actually working.</p>
+          </div>
+        </details>
+
       </div>
     </section>
 
@@ -2610,18 +2859,6 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// articles fetched</span><span class="sdc-line"></span></div>
-
-      <!-- SECURITY THOUGHTS CAROUSEL -->
-      <div class="thoughts-widget glass reveal" aria-label="Security engineer thoughts" aria-live="polite">
-        <div class="tw-label mono muted">// engineering insight</div>
-        <blockquote class="tw-quote" id="thoughtQuote">
-          "Zero trust is not a product to buy — it's a mental model to apply. Every access decision should be made as if the network is already compromised."
-        </blockquote>
-        <div class="tw-meta mono muted">
-          <span class="tw-author">— Anshumaan Singh</span>
-          <button class="tw-next mono" id="thoughtNext" aria-label="Next thought">next →</button>
-        </div>
-      </div>
 
       <!-- SECURITY THOUGHTS CAROUSEL -->
       <div class="thoughts-widget glass reveal" aria-label="Security engineer thoughts" aria-live="polite">
@@ -2797,7 +3034,7 @@
             <p class="qc-prompt mono"><span class="qc-ps">$</span> <span class="qc-cmd">initiate-contact --method=email --priority=high</span></p>
             <p class="qc-output mono muted">→ Establishing secure channel to <span class="qc-addr">anshumaansingh10jan@gmail.com</span></p>
             <p class="qc-output mono muted">→ Response time: typically within 24h</p>
-            <p class="qc-output mono muted">→ Open to: senior DevSecOps &amp; K8s security roles in Bengaluru</p>
+            <p class="qc-output mono muted">→ Open to: DevSecOps / Cloud Security Engineer opportunities</p>
             <div class="qc-actions">
               <a href="mailto:anshumaansingh10jan@gmail.com?subject=Opportunity%20—%20Senior%20DevSecOps%20Role&body=Hi%20Anshumaan%2C%0A%0AI%20came%20across%20your%20portfolio%20at%20devsecopswithanshu.com%20and%20wanted%20to%20connect.%0A%0A" class="qc-email-btn magnetic" aria-label="Open email client to contact Anshumaan">
                 <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 4 12 13 22 4"/></svg>
@@ -2947,9 +3184,9 @@
               <path d="M9 16.5L12.5 20.5L19 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               <defs><linearGradient id="bglf" x1="2" y1="2" x2="26" y2="30"><stop offset="0%" stop-color="#8B5CF6" stop-opacity=".9"/><stop offset="100%" stop-color="#22D3EE" stop-opacity=".9"/></linearGradient></defs>
             </svg>
-            <span class="brand-name" style="font-size:1.1rem">anshumaan<span class="accent-color">.</span>dev</span>
+            <span class="brand-name" style="font-size:1.1rem">anshumaan<span class="accent-color">.</span>singh</span>
           </div>
-          <p class="footer-tagline muted mono">Engineering security as a system property, not a checklist.</p>
+      <p class="footer-tagline muted mono">Engineering security as a system property, not a checklist.</p>
           <div class="footer-social">
             <a href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="fsoc-link">
               <img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="LinkedIn" width="18" height="18" loading="lazy" />
@@ -3011,7 +3248,7 @@
         <a href="https://github.com/anshumaan-10/anshumaan-10.github.io" target="_blank" rel="noopener noreferrer">Source ↗</a>
         
       </div>
-      <p class="footer-built muted mono">Built without frameworks. Crafted with security in mind · <span id="lastBuilt"></span></p>
+    <p class="footer-built muted mono">Crafted with security in mind · <span id="lastBuilt"></span> · © 2026 Anshumaan Singh</p>
     </footer>
 
   </main>
