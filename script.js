@@ -70,12 +70,28 @@ function showToast(msg) {
 }
 
 /* ── LOADER + HASH-ON-LOAD ── */
+// Reliability: ensure loader is removed even if external scripts block window.load
+document.addEventListener("DOMContentLoaded", () => {
+  const l = document.getElementById("loader");
+  if (l) setTimeout(() => l.classList.add("hide"), 5500);
+});
+
 window.addEventListener("load", () => {
   // ── Terminal boot sequence ──
   const loader   = byId("loader");
   const fill     = byId("loaderFill");
   const scanLine = byId("ltScan");
   const doneLine = byId("ltDone");
+
+  // Hard-timeout failsafe: loader NEVER blocks user > 5s
+  const hideLoaderNow = () => {
+    if (loader) {
+      loader.classList.add("hide");
+      // Clear DOM node after transition
+      setTimeout(() => { if (loader.parentNode) loader.parentNode.removeChild(loader); }, 600);
+    }
+  };
+  const loaderKill = setTimeout(hideLoaderNow, 5000);
 
   if (loader && fill) {
     // Animate progress bar
@@ -85,13 +101,15 @@ window.addEventListener("load", () => {
       fill.style.width = pct + "%";
       if (pct >= 100) {
         clearInterval(tick);
+        clearTimeout(loaderKill);
         if (scanLine) scanLine.style.display = "none";
         if (doneLine) doneLine.style.display = "flex";
-        setTimeout(() => loader.classList.add("hide"), 520);
+        setTimeout(hideLoaderNow, 420);
       }
-    }, 90);
+    }, 80);
   } else if (loader) {
-    setTimeout(() => loader.classList.add("hide"), 600);
+    clearTimeout(loaderKill);
+    setTimeout(hideLoaderNow, 500);
   }
 
   const yr = byId("year");
@@ -2142,4 +2160,380 @@ onScroll();
   document.querySelectorAll('.qc-email-btn, .qc-copy-btn, .con  document.querySelectorAll('.qc-email-btn, .qventListener('mouseenter', () => ring.classList.add('expand'));
       el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
     });
+})();
+
+
+/* == V14 JS == */
+(function initCPDashboard() {
+  const dashboard = document.querySelector('.cp-dashboard');
+  if (!dashboard) return;
+  const bars = dashboard.querySelectorAll('.cpd-bar');
+  bars.forEach(b => { b.style.width = '0'; });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        bars.forEach(b => {
+          const styleAttr = b.getAttribute('style') || '';
+          const m = styleAttr.match(/--p:\s*([^;}"]+)/);
+          const p = m ? m[1].trim() : '0%';
+          b.style.width = '0';
+          requestAnimationFrame(() => {
+            setTimeout(() => { b.style.width = p; }, 120);
+          });
+        });
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(dashboard);
+})();
+
+
+/* == V14 CLOCK == */
+(function loaderClock() {
+  const el = document.getElementById('loaderClock');
+  if (!el) return;
+  const fmt = () => {
+    const n = new Date();
+    return n.toLocaleTimeString('en-GB', { hour12: false });
+  };
+  el.textContent = fmt();
+  setInterval(() => { if (el.isConnected) el.textContent = fmt(); }, 1000);
+})();
+
+
+/* ══════════════════════════════════════════════════════════════════
+   V14+ LIBRARY INTEGRATIONS
+   GSAP · tsParticles · vanilla-tilt · CountUp.js · Splitting.js · Lenis
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Safe library loader — waits for all deferred scripts */
+(function v14LibsInit() {
+  'use strict';
+
+  let retries = 0;
+  const MAX_RETRIES = 40;
+
+  function tryInit() {
+    const gsapReady     = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+    const tsParticlesOk = typeof tsParticles !== 'undefined';
+    const tiltOk        = typeof VanillaTilt !== 'undefined';
+    const countUpOk     = typeof CountUp !== 'undefined';
+    const splittingOk   = typeof Splitting !== 'undefined';
+    const lenisOk       = typeof Lenis !== 'undefined';
+
+    const allEnough = gsapReady && tiltOk;  // minimum for good visuals
+
+    if (allEnough || retries >= MAX_RETRIES) {
+      if (gsapReady)     initGSAP();
+      if (tsParticlesOk) initTsParticles();
+      if (tiltOk)        initTilt();
+      if (countUpOk)     initCountUpLib();
+      if (splittingOk)   initSplitting();
+      if (lenisOk)       initLenis();
+    } else {
+      retries++;
+      setTimeout(tryInit, 120);
+    }
+  }
+
+  if (document.readyState === 'complete') {
+    setTimeout(tryInit, 400);
+  } else {
+    window.addEventListener('load', () => setTimeout(tryInit, 400));
+  }
+
+  /* ── 1. GSAP + ScrollTrigger ────────────────────────────────────── */
+  function initGSAP() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Hero entrance timeline ──
+    // Only run if loader is already hidden or hidden soon
+    const heroEntrance = () => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tl.set('.hero-left > *', { opacity: 1 }) // ensure visible
+        .from('.hero-tag',            { y: 22, opacity: 0, duration: 0.5 }, 0.05)
+        .from('.v14-hero-sysline',    { y: 14, opacity: 0, duration: 0.4 }, 0.15)
+        .from('.security-status-bar', { y: 14, opacity: 0, duration: 0.4 }, 0.22)
+        .from('.access-node',         { x: -24, opacity: 0, duration: 0.4 }, 0.30)
+        .from('.hero-greeting',       { x: -24, opacity: 0, duration: 0.4 }, 0.36)
+        .from('.hero h1',             { y: 36, opacity: 0, duration: 0.75, ease: 'expo.out' }, 0.42)
+        .from('.hero-subtitle',       { y: 20, opacity: 0, duration: 0.5 }, 0.70)
+        .from('.quote-block',         { y: 20, opacity: 0, duration: 0.5 }, 0.80)
+        .from('.hero-lead',           { y: 16, opacity: 0, duration: 0.5 }, 0.90)
+        .from('.meta-pills .pill',    { y: 14, opacity: 0, stagger: 0.06, duration: 0.4, ease: 'back.out(1.7)' }, 1.00)
+        .from('.kpi-card',            { y: 20, opacity: 0, stagger: 0.08, duration: 0.45, ease: 'back.out(1.5)' }, 1.10)
+        .from('.hero-cta .btn',       { y: 14, opacity: 0, stagger: 0.10, duration: 0.4 }, 1.26)
+        .from('.cp-dashboard',        { y: 22, opacity: 0, duration: 0.6 }, 1.38)
+        .from('.profile-card',        { x: 36, opacity: 0, duration: 0.85, ease: 'expo.out' }, 0.48);
+    };
+
+    // Wait for loader to clear
+    const loaderEl = document.getElementById('loader');
+    if (!loaderEl || loaderEl.classList.contains('hide')) {
+      heroEntrance();
+    } else {
+      const loaderObserver = new MutationObserver(() => {
+        if (loaderEl.classList.contains('hide')) {
+          loaderObserver.disconnect();
+          setTimeout(heroEntrance, 200);
+        }
+      });
+      loaderObserver.observe(loaderEl, { attributes: true, attributeFilter: ['class'] });
+      // Fallback
+      setTimeout(heroEntrance, 2600);
+    }
+
+    // ── Section heading reveals ──
+    gsap.utils.toArray('section.section').forEach(section => {
+      const heading = section.querySelector('h2, .section-h2, .v7-section-title');
+      if (heading) {
+        gsap.from(heading, {
+          scrollTrigger: { trigger: section, start: 'top 82%', toggleActions: 'play none none none' },
+          y: 42, opacity: 0, duration: 0.75, ease: 'power3.out',
+        });
+      }
+
+      // Cards stagger
+      const cards = section.querySelectorAll('.card, .cert-card, .timeline-item, .kpi-card');
+      if (cards.length) {
+        gsap.from(cards, {
+          scrollTrigger: { trigger: section, start: 'top 78%', toggleActions: 'play none none none' },
+          y: 38, opacity: 0, duration: 0.55, stagger: 0.07, ease: 'power2.out',
+        });
+      }
+
+      // Section mono labels
+      const mono = section.querySelectorAll('.sec-num, .mono.muted');
+      if (mono.length) {
+        gsap.from(mono, {
+          scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+          x: -18, opacity: 0, duration: 0.45, stagger: 0.04, ease: 'power2.out',
+        });
+      }
+    });
+
+    // ── CP Dashboard bars driven by GSAP ──
+    ScrollTrigger.create({
+      trigger: '.cp-dashboard',
+      start: 'top 88%',
+      once: true,
+      onEnter: () => {
+        document.querySelectorAll('.cpd-bar').forEach((bar, i) => {
+          const styleAttr = bar.getAttribute('style') || '';
+          const m = styleAttr.match(/--p:\s*([\d.]+%?)/);
+          const target = parseFloat(m ? m[1] : '0');
+          bar.style.width = '0%';
+          gsap.to(bar, { width: target + '%', duration: 1.5, delay: i * 0.14, ease: 'power2.inOut' });
+        });
+      },
+    });
+
+    // ── Timeline items slide in from left ──
+    gsap.utils.toArray('.timeline-item').forEach((item, i) => {
+      gsap.from(item, {
+        scrollTrigger: { trigger: item, start: 'top 84%', toggleActions: 'play none none none' },
+        x: -40, opacity: 0, duration: 0.6, ease: 'power2.out',
+      });
+    });
+
+    // ── K8s rows stagger ──
+    const k8sRows = document.querySelectorAll('.k8s-row:not(.k8s-head)');
+    if (k8sRows.length) {
+      gsap.from(k8sRows, {
+        scrollTrigger: { trigger: '.k8s-status-table', start: 'top 82%', toggleActions: 'play none none none' },
+        x: -28, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out',
+      });
+    }
+
+    // ── Ambient orb parallax ──
+    ['orb-1','orb-2','orb-3'].forEach((cls, i) => {
+      const orb = document.querySelector(`.bg-orb.${cls}`);
+      if (!orb) return;
+      gsap.to(orb, {
+        scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 2 + i },
+        y: -80 - i * 30, ease: 'none',
+      });
+    });
+
+    // ── Skill bars animate ──
+    document.querySelectorAll('.skill-bar-fill, .s-bar-fill').forEach(bar => {
+      const w = bar.style.width || bar.getAttribute('data-w') || '0%';
+      bar.style.width = '0%';
+      gsap.to(bar, {
+        scrollTrigger: { trigger: bar, start: 'top 88%', toggleActions: 'play none none none' },
+        width: w, duration: 1.2, ease: 'power2.out',
+      });
+    });
+
+    console.log('[V14+] GSAP + ScrollTrigger ready');
+  }
+
+  /* ── 2. tsParticles — neural network interactive background ────── */
+  function initTsParticles() {
+    // Hide old static particle canvas
+    const oldCanvas = document.getElementById('particleCanvas');
+    if (oldCanvas) oldCanvas.style.display = 'none';
+
+    const container = document.getElementById('tsparticles-bg');
+    if (!container) return;
+
+    tsParticles.load('tsparticles-bg', {
+      fullScreen: { enable: false },
+      background: { color: { value: 'transparent' } },
+      fpsLimit: 50,
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: ['grab', 'repulse'] },
+          onClick: { enable: true, mode: 'push' },
+          resize: true,
+        },
+        modes: {
+          grab:    { distance: 200, links: { opacity: 0.40, color: '#4a9eff' } },
+          repulse: { distance: 80, duration: 0.4 },
+          push:    { quantity: 4 },
+        },
+      },
+      particles: {
+        number:  { value: 65, density: { enable: true, area: 900 } },
+        color:   { value: ['#00e676', '#4a9eff', '#00bcd4', '#69ffb4'] },
+        shape:   { type: 'circle' },
+        opacity: {
+          value: { min: 0.06, max: 0.32 },
+          animation: { enable: true, speed: 0.7, sync: false },
+        },
+        size: { value: { min: 1, max: 2.8 }, animation: { enable: true, speed: 1.5, sync: false, minimumValue: 0.5 } },
+        links: {
+          enable: true,
+          distance: 165,
+          color: '#4a9eff',
+          opacity: 0.10,
+          width: 0.8,
+          triangles: { enable: true, opacity: 0.02 },
+        },
+        move: {
+          enable: true,
+          speed: 0.5,
+          direction: 'none',
+          outModes: { default: 'out' },
+          random: true,
+          straight: false,
+          attract: { enable: true, rotateX: 600, rotateY: 1200 },
+        },
+        twinkle: {
+          particles: { enable: true, frequency: 0.05, opacity: 1 },
+          lines:     { enable: true, frequency: 0.01, opacity: 0.4 },
+        },
+      },
+      detectRetina: true,
+    });
+
+    console.log('[V14+] tsParticles neural net ready');
+  }
+
+  /* ── 3. vanilla-tilt — GPU-accelerated 3D card tilt ───────────── */
+  function initTilt() {
+    // Profile card — dramatic tilt
+    VanillaTilt.init(document.querySelectorAll('.profile-card'), {
+      max: 12, speed: 600, glare: true, 'max-glare': 0.20,
+      perspective: 1000, scale: 1.03, gyroscope: false,
+    });
+    // Project / blog cards
+    VanillaTilt.init(document.querySelectorAll('article.card, .card:not(.kpi-card)'), {
+      max: 6, speed: 500, glare: true, 'max-glare': 0.07,
+      perspective: 1200, scale: 1.015, gyroscope: false,
+    });
+    // Cert cards
+    VanillaTilt.init(document.querySelectorAll('.cert-card'), {
+      max: 9, speed: 500, glare: true, 'max-glare': 0.12,
+      perspective: 1100, scale: 1.02, gyroscope: false,
+    });
+    // KPI cards — fast, tight tilt
+    VanillaTilt.init(document.querySelectorAll('.kpi-card'), {
+      max: 14, speed: 350, glare: false, perspective: 700, scale: 1.05, gyroscope: false,
+    });
+    // CP Dashboard
+    VanillaTilt.init(document.querySelectorAll('.cp-dashboard, .k8s-status-table'), {
+      max: 4, speed: 600, glare: false, perspective: 1400, scale: 1.005, gyroscope: false,
+    });
+
+    console.log('[V14+] vanilla-tilt ready');
+  }
+
+  /* ── 4. CountUp.js — smooth number rolling on KPIs ────────────── */
+  function initCountUpLib() {
+    document.querySelectorAll('.counter[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      if (isNaN(target)) return;
+
+      const opts = {
+        startVal: 0,
+        duration: 2.5,
+        useEasing: true,
+        useGrouping: false,
+      };
+      // Use CountUp.CountUp (umd export)
+      const CountUpClass = (typeof CountUp === 'function') ? CountUp : CountUp.CountUp;
+      const cu = new CountUpClass(el, target, opts);
+
+      const io = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          if (!cu.error) cu.start();
+          io.disconnect();
+        }
+      }, { threshold: 0.6 });
+      io.observe(el);
+    });
+
+    console.log('[V14+] CountUp.js ready');
+  }
+
+  /* ── 5. Splitting.js — char-level hero H1 entrance ─────────────── */
+  function initSplitting() {
+    const nameEl = document.querySelector('.hero h1 [data-splitting]');
+    if (!nameEl) return;
+
+    const result = Splitting({ target: nameEl, by: 'chars' });
+    const chars  = nameEl.querySelectorAll('.char');
+    chars.forEach((c, i) => {
+      c.style.opacity   = '0';
+      c.style.transform = 'translateY(16px) scale(0.82)';
+      c.style.filter    = 'blur(3px)';
+      c.style.display   = 'inline-block';
+      c.style.transition = `opacity 0.35s ${0.55 + i * 0.032}s, transform 0.38s ${0.55 + i * 0.032}s cubic-bezier(.34,1.56,.64,1), filter 0.3s ${0.55 + i * 0.032}s`;
+    });
+
+    setTimeout(() => {
+      chars.forEach(c => {
+        c.style.opacity   = '1';
+        c.style.transform = 'none';
+        c.style.filter    = 'none';
+      });
+    }, 900);
+
+    console.log('[V14+] Splitting.js ready');
+  }
+
+  /* ── 6. Lenis — silky smooth scroll ────────────────────────────── */
+  function initLenis() {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      syncTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync Lenis with GSAP ScrollTrigger if available
+    lenis.on('scroll', () => {
+      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.update();
+    });
+
+    console.log('[V14+] Lenis smooth scroll ready');
+  }
 })();

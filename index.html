@@ -12,7 +12,7 @@
   <meta name="author" content="Anshumaan Singh" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow" />
-  <meta name="theme-color" content="#020408" />
+  <meta name="theme-color" content="#080e1a" />
   <meta name="color-scheme" content="dark light" />
   <meta name="rating" content="general" />
   <meta name="revisit-after" content="7 days" />
@@ -53,6 +53,8 @@
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://cdn.simpleicons.org" />
   <link rel="dns-prefetch" href="https://cdn.simpleicons.org" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
 
   <!-- ═══ FONTS ═══ -->
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
@@ -62,6 +64,29 @@
 
   <!-- ═══ CSS ═══ -->
   <link rel="stylesheet" href="./styles.css" />
+
+  <!-- ═══ CRITICAL INLINE CSS — loader + body base renders instantly ═══ -->
+  <style>
+    /* Loader renders before external CSS arrives */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:#080e1a;color:#e2eeff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+    .loader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:#080e1a;transition:opacity .5s ease,visibility .5s ease}
+    .loader.hide{opacity:0;visibility:hidden;pointer-events:none}
+    .loader-terminal{background:#0c1526;border:1px solid rgba(0,230,118,.25);border-radius:12px;min-width:min(460px,92vw);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.7)}
+    .lt-header{background:rgba(0,0,0,.4);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(0,230,118,.12)}
+    .lt-dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+    .lt-red{background:#ff5f57}.lt-yellow{background:#ffbd2e}.lt-green{background:#28c840}
+    .lt-title,.lt-clock{font-family:'JetBrains Mono',monospace,monospace;font-size:.75rem;color:rgba(0,230,118,.9);margin-left:6px}
+    .lt-body{padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+    .lt-line{font-family:'JetBrains Mono',monospace,monospace;font-size:.78rem;color:#8ba8cc;display:flex;align-items:center;gap:8px}
+    .lt-prompt{color:#00e676;font-weight:700}.lt-cmd{color:#e2eeff}.lt-out{color:#8ba8cc}.lt-ok{color:#00e676}
+    .lt-progress{height:3px;background:#111e35;margin:0 18px 14px}
+    .lt-fill{height:100%;background:linear-gradient(90deg,#00e676,#4a9eff);width:0;transition:width .08s linear;border-radius:3px}
+    .loader-dots::after{content:'';animation:dotCycle 1.4s steps(4,end) infinite}
+    @keyframes dotCycle{0%{content:'.'}25%{content:'..'}50%{content:'...'}75%{content:'....'}}
+    .lt-cursor-blink{animation:cursorBlink .7s step-end infinite;color:#00e676}
+    @keyframes cursorBlink{50%{opacity:0}}
+  </style>
 
   <!-- ═══ PRELOAD ═══ -->
   <link rel="preload" as="image" href="./assests/me.jpg" />
@@ -76,7 +101,6 @@
   <!-- ═══ LUCIDE ICONS ═══ -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
-
   <!-- ═══ AOS: Animate On Scroll ═══ -->
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
@@ -84,8 +108,29 @@
   <!-- ═══ Chart.js ═══ -->
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
+  <!-- ═══ GSAP — best-in-class animation engine ═══ -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- ═══ tsParticles — neural network interactive background ═══ -->
+  <script defer src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+  <!-- ═══ vanilla-tilt — GPU-accelerated 3D card perspective ═══ -->
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+
+  <!-- ═══ CountUp.js — smooth animated number rolling ═══ -->
+  <script defer src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+
+  <!-- ═══ Splitting.js — char-level text animations ═══ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/splitting@1.0.6/dist/splitting.min.js"></script>
+
+  <!-- ═══ Lenis — buttery smooth scroll ═══ -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+
   <!-- ═══ Print CSS ═══ -->
-  <link rel="stylesheet" href="./styles.css" media="print" />
+  <link rel="stylesheet" href="./styles.css" media="print" onload="this.media='all'" />
 
   <!-- ═══ SCRIPTS ═══ -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
@@ -271,6 +316,9 @@
 
 <body>
 
+  <!-- tsParticles neural-net background -->
+  <div id="tsparticles-bg" aria-hidden="true"></div>
+
   <!-- HACKER BG -->
   <canvas id="matrix-bg" aria-hidden="true"></canvas>
   <div class="scanlines" aria-hidden="true"></div>
@@ -283,7 +331,7 @@
         <span class="lt-dot lt-red"></span>
         <span class="lt-dot lt-yellow"></span>
         <span class="lt-dot lt-green"></span>
-        <span class="lt-title mono">anshumaan@security-node:~</span>
+        <span class="lt-title mono">anshumaan@security-node:~ &nbsp;<span id="loaderClock" class="lt-clock"></span></span>
       </div>
       <div class="lt-body" id="loaderTerminal">
         <div class="lt-line"><span class="lt-prompt">$</span> <span class="lt-cmd">sudo init security-context --env=production</span></div>
@@ -499,9 +547,21 @@
       <meta itemprop="url"      content="https://www.devsecopswithanshu.com/" />
 
       <div class="hero-left">
-        <div class="hero-tag mono reveal">
+        <div class="hero-tag mono reveal" role="status" aria-live="polite">
           <span class="live-dot" aria-hidden="true"></span>
-          <span class="ht-slash">//</span> DevSecOps &nbsp;<span class="ht-div">·</span>&nbsp; K8s Security &nbsp;<span class="ht-div">·</span>&nbsp; SBOM &nbsp;<span class="ht-div">·</span>&nbsp; Supply Chain &nbsp;<span class="ht-div">·</span>&nbsp; <span class="ht-active">● active</span>
+          <span class="ht-slash">//</span>&nbsp;DevSecOps&nbsp;<span class="ht-div">·</span>&nbsp;K8s Security&nbsp;<span class="ht-div">·</span>&nbsp;SBOM&nbsp;<span class="ht-div">·</span>&nbsp;Supply Chain&nbsp;<span class="ht-div">·</span>&nbsp;GCP Security&nbsp;<span class="ht-div">·</span>&nbsp;<span class="ht-active">● available</span>
+        </div>
+        <!-- V14 Hero system status row -->
+        <div class="v14-hero-sysline mono reveal" aria-hidden="true">
+          <span class="v14-sysitem ok">kernel v4.3.1</span>
+          <span class="v14-syssep">/</span>
+          <span class="v14-sysitem ok">CKS·CKA·GCP</span>
+          <span class="v14-syssep">/</span>
+          <span class="v14-sysitem acc">350+ svcs</span>
+          <span class="v14-syssep">/</span>
+          <span class="v14-sysitem ok">0 incidents</span>
+          <span class="v14-syssep">/</span>
+          <span class="v14-sysitem dim">UTC+5:30 Bengaluru</span>
         </div>
 
         <div class="security-status-bar mono reveal" role="status" aria-label="Security system status">
@@ -517,7 +577,7 @@
         <div class="access-node reveal" aria-hidden="true"><span class="an-bracket">[</span><span class="an-status">ACCESS</span><span class="an-ok">GRANTED</span><span class="an-bracket">]</span><span class="an-sep">::</span><span class="an-node">security-node-BLR-01</span></div>
         <p class="hero-greeting mono reveal" aria-hidden="true">root@security ~ $</p>
         <h1 class="reveal" itemprop="name">
-          <span class="name-gradient glitch-text" data-text="Anshumaan Singh">Anshumaan Singh</span>
+          <span class="name-gradient glitch-text" data-text="Anshumaan Singh" data-splitting>Anshumaan Singh</span>
         </h1>
 
         <div class="hero-subtitle reveal" aria-live="polite">
@@ -563,6 +623,52 @@
           <div class="kpi-card" role="listitem">
             <div class="kpi-val v7-val mono"><span class="counter" data-target="2">0</span>+</div>
             <div class="kpi-lbl">Years in security</div>
+          </div>
+        </div>
+
+        <!-- GCP-STYLE SECURITY CONTROL PLANE DASHBOARD -->
+        <div class="cp-dashboard reveal" aria-label="Security control plane live status">
+          <div class="cpd-header">
+            <span class="cpd-status-dot cpd-ok" aria-hidden="true"></span>
+            <span class="cpd-title mono">Security Control Plane — All Systems Nominal</span>
+            <span class="cpd-updated mono muted">Updated: just now</span>
+          </div>
+          <div class="cpd-rows">
+            <div class="cpd-row">
+              <span class="cpd-icon" aria-hidden="true">🔒</span>
+              <span class="cpd-name">CI/CD Gates</span>
+              <div class="cpd-bar-wrap"><div class="cpd-bar" style="--p:100%"></div></div>
+              <span class="cpd-val mono">350+ active</span>
+              <span class="cpd-chip cpd-chip-ok">PASS</span>
+            </div>
+            <div class="cpd-row">
+              <span class="cpd-icon" aria-hidden="true">📦</span>
+              <span class="cpd-name">SBOM Coverage</span>
+              <div class="cpd-bar-wrap"><div class="cpd-bar" style="--p:100%"></div></div>
+              <span class="cpd-val mono">100%</span>
+              <span class="cpd-chip cpd-chip-ok">PASS</span>
+            </div>
+            <div class="cpd-row">
+              <span class="cpd-icon" aria-hidden="true">☸</span>
+              <span class="cpd-name">K8s CIS Benchmark</span>
+              <div class="cpd-bar-wrap"><div class="cpd-bar" style="--p:100%"></div></div>
+              <span class="cpd-val mono">100%</span>
+              <span class="cpd-chip cpd-chip-ok">PASS</span>
+            </div>
+            <div class="cpd-row">
+              <span class="cpd-icon" aria-hidden="true">🛡</span>
+              <span class="cpd-name">OWASP Top 10</span>
+              <div class="cpd-bar-wrap"><div class="cpd-bar" style="--p:93%"></div></div>
+              <span class="cpd-val mono">93%</span>
+              <span class="cpd-chip cpd-chip-blue">REVIEW</span>
+            </div>
+            <div class="cpd-row">
+              <span class="cpd-icon" aria-hidden="true">🔍</span>
+              <span class="cpd-name">Production Incidents</span>
+              <div class="cpd-bar-wrap"><div class="cpd-bar cpd-bar-zero" style="--p:2%"></div></div>
+              <span class="cpd-val mono">0</span>
+              <span class="cpd-chip cpd-chip-ok">CLEAR</span>
+            </div>
           </div>
         </div>
 
@@ -1514,6 +1620,70 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Two years. One team. One mission: make insecure releases structurally impossible across 350+ microservices.</p>
+
+      <!-- K8S WORKLOAD STATUS TABLE -->
+      <div class="k8s-status-table glass reveal" aria-label="Kubernetes workload security status">
+        <div class="k8s-table-header">
+          <div class="k8s-th-left">
+            <span class="k8s-logo" aria-hidden="true">☸</span>
+            <span class="k8s-title mono">Cluster Security Status — Production</span>
+          </div>
+          <span class="k8s-ns mono muted">namespace: zee-prod-*</span>
+        </div>
+        <div class="k8s-table-body" role="table">
+          <div class="k8s-row k8s-head" role="row">
+            <span role="columnheader">Workload</span>
+            <span role="columnheader">Type</span>
+            <span role="columnheader">Replicas</span>
+            <span role="columnheader">Image Policy</span>
+            <span role="columnheader">Last Scan</span>
+            <span role="columnheader">Status</span>
+          </div>
+          <div class="k8s-row" role="row">
+            <span class="mono k8s-name" role="cell">api-gateway</span>
+            <span class="mono muted" role="cell">Deployment</span>
+            <span class="mono" role="cell">3/3</span>
+            <span class="mono k8s-policy-ok" role="cell">✓ signed</span>
+            <span class="mono muted" role="cell">00:01 ago</span>
+            <span class="k8s-badge k8s-running" role="cell">Running</span>
+          </div>
+          <div class="k8s-row" role="row">
+            <span class="mono k8s-name" role="cell">auth-service</span>
+            <span class="mono muted" role="cell">Deployment</span>
+            <span class="mono" role="cell">5/5</span>
+            <span class="mono k8s-policy-ok" role="cell">✓ signed</span>
+            <span class="mono muted" role="cell">00:02 ago</span>
+            <span class="k8s-badge k8s-running" role="cell">Running</span>
+          </div>
+          <div class="k8s-row" role="row">
+            <span class="mono k8s-name" role="cell">sbom-validator</span>
+            <span class="mono muted" role="cell">CronJob</span>
+            <span class="mono" role="cell">1/1</span>
+            <span class="mono k8s-policy-ok" role="cell">✓ attested</span>
+            <span class="mono muted" role="cell">00:00 ago</span>
+            <span class="k8s-badge k8s-running" role="cell">Running</span>
+          </div>
+          <div class="k8s-row" role="row">
+            <span class="mono k8s-name" role="cell">falco-daemonset</span>
+            <span class="mono muted" role="cell">DaemonSet</span>
+            <span class="mono" role="cell">12/12</span>
+            <span class="mono k8s-policy-ok" role="cell">✓ signed</span>
+            <span class="mono muted" role="cell">00:01 ago</span>
+            <span class="k8s-badge k8s-running" role="cell">Running</span>
+          </div>
+          <div class="k8s-row" role="row">
+            <span class="mono k8s-name" role="cell">kyverno-admission</span>
+            <span class="mono muted" role="cell">Deployment</span>
+            <span class="mono" role="cell">2/2</span>
+            <span class="mono k8s-policy-ok" role="cell">✓ policy</span>
+            <span class="mono muted" role="cell">00:00 ago</span>
+            <span class="k8s-badge k8s-running" role="cell">Running</span>
+          </div>
+        </div>
+        <div class="k8s-table-foot mono muted">
+          All workloads enforce: no-root · read-only-fs · resource limits · digest-pinned images
+        </div>
+      </div>
 
       <div class="timeline">
         <div class="timeline-item glass reveal">
