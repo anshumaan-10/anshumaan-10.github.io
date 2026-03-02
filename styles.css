@@ -357,12 +357,12 @@ kbd { font-family:var(--font-mono); font-size:.75em; }
 .cmdk-dot { opacity:.4; }
 
 /* ââ MAIN ââ */
-main.container { padding-top:20px; }
+main.container { padding-top:10px; }
 
 /* ââ SECTION BASE ââ */
 .section {
-  border-radius:var(--r-xl); padding:clamp(28px,4vw,48px);
-  margin-bottom:clamp(20px,4vw,32px);
+  border-radius:var(--r-xl); padding:clamp(16px,2.5vw,32px);
+  margin-bottom:clamp(10px,1.5vw,16px);
   position:relative; overflow:hidden;
 }
 .section::before {
@@ -372,14 +372,14 @@ main.container { padding-top:20px; }
 }
 .section-label { display:flex; align-items:flex-start; gap:16px; margin-bottom:8px; }
 .sec-num  { color:var(--accent); font-size:.75rem; padding-top:6px; opacity:.7; }
-.section-rule { height:1px; background:linear-gradient(90deg,var(--accent-soft),transparent); margin:16px 0 28px; }
-.sec-sub  { color:var(--text-muted); margin-bottom:28px; }
+.section-rule { height:1px; background:linear-gradient(90deg,var(--accent-soft),transparent); margin:8px 0 16px; }
+.sec-sub  { color:var(--text-muted); margin-bottom:14px; }
 
 /* ââ HERO ââ */
 .hero {
-  display:grid; grid-template-columns:1fr 420px; gap:48px; align-items:start;
-  padding:clamp(48px,7vw,80px) clamp(28px,4vw,56px);
-  margin-bottom:clamp(20px,4vw,32px); border-radius:var(--r-xl);
+  display:grid; grid-template-columns:1fr 420px; gap:36px; align-items:start;
+  padding:clamp(28px,4vw,48px) clamp(20px,3vw,36px);
+  margin-bottom:clamp(10px,1.5vw,16px); border-radius:var(--r-xl);
   border:1px solid var(--border);
 }
 .hero-tag {
@@ -1889,12 +1889,12 @@ strong { color: var(--text) !important; font-weight: 600 !important; }
    HERO SECTION
    ââââââââââââââââââââââââââââââââââââââââââââââââ */
 .hero {
-  min-height: calc(100svh - var(--topbar-h));
+  min-height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
-  padding: clamp(40px, 6vw, 80px) 0;
+  gap: clamp(24px, 3.5vw, 52px);
+  align-items: start;
+  padding: clamp(24px, 4vw, 52px) 0;
 }
 @media (max-width: 860px) {
   .hero { grid-template-columns: 1fr; }
@@ -9897,7 +9897,7 @@ footer { background:rgba(4,10,22,.95) !important; border-top:1px solid rgba(74,1
 
 /* Hero section: elevate contrast + spacing */
 .hero.hero--fullpage {
-  min-height: 100svh;
+  min-height: auto;
   position: relative;
   overflow: hidden;
 }
@@ -10437,5 +10437,28 @@ html.lenis { height: auto; }
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+/* ════ GLOBAL SPACING COMPACT OVERRIDES ════ */
+/* Hero: never force full-viewport empty space */
+.hero--fullpage, .hero { min-height: auto !important; }
+
+/* Sections: tight consistent gaps */
+.section { margin-bottom: 12px !important; }
+main.container { padding-top: 8px !important; gap: 0 !important; }
+
+/* Section internals: reduce wasted whitespace */
+.section-rule, .sec-rule { margin: 6px 0 12px !important; }
+.sec-sub { margin-bottom: 10px !important; }
+.arch-card, .timeline-entry, .timeline-item { margin-bottom: 12px !important; }
+.section-dots { display: flex; }
+
+/* Reduce oversized gaps in hero grid */
+.hero { gap: 32px !important; padding: clamp(20px,3.5vw,44px) clamp(16px,2.5vw,32px) !important; }
+
+/* Cards: reduce internal padding on mobile */
+@media (max-width: 900px) {
+  .section { padding: 16px !important; }
+  .hero { padding: 20px 16px !important; gap: 20px !important; }
 }
 
