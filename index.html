@@ -73,6 +73,9 @@
   <link rel="me" href="https://medium.com/@anshumaansingh10jan" />
   <link rel="author" href="https://www.devsecopswithanshu.com/" />
 
+  <!-- ═══ LUCIDE ICONS ═══ -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+
   <!-- ═══ SCRIPTS ═══ -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
   <script defer src="./script.js"></script>
@@ -232,6 +235,24 @@
         "name": "How can I contact Anshumaan Singh?",
         "acceptedAnswer": { "@type": "Answer", "text": "You can reach Anshumaan Singh via email at anshumaansingh10jan@gmail.com, on LinkedIn at linkedin.com/in/anshumaan-singh-6b51b5239/, on GitHub at github.com/anshumaan-10, or through the contact form on this portfolio at devsecopswithanshu.com." }
       }
+    ]
+  }
+  </script>
+  <!-- ═══ JSON-LD: SoftwareSourceCode (GitHub Projects) ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Anshumaan Singh — Open Source Security Engineering Projects",
+    "description": "Kubernetes security labs, supply chain security, DevSecOps pipelines by Anshumaan Singh",
+    "url": "https://www.devsecopswithanshu.com/#projects",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"item":{"@type":"SoftwareSourceCode","name":"k8s-security-lab","codeRepository":"https://github.com/anshumaan-10/k8s-security-lab","programmingLanguage":"Shell","description":"10 real Kubernetes misconfigurations — exploited and documented (Hardening Kubernetes workshop)","author":{"@id":"https://www.devsecopswithanshu.com/#person"}}},
+      {"@type":"ListItem","position":2,"item":{"@type":"SoftwareSourceCode","name":"phoenix","codeRepository":"https://github.com/anshumaan-10/phoenix","programmingLanguage":"Python","description":"Intentionally vulnerable Flask app for Kubernetes security lab (RCE + host escape)","author":{"@id":"https://www.devsecopswithanshu.com/#person"}}},
+      {"@type":"ListItem","position":3,"item":{"@type":"SoftwareSourceCode","name":"k8s-lab-deployments","codeRepository":"https://github.com/anshumaan-10/k8s-lab-deployments","programmingLanguage":"Shell","description":"Kubernetes manifests + ArgoCD apps + cluster setup scripts for k8s-security-lab","author":{"@id":"https://www.devsecopswithanshu.com/#person"}}},
+      {"@type":"ListItem","position":4,"item":{"@type":"SoftwareSourceCode","name":"image-attestation-cosign","codeRepository":"https://github.com/anshumaan-10/image-attestation-cosign","programmingLanguage":"Dockerfile","description":"Image signing and attestation with Sigstore Cosign — supply chain integrity","author":{"@id":"https://www.devsecopswithanshu.com/#person"}}},
+      {"@type":"ListItem","position":5,"item":{"@type":"SoftwareSourceCode","name":"kyverno-policy-demo","codeRepository":"https://github.com/anshumaan-10/kyverno-policy-demo","description":"Policy-as-code with Kyverno — Kubernetes admission control and governance","author":{"@id":"https://www.devsecopswithanshu.com/#person"}}},
+      {"@type":"ListItem","position":6,"item":{"@type":"SoftwareSourceCode","name":"custom-secret-regex","codeRepository":"https://github.com/anshumaan-10/custom-secret-regex","description":"Custom secret detection regex patterns for security scanning pipelines","author":{"@id":"https://www.devsecopswithanshu.com/#person"}}}
     ]
   }
   </script>
@@ -420,6 +441,8 @@
     <a class="sdot" href="#experience"   data-s="experience"   title="Experience"   aria-label="Jump to experience"></a>
     <a class="sdot" href="#skills"       data-s="skills"       title="Skills"       aria-label="Jump to skills"></a>
     <a class="sdot" href="#certs"        data-s="certs"        title="Certs"        aria-label="Jump to certifications"></a>
+    <a class="sdot" href="#sbom-flow"    data-s="sbom-flow"    title="SBOM Flow"    aria-label="Jump to SBOM pipeline"></a>
+    <a class="sdot" href="#projects"     data-s="projects"     title="Projects"     aria-label="Jump to GitHub projects"></a>
     <a class="sdot" href="#writing"      data-s="writing"      title="Writing"      aria-label="Jump to writing"></a>
     <a class="sdot" href="#connect"      data-s="connect"      title="Connect"      aria-label="Jump to connect"></a>
   </nav>
@@ -655,6 +678,7 @@
         <h2 id="philosophy-h2"><span class="h2-prompt" aria-hidden="true">cat principles.md</span> Engineering Philosophy</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="sec-focus-bar"><strong>Why I'm focused here:</strong>&nbsp; Security engineering requires a philosophy — not just a checklist. These are the six rules I apply when designing every system or control.</div>
       <p class="sec-tagline reveal">Six principles tested under production pressure — not borrowed from a framework.</p>
       <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// principles</span><span class="sdc-line"></span></div>
         <div class="philosophy-grid stagger">
@@ -698,6 +722,7 @@
         <h2 id="build-h2"><span class="h2-prompt" aria-hidden="true">git log --all</span> What I Built</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="sec-focus-bar"><strong>Why I'm focused here:</strong>&nbsp; I build security into the platform, not onto it. These are the actual systems I engineered — CI/CD control planes, supply chains, K8s guardrails, AppSec responses.</div>
       <p class="mono muted reveal">Real pipelines. Real enforcement. Built for 350+ services — not a conference slide.</p>
       <div class="grid-2 stagger">
         <article class="card tilt-el reveal">
@@ -782,6 +807,7 @@
         <h2 id="architecture-h2">Reference Architecture</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="sec-focus-bar"><strong>Why I'm focused here:</strong>&nbsp; Architecture is where security either holds or breaks. I design systems where the pipeline itself enforces trust — from git commit to Kubernetes runtime, every hop is verified.</div>
       <p class="mono muted reveal">Source to prod. No untrusted artifact reaches runtime. Every transition has a gate and a receipt.</p>
 
       <div class="arch-hero glass reveal" id="archHeroCard">
@@ -855,6 +881,191 @@
       </div>
     </section>
 
+
+    <!-- ════ SBOM INTERACTIVE PIPELINE FLOW ════ -->
+    <section id="sbom-flow" class="section glass sbom-section" aria-label="SBOM and supply chain security pipeline" aria-labelledby="sbom-h2">
+      <header class="sec-header">
+        <span class="sec-num mono" aria-hidden="true">05b</span>
+        <h2 id="sbom-h2"><span class="h2-prompt" aria-hidden="true">cat sbom-pipeline.yaml</span> Supply Chain Pipeline</h2>
+      </header>
+      <div class="sec-rule" aria-hidden="true"></div>
+      <p class="mono muted reveal">How every artifact goes from <code>git push</code> to production. Every transition has a gate. Every gate leaves evidence.</p>
+
+      <!-- Interactive SVG Pipeline Flow -->
+      <div class="sbom-flow-wrap reveal" role="img" aria-label="SBOM supply chain security pipeline from commit to production">
+        <svg class="sbom-svg" viewBox="0 0 1080 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true">
+          <defs>
+            <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,255,65,.45)"/>
+            </marker>
+            <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,100,100,.6)"/>
+            </marker>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="2.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="rgba(0,255,65,.08)"/>
+              <stop offset="50%"  stop-color="rgba(0,255,65,.14)"/>
+              <stop offset="100%" stop-color="rgba(0,255,65,.06)"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Pipeline backbone -->
+          <rect x="20" y="130" width="1040" height="60" rx="4" fill="url(#pipeGrad)" stroke="rgba(0,255,65,.12)" stroke-width="1"/>
+
+          <!-- Flow arrows between stages -->
+          <line x1="111" y1="160" x2="161" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="237" y1="160" x2="287" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="363" y1="160" x2="413" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="489" y1="160" x2="539" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="615" y1="160" x2="665" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="741" y1="160" x2="791" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="867" y1="160" x2="917" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="993" y1="160" x2="1040" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5"/>
+
+          <!-- STAGE 1: CODE -->
+          <g class="sbom-stage" data-tip="Developer writes code. Pre-commit hooks run secret scanning and lint.">
+            <rect x="22" y="135" width="88" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,255,65,.28)" stroke-width="1.2"/>
+            <text x="66" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">CODE</text>
+            <text x="66" y="168" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="7" font-family="JetBrains Mono,monospace">pre-commit</text>
+            <text x="66" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">secret scan</text>
+          </g>
+
+          <!-- STAGE 2: COMMIT -->
+          <g class="sbom-stage" data-tip="Signed commit pushed. Branch protection + CODEOWNERS enforce PR-only merges.">
+            <rect x="163" y="135" width="73" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,255,65,.28)" stroke-width="1.2"/>
+            <text x="200" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">COMMIT</text>
+            <text x="200" y="168" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="7" font-family="JetBrains Mono,monospace">signed</text>
+            <text x="200" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">PR only</text>
+          </g>
+
+          <!-- STAGE 3: CI SCAN ← security gate -->
+          <g class="sbom-stage sbom-gate" data-tip="CI security gate: SAST, SCA, secrets scan, IaC scan. Fails block merge. Evidence retained.">
+            <rect x="289" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
+            <rect x="289" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
+            <text x="325" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 1</text>
+            <text x="325" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">CI SCAN</text>
+            <text x="325" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">SAST / SCA</text>
+            <text x="325" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Secrets / IaC</text>
+            <text x="325" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">evidence</text>
+          </g>
+
+          <!-- STAGE 4: BUILD -->
+          <g class="sbom-stage" data-tip="Deterministic build. Ephemeral runner. Output is a tagged container image.">
+            <rect x="415" y="135" width="73" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,255,65,.28)" stroke-width="1.2"/>
+            <text x="451" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">BUILD</text>
+            <text x="451" y="168" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="7" font-family="JetBrains Mono,monospace">immutable</text>
+            <text x="451" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">v1.0 tag</text>
+          </g>
+
+          <!-- STAGE 5: SBOM+SIGN ← security gate -->
+          <g class="sbom-stage sbom-gate" data-tip="SBOM generated with Syft. Image signed with Cosign/Sigstore. Digest recorded. Supply chain provenance attached.">
+            <rect x="541" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
+            <rect x="541" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
+            <text x="578" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 2</text>
+            <text x="578" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">SBOM</text>
+            <text x="578" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Syft generate</text>
+            <text x="578" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Cosign sign</text>
+            <text x="578" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">digest lock</text>
+          </g>
+
+          <!-- STAGE 6: IMAGE SCAN ← security gate -->
+          <g class="sbom-stage sbom-gate" data-tip="Container image scanned: Trivy + Prisma Cloud cross-validation. Policy threshold blocks on criticals.">
+            <rect x="667" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
+            <rect x="667" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
+            <text x="704" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 3</text>
+            <text x="704" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">IMG SCAN</text>
+            <text x="704" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Trivy</text>
+            <text x="704" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Prisma Cloud</text>
+            <text x="704" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">CVE gate</text>
+          </g>
+
+          <!-- STAGE 7: PROMOTE/DEPLOY ← security gate -->
+          <g class="sbom-stage sbom-gate" data-tip="Controlled promotion: Dev → UAT → Prod. QA approves. Only digest-verified images eligible. No rebuilds in prod.">
+            <rect x="793" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
+            <rect x="793" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
+            <text x="829" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 4</text>
+            <text x="829" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">PROMOTE</text>
+            <text x="829" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Dev→UAT→Prod</text>
+            <text x="829" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">QA approval</text>
+            <text x="829" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">digest verify</text>
+          </g>
+
+          <!-- STAGE 8: RUNTIME -->
+          <g class="sbom-stage" data-tip="Kubernetes runtime: admission control, RBAC, securityContext, network policies. DAST post-deploy. SIEM monitoring.">
+            <rect x="919" y="135" width="73" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,230,100,.35)" stroke-width="1.5" filter="url(#glow)"/>
+            <text x="955" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">RUNTIME</text>
+            <text x="955" y="168" text-anchor="middle" fill="rgba(0,255,65,.6)" font-size="7" font-family="JetBrains Mono,monospace">K8s ✓ DAST</text>
+            <text x="955" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">SIEM + RBAC</text>
+          </g>
+
+          <!-- Reject path: SCAN blocks → drops to bottom -->
+          <g opacity="0.65">
+            <line x1="325" y1="192" x2="325" y2="255" stroke="rgba(255,100,100,.5)" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arr-red)"/>
+            <rect x="282" y="256" width="86" height="26" rx="3" fill="rgba(40,0,0,.7)" stroke="rgba(255,100,100,.35)" stroke-width="1"/>
+            <text x="325" y="268" text-anchor="middle" fill="rgba(255,130,130,.8)" font-size="7.5" font-family="JetBrains Mono,monospace">✕ BLOCKED</text>
+            <text x="325" y="277" text-anchor="middle" fill="rgba(255,130,130,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">evidence retained</text>
+
+            <!-- also from gate 2 -->
+            <line x1="578" y1="192" x2="578" y2="255" stroke="rgba(255,100,100,.5)" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arr-red)"/>
+            <rect x="536" y="256" width="84" height="26" rx="3" fill="rgba(40,0,0,.7)" stroke="rgba(255,100,100,.35)" stroke-width="1"/>
+            <text x="578" y="268" text-anchor="middle" fill="rgba(255,130,130,.8)" font-size="7.5" font-family="JetBrains Mono,monospace">✕ BLOCKED</text>
+            <text x="578" y="277" text-anchor="middle" fill="rgba(255,130,130,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">CVE &gt; threshold</text>
+          </g>
+
+          <!-- Top labels -->
+          <text x="540" y="25" text-anchor="middle" fill="rgba(0,255,65,.35)" font-size="8" font-family="JetBrains Mono,monospace" letter-spacing="3">SUPPLY CHAIN INTEGRITY PIPELINE — ANSHUMAAN SINGH</text>
+          <text x="540" y="38" text-anchor="middle" fill="rgba(200,220,200,.3)" font-size="7" font-family="JetBrains Mono,monospace">⬡ = Security Gate · Every gate leaves evidence · No untrusted artifact reaches runtime</text>
+
+          <!-- Status bar: bottom -->
+          <text x="20" y="308" fill="rgba(0,255,65,.4)" font-size="7" font-family="JetBrains Mono,monospace">[STATUS: ACTIVE]</text>
+          <text x="180" y="308" fill="rgba(200,220,200,.3)" font-size="7" font-family="JetBrains Mono,monospace">4 Security Gates · SBOM enabled · Digest-locked promotions</text>
+          <text x="900" y="308" fill="rgba(0,255,65,.4)" font-size="7" font-family="JetBrains Mono,monospace">0 prod incidents</text>
+        </svg>
+      </div>
+
+      <!-- Stage details below SVG -->
+      <div class="sbom-stages-detail stagger">
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <h4>Source Governance</h4>
+          <p>Pre-commit hooks · Signed commits · PR-only merges · CODEOWNERS · Branch protection rules</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h4>CI Security Gates</h4>
+          <p>SAST · SCA · Secret scanning · IaC scan · Evidence retained per build · Deterministic pass/fail</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <h4>SBOM + Signing</h4>
+          <p>Syft generates SBOM · Cosign signs image · Digest locked · Supply chain provenance · Attestation attached</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h4>Controlled Promotions</h4>
+          <p>Build once → Dev → UAT → Prod · QA approval gates · Digest-only deployments · No rebuilds in production</p>
+        </div>
+        <div class="sbom-detail-card reveal">
+          <div class="sdc-icon" aria-hidden="true">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h4>Runtime Enforcement</h4>
+          <p>Kubernetes admission control · RBAC · securityContext · Network policies · DAST post-deploy · SIEM monitoring</p>
+        </div>
+      </div>
+    </section>
+
     <!-- CASE STUDIES -->
     <section id="case-studies" class="section glass case-studies-section" aria-label="Case studies" aria-labelledby="cases-h2">
       <header class="sec-header">
@@ -862,6 +1073,7 @@
         <h2 id="cases-h2"><span class="h2-prompt" aria-hidden="true">tail -f incidents.log</span> Case Studies</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
+      <div class="sec-focus-bar"><strong>Why I'm focused here:</strong>&nbsp; Real security engineers get called at 2&thinsp;am. These are the incidents I resolved — what I detected, how I responded, and what I shipped to prevent recurrence.</div>
       <p class="mono muted reveal">Not hypotheticals. Not labs. These happened — here’s what I did.</p>
       <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// incident reports</span><span class="sdc-line"></span></div>
         <div class="cases-grid stagger">
@@ -1165,362 +1377,209 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS — Real GitHub Repos from anshumaan-10 -->
     <section id="projects" class="section glass" aria-label="Engineering projects" aria-labelledby="projects-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">12</span>
-        <h2 id="projects-h2"><span class="h2-prompt" aria-hidden="true">ls -la ~/repos</span> Projects</h2>
+        <h2 id="projects-h2"><span class="h2-prompt" aria-hidden="true">ls -la ~/repos</span> Open Source Projects</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Code I wrote. Problems I solved. You can see the commits.</p>
-      <div class="grid-2 stagger">
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">▶</div>
-          <h3>Netflix Clone — Secure CI/CD from Scratch</h3>
-          <ul>
-            <li>CI/CD: SAST, SCA, secrets scanning, Trivy image scan, controlled deployment.</li>
-            <li>Slack notifications with build + commit metadata for full visibility.</li>
-            <li>Immutable image tags (v1.0) + evidence retention per pipeline run.</li>
-          </ul>
-          <div class="proj-tool-bar">
-            <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GitHub Actions" width="20" height="20" loading="lazy" title="GitHub Actions" />
-            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="20" height="20" loading="lazy" title="Docker" />
-            <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" width="20" height="20" loading="lazy" title="GitHub" />
-            <span class="ptool-lbl">Trivy</span>
-            <span class="ptool-lbl">SAST</span>
-            <span class="ptool-lbl">SCA</span>
-            <span class="ptool-lbl">Secrets Scan</span>
+      <p class="mono muted reveal">Real repositories. Real security engineering. Every repo has commits. Every problem is documented.</p>
+      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// github.com/anshumaan-10</span><span class="sdc-line"></span></div>
+
+      <!-- Featured projects grid -->
+      <div class="gh-projects-grid stagger">
+
+        <!-- k8s-security-lab -->
+        <article class="gh-card tilt-el reveal" data-lang="Shell" data-stars="0">
+          <div class="gh-card-head">
+            <div class="gh-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <h3 class="gh-repo-name">k8s-security-lab</h3>
+              <span class="gh-lang-badge">Shell</span>
+            </div>
+            <a class="gh-ext-link" href="https://github.com/anshumaan-10/k8s-security-lab" target="_blank" rel="noopener noreferrer" aria-label="View k8s-security-lab on GitHub">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
           </div>
-          <div class="card-footer-link">
-            <a href="https://github.com/anshumaan-10/netflix-clone" target="_blank" rel="noopener noreferrer" aria-label="View Netflix Clone project on GitHub">GitHub → View Repo ↗</a>
+          <p class="gh-desc">10 real Kubernetes misconfigurations — each exploited end-to-end and documented with a hardening guide. A hands-on security workshop covering RBAC escapes, privileged pod exploits, host namespace attacks, and more.</p>
+          <div class="gh-topics">
+            <span class="gh-topic">kubernetes-security</span>
+            <span class="gh-topic">misconfigurations</span>
+            <span class="gh-topic">hardening</span>
+            <span class="gh-topic">workshop</span>
+            <span class="gh-topic">CKS</span>
           </div>
-        </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">▶</div>
-          <h3>Kubernetes Security Validation Toolkit</h3>
-          <ul>
-            <li>kubeaudit + cluster checks for misconfiguration detection.</li>
-            <li>Baseline enforcement for risky workload patterns across namespaces.</li>
-            <li>Findings mapped to remediation playbooks for engineering teams.</li>
-          </ul>
-          <div class="proj-tool-bar">
-            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" width="20" height="20" loading="lazy" title="Kubernetes" />
-            <img src="https://cdn.simpleicons.org/helm/3970A8" alt="Helm" width="20" height="20" loading="lazy" title="Helm" />
-            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="20" height="20" loading="lazy" title="Docker" />
-            <span class="ptool-lbl">kubeaudit</span>
-            <span class="ptool-lbl">RBAC</span>
-            <span class="ptool-lbl">OPA</span>
-            <span class="ptool-lbl">NetworkPolicy</span>
-          </div>
-          <div class="card-footer-link">
-            <a href="https://github.com/anshumaan-10" target="_blank" rel="noopener noreferrer" aria-label="View Kubernetes Security Toolkit on GitHub">GitHub → View Profile ↗</a>
+          <div class="gh-meta">
+            <span class="gh-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12s3-8 9-8 9 8 9 8-3 8-9 8-9-8-9-8z"/></svg>
+              Exploit + Harden
+            </span>
+            <span class="gh-meta-item gh-featured">★ Featured</span>
           </div>
         </article>
+
+        <!-- phoenix -->
+        <article class="gh-card tilt-el reveal" data-lang="Python">
+          <div class="gh-card-head">
+            <div class="gh-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <div>
+              <h3 class="gh-repo-name">phoenix</h3>
+              <span class="gh-lang-badge">Python</span>
+            </div>
+            <a class="gh-ext-link" href="https://github.com/anshumaan-10/phoenix" target="_blank" rel="noopener noreferrer" aria-label="View phoenix on GitHub">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <p class="gh-desc">Intentionally vulnerable Flask application built for the Kubernetes security lab. Demonstrates RCE chains, container escape paths, and host namespace attacks — purpose-built to be exploited and studied.</p>
+          <div class="gh-topics">
+            <span class="gh-topic">flask</span>
+            <span class="gh-topic">vulnerable-app</span>
+            <span class="gh-topic">RCE</span>
+            <span class="gh-topic">container-escape</span>
+            <span class="gh-topic">host-escape</span>
+          </div>
+          <div class="gh-meta">
+            <span class="gh-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M3 12s3-8 9-8 9 8 9 8-3 8-9 8-9-8-9-8z"/></svg>
+              Vulnerability Lab
+            </span>
+            <span class="gh-meta-item gh-featured">★ Featured</span>
+          </div>
+        </article>
+
+        <!-- k8s-lab-deployments -->
+        <article class="gh-card tilt-el reveal" data-lang="Shell">
+          <div class="gh-card-head">
+            <div class="gh-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <div>
+              <h3 class="gh-repo-name">k8s-lab-deployments</h3>
+              <span class="gh-lang-badge">Shell</span>
+            </div>
+            <a class="gh-ext-link" href="https://github.com/anshumaan-10/k8s-lab-deployments" target="_blank" rel="noopener noreferrer" aria-label="View k8s-lab-deployments on GitHub">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <p class="gh-desc">Production-pattern Kubernetes manifests, ArgoCD GitOps app definitions, and cluster setup scripts powering the k8s-security-lab. Demonstrates real-world deployment patterns and GitOps workflows.</p>
+          <div class="gh-topics">
+            <span class="gh-topic">kubernetes</span>
+            <span class="gh-topic">argocd</span>
+            <span class="gh-topic">gitops</span>
+            <span class="gh-topic">manifests</span>
+          </div>
+          <div class="gh-meta">
+            <span class="gh-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              GitOps + K8s
+            </span>
+          </div>
+        </article>
+
+        <!-- image-attestation-cosign -->
+        <article class="gh-card tilt-el reveal" data-lang="Dockerfile">
+          <div class="gh-card-head">
+            <div class="gh-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <h3 class="gh-repo-name">image-attestation-cosign</h3>
+              <span class="gh-lang-badge">Dockerfile</span>
+            </div>
+            <a class="gh-ext-link" href="https://github.com/anshumaan-10/image-attestation-cosign" target="_blank" rel="noopener noreferrer" aria-label="View image-attestation-cosign on GitHub">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <p class="gh-desc">Container image signing and attestation using Sigstore Cosign. Demonstrates the full supply chain integrity flow — sign the image, attach SBOM, verify before deploy. No trusted image without a verified signature.</p>
+          <div class="gh-topics">
+            <span class="gh-topic">cosign</span>
+            <span class="gh-topic">sigstore</span>
+            <span class="gh-topic">supply-chain</span>
+            <span class="gh-topic">SBOM</span>
+          </div>
+          <div class="gh-meta">
+            <span class="gh-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Supply Chain Security
+            </span>
+            <span class="gh-meta-item gh-featured">★ Featured</span>
+          </div>
+        </article>
+
+        <!-- kyverno-policy-demo -->
+        <article class="gh-card tilt-el reveal" data-lang="YAML">
+          <div class="gh-card-head">
+            <div class="gh-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div>
+              <h3 class="gh-repo-name">kyverno-policy-demo</h3>
+              <span class="gh-lang-badge">YAML</span>
+            </div>
+            <a class="gh-ext-link" href="https://github.com/anshumaan-10/kyverno-policy-demo" target="_blank" rel="noopener noreferrer" aria-label="View kyverno-policy-demo on GitHub">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <p class="gh-desc">Policy-as-code with Kyverno for Kubernetes admission control. Demonstrates how to block privileged pods, enforce image registries, require labels, and auto-mutate workloads — governance without manual review.</p>
+          <div class="gh-topics">
+            <span class="gh-topic">kyverno</span>
+            <span class="gh-topic">policy-as-code</span>
+            <span class="gh-topic">admission-control</span>
+            <span class="gh-topic">OPA</span>
+          </div>
+          <div class="gh-meta">
+            <span class="gh-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Policy as Code
+            </span>
+          </div>
+        </article>
+
+        <!-- custom-secret-regex -->
+        <article class="gh-card tilt-el reveal" data-lang="Regex">
+          <div class="gh-card-head">
+            <div class="gh-icon-wrap" aria-hidden="true">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+            </div>
+            <div>
+              <h3 class="gh-repo-name">custom-secret-regex</h3>
+              <span class="gh-lang-badge">Regex</span>
+            </div>
+            <a class="gh-ext-link" href="https://github.com/anshumaan-10/custom-secret-regex" target="_blank" rel="noopener noreferrer" aria-label="View custom-secret-regex on GitHub">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+          <p class="gh-desc">Custom regex patterns for detecting org-specific secrets in CI/CD scanning pipelines. Handles Azure storage keys, internal API tokens, custom service credentials — beyond what default scanners catch.</p>
+          <div class="gh-topics">
+            <span class="gh-topic">secret-scanning</span>
+            <span class="gh-topic">regex</span>
+            <span class="gh-topic">CI/CD</span>
+            <span class="gh-topic">supply-chain</span>
+          </div>
+          <div class="gh-meta">
+            <span class="gh-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Secret Detection
+            </span>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="gh-cta reveal">
+        <a class="btn btn-outline" href="https://github.com/anshumaan-10?tab=repositories" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          View all 59 repositories on GitHub →
+        </a>
       </div>
     </section>
 
-    <!-- EXPLORER -->
-    <section id="explorer" class="section glass" aria-label="Future exploration" aria-labelledby="explorer-h2">
-      <header class="sec-header">
-        <span class="sec-num mono" aria-hidden="true">13</span>
-        <h2 id="explorer-h2">Explorer — What's Next</h2>
-      </header>
-      <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">What I’m actively pulling apart, rebuilding, and planning to ship next.</p>
-      <div class="grid-2 stagger">
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◉</div>
-          <h3>Secure Build Provenance</h3>
-          <ul>
-            <li>Extending provenance metadata to include environment and runner identity.</li>
-            <li>Attestation improvements for artifact traceability Dev→UAT→Prod.</li>
-          </ul>
-        </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◉</div>
-          <h3>Policy as Code Expansion</h3>
-          <ul>
-            <li>Strengthening policy gates for Kubernetes workload hardening at scale.</li>
-            <li>Registry path enforcement + digest allowlisting per environment.</li>
-          </ul>
-        </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◉</div>
-          <h3>Risk-based Security Gates</h3>
-          <ul>
-            <li>Reducing false positives by aligning severity with exploitability + EPSS.</li>
-            <li>Tracked risk acceptance with expiry-based policy exceptions.</li>
-          </ul>
-        </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">◉</div>
-          <h3>Security Metrics + KPIs</h3>
-          <ul>
-            <li>Gate pass rate, MTTR, recurrence tracking for secrets leakage.</li>
-            <li>Dashboards for release integrity and evidence coverage across teams.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section glass" aria-label="Technical skills" aria-labelledby="skills-h2">
-      <header class="sec-header">
-        <span class="sec-num mono" aria-hidden="true">14</span>
-        <h2 id="skills-h2"><span class="h2-prompt" aria-hidden="true">dpkg -l | grep security</span> Skills</h2>
-      </header>
-      <div class="sec-rule" aria-hidden="true"></div>
-      <p class="mono muted reveal">Tools I’ve shipped in production. Not a wish list.</p>
-      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// installed packages</span><span class="sdc-line"></span></div>
-      <div class="cmd-out mono reveal" aria-hidden="true"><span class="co-prompt">$</span> dpkg -l | grep security-tools | awk '{print $2, $3}' | sort<span class="co-verified">// 40+ packages &middot; all production-verified</span></div>
-      <div class="skills-grid stagger">
-        <div class="skill-group reveal">
-          <div class="sg-logo-bar">
-            <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GitHub Actions" width="22" height="22" loading="lazy" title="GitHub Actions" />
-            <img src="https://cdn.simpleicons.org/jenkins/D24939" alt="Jenkins" width="22" height="22" loading="lazy" title="Jenkins" />
-            <img src="https://cdn.simpleicons.org/github/FFFFFF" alt="GitHub" width="22" height="22" loading="lazy" title="GitHub" />
-            <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" width="22" height="22" loading="lazy" title="Git" />
-          </div>
-          <h3 class="sg-title">DevSecOps + CI/CD</h3>
-          <div class="skill-tags">
-            <span class="stag">GitHub Actions</span><span class="stag">Jenkins</span>
-            <span class="stag">Branch Protection</span><span class="stag">CODEOWNERS</span>
-            <span class="stag">Artifact Retention</span><span class="stag">Release Governance</span>
-          </div>
-          <div class="skill-bar-list">
-            <div class="skill-bar-item">
-              <span class="sb-label">Pipeline Security</span>
-              <div class="sb-track"><div class="sb-fill" data-pct="92" style="width:0%"></div></div>
-              <span class="sb-pct mono">92%</span>
-            </div>
-            <div class="skill-bar-item">
-              <span class="sb-label">Supply Chain</span>
-              <div class="sb-track"><div class="sb-fill" data-pct="88" style="width:0%"></div></div>
-              <span class="sb-pct mono">88%</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="sg-logo-bar">
-            <img src="https://cdn.simpleicons.org/owasp/FFFFFF" alt="OWASP" width="22" height="22" loading="lazy" title="OWASP" />
-            <img src="https://cdn.simpleicons.org/burpsuite/FF6633" alt="Burp Suite" width="22" height="22" loading="lazy" title="Burp Suite" />
-            <span class="tool-lbl">SAST</span>
-            <span class="tool-lbl">SCA</span>
-            <span class="tool-lbl">DAST</span>
-          </div>
-          <h3 class="sg-title">Application Security</h3>
-          <div class="skill-tags">
-            <span class="stag">Web Pentest</span><span class="stag">API Testing</span>
-            <span class="stag">Mobile Security</span><span class="stag">SAST</span>
-            <span class="stag">SCA</span><span class="stag">DAST (ZAP)</span>
-          </div>
-          <div class="skill-bar-list">
-            <div class="skill-bar-item">
-              <span class="sb-label">Penetration Testing</span>
-              <div class="sb-track"><div class="sb-fill" data-pct="85" style="width:0%"></div></div>
-              <span class="sb-pct mono">85%</span>
-            </div>
-            <div class="skill-bar-item">
-              <span class="sb-label">SAST / DAST</span>
-              <div class="sb-track"><div class="sb-fill" data-pct="90" style="width:0%"></div></div>
-              <span class="sb-pct mono">90%</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="sg-logo-bar">
-            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" width="22" height="22" loading="lazy" title="Kubernetes" />
-            <img src="https://cdn.simpleicons.org/helm/3970A8" alt="Helm" width="22" height="22" loading="lazy" title="Helm" />
-            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="22" height="22" loading="lazy" title="Docker" />
-            <span class="tool-lbl">kubeaudit</span>
-            <span class="tool-lbl">OPA</span>
-          </div>
-          <h3 class="sg-title">Kubernetes Security</h3>
-          <div class="skill-tags">
-            <span class="stag">RBAC</span><span class="stag">kubeaudit</span>
-            <span class="stag">Admission Control</span><span class="stag">NetworkPolicy</span>
-            <span class="stag">Namespace Isolation</span><span class="stag">SecurityContext</span>
-          </div>
-          <div class="skill-bar-list">
-            <div class="skill-bar-item">
-              <span class="sb-label">K8s Security Engineering</span>
-              <div class="sb-track"><div class="sb-fill" data-pct="91" style="width:0%"></div></div>
-              <span class="sb-pct mono">91%</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="sg-logo-bar">
-            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="GCP" width="22" height="22" loading="lazy" title="Google Cloud Platform" />
-            <img src="https://cdn.simpleicons.org/terraform/844FBA" alt="Terraform" width="22" height="22" loading="lazy" title="HashiCorp Terraform" />
-            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="22" height="22" loading="lazy" title="Docker" />
-            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="GKE" width="22" height="22" loading="lazy" title="GKE" />
-          </div>
-          <h3 class="sg-title">Cloud + Infrastructure</h3>
-          <div class="skill-tags">
-            <span class="stag">GCP Security</span><span class="stag">IAM</span>
-            <span class="stag">Terraform</span><span class="stag">IaC Scanning</span>
-            <span class="stag">Cloud Governance</span><span class="stag">CDN / Ingress</span>
-          </div>
-          <div class="skill-bar-list">
-            <div class="skill-bar-item">
-              <span class="sb-label">GCP Security</span>
-              <div class="sb-track"><div class="sb-fill" data-pct="87" style="width:0%"></div></div>
-              <span class="sb-pct mono">87%</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="sg-logo-bar">
-            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" width="22" height="22" loading="lazy" title="Docker" />
-            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes" width="22" height="22" loading="lazy" title="Kubernetes" />
-            <span class="tool-lbl">Trivy</span>
-            <span class="tool-lbl">Syft</span>
-            <span class="tool-lbl">Cosign</span>
-            <span class="tool-lbl">SBOM</span>
-          </div>
-          <h3 class="sg-title">Supply Chain Security</h3>
-          <div class="skill-tags">
-            <span class="stag">SBOM Generation</span><span class="stag">Digest Traceability</span>
-            <span class="stag">Trivy</span><span class="stag">Prisma twistcli</span>
-            <span class="stag">Immutable Versioning</span><span class="stag">Cosign</span>
-          </div>
-        </div>
-        <div class="skill-group reveal">
-          <div class="sg-logo-bar">
-            <img src="https://cdn.simpleicons.org/splunk/65A637" alt="Splunk" width="22" height="22" loading="lazy" title="Splunk" />
-            <span class="tool-lbl">SIEM</span>
-            <span class="tool-lbl">Falco</span>
-            <span class="tool-lbl">SOAR</span>
-            <span class="tool-lbl">CVSS</span>
-            <span class="tool-lbl">EPSS</span>
-          </div>
-          <h3 class="sg-title">Detection + Response</h3>
-          <div class="skill-tags">
-            <span class="stag">SIEM</span><span class="stag">Incident Response</span>
-            <span class="stag">Secret Scanning</span><span class="stag">Audit Trails</span>
-            <span class="stag">Risk Scoring</span><span class="stag">CVSS / EPSS</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certs" class="section glass" aria-label="Certifications" aria-labelledby="certs-h2">
-      <header class="sec-header">
-        <span class="sec-num mono" aria-hidden="true">15</span>
-        <h2 id="certs-h2"><span class="h2-prompt" aria-hidden="true">verify --clearance-level</span> Certifications</h2>
-      </header>
-      <div class="sec-rule" aria-hidden="true"></div>
-      <div class="clearance-strip reveal" aria-hidden="true"><span class="cs-label mono">// CLEARANCE_LEVEL</span><span class="cs-badges"><span class="cs-b">CKS</span><span class="cs-b">CKA</span><span class="cs-b">GCP-SEC</span><span class="cs-b">GCP-PCA</span><span class="cs-b">GCP-ACE</span><span class="cs-b">TF-ASC</span></span><span class="cs-status mono">CLEARANCE: GRANTED</span></div>
-      <p class="mono muted reveal">Six industry exams. All passed. Click any to verify.</p>
-      <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// verified credentials</span><span class="sdc-line"></span></div>
-      <div class="cert-grid stagger">
-        <a class="cert-card tilt-el reveal"
-           href="https://www.credly.com/badges/a220e713-9317-4d92-9258-eff6aba09da4/public_url"
-           target="_blank" rel="noopener noreferrer" aria-label="Verify CKS on Credly">
-          <div class="cert-logo-wrap"><img src="./assests/cks.jpg" alt="CKS badge" width="56" height="56" loading="lazy" /></div>
-          <div class="cert-info">
-            <p class="cert-title">CKS</p>
-            <p class="cert-sub mono">Certified Kubernetes Security Specialist</p>
-            <p class="cert-cta muted mono">Verify on Credly ↗</p>
-          </div>
-          <div class="cert-glow" aria-hidden="true"></div>
-        </a>
-        <a class="cert-card tilt-el reveal"
-           href="https://www.credly.com/badges/8b1083d2-d6ca-4fbf-a8a3-ab451139af95/public_url"
-           target="_blank" rel="noopener noreferrer" aria-label="Verify CKA on Credly">
-          <div class="cert-logo-wrap"><img src="./assests/cka.jpg" alt="CKA badge" width="56" height="56" loading="lazy" /></div>
-          <div class="cert-info">
-            <p class="cert-title">CKA</p>
-            <p class="cert-sub mono">Certified Kubernetes Administrator</p>
-            <p class="cert-cta muted mono">Verify on Credly ↗</p>
-          </div>
-          <div class="cert-glow" aria-hidden="true"></div>
-        </a>
-        <a class="cert-card tilt-el reveal"
-           href="https://www.credly.com/badges/fe76d723-7a9e-4aa0-88ef-22bcee2be217/public_url"
-           target="_blank" rel="noopener noreferrer" aria-label="Verify GCP Security Engineer on Credly">
-          <div class="cert-logo-wrap"><img src="./assests/gcp.jpg" alt="GCP Security badge" width="56" height="56" loading="lazy" /></div>
-          <div class="cert-info">
-            <p class="cert-title">GCP Security</p>
-            <p class="cert-sub mono">Professional Cloud Security Engineer</p>
-            <p class="cert-cta muted mono">Verify on Credly ↗</p>
-          </div>
-          <div class="cert-glow" aria-hidden="true"></div>
-        </a>
-        <a class="cert-card tilt-el reveal"
-           href="https://www.credly.com/badges/3f30d1e8-3ef5-4c45-83cb-aeb0d9247947/public_url"
-           target="_blank" rel="noopener noreferrer" aria-label="Verify GCP Cloud Architect on Credly">
-          <div class="cert-logo-wrap"><img src="./assests/gcp.jpg" alt="GCP PCA badge" width="56" height="56" loading="lazy" /></div>
-          <div class="cert-info">
-            <p class="cert-title">GCP PCA</p>
-            <p class="cert-sub mono">Professional Cloud Architect</p>
-            <p class="cert-cta muted mono">Verify on Credly ↗</p>
-          </div>
-          <div class="cert-glow" aria-hidden="true"></div>
-        </a>
-        <a class="cert-card tilt-el reveal"
-           href="https://www.credly.com/badges/862ad232-289a-4675-b883-ae8de8313baf/public_url"
-           target="_blank" rel="noopener noreferrer" aria-label="Verify Terraform Associate on Credly">
-          <div class="cert-logo-wrap"><img src="./assests/hashicorp.jpg" alt="Terraform badge" width="56" height="56" loading="lazy" /></div>
-          <div class="cert-info">
-            <p class="cert-title">Terraform</p>
-            <p class="cert-sub mono">Terraform Associate</p>
-            <p class="cert-cta muted mono">Verify on Credly ↗</p>
-          </div>
-          <div class="cert-glow" aria-hidden="true"></div>
-        </a>
-        <a class="cert-card tilt-el reveal"
-           href="https://www.credly.com/badges/b80d2f45-a0cd-47c3-9de4-c59d676b4ecc/public_url"
-           target="_blank" rel="noopener noreferrer" aria-label="Verify GCP Associate Cloud Engineer on Credly">
-          <div class="cert-logo-wrap"><img src="./assests/gcp.jpg" alt="GCP ACE badge" width="56" height="56" loading="lazy" /></div>
-          <div class="cert-info">
-            <p class="cert-title">GCP ACE</p>
-            <p class="cert-sub mono">Associate Cloud Engineer</p>
-            <p class="cert-cta muted mono">Verify on Credly ↗</p>
-          </div>
-          <div class="cert-glow" aria-hidden="true"></div>
-        </a>
-      </div>
-      <p class="hint reveal">
-        Google Cloud Skills Boost:
-        <a href="https://www.skills.google/public_profiles/a1969b11-107b-480a-99c1-60362ad409fc" target="_blank" rel="noopener noreferrer">View Profile ↗</a>
-      </p>
-    </section>
-
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements" class="section glass" aria-label="Achievements" aria-labelledby="ach-h2">
-      <header class="sec-header">
-        <span class="sec-num mono" aria-hidden="true">16</span>
-        <h2 id="ach-h2"><span class="h2-prompt" aria-hidden="true">grep -r "WIN" ./career/</span> Achievements</h2>
-      </header>
-      <div class="sec-rule" aria-hidden="true"></div>
-      <div class="grid-2 stagger">
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">★</div>
-          <h3>Recognition &amp; Honours</h3>
-          <ul>
-            <li><strong>Promoted to IC-2</strong> with Top Performance Rating <strong>5-A</strong> — FY 2024–25.</li>
-            <li><strong>ZeeOlympics Best Performer Award</strong> — FY 2023–24 <em>and</em> FY 2024–25 (back-to-back winner).</li>
-            <li><strong>Winner</strong> — GitHub Tech After Dark Security Quiz.</li>
-            <li>Multiple Google Cloud Skills Boost achievements across security and architecture tracks.</li>
-            <li>221 Medium followers · 700+ claps across 10+ published security engineering articles.</li>
-          </ul>
-        </article>
-        <article class="card tilt-el reveal">
-          <div class="card-icon" aria-hidden="true">★</div>
-          <h3>Engineering Outcomes</h3>
-          <ul>
-            <li>Security enforcement framework across 350+ microservices — code → pipeline → registry → runtime.</li>
-            <li><strong>100% CIS Kubernetes Benchmark (v1.5.1)</strong> compliance across production clusters.</li>
-            <li><strong>93% OWASP Top 10 (2022)</strong> coverage across application security scope.</li>
-            <li>Zero production downtime across all secret rotation and incident response events.</li>
-            <li>Built Golden Image pipeline for CIS-compliant Linux images with automated OS hardening.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+</section>
 
     <!-- WRITING & PUBLICATIONS -->
     <section id="writing" class="section glass" aria-label="Published writing" aria-labelledby="writing-h2">

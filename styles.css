@@ -7307,3 +7307,431 @@ a, button { cursor: none !important; }
   [data-theme='dark'] h2 { letter-spacing: -.02em !important; }
   [data-theme='dark'] .hero-lead { font-size: .95rem !important; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   V9 SYSTEM — World-class layout: cursor, bigger container,
+   GitHub project cards, SBOM flow diagram, icon system
+   ══════════════════════════════════════════════════════════ */
+
+/* ── CURSOR V9: transform-only, no left/top ── */
+.cursor-dot,
+.cursor-ring {
+  position: fixed !important;
+  top:  0 !important;
+  left: 0 !important;
+  pointer-events: none !important;
+  z-index: 99999 !important;
+  border-radius: 50% !important;
+  will-change: transform !important;
+  transition: width .15s ease, height .15s ease,
+              border-color .15s ease, background .15s ease !important;
+}
+.cursor-dot {
+  width:  5px !important;
+  height: 5px !important;
+  background: #00ff41 !important;
+  box-shadow: 0 0 6px #00ff41, 0 0 12px rgba(0,255,65,.4) !important;
+}
+.cursor-ring {
+  width:  26px !important;
+  height: 26px !important;
+  border: 1.5px solid rgba(0,255,65,.35) !important;
+  background: transparent !important;
+}
+body.hovering .cursor-ring {
+  border-color: rgba(0,255,65,.6) !important;
+}
+
+/* ── BIGGER CONTAINER: max 1440px ── */
+[data-theme='dark'] .container {
+  max-width: 1400px !important;
+  padding-left: clamp(20px, 5vw, 72px) !important;
+  padding-right: clamp(20px, 5vw, 72px) !important;
+}
+
+/* ── BIGGER SECTIONS: more breathing room ── */
+[data-theme='dark'] .section {
+  padding: clamp(56px, 8vw, 96px) clamp(28px, 5vw, 64px) !important;
+  margin-bottom: 28px !important;
+}
+
+/* ── BIGGER HEADINGS ── */
+[data-theme='dark'] h1 {
+  font-size: clamp(2.8rem, 7vw, 6rem) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.03em !important;
+}
+[data-theme='dark'] h2 {
+  font-size: clamp(1.7rem, 3.5vw, 2.6rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -.025em !important;
+}
+[data-theme='dark'] h3 {
+  font-size: clamp(1.05rem, 2vw, 1.4rem) !important;
+  font-weight: 600 !important;
+}
+[data-theme='dark'] h4 {
+  font-size: clamp(.92rem, 1.5vw, 1.1rem) !important;
+  font-weight: 600 !important;
+}
+
+/* ── HERO: taller, more impact ── */
+[data-theme='dark'] .hero {
+  min-height: 100dvh !important;
+  padding-top: clamp(96px, 14vw, 140px) !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: clamp(40px, 6vw, 96px) !important;
+  align-items: center !important;
+}
+@media (max-width: 900px) {
+  [data-theme='dark'] .hero {
+    grid-template-columns: 1fr !important;
+    padding-top: 100px !important;
+    min-height: auto !important;
+  }
+}
+
+/* ── CARD GRID: 3-column then 2 ── */
+[data-theme='dark'] .grid-2 {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)) !important;
+  gap: clamp(16px, 3vw, 28px) !important;
+}
+
+/* ── CARDS: bigger padding, bigger corner radius ── */
+[data-theme='dark'] .card,
+[data-theme='dark'] .phil-card,
+[data-theme='dark'] .case-card,
+[data-theme='dark'] .edu-card {
+  padding: clamp(24px, 4vw, 36px) !important;
+  border-radius: 8px !important;
+}
+
+/* ── SEC-HEADER: bigger ── */
+[data-theme='dark'] .sec-header h2 {
+  margin-bottom: .35em !important;
+}
+[data-theme='dark'] .sec-num {
+  font-size: .68rem !important;
+  letter-spacing: .12em !important;
+}
+
+/* ════════════════════════════════════════════════
+   GITHUB PROJECT CARDS (gh-card)
+   ════════════════════════════════════════════════ */
+[data-theme='dark'] .gh-projects-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)) !important;
+  gap: 20px !important;
+  margin-top: 32px !important;
+}
+
+[data-theme='dark'] .gh-card {
+  background: rgba(8,18,10,.82) !important;
+  border: 1px solid rgba(0,200,60,.1) !important;
+  border-radius: 8px !important;
+  padding: 22px 22px 18px !important;
+  transition: border-color .2s, box-shadow .2s, transform .25s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+[data-theme='dark'] .gh-card::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0; left: 0; right: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(0,255,65,.3), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity .2s !important;
+}
+[data-theme='dark'] .gh-card:hover {
+  border-color: rgba(0,255,65,.25) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4), 0 0 0 1px rgba(0,255,65,.08) !important;
+}
+[data-theme='dark'] .gh-card:hover::before {
+  opacity: 1 !important;
+}
+
+/* Card header */
+[data-theme='dark'] .gh-card-head {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+[data-theme='dark'] .gh-icon-wrap {
+  flex-shrink: 0 !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(0,255,65,.06) !important;
+  border: 1px solid rgba(0,255,65,.12) !important;
+  border-radius: 6px !important;
+  color: rgba(0,255,65,.6) !important;
+}
+[data-theme='dark'] .gh-card-head > div:nth-child(2) {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+[data-theme='dark'] .gh-repo-name {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: .88rem !important;
+  font-weight: 600 !important;
+  color: #eef5ee !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  margin: 0 0 4px !important;
+}
+[data-theme='dark'] .gh-lang-badge {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: .62rem !important;
+  color: rgba(0,255,65,.5) !important;
+  background: rgba(0,255,65,.06) !important;
+  border: 1px solid rgba(0,255,65,.12) !important;
+  border-radius: 3px !important;
+  padding: 1px 6px !important;
+}
+[data-theme='dark'] .gh-ext-link {
+  flex-shrink: 0 !important;
+  color: rgba(0,255,65,.35) !important;
+  transition: color .15s !important;
+  margin-top: 2px !important;
+}
+[data-theme='dark'] .gh-ext-link:hover { color: #00ff41 !important; }
+
+/* Description */
+[data-theme='dark'] .gh-desc {
+  font-size: .845rem !important;
+  color: #b8ccb8 !important;
+  line-height: 1.65 !important;
+  flex: 1 !important;
+  margin: 0 !important;
+}
+
+/* Topics row */
+[data-theme='dark'] .gh-topics {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+[data-theme='dark'] .gh-topic {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: .61rem !important;
+  color: rgba(0,200,80,.65) !important;
+  background: rgba(0,200,80,.05) !important;
+  border: 1px solid rgba(0,200,80,.12) !important;
+  border-radius: 20px !important;
+  padding: 2px 8px !important;
+}
+
+/* Meta footer */
+[data-theme='dark'] .gh-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-top: 10px !important;
+  border-top: 1px solid rgba(0,200,60,.08) !important;
+}
+[data-theme='dark'] .gh-meta-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: .67rem !important;
+  color: rgba(180,200,180,.55) !important;
+}
+[data-theme='dark'] .gh-meta-item svg { flex-shrink: 0 !important; color: rgba(0,255,65,.35) !important; }
+[data-theme='dark'] .gh-meta-item.gh-featured {
+  color: rgba(0,255,65,.55) !important;
+  margin-left: auto !important;
+}
+
+/* CTA */
+[data-theme='dark'] .gh-cta {
+  margin-top: 32px !important;
+  text-align: center !important;
+}
+
+/* ════════════════════════════════════════════════
+   SBOM INTERACTIVE PIPELINE SECTION
+   ════════════════════════════════════════════════ */
+[data-theme='dark'] .sbom-section {
+  overflow: hidden !important;
+}
+
+[data-theme='dark'] .sbom-flow-wrap {
+  margin: 32px 0 !important;
+  border: 1px solid rgba(0,200,60,.1) !important;
+  border-radius: 8px !important;
+  background: rgba(4,12,6,.7) !important;
+  overflow-x: auto !important;
+  padding: 24px 16px !important;
+  cursor: default !important;
+}
+
+[data-theme='dark'] .sbom-svg {
+  width: 100% !important;
+  min-width: 680px !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Stage hover: glow effect */
+[data-theme='dark'] .sbom-stage rect {
+  transition: stroke .2s, filter .2s !important;
+}
+[data-theme='dark'] .sbom-stage:hover rect {
+  stroke: rgba(0,255,65,.7) !important;
+  filter: drop-shadow(0 0 6px rgba(0,255,65,.25)) !important;
+}
+
+/* Gates: pulsing top accent */
+@keyframes gate-pulse {
+  0%, 100% { opacity: .5 }
+  50% { opacity: 1 }
+}
+[data-theme='dark'] .sbom-gate rect:first-child {
+  animation: gate-pulse 2.5s ease-in-out infinite !important;
+}
+
+/* Tooltip on hover (via JS title) */
+[data-theme='dark'] .sbom-stage { cursor: help !important; }
+
+/* Detail cards below SVG */
+[data-theme='dark'] .sbom-stages-detail {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)) !important;
+  gap: 14px !important;
+  margin-top: 24px !important;
+}
+
+[data-theme='dark'] .sbom-detail-card {
+  background: rgba(8,18,10,.78) !important;
+  border: 1px solid rgba(0,200,60,.1) !important;
+  border-radius: 6px !important;
+  padding: 18px 16px !important;
+  transition: border-color .2s !important;
+}
+[data-theme='dark'] .sbom-detail-card:hover {
+  border-color: rgba(0,255,65,.22) !important;
+}
+[data-theme='dark'] .sbom-detail-card .sdc-icon {
+  color: rgba(0,255,65,.55) !important;
+  margin-bottom: 10px !important;
+}
+[data-theme='dark'] .sbom-detail-card h4 {
+  font-size: .82rem !important;
+  font-weight: 600 !important;
+  color: #d8ecd8 !important;
+  margin: 0 0 6px !important;
+}
+[data-theme='dark'] .sbom-detail-card p {
+  font-size: .78rem !important;
+  color: #9ab29a !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  letter-spacing: 0 !important;
+}
+
+/* ── SECTION FOCUS CALLOUT: what each section is about ── */
+[data-theme='dark'] .sec-focus-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  background: rgba(0,255,65,.04) !important;
+  border: 1px solid rgba(0,255,65,.1) !important;
+  border-left: 3px solid rgba(0,255,65,.5) !important;
+  border-radius: 0 6px 6px 0 !important;
+  padding: 10px 16px !important;
+  margin-bottom: 28px !important;
+  font-size: .78rem !important;
+  color: #9ab89a !important;
+  font-family: 'JetBrains Mono', monospace !important;
+}
+[data-theme='dark'] .sec-focus-bar strong {
+  color: rgba(0,255,65,.7) !important;
+}
+
+/* ── MOBILE RESPONSIVE: keep readable on phones ── */
+@media (max-width: 768px) {
+  [data-theme='dark'] .gh-projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+  [data-theme='dark'] .sbom-stages-detail {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  [data-theme='dark'] .sbom-flow-wrap {
+    padding: 12px 8px !important;
+  }
+}
+@media (max-width: 480px) {
+  [data-theme='dark'] .sbom-stages-detail {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── TOPBAR: slightly taller for bigger feel ── */
+[data-theme='dark'] .topbar {
+  min-height: 66px !important;
+}
+
+/* ── NAV-LINK: bigger hit area ── */
+[data-theme='dark'] .nav-link {
+  padding: 6px 10px !important;
+  font-size: .82rem !important;
+}
+
+/* ── KPI GRID: bigger numbers ── */
+[data-theme='dark'] .v7-val {
+  font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+}
+[data-theme='dark'] .kpi-lbl {
+  font-size: .68rem !important;
+  letter-spacing: .06em !important;
+}
+
+/* ── IMPACT BANNER: more prominent ── */
+[data-theme='dark'] .impact-num {
+  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+}
+
+/* ── PHILOSOPHY GRID: 3-col on wide ── */
+[data-theme='dark'] .philosophy-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)) !important;
+  gap: 20px !important;
+}
+
+/* ── TIMELINE: wider content area ── */
+[data-theme='dark'] .timeline-item {
+  border-radius: 8px !important;
+  padding: clamp(24px,5vw,40px) !important;
+}
+
+/* ── SECTION NUMBERS: slightly bigger ── */
+[data-theme='dark'] .sec-num {
+  font-size: .7rem !important;
+}
+
+/* ── CODE / MONO: readable size ── */
+[data-theme='dark'] code { font-size: .83em !important; }
+
+/* ── ANCHOR DEEP-LINK OFFSET (so topbar doesn't cover) ── */
+[data-theme='dark'] section[id] {
+  scroll-margin-top: 80px !important;
+}
+
+/* ── reduce browser cursor fighting on elements ── */
+[data-theme='dark'] a, [data-theme='dark'] button, [data-theme='dark'] [role=button] {
+  cursor: none !important;
+}
+
+/* ── SBOM section in nav dots ── */
+[data-theme='dark'] .sdot[data-s="sbom-flow"] { display: block !important; }

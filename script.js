@@ -214,29 +214,8 @@ drawerClose?.addEventListener("click", closeDrawer);
 $$(".mnav").forEach(l => l.addEventListener("click", closeDrawer));
 drawer?.addEventListener("click", e => { if (e.target === drawer) closeDrawer(); });
 
-/* ── CUSTOM CURSOR ── */
-const cursorDot  = byId("cursorDot");
-const cursorRing = byId("cursorRing");
-let mx = 0, my = 0, rx = 0, ry = 0;
-
-if (cursorDot && cursorRing && window.matchMedia("(pointer:fine)").matches) {
-  document.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; });
-  document.addEventListener("mousedown", () => { cursorDot.style.transform = "translate(-50%,-50%) scale(0.6)"; });
-  document.addEventListener("mouseup",   () => { cursorDot.style.transform = "translate(-50%,-50%)"; });
-
-  $$("a, button, [role=button], .card, .cert-card, .connect-card, .proj-card").forEach(el => {
-    el.addEventListener("mouseenter", () => document.body.classList.add("hovering"));
-    el.addEventListener("mouseleave", () => document.body.classList.remove("hovering"));
-  });
-
-  (function rafCursor() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    cursorDot.style.left  = mx + "px"; cursorDot.style.top  = my + "px";
-    cursorRing.style.left = rx + "px"; cursorRing.style.top = ry + "px";
-    requestAnimationFrame(rafCursor);
-  })();
-}
+/* ── CUSTOM CURSOR — single unified implementation below (V9) ── */
+/* old left/top cursor removed — V9 uses transform exclusively */
 
 /* ── TYPED EFFECT ── */
 (function typedEffect() {
@@ -875,38 +854,64 @@ onScroll();
    HACKER PORTFOLIO V7 — ENHANCED JS
    ───────────────────────────────────────────────────── */
 
-/* ── 1. CURSOR V7: bigger glow on hover ── */
-(function initCursorV7() {
+/* ── CURSOR V9: single RAF loop, transform-only, no left/top conflict ── */
+(function initCursorV9() {
   const dot  = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
-  if (!dot || !ring) return;
+  if (!dot || !ring || !window.matchMedia('(pointer:fine)').matches) return;
 
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  // Hide native cursor
+  document.documentElement.style.cursor = 'none';
+
+  let mx = window.innerWidth / 2;
+  let my = window.innerHeight / 2;
+  let rx = mx, ry = my;
+  let isDown = false, isHover = false;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+  document.addEventListener('mousedown', () => {
+    isDown = true;
+    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%) scale(0.55)`;
+  });
+  document.addEventListener('mouseup', () => { isDown = false; });
+
+  // Hover detection — include all interactive elements
+  const hoverSel = 'a, button, [role=button], .card, .cert-card, .connect-card, .proj-card, .phil-card, .case-card, .edu-card, details, summary, .tilt-el, .nav-link, .mnav, .sdot, .tech-badge, .tag, .stag';
+  document.querySelectorAll(hoverSel).forEach(el => {
+    el.addEventListener('mouseenter', () => { isHover = true; document.body.classList.add('hovering'); });
+    el.addEventListener('mouseleave', () => { isHover = false; document.body.classList.remove('hovering'); });
+  });
 
   function tick() {
-    rx += (mx - rx) * 0.14;
-    ry += (my - ry) * 0.14;
-    dot.style.transform  = `translate(${mx - 2.5}px,${my - 2.5}px)`;
-    ring.style.transform = `translate(${rx - 13}px,${ry - 13}px)`;
+    rx += (mx - rx) * 0.13;
+    ry += (my - ry) * 0.13;
+
+    if (!isDown) {
+      dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%) scale(1)`;
+    }
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+
+    if (isHover) {
+      ring.style.width        = '46px';
+      ring.style.height       = '46px';
+      ring.style.borderColor  = 'rgba(0,255,65,.55)';
+      ring.style.background   = 'rgba(0,255,65,.04)';
+      dot.style.background    = '#00ff41';
+      dot.style.width         = '7px';
+      dot.style.height        = '7px';
+    } else {
+      ring.style.width        = '26px';
+      ring.style.height       = '26px';
+      ring.style.borderColor  = 'rgba(0,255,65,.35)';
+      ring.style.background   = 'transparent';
+      dot.style.background    = '#00ff41';
+      dot.style.width         = '5px';
+      dot.style.height        = '5px';
+    }
+
     requestAnimationFrame(tick);
   }
   tick();
-
-  document.querySelectorAll('a,button,details').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width  = '40px';
-      ring.style.height = '40px';
-      ring.style.borderColor = 'rgba(0,255,65,.5)';
-      ring.style.margin = '-7px';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width  = '';
-      ring.style.height = '';
-      ring.style.borderColor = '';
-      ring.style.margin = '';
-    });
-  });
 })();
 
 /* ── 2. SCROLL REVEAL V7: stagger by index ── */
