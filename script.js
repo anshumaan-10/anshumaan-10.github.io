@@ -2140,8 +2140,15 @@ onScroll();
         if (t) { t.textContent = 'Email copied to clipboard'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
       } catch(_) {
         // fallback: show email so they can manually copy
-        btn        btn        btn        btn        btn        btn        btn       // Animate the qc-terminal on scroll into view
-  const qc  const qc  const qc  const qc  const qc  const qc  const qc  const qnst io = new IntersectionObserver(entries => {
+        btn.textContent = 'anshumaansingh10jan@gmail.com';
+      }
+    });
+  });
+
+  // Animate the qc-terminal on scroll into view
+  const qcTerm = document.querySelector('.qc-terminal');
+  if (qcTerm) {
+    const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           qcTerm.style.boxShadow = '0 0 60px rgba(0,255,65,.12), inset 0 1px 0 rgba(0,255,65,.15)';
@@ -2157,9 +2164,10 @@ onScroll();
 (function extendCursorTargets() {
   const ring = document.getElementById('cursorRing');
   if (!ring) return;
-  document.querySelectorAll('.qc-email-btn, .qc-copy-btn, .con  document.querySelectorAll('.qc-email-btn, .qventListener('mouseenter', () => ring.classList.add('expand'));
-      el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
-    });
+  document.querySelectorAll('.qc-email-btn, .qc-copy-btn, .connect-link').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('expand'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+  });
 })();
 
 
