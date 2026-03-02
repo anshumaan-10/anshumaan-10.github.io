@@ -1838,3 +1838,271 @@ onScroll();
     setTimeout(() => t.classList.remove('show'), 3000);
   }, 2800);
 })();
+
+
+/* ══ V13 JS ══ */
+
+// ── Custom Cursor ─────────────────────────────────────────────────────────
+(function initCursor() {
+  const ring = document.getElementById('cursorRing');
+  const dot  = document.getElementById('cursorDot');
+  if (!ring || !dot) return;
+  if (window.matchMedia('(pointer: coarse)').matches) return; // touch devices
+
+  let rx = 0, ry = 0, mx = 0, my = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  }, { passive: true });
+
+  (function animRing() {
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animRing);
+  })();
+
+  document.addEventListener('mouseenter', () => {
+    ring.style.opacity = '1'; dot.style.opacity = '1';
+  });
+  document.addEventListener('mouseleave', () => {
+    ring.style.opacity = '0'; dot.style.opacity = '0';
+  });
+
+  document.addEventListener('mousedown', () => ring.classList.add('click'));
+  document.addEventListener('mouseup',   () => ring.classList.remove('click'));
+
+  document.querySelectorAll('a, button, [role="button"], .tilt-el, .cmd-item, .contact-chip')
+    .forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('expand'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+    });
+})();
+
+// ── CVE Ticker duplicate content for seamless loop ───────────────────────
+(function initTicker() {
+  const track = document.getElementById('cveTrack');
+  if (!track) return;
+  // Duplicate content for infinite scroll illusion
+  track.innerHTML += track.innerHTML;
+})();
+
+// ── Pipeline Flow Visualizer ──────────────────────────────────────────────
+(function initPipelineViz() {
+  const runBtn   = document.getElementById('pvRunBtn');
+  const resetBtn = document.getElementById('pvResetBtn');
+  const logBody  = document.getElementById('pvLogBody');
+  const statusEl = document.getElementById('pvStatus');
+  const stages   = document.querySelectorAll('.pv-stage');
+  const arrows   = document.querySelectorAll('.pv-arrow');
+  if (!runBtn || !stages.length) return;
+
+  const STAGE_DATA = [
+    { label: 'git push',   dur: 600,  logs: ['$ git push origin feature/patch-131', '↳ Webhook fired → GitHub Actions triggered', '↳ Workflow: security-pipeline.yml'] },
+    { label: 'SAST/SCA',   dur: 1100, logs: ['[SAST] Semgrep: scanning 847 files…', '[SCA]  Snyk: resolving 214 deps…', '✓ SAST: 0 high | 3 info', '✓ SCA:  0 critical | 2 low (accepted, EPSS < 0.01)'] },
+    { label: 'Build',      dur: 800,  logs: ['[BUILD] docker build --no-cache …', '↳ Stage 1/3: builder', '↳ Stage 2/3: distroless base', '↳ Stage 3/3: final (12.4MB)', '✓ Image: sha256:3a8f9c2e…'] },
+    { label: 'Image Scan', dur: 1200, logs: ['[SCAN] Trivy: trivy image --exit-code 1 --severity CRITICAL…', '[SCAN] Prisma Cloud: twistcli images scan…', '↳ Trivy:  CRITICAL 0 | HIGH 0 | MED 2', '↳ Prisma: CRITICAL 0', '✓ SBOM generated → sbom-sha256:3a8f.json', '✓ Attestation attached'] },
+    { label: 'Sign',       dur: 700,  logs: ['[SIGN] cosign sign --yes …', '↳ OIDC token: github-actions@github.com', '↳ Rekor transparency log: entry #98,451,203', '✓ Image signature verified'] },
+    { label: 'Promote',    dur: 900,  logs: ['[PROMOTE] Digest promoted to uat-registry.gcr.io…', '[KYVERNO] Policy check: image-sign-policy → PASS', '[KYVERNO] Policy check: sbom-present → PASS', '[APPROVAL] Logged: anshumaan@zee.com at 00:00:05', '✓ Image available for deployment'] },
+    { label: 'K8s Deploy', dur: 1000, logs: ['[DEPLOY] kubectl set image deployment/api api=uat-registry…/api@sha256:3a8f…', '↳ RollingUpdate: maxUnavailable 0', '↳ Readiness probe: /healthz → 200 OK', '↳ DAST triggered: OWASP ZAP passive scan', '✓ Deployment: COMPLETE', '✓ All gates passed · Evidence retained'] },
+  ];
+
+  let running = false;
+
+  function clearStages() {
+    stages.forEach(s => s.classList.remove('pv-active','pv-done'));
+    arrows.forEach(a => a.classList.remove('pv-arrow-done'));
+    document.querySelectorAll('.pv-packet').forEach(p => {
+      p.classList.remove('pv-pkt-go');
+      void p.offsetWidth; // force reflow
+    });
+    logBody.innerHTML = '';
+    statusEl.textContent = '';
+    resetBtn.disabled = true;
+    runBtn.disabled = false;
+  }
+
+  function addLog(text, cls = '') {
+    const div = document.createElement('div');
+    div.className = 'pv-log-line' + (cls ? ' ' + cls : '');
+    div.textContent = text;
+    logBody.appendChild(div);
+    logBody.scrollTop = logBody.scrollHeight;
+  }
+
+  async function runPipeline() {
+    if (running) return;
+    running = true;
+    runBtn.disabled = true;
+    resetBtn.disabled = false;
+    clearStages();
+    addLog('$ ./security-pipeline.sh --env=prod --strict', '');
+
+    for (let i = 0; i < STAGE_DATA.length; i++) {
+      const s = STAGE_DATA[i];
+      stages[i].classList.add('pv-active');
+      statusEl.textContent = `Running: ${s.label}…`;
+
+      for (const log of s.logs) {
+        addLog(log, log.startsWith('✓') ? 'pv-ok' : log.includes('CRITICAL 0') ? 'pv-ok' : '');
+        await delay(s.dur / s.logs.length);
+      }
+
+      stages[i].classList.remove('pv-active');
+      stages[i].classList.add('pv-done');
+
+      // animate packet along arrow
+      const pkt = document.getElementById('pkt' + i);
+      if (pkt) {
+        arrows[i]?.classList.add('pv-arrow-done');
+        pkt.classList.add('pv-pkt-go');
+        await delay(900);
+      }
+    }
+
+    addLog('─────────────────────────────────────', '');
+    addLog('✓ Pipeline complete · 7 gates passed · 0 blocks · Evidence retained', 'pv-ok');
+    statusEl.textContent = '✓ All gates passed';
+    running = false;
+  }
+
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  runBtn.addEventListener('click', runPipeline);
+  resetBtn.addEventListener('click', () => { clearStages(); addLog('$ awaiting trigger… press Run Pipeline below', 'pv-idle'); });
+
+  // Clicking a stage shows its detail in log
+  stages.forEach(stage => {
+    stage.addEventListener('click', () => {
+      const detail = stage.dataset.detail;
+      if (detail) addLog('ℹ ' + detail);
+    });
+  });
+})();
+
+// ── Ask Anshumaan Chatbot ─────────────────────────────────────────────────
+(function initChatbot() {
+  const form    = document.getElementById('chatForm');
+  const input   = document.getElementById('chatInput');
+  const msgs    = document.getElementById('chatMessages');
+  if (!form || !input || !msgs) return;
+
+  const KB = [
+    { keys: ['cert','cks','cka','gcp','terraform','qualification'], answer: "I hold 6 professional certs: CKS (Kubernetes Security), CKA, GCP Security Engineer, GCP Professional Cloud Architect, GCP Associate Cloud Engineer, and Terraform Associate. All are listed in the Certifications section above — each one backed by production usage, not just exam grinding." },
+    { keys: ['skill','stack','tool','technology','tech'], answer: "Core stack: GitHub Actions, Trivy, Cosign, Kyverno, Falco, OPA, OWASP ZAP, Semgrep, Snyk, Terraform, Kubernetes (CKS-level), GCP, Docker.  I operate across the full pipeline — from PR policy to K8s runtime enforcement." },
+    { keys: ['sbom','supply chain','cosign','sigstore','attestation'], answer: "SBOM is central to my work: every image gets a CycloneDX/SPDX bill of materials, Cosign keyless attestation, and a Rekor transparency log entry. The pipeline won't promote any image without a verified SBOM. Kyverno policies enforce this at the admission controller level." },
+    { keys: ['k8s','kubernetes','cis','runtime','cluster'], answer: "I've achieved 100% CIS Kubernetes Benchmark (v1.5.1) compliance across production clusters at ZEE. That means workload isolation, enforced resource limits, secure probes, kubeaudit clean, privileged=false everywhere, and namespace RBAC. Falco handles runtime threat detection." },
+    { keys: ['exp','experience','work','zee','company','job'], answer: "I've been at ZEE Entertainment since June 2023 as Information Security Analyst (IC-2). My scope: 350+ microservices across CI/CD → container registry → Kubernetes runtime → GCP cloud governance. Full details in the Experience section." },
+    { keys: ['project','open source','github','repo'], answer: "My GitHub (github.com/anshumaan-10) has projects including: production-grade GitHub Actions security workflows, Kubernetes hardening templates, SBOM tooling, and IaC security policy modules. All are real, all have commits." },
+    { keys: ['educ','bits','pilani','vit','degree','mtech','btech'], answer: "I'm currently pursuing M.Tech in Software Systems (Cybersecurity) at BITS Pilani via work-integrated learning (2026–2028). My B.Tech is in Electronics & Communication Engineering from VIT Chennai (2019–2023)." },
+    { keys: ['hire','salary','available','open','relocat','bengaluru','remote'], answer: "I'm open to senior DevSecOps & K8s security engineering roles in Bengaluru. I'm not seeking remote-only or relocation roles right now.  Best to reach me via the contact form below or email." },
+    { keys: ['achievement','impact','metric','number','stat'], answer: "Key numbers: 350+ microservices secured end-to-end, 100% CIS K8s Benchmark, 93% OWASP Top 10 coverage, 0 production security incidents on my watch, 6+ CI/CD security gates active, 6 professional certifications." },
+    { keys: ['philo','approach','think','method','princip'], answer: "Security as a system property — not a checklist. If a control can be bypassed, it isn't one. If a gate produces noise, it erodes trust. Evidence must travel with the release. Secure delivery should be the default path, not the exception." },
+    { keys: ['hello','hi','hey','greet','who are you'], answer: "Hey! I'm a simulated version of Anshumaan Singh — here to answer questions about my security engineering background. Ask me about certs, skills, SBOM, K8s, my work at ZEE, projects, or hiring. Try the Command Palette (⌘K) for quick navigation!" },
+    { keys: ['falco','runtime','detect','threat'], answer: "Falco is deployed for K8s runtime threat detection — detecting container drift, suspicious exec, privilege escalation attempts, and unexpected network connections. Rules are tuned against MITRE ATT&CK techniques." },
+    { keys: ['pipeline','cicd','github actions','gate','workflow'], answer: "My CI/CD security control plane has 7+ gates: SAST, SCA, secrets scanning, IaC scan, container scan, SBOM generation+attestation, and DAST. Order: verify → build → scan → sign → promote → deploy → validate. No bypass paths. Every build produces a complete evidence pack." },
+    { keys: ['mitre','att&ck','attack','framework'], answer: "I've mapped controls to MITRE ATT&CK Enterprise v14. ~83% of techniques are covered via Falco (runtime detection), OPA/Kyverno (admission), RBAC (privilege control), Trivy+Cosign (supply chain), and ZAP+Semgrep (application layer). The Achievements section has a live coverage heatmap." },
+    { keys: ['contact','email','linkedin','reach','talk'], answer: "Best channels: anshumaansingh10jan@gmail.com · LinkedIn: linkedin.com/in/anshumaan-singh-6b51b5239 · GitHub: github.com/anshumaan-10. Or use the contact form just below here. I typically respond within a day." },
+  ];
+
+  function findAnswer(q) {
+    const lower = q.toLowerCase();
+    for (const item of KB) {
+      if (item.keys.some(k => lower.includes(k))) return item.answer;
+    }
+    return "Hmm, I don't have a specific answer for that. Try asking about my certs, skills, SBOM pipeline, K8s work, experience at ZEE, or projects. Or scroll through the relevant section directly — there's a lot of depth in each one. 🔐";
+  }
+
+  function appendMsg(text, isUser) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + (isUser ? 'user-msg' : 'bot-msg');
+    const avatar = document.createElement('span');
+    avatar.className = 'chat-avatar'; avatar.setAttribute('aria-hidden', 'true');
+    avatar.textContent = isUser ? 'U' : 'A';
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    bubble.textContent = text;
+    div.appendChild(avatar);
+    div.appendChild(bubble);
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (!q) return;
+    appendMsg(q, true);
+    input.value = '';
+
+    const typing = appendMsg('typing…', false);
+    typing.classList.add('chat-typing');
+    await new Promise(r => setTimeout(r, 600 + Math.random() * 500));
+    typing.remove();
+
+    appendMsg(findAnswer(q), false);
+  });
+})();
+
+// ── Contact Chip copy-to-clipboard ────────────────────────────────────────
+(function initContactChips() {
+  document.querySelectorAll('.contact-chip[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const val = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(val);
+        const hint = btn.querySelector('.chip-copy-hint');
+        if (hint) { hint.textContent = '✓ copied!'; setTimeout(() => { hint.textContent = 'click to copy'; }, 1800); }
+        const t = document.getElementById('toast');
+        if (t) { t.textContent = `Copied: ${val}`; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+      } catch(_) {}
+    });
+  });
+})();
+
+// ── Section Explorer Badge ────────────────────────────────────────────────
+(function initExplorerBadge() {
+  const badge  = document.getElementById('explorerBadge');
+  const arc    = document.getElementById('ebArc');
+  const count  = document.getElementById('ebCount');
+  if (!badge || !arc || !count) return;
+
+  const TOTAL   = 20; // total sections
+  const seen    = new Set();
+  const CIRC    = 100; // stroke-dasharray total
+
+  const sectionIds = ['about','philosophy','build','pipeline-flow','system','architecture','sbom-flow',
+    'case-studies','threat-model','evidence','risk-engine','experience','education','projects',
+    'explorer','skills','certs','achievements','faq','writing','connect'];
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        seen.add(e.target.id);
+        const pct = Math.min(seen.size, TOTAL);
+        count.textContent = pct;
+        const offset = CIRC - (pct / TOTAL) * CIRC;
+        arc.style.strokeDashoffset = offset;
+        badge.classList.add('visible');
+        if (!badge.hidden) badge.hidden = false;
+      }
+    });
+  }, { threshold: 0.3 });
+
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) io.observe(el);
+  });
+
+  // Show badge after first scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      badge.hidden = false;
+      badge.classList.add('visible');
+    }
+  }, { passive: true, once: true });
+})();
