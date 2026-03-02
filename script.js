@@ -2106,3 +2106,40 @@ onScroll();
     }
   }, { passive: true, once: true });
 })();
+
+/* ══ V13.1 — Quick Connect copy button + hacker mode init ══ */
+(function initQuickConnect() {
+  // Handle qc-copy-btn
+  document.querySelectorAll('.qc-copy-btn[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const val = btn.dataset.copy;
+      try {
+        await navigator.clipboard.writeText(val);
+        const orig = btn.textContent;
+        btn.textContent = '✓ copied!';
+        setTimeout(() => { btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy address'; }, 1800);
+        const t = document.getElementById('toast');
+        if (t) { t.textContent = 'Email copied to clipboard'; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2000); }
+      } catch(_) {
+        // fallback: show email so they can manually copy
+        btn        btn        btn        btn        btn        btn        btn       // Animate the qc-terminal on scroll into view
+  const qc  const qc  const qc  const qc  const qc  const qc  const qc  const qnst io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          qcTerm.style.boxShadow = '0 0 60px rgba(0,255,65,.12), inset 0 1px 0 rgba(0,255,65,.15)';
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    io.observe(qcTerm);
+  }
+})();
+
+// Remap cursor ring expand to include new qc elements
+(function extendCursorTargets() {
+  const ring = document.getElementById('cursorRing');
+  if (!ring) return;
+  document.querySelectorAll('.qc-email-btn, .qc-copy-btn, .con  document.querySelectorAll('.qc-email-btn, .qventListener('mouseenter', () => ring.classList.add('expand'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
+    });
+})();
