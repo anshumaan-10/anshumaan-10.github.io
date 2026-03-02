@@ -302,7 +302,8 @@
   <!-- OPEN TO OPPORTUNITIES BANNER -->
   <div class="otw-banner" id="otwBanner" role="banner" aria-label="Availability status">
     <span class="otw-dot" aria-hidden="true"></span>
-    <span class="otw-text">Available for <strong>senior security engineering roles</strong> — open to relocation &amp; remote</span>
+    <span class="otw-text">Available for <strong>senior DevSecOps &amp; K8s security engineering roles</strong> in Bengaluru</span>
+    <a href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank" rel="noopener noreferrer" class="otw-resume-cta mono">Resume ↗</a>
     <button class="otw-close" id="otwClose" aria-label="Dismiss banner">✕</button>
   </div>
 
@@ -342,7 +343,7 @@
         </div>
         <div class="brand-text">
           <span class="brand-name">anshumaan<span class="brand-dot-inline accent-color">.</span>dev</span>
-          <span class="brand-role mono">security-systems<span class="brand-ver" aria-hidden="true"> v2.6.0</span></span>
+          <span class="brand-role mono">security-systems-engineer</span>
         </div>
         <span class="status-pill v7-pill" title="Open to connect">
           <span class="status-dot" aria-hidden="true"></span>open to connect
@@ -416,6 +417,7 @@
           <a href="#skills"        class="mnav">Skills</a>
           <a href="#certs"         class="mnav">Certifications</a>
           <a href="#achievements"  class="mnav">Achievements</a>
+          <a href="#faq"           class="mnav">FAQ</a>
           <a href="#connect"       class="mnav">Connect</a>
         </nav>
         <div class="mobile-actions">
@@ -478,7 +480,7 @@
       <div class="hero-left">
         <div class="hero-tag mono reveal">
           <span class="live-dot" aria-hidden="true"></span>
-          <span class="ht-slash">//</span> secure-by-default &nbsp;<span class="ht-div">·</span>&nbsp; zero-trust &nbsp;<span class="ht-div">·</span>&nbsp; evidence-driven &nbsp;<span class="ht-div">·</span>&nbsp; <span class="ht-active">active</span>
+          <span class="ht-slash">//</span> DevSecOps &nbsp;<span class="ht-div">·</span>&nbsp; K8s Security &nbsp;<span class="ht-div">·</span>&nbsp; SBOM &nbsp;<span class="ht-div">·</span>&nbsp; Supply Chain &nbsp;<span class="ht-div">·</span>&nbsp; <span class="ht-active">● active</span>
         </div>
 
         <div class="security-status-bar mono reveal" role="status" aria-label="Security system status">
@@ -521,7 +523,7 @@
           <span class="pill" role="listitem">📍 Bengaluru, India</span>
           <span class="pill" role="listitem">🏢 InfoSec Analyst IC-2 @ ZEE</span>
           <span class="pill" role="listitem">🧩 AppSec + DevSecOps + K8s</span>
-          <span class="pill green-pill" role="listitem">🟢 Open to connect</span>
+          <span class="pill green-pill" role="listitem">🟢 Open to senior security roles</span>
         </div>
 
         <div class="kpi-grid v7-kpi reveal" role="list" aria-label="Key metrics">
@@ -557,9 +559,46 @@
       <div class="hero-right">
         <div class="profile-card glass reveal tilt-el">
           <div class="profile-photo-wrap">
+            <!-- Hacker profile frame: hex grid overlay + scan line -->
+            <div class="hacker-frame" aria-hidden="true">
+              <svg class="hf-grid" viewBox="0 0 90 90" aria-hidden="true">
+                <!-- Hex grid pattern -->
+                <defs>
+                  <pattern id="hexPat" x="0" y="0" width="18" height="20.8" patternUnits="userSpaceOnUse">
+                    <polygon points="9,1 17,5.5 17,15.3 9,19.8 1,15.3 1,5.5" fill="none" stroke="rgba(0,255,65,.12)" stroke-width=".6"/>
+                  </pattern>
+                  <clipPath id="circleClip">
+                    <circle cx="45" cy="45" r="40"/>
+                  </clipPath>
+                </defs>
+                <circle cx="45" cy="45" r="43" fill="none" stroke="rgba(0,255,65,.25)" stroke-width="1.2"/>
+                <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(0,255,65,.10)" stroke-width=".6" stroke-dasharray="4 3"/>
+                <rect width="90" height="90" fill="url(#hexPat)" clip-path="url(#circleClip)" opacity=".5"/>
+                <!-- Corner marks -->
+                <line x1="5" y1="5" x2="15" y2="5"   stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="5" y1="5" x2="5"  y2="15"  stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="5"  x2="75" y2="5"  stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="5"  x2="85" y2="15" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="5"  y1="85" x2="15" y2="85" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="5"  y1="85" x2="5"  y2="75" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="85" x2="75" y2="85" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="85" x2="85" y2="75" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <!-- Scan line (animated via CSS) -->
+                <line class="hf-scan" x1="5" y1="45" x2="85" y2="45" stroke="rgba(0,255,65,.3)" stroke-width=".8"/>
+                <!-- ID label -->
+                <text x="45" y="87" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.5" fill="rgba(0,255,65,.45)" letter-spacing="2">SECURITY ENGINEER</text>
+              </svg>
+            </div>
             <img class="profile-photo" src="./assests/me.jpg" alt="Anshumaan Singh, Security Systems Engineer, Bengaluru India" width="80" height="80" loading="eager" itemprop="image" />
             <div class="photo-ring" aria-hidden="true"></div>
             <div class="photo-ring ring-2" aria-hidden="true"></div>
+            <!-- Verified badge -->
+            <div class="profile-verified-badge" title="6 professional certifications verified on Credly" aria-label="Verified: 6 professional certifications">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                <path d="M12 1L15.5 5H21V10.5L24 12L21 13.5V19H15.5L12 23L8.5 19H3V13.5L0 12L3 10.5V5H8.5L12 1Z" fill="#00ff41" opacity=".9"/>
+                <polyline points="8 12 11 15 16 9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </div>
           </div>
           <div class="profile-info">
             <p class="profile-name" itemprop="name">Anshumaan Singh</p>
@@ -613,14 +652,92 @@
           <span class="tech-badge" role="listitem">GitHub Actions</span>
           <span class="tech-badge" role="listitem">Trivy</span>
           <span class="tech-badge" role="listitem">SBOM</span>
-          <span class="tech-badge" role="listitem">kubeaudit</span>
+          <span class="tech-badge" role="listitem">Kyverno</span>
           <span class="tech-badge" role="listitem">OWASP ZAP</span>
           <span class="tech-badge" role="listitem">Terraform</span>
+          <span class="tech-badge" role="listitem">Cosign</span>
+          <span class="tech-badge" role="listitem">Falco</span>
+        </div>
+
+        <!-- SECURITY POSTURE SCORE -->
+        <div class="posture-score-card glass reveal tilt-el" aria-label="Security posture score">
+          <div class="psc-header mono">
+            <span class="psc-dot" aria-hidden="true"></span>
+            Security Posture Score
+          </div>
+          <div class="psc-body">
+            <svg class="psc-ring" viewBox="0 0 100 100" width="90" height="90" aria-hidden="true">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(0,200,60,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="url(#scoreGrad)" stroke-width="8"
+                stroke-dasharray="263" stroke-dashoffset="26" stroke-linecap="round"
+                transform="rotate(-90 50 50)" class="psc-arc"/>
+              <defs>
+                <linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#00ff41"/>
+                  <stop offset="100%" stop-color="#5fffb8"/>
+                </linearGradient>
+              </defs>
+              <text x="50" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                font-size="18" font-weight="700" fill="#00ff41">97</text>
+              <text x="50" y="57" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                font-size="7" fill="rgba(0,255,65,.5)">/ 100</text>
+            </svg>
+            <div class="psc-details">
+              <div class="psc-row"><span class="psc-label">Pipeline Security</span><span class="psc-val mono">A+</span></div>
+              <div class="psc-row"><span class="psc-label">Container Hardening</span><span class="psc-val mono">A+</span></div>
+              <div class="psc-row"><span class="psc-label">SBOM Coverage</span><span class="psc-val mono">100%</span></div>
+              <div class="psc-row"><span class="psc-label">Prod Incidents</span><span class="psc-val mono" style="color:#4ade80">0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CURRENTLY BUILDING WIDGET -->
+        <div class="currently-building glass reveal" aria-label="Currently building">
+          <div class="cb-header mono">
+            <span class="cb-blink" aria-hidden="true">▶</span> Currently Building
+          </div>
+          <div class="cb-item">
+            <div class="cb-name">SBOM-driven policy engine</div>
+            <div class="cb-desc mono muted">Auto-blocking CVE-detected builds · Kyverno + Sigstore</div>
+          </div>
+          <div class="cb-item">
+            <div class="cb-name">M.Tech Cybersecurity — BITS Pilani</div>
+            <div class="cb-desc mono muted">Work-integrated learning program · 2026–2028</div>
+          </div>
+          <div class="cb-time mono muted" id="blrClock" aria-label="Current time in Bengaluru"></div>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
+    <!-- PLAIN-ENGLISH BANNER — visible to all, explains the site non-technically -->
+    <section class="plain-english-intro reveal" aria-label="Plain English introduction">
+      <div class="pei-inner glass">
+        <div class="pei-icon" aria-hidden="true">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="pei-text">
+          <strong class="pei-heading">Not a developer? Here's what this site is about.</strong>
+          <p>Anshumaan Singh is a <strong>security engineer</strong> — the person whose job is to make sure software companies don't get hacked, don't leak data, and can move fast without breaking security. He does this at ZEE Entertainment (a major Indian media company) for 350+ apps. The technical content here is proof of work for hiring managers and fellow engineers.</p>
+        </div>
+        <button class="pei-close mono" id="peiClose" aria-label="Dismiss plain English banner">✕</button>
+      </div>
+    </section>
+
+    <!-- PLAIN-ENGLISH BANNER — visible to all, explains the site non-technically -->
+    <section class="plain-english-intro reveal" aria-label="Plain English introduction">
+      <div class="pei-inner glass">
+        <div class="pei-icon" aria-hidden="true">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="pei-text">
+          <strong class="pei-heading">Not a developer? Here's what this site is about.</strong>
+          <p>Anshumaan Singh is a <strong>security engineer</strong> — the person whose job is to make sure software companies don't get hacked, don't leak data, and can move fast without breaking security. He does this at ZEE Entertainment (a major Indian media company) for 350+ apps. The technical content here is proof of work for hiring managers and fellow engineers.</p>
+        </div>
+        <button class="pei-close mono" id="peiClose" aria-label="Dismiss plain English banner">✕</button>
+      </div>
+    </section>
+
     <section id="about" class="section glass" aria-label="About Anshumaan Singh" aria-labelledby="about-h2">
       <header class="sec-header">
         <span class="sec-num mono" aria-hidden="true">01</span>
@@ -1620,7 +1737,7 @@
         </div>
         <div class="exp-term-body" id="explorerBody" aria-live="polite" role="log">
           <div class="exp-line exp-welcome">
-            <span class="exp-txt mono">Welcome to <span class="accent-color">devsecopswithanshu.com</span> v10.0</span>
+            <span class="exp-txt mono">Welcome to <span class="accent-color">devsecopswithanshu.com</span></span>
           </div>
           <div class="exp-line">
             <span class="exp-txt mono muted">Type <strong>help</strong> for available commands. Press Tab to autocomplete.</span>
@@ -1655,6 +1772,42 @@
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Proficiency mapped to production usage, certification outcomes, and engineering impact — not self-reported buzzwords.</p>
 
+      <!-- SKILLS RADAR -->
+      <div class="radar-wrap reveal" aria-label="Skills radar chart">
+        <svg class="radar-svg" viewBox="0 0 300 300" role="img" aria-label="Radar chart showing skill proficiency">
+          <!-- grid rings -->
+          <polygon class="radar-grid" points="150,50 233,100 233,200 150,250 67,200 67,100"/>
+          <polygon class="radar-grid" points="150,80 211,113 211,188 150,220 89,188 89,113"/>
+          <polygon class="radar-grid" points="150,110 192,128 192,173 150,192 108,173 108,128"/>
+          <polygon class="radar-grid" points="150,130 172,142 172,159 150,170 128,159 128,142"/>
+          <!-- axes -->
+          <line class="radar-axis" x1="150" y1="150" x2="150" y2="50"/>
+          <line class="radar-axis" x1="150" y1="150" x2="233" y2="100"/>
+          <line class="radar-axis" x1="150" y1="150" x2="233" y2="200"/>
+          <line class="radar-axis" x1="150" y1="150" x2="150" y2="250"/>
+          <line class="radar-axis" x1="150" y1="150" x2="67" y2="200"/>
+          <line class="radar-axis" x1="150" y1="150" x2="67" y2="100"/>
+          <!-- data polygon: DevSecOps 95%, K8s 92%, AppSec 88%, Cloud 85%, SRE 80%, SBOM 90% -->
+          <polygon class="radar-polygon" points="150,55 228,103 228,194 150,240 76,191 76,107"/>
+          <!-- dots -->
+          <circle class="radar-dot" cx="150" cy="55" r="5"/>
+          <circle class="radar-dot" cx="228" cy="103" r="5"/>
+          <circle class="radar-dot" cx="228" cy="194" r="5"/>
+          <circle class="radar-dot" cx="150" cy="240" r="5"/>
+          <circle class="radar-dot" cx="76" cy="191" r="5"/>
+          <circle class="radar-dot" cx="76" cy="107" r="5"/>
+          <!-- labels -->
+          <text class="radar-label" x="150" y="40" text-anchor="middle">DevSecOps 95%</text>
+          <text class="radar-label" x="248" y="100" text-anchor="start">K8s Sec 92%</text>
+          <text class="radar-label" x="248" y="202" text-anchor="start">AppSec 88%</text>
+          <text class="radar-label" x="150" y="268" text-anchor="middle">Cloud 85%</text>
+          <text class="radar-label" x="52" y="202" text-anchor="end">SRE 80%</text>
+          <text class="radar-label" x="52" y="100" text-anchor="end">SBOM 90%</text>
+        </svg>
+        <div class="radar-legend">
+          <span class="radar-legend-dot"></span><span class="mono muted" style="font-size:.78rem">Proficiency vs. max — based on cert outcomes &amp; production impact</span>
+        </div>
+      </div>
       <div class="skills-layout stagger">
 
         <!-- Column 1: Security engineering -->
@@ -1951,6 +2104,33 @@
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Numbers that are traceable to actual outcomes — not made up for a resume.</p>
 
+      <!-- MITRE ATT&CK COVERAGE HEATMAP -->
+      <div class="mitre-widget glass reveal" aria-label="MITRE ATT&CK coverage heatmap">
+        <div class="mw-header">
+          <span class="mw-title mono">// MITRE ATT&amp;CK Coverage</span>
+          <span class="mw-badge mono">Enterprise v14</span>
+        </div>
+        <div class="mw-grid">
+          <div class="mw-cell mw-covered" title="Initial Access — Covered">IA</div>
+          <div class="mw-cell mw-covered" title="Execution — Covered">EX</div>
+          <div class="mw-cell mw-covered" title="Persistence — Covered">PE</div>
+          <div class="mw-cell mw-covered" title="Privilege Escalation — Covered">PV</div>
+          <div class="mw-cell mw-partial" title="Defense Evasion — Partial">DE</div>
+          <div class="mw-cell mw-covered" title="Credential Access — Covered">CA</div>
+          <div class="mw-cell mw-covered" title="Discovery — Covered">DI</div>
+          <div class="mw-cell mw-partial" title="Lateral Movement — Partial">LM</div>
+          <div class="mw-cell mw-covered" title="Collection — Covered">CO</div>
+          <div class="mw-cell mw-covered" title="Exfiltration — Covered">EF</div>
+          <div class="mw-cell mw-covered" title="Impact — Covered">IM</div>
+          <div class="mw-cell mw-gap" title="Command &amp; Control — Monitoring">C2</div>
+        </div>
+        <div class="mw-legend mono">
+          <span class="mw-legend-item"><span class="mw-covered mw-swatch"></span> Covered (83%)</span>
+          <span class="mw-legend-item"><span class="mw-partial mw-swatch"></span> Partial (17%)</span>
+          <span class="mw-legend-item"><span class="mw-gap mw-swatch"></span> Monitoring</span>
+        </div>
+        <p class="mw-note mono muted">Controls mapped across Falco, OPA, Trivy, Cosign, RBAC policies, and admission webhooks.</p>
+      </div>
       <div class="achievements-grid stagger">
 
         <div class="ach-card ach-card--major reveal" aria-label="CIS Benchmark achievement">
@@ -2110,6 +2290,30 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <div class="sec-divider-cmd mono" aria-hidden="true"><span class="sdc-line"></span><span class="sdc-text">// articles fetched</span><span class="sdc-line"></span></div>
+
+      <!-- SECURITY THOUGHTS CAROUSEL -->
+      <div class="thoughts-widget glass reveal" aria-label="Security engineer thoughts" aria-live="polite">
+        <div class="tw-label mono muted">// engineering insight</div>
+        <blockquote class="tw-quote" id="thoughtQuote">
+          "Zero trust is not a product to buy — it's a mental model to apply. Every access decision should be made as if the network is already compromised."
+        </blockquote>
+        <div class="tw-meta mono muted">
+          <span class="tw-author">— Anshumaan Singh</span>
+          <button class="tw-next mono" id="thoughtNext" aria-label="Next thought">next →</button>
+        </div>
+      </div>
+
+      <!-- SECURITY THOUGHTS CAROUSEL -->
+      <div class="thoughts-widget glass reveal" aria-label="Security engineer thoughts" aria-live="polite">
+        <div class="tw-label mono muted">// engineering insight</div>
+        <blockquote class="tw-quote" id="thoughtQuote">
+          "Zero trust is not a product to buy — it's a mental model to apply. Every access decision should be made as if the network is already compromised."
+        </blockquote>
+        <div class="tw-meta mono muted">
+          <span class="tw-author">— Anshumaan Singh</span>
+          <button class="tw-next mono" id="thoughtNext" aria-label="Next thought">next →</button>
+        </div>
+      </div>
       <div class="writing-header-stat reveal">
         <span><strong>221</strong> followers</span>
         <span class="whs-sep">/</span>
@@ -2421,23 +2625,9 @@
         <span>Bengaluru, India</span>
         <span class="dot-sep" aria-hidden="true">·</span>
         <a href="https://github.com/anshumaan-10/anshumaan-10.github.io" target="_blank" rel="noopener noreferrer">Source ↗</a>
-        <span class="dot-sep" aria-hidden="true">·</span>
-        <span class="footer-version">v10.0</span>
+        
       </div>
       <p class="footer-built muted mono">Built without frameworks. Crafted with security in mind · <span id="lastBuilt"></span></p>
-    </footer>
-
-    <!--REPLACED--> role="contentinfo">
-      <div class="footer-inner mono">
-        <span>© <span id="year"></span> Anshumaan Singh</span>
-        <span class="dot-sep" aria-hidden="true">·</span>
-        <span>Security Systems Engineer</span>
-        <span class="dot-sep" aria-hidden="true">·</span>
-        <span>Bengaluru, India</span>
-        <span class="dot-sep" aria-hidden="true">·</span>
-        <a href="https://github.com/anshumaan-10/anshumaan-10.github.io" target="_blank" rel="noopener noreferrer">Source ↗</a>
-      </div>
-      <p class="footer-sub muted mono">Built with care — no frameworks, just craft.</p>
     </footer>
 
   </main>

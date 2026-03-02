@@ -1341,3 +1341,231 @@ onScroll();
     AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
   }
 })();
+
+
+/* ── BENGALURU LIVE CLOCK ── */
+(function initBLRClock() {
+  const el = document.getElementById('blrClock');
+  if (!el) return;
+  function tick() {
+    const t = new Date().toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    el.textContent = '📍 IST ' + t;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── PLAIN ENGLISH BANNER DISMISS ── */
+(function initPEI() {
+  const btn = document.getElementById('peiClose');
+  const banner = btn && btn.closest('.plain-english-intro');
+  if (!btn || !banner) return;
+  const KEY = 'pei_dismissed';
+  if (localStorage.getItem(KEY)) { banner.remove(); return; }
+  btn.addEventListener('click', () => {
+    banner.style.transition = 'opacity .3s, transform .3s';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(-8px)';
+    setTimeout(() => banner.remove(), 320);
+    localStorage.setItem(KEY, '1');
+  });
+})();
+
+/* ── SECURITY THOUGHTS ROTATOR ── */
+(function initThoughts() {
+  const THOUGHTS = [
+    '"Zero trust is not a product to buy — it\'s a mental model to apply. Every access decision should be made as if the network is already compromised."',
+    '"The SBOM is not just an artifact — it is an evidence contract. If you can\'t enumerate what\'s in your container, you cannot claim to secure it."',
+    '"The real threat model is not OWASP Top 10. It\'s the one your developers write feature tickets in Jira and forget to close. Shift threat modeling left — into design."',
+    '"Security gates in CI/CD are not bottlenecks. They are the first place adversaries meet resistance. Build gates that fail gracefully and audit loudly."',
+    '"A vulnerability with EPSS 0.001 and CVSS 9.8 is less urgent than one with EPSS 0.80 and CVSS 6.5. Context matters more than scores."',
+    '"Kubernetes RBAC is not an access control system. It is an attack surface with a configuration language. Treat it accordingly."',
+  ];
+  let idx = 0;
+  const el = document.getElementById('thoughtQuote');
+  const btn = document.getElementById('thoughtNext');
+  if (!el || !btn) return;
+  btn.addEventListener('click', () => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % THOUGHTS.length;
+      el.textContent = THOUGHTS[idx];
+      el.style.opacity = '1';
+    }, 200);
+  });
+  el.style.transition = 'opacity .2s';
+})();
+
+/* ── READING TIME BADGES ── */
+(function addReadingTime() {
+  document.querySelectorAll('.pub-card, .pub-card--wide').forEach(card => {
+    if (card.querySelector('.rt-badge')) return;
+    const text = card.textContent || '';
+    const words = text.trim().split(/\s+/).length;
+    const mins = Math.max(1, Math.ceil(words / 200));
+    const badge = document.createElement('span');
+    badge.className = 'rt-badge mono';
+    badge.textContent = mins + ' min read';
+    badge.setAttribute('aria-label', mins + ' minute read');
+    // Insert after the meta row or title
+    const meta = card.querySelector('.pub-meta, .pub-card-meta, .pub-tags');
+    if (meta) meta.appendChild(badge);
+  });
+})();
+
+/* ── SKILL BAR ANIMATION (robust version) ── */
+(function fixSkillBars() {
+  const fills = document.querySelectorAll('.sb-fill[data-pct], .sb-fill');
+  const obs = ('IntersectionObserver' in window)
+    ? new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const fill = e.target;
+          const item = fill.closest('.skill-bar-item, .sb-item');
+          const pct = (item && item.dataset.pct)
+                   || fill.dataset.pct
+                   || fill.style.getPropertyValue('--pct')?.replace('%','')
+                   || '80';
+          fill.style.transition = 'width 1.1s cubic-bezier(.4,0,.2,1)';
+          fill.style.width = pct + '%';
+          obs.unobserve(fill);
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' })
+    : null;
+
+  fills.forEach(el => {
+    el.style.width = '0%';
+    if (obs) obs.observe(el);
+    else {
+      const pct = el.dataset.pct || el.style.getPropertyValue('--pct')?.replace('%','') || '80';
+      el.style.width = pct + '%';
+    }
+  });
+})();
+
+/* ── READING TIME BADGE CSS (injected via JS for isolation) ── */
+(function injectRTStyle() {
+  if (document.getElementById('rtStyle')) return;
+  const s = document.createElement('style');
+  s.id = 'rtStyle';
+  s.textContent = `.rt-badge{font-size:.62rem;color:rgba(0,255,65,.5);background:rgba(0,200,60,.06);border:1px solid rgba(0,200,60,.12);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
+  document.head.appendChild(s);
+})();
+
+
+/* ── BENGALURU LIVE CLOCK ── */
+(function initBLRClock() {
+  const el = document.getElementById('blrClock');
+  if (!el) return;
+  function tick() {
+    const t = new Date().toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    });
+    el.textContent = '📍 IST ' + t;
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+/* ── PLAIN ENGLISH BANNER DISMISS ── */
+(function initPEI() {
+  const btn = document.getElementById('peiClose');
+  const banner = btn && btn.closest('.plain-english-intro');
+  if (!btn || !banner) return;
+  const KEY = 'pei_dismissed';
+  if (localStorage.getItem(KEY)) { banner.remove(); return; }
+  btn.addEventListener('click', () => {
+    banner.style.transition = 'opacity .3s, transform .3s';
+    banner.style.opacity = '0';
+    banner.style.transform = 'translateY(-8px)';
+    setTimeout(() => banner.remove(), 320);
+    localStorage.setItem(KEY, '1');
+  });
+})();
+
+/* ── SECURITY THOUGHTS ROTATOR ── */
+(function initThoughts() {
+  const THOUGHTS = [
+    '"Zero trust is not a product to buy — it\'s a mental model to apply. Every access decision should be made as if the network is already compromised."',
+    '"The SBOM is not just an artifact — it is an evidence contract. If you can\'t enumerate what\'s in your container, you cannot claim to secure it."',
+    '"The real threat model is not OWASP Top 10. It\'s the one your developers write feature tickets in Jira and forget to close. Shift threat modeling left — into design."',
+    '"Security gates in CI/CD are not bottlenecks. They are the first place adversaries meet resistance. Build gates that fail gracefully and audit loudly."',
+    '"A vulnerability with EPSS 0.001 and CVSS 9.8 is less urgent than one with EPSS 0.80 and CVSS 6.5. Context matters more than scores."',
+    '"Kubernetes RBAC is not an access control system. It is an attack surface with a configuration language. Treat it accordingly."',
+  ];
+  let idx = 0;
+  const el = document.getElementById('thoughtQuote');
+  const btn = document.getElementById('thoughtNext');
+  if (!el || !btn) return;
+  btn.addEventListener('click', () => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      idx = (idx + 1) % THOUGHTS.length;
+      el.textContent = THOUGHTS[idx];
+      el.style.opacity = '1';
+    }, 200);
+  });
+  el.style.transition = 'opacity .2s';
+})();
+
+/* ── READING TIME BADGES ── */
+(function addReadingTime() {
+  document.querySelectorAll('.pub-card, .pub-card--wide').forEach(card => {
+    if (card.querySelector('.rt-badge')) return;
+    const text = card.textContent || '';
+    const words = text.trim().split(/\s+/).length;
+    const mins = Math.max(1, Math.ceil(words / 200));
+    const badge = document.createElement('span');
+    badge.className = 'rt-badge mono';
+    badge.textContent = mins + ' min read';
+    badge.setAttribute('aria-label', mins + ' minute read');
+    // Insert after the meta row or title
+    const meta = card.querySelector('.pub-meta, .pub-card-meta, .pub-tags');
+    if (meta) meta.appendChild(badge);
+  });
+})();
+
+/* ── SKILL BAR ANIMATION (robust version) ── */
+(function fixSkillBars() {
+  const fills = document.querySelectorAll('.sb-fill[data-pct], .sb-fill');
+  const obs = ('IntersectionObserver' in window)
+    ? new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const fill = e.target;
+          const item = fill.closest('.skill-bar-item, .sb-item');
+          const pct = (item && item.dataset.pct)
+                   || fill.dataset.pct
+                   || fill.style.getPropertyValue('--pct')?.replace('%','')
+                   || '80';
+          fill.style.transition = 'width 1.1s cubic-bezier(.4,0,.2,1)';
+          fill.style.width = pct + '%';
+          obs.unobserve(fill);
+        });
+      }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' })
+    : null;
+
+  fills.forEach(el => {
+    el.style.width = '0%';
+    if (obs) obs.observe(el);
+    else {
+      const pct = el.dataset.pct || el.style.getPropertyValue('--pct')?.replace('%','') || '80';
+      el.style.width = pct + '%';
+    }
+  });
+})();
+
+/* ── READING TIME BADGE CSS (injected via JS for isolation) ── */
+(function injectRTStyle() {
+  if (document.getElementById('rtStyle')) return;
+  const s = document.createElement('style');
+  s.id = 'rtStyle';
+  s.textContent = `.rt-badge{font-size:.62rem;color:rgba(0,255,65,.5);background:rgba(0,200,60,.06);border:1px solid rgba(0,200,60,.12);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
+  document.head.appendChild(s);
+})();
