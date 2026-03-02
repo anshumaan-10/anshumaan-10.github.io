@@ -1064,3 +1064,280 @@ onScroll();
   }
   tick();
 })();
+
+
+/* ══════════════════════════════════════════════════════════
+   V10 — Explorer Terminal + Misc Enhancements
+   ══════════════════════════════════════════════════════════ */
+
+/* ── OTW Banner dismiss ── */
+(function initOTWBanner() {
+  const banner = document.getElementById('otwBanner');
+  const closeBtn = document.getElementById('otwClose');
+  if (!banner || !closeBtn) return;
+
+  // Add body class to shift topbar
+  document.body.classList.add('otw-visible');
+  // Also push topbar below the banner
+  const topbar = document.querySelector('.topbar');
+  if (topbar) topbar.style.top = '40px';
+
+  closeBtn.addEventListener('click', () => {
+    banner.classList.add('hidden');
+    document.body.classList.remove('otw-visible');
+    if (topbar) topbar.style.top = '';
+    try { localStorage.setItem('otwDismissed', '1'); } catch(e) {}
+  });
+
+  // Auto-dismiss if already dismissed
+  try {
+    if (localStorage.getItem('otwDismissed') === '1') {
+      banner.classList.add('hidden');
+      document.body.classList.remove('otw-visible');
+      if (topbar) topbar.style.top = '';
+    }
+  } catch(e) {}
+})();
+
+/* ── Lazy image loaded class ── */
+(function initLazyImages() {
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete) { img.classList.add('loaded'); return; }
+    img.addEventListener('load', () => img.classList.add('loaded'));
+  });
+})();
+
+/* ── Last built date in footer ── */
+(function initLastBuilt() {
+  const el = document.getElementById('lastBuilt');
+  if (!el) return;
+  const d = new Date();
+  el.textContent = d.toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' });
+})();
+
+/* ── Explorer Terminal ── */
+(function initExplorerTerminal() {
+  const input  = document.getElementById('explorerInput');
+  const body   = document.getElementById('explorerBody');
+  const chips  = document.querySelectorAll('.exp-hint-chip');
+  if (!input || !body) return;
+
+  const COMMANDS = {
+    help: () => [
+      `<span class="exp-out"><strong>Available commands:</strong></span>`,
+      `<span class="exp-out">  <strong>whoami</strong>        — identity &amp; role</span>`,
+      `<span class="exp-out">  <strong>skills</strong>        — technical proficiencies</span>`,
+      `<span class="exp-out">  <strong>certs</strong>         — certifications (6 active)</span>`,
+      `<span class="exp-out">  <strong>experience</strong>    — work history at ZEE</span>`,
+      `<span class="exp-out">  <strong>projects</strong>      — open source repos</span>`,
+      `<span class="exp-out">  <strong>github</strong>        — open GitHub profile</span>`,
+      `<span class="exp-out">  <strong>contact</strong>       — contact information</span>`,
+      `<span class="exp-out">  <strong>resume</strong>        — open resume PDF</span>`,
+      `<span class="exp-out">  <strong>matrix</strong>        — ;)</span>`,
+      `<span class="exp-out">  <strong>clear</strong>         — clear terminal</span>`,
+    ],
+    whoami: () => [
+      `<span class="exp-out">┌─[ <strong>Identity</strong> ]</span>`,
+      `<span class="exp-out">│  Name     : <strong>Anshumaan Singh</strong></span>`,
+      `<span class="exp-out">│  Role     : InfoSec Analyst IC-2 @ ZEE Entertainment</span>`,
+      `<span class="exp-out">│  Scope    : 350+ microservices · CI/CD · K8s · Cloud · AppSec</span>`,
+      `<span class="exp-out">│  Location : Bengaluru, India</span>`,
+      `<span class="exp-out">│  Certs    : CKS · CKA · GCP-SEC · GCP-PCA · GCP-ACE · TF-ASC</span>`,
+      `<span class="exp-out">└─[ <strong>Status: ACTIVE ✓ · Zero production incidents</strong> ]</span>`,
+    ],
+    skills: () => [
+      `<span class="exp-out">┌─[ <strong>Security Engineering</strong> ]</span>`,
+      `<span class="exp-out">│  DevSecOps Engineering          ████████████████████ 95%</span>`,
+      `<span class="exp-out">│  Kubernetes Security (CKS)      ███████████████████░ 92%</span>`,
+      `<span class="exp-out">│  Supply Chain / SBOM            ██████████████████░░ 90%</span>`,
+      `<span class="exp-out">│  Application Security           █████████████████░░░ 88%</span>`,
+      `<span class="exp-out">│  Cloud Security (GCP/AWS/Azure) █████████████████░░░ 85%</span>`,
+      `<span class="exp-out">│  Threat Modeling                ████████████████░░░░ 82%</span>`,
+      `<span class="exp-out">│  Penetration Testing            ████████████████░░░░ 80%</span>`,
+      `<span class="exp-out">└─[ CI/CD: 93% · K8s: 90% · Docker: 88% · Terraform: 82% ]</span>`,
+    ],
+    certs: () => [
+      `<span class="exp-out">┌─[ <strong>Certifications · 6 Active</strong> ]</span>`,
+      `<span class="exp-out">│  [✓] CKS  — Certified Kubernetes Security Specialist   (CNCF)</span>`,
+      `<span class="exp-out">│  [✓] CKA  — Certified Kubernetes Administrator          (CNCF)</span>`,
+      `<span class="exp-out">│  [✓] GCP-SEC — Professional Cloud Security Engineer   (Google)</span>`,
+      `<span class="exp-out">│  [✓] GCP-PCA — Professional Cloud Architect           (Google)</span>`,
+      `<span class="exp-out">│  [✓] TF-ASC  — HashiCorp Terraform Associate         (HashiCorp)</span>`,
+      `<span class="exp-out">│  [✓] GCP-ACE — Associate Cloud Engineer               (Google)</span>`,
+      `<span class="exp-out">└─[ Verify: <a href="https://www.credly.com/users/anshumaan-singh" target="_blank">credly.com/anshumaan-singh</a> ]</span>`,
+    ],
+    experience: () => [
+      `<span class="exp-out">┌─[ <strong>Work History</strong> ]</span>`,
+      `<span class="exp-out">│  Company  : ZEE Entertainment Enterprises Ltd</span>`,
+      `<span class="exp-out">│  Role     : Information Security Analyst (IC-2)</span>`,
+      `<span class="exp-out">│  Period   : Jun 2023 – Present  (Bengaluru, India)</span>`,
+      `<span class="exp-out">│  Scope    : AppSec + DevSecOps — 350+ microservices</span>`,
+      `<span class="exp-out">│  Impact   : CI/CD Security Control Plane (8-stage pipeline)</span>`,
+      `<span class="exp-out">│           : 100% CIS K8s Benchmark · 93% OWASP Top 10</span>`,
+      `<span class="exp-out">│           : SBOM + Cosign supply chain signing</span>`,
+      `<span class="exp-out">│           : Golden Image pipeline · GitHub Enterprise hardening</span>`,
+      `<span class="exp-out">└─[ <strong>0 production incidents on record</strong> ]</span>`,
+    ],
+    projects: () => [
+      `<span class="exp-out">┌─[ <strong>Open Source Projects · github.com/anshumaan-10</strong> ]</span>`,
+      `<span class="exp-out">│  k8s-security-lab          — 10 K8s misconfigs, exploited + hardened</span>`,
+      `<span class="exp-out">│  phoenix                   — Vulnerable Flask app for K8s lab (RCE)</span>`,
+      `<span class="exp-out">│  k8s-lab-deployments       — ArgoCD GitOps + K8s manifests</span>`,
+      `<span class="exp-out">│  image-attestation-cosign  — Sigstore/Cosign supply chain signing</span>`,
+      `<span class="exp-out">│  kyverno-policy-demo       — Policy-as-code admission control</span>`,
+      `<span class="exp-out">│  custom-secret-regex       — Org-specific secret detection patterns</span>`,
+      `<span class="exp-out">└─[ Total: 59 repositories · <a href="https://github.com/anshumaan-10" target="_blank">github.com/anshumaan-10</a> ]</span>`,
+    ],
+    github: () => {
+      window.open('https://github.com/anshumaan-10', '_blank');
+      return [`<span class="exp-out">Opening GitHub profile... <a href="https://github.com/anshumaan-10" target="_blank">github.com/anshumaan-10</a></span>`];
+    },
+    contact: () => [
+      `<span class="exp-out">┌─[ <strong>Contact Channels</strong> ]</span>`,
+      `<span class="exp-out">│  Email    : <a href="mailto:anshumaansingh10jan@gmail.com">anshumaansingh10jan@gmail.com</a></span>`,
+      `<span class="exp-out">│  LinkedIn : <a href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank">linkedin.com/in/anshumaan-singh-6b51b5239</a></span>`,
+      `<span class="exp-out">│  GitHub   : <a href="https://github.com/anshumaan-10" target="_blank">github.com/anshumaan-10</a></span>`,
+      `<span class="exp-out">│  Medium   : <a href="https://medium.com/@anshumaansingh10jan" target="_blank">medium.com/@anshumaansingh10jan</a></span>`,
+      `<span class="exp-out">└─[ Usually respond within 24h ]</span>`,
+    ],
+    resume: () => {
+      window.open('https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view', '_blank');
+      return [`<span class="exp-out">Opening resume PDF... <a href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank">Open Resume ↗</a></span>`];
+    },
+    matrix: () => [
+      `<span class="exp-out" style="color:rgba(0,255,65,.9)">There is no spoon.</span>`,
+      `<span class="exp-out" style="color:rgba(0,255,65,.7)">You already know the path. You just have to walk it.</span>`,
+      `<span class="exp-out" style="color:rgba(0,255,65,.5)">// The Matrix of DevSecOps has you...</span>`,
+    ],
+    clear: () => { body.innerHTML = ''; return []; },
+  };
+
+  const AUTOCOMPLETE = Object.keys(COMMANDS);
+
+  function addLines(cmd, lines) {
+    // Show the command
+    const cmdLine = document.createElement('div');
+    cmdLine.className = 'exp-line';
+    cmdLine.innerHTML = `<span class="exp-prompt mono accent-color">$ </span><span class="exp-cmd mono">${escapeHtml(cmd)}</span>`;
+    body.appendChild(cmdLine);
+
+    // Show output
+    lines.forEach(l => {
+      const div = document.createElement('div');
+      div.className = 'exp-line';
+      div.innerHTML = l;
+      body.appendChild(div);
+    });
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function runCommand(raw) {
+    const cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+    if (COMMANDS[cmd]) {
+      const out = COMMANDS[cmd]();
+      addLines(raw.trim(), out || []);
+    } else {
+      addLines(raw.trim(), [
+        `<span class="exp-err">command not found: ${escapeHtml(cmd)}</span>`,
+        `<span class="exp-out muted">Type <strong>help</strong> for available commands.</span>`,
+      ]);
+    }
+  }
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = input.value;
+      input.value = '';
+      runCommand(val);
+    }
+    // Tab autocomplete
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      const val = input.value.toLowerCase();
+      const match = AUTOCOMPLETE.find(c => c.startsWith(val));
+      if (match) input.value = match;
+    }
+  });
+
+  // Click hint chips to run command
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const cmd = chip.dataset.cmd;
+      if (cmd) { input.value = cmd; runCommand(cmd); input.value = ''; }
+    });
+  });
+
+  // Focus terminal when section is scrolled to
+  const section = document.getElementById('explorer');
+  if (section) {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setTimeout(() => input.focus(), 300);
+        obs.unobserve(section);
+      }
+    }, { threshold: 0.4 });
+    obs.observe(section);
+  }
+})();
+
+/* ── Contact Form Handling ── */
+(function initContactForm() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    const origText = btn.innerHTML;
+    btn.innerHTML = '⏳ Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        btn.innerHTML = '✓ Message Sent!';
+        btn.style.background = 'rgba(74,222,128,.2)';
+        form.reset();
+        setTimeout(() => {
+          btn.innerHTML = origText;
+          btn.disabled = false;
+          btn.style.background = '';
+        }, 4000);
+        // Show toast if available
+        const toast = document.getElementById('toast');
+        if (toast) {
+          toast.textContent = 'Message sent! I\'ll reply within 24h.';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 4000);
+        }
+      } else {
+        throw new Error('Failed');
+      }
+    } catch {
+      btn.innerHTML = '✕ Failed — try email instead';
+      btn.style.background = 'rgba(255,100,100,.2)';
+      setTimeout(() => {
+        btn.innerHTML = origText;
+        btn.disabled = false;
+        btn.style.background = '';
+      }, 4000);
+    }
+  });
+})();
+
+/* ── AOS init ── */
+(function initAOS() {
+  if (typeof AOS !== 'undefined') {
+    AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+  }
+})();
