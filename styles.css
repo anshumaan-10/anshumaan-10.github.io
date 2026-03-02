@@ -10250,6 +10250,19 @@ footer { background:rgba(4,10,22,.95) !important; border-top:1px solid rgba(74,1
   white-space: pre;
 }
 
+/* V14 H1 glow pulse — applied to hero name span */
+.v14-h1-glow {
+  animation: h1GlowPulse 3.5s ease-in-out infinite;
+}
+@keyframes h1GlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(0,230,118,0.25)) drop-shadow(0 0 18px rgba(74,158,255,0.15));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(0,230,118,0.55)) drop-shadow(0 0 36px rgba(74,158,255,0.30));
+  }
+}
+
 /* Reveal state for GSAP (elements start invisible, GSAP animates them in) */
 .hero-left > * { opacity: 1; } /* Override any accidental hidden state */
 
