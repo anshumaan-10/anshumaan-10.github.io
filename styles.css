@@ -2309,29 +2309,35 @@ strong { color: var(--text) !important; font-weight: 600 !important; }
 .profile-card::before {
   content: '';
   position: absolute;
-  top: -60px; left: 50%; transform: translateX(-50%);
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(var(--accent-r),var(--accent-g),var(--accent-b),.18) 0%, transparent 70%);
+  top: -80px; left: 50%; transform: translateX(-50%);
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, rgba(var(--accent-r),var(--accent-g),var(--accent-b),.28) 0%, rgba(var(--accent-r),var(--accent-g),var(--accent-b),.08) 40%, transparent 70%);
   pointer-events: none;
 }
-.profile-photo-wrap { position: relative; width: 88px; height: 88px; }
+.profile-photo-wrap { position: relative; width: 210px; height: 210px; margin: 0 auto; }
 .profile-photo {
-  width: 88px !important;
-  height: 88px !important;
+  width: 210px !important;
+  height: 210px !important;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.4);
+  object-position: center top;
+  border: 3px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.7);
+  box-shadow: 0 0 40px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.35), 0 0 80px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.15);
   position: relative;
   z-index: 2;
+  transition: box-shadow .3s;
+}
+.profile-photo:hover {
+  box-shadow: 0 0 60px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.55), 0 0 100px rgba(var(--accent-r),var(--accent-g),var(--accent-b),.25);
 }
 .photo-ring {
   position: absolute;
-  inset: -6px;
+  inset: -8px;
   border-radius: 50%;
-  border: 2px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.2);
-  animation: ring-spin 12s linear infinite;
+  border: 2px solid rgba(var(--accent-r),var(--accent-g),var(--accent-b),.3);
+  animation: ring-spin 10s linear infinite;
 }
-.photo-ring.ring-2 { inset: -12px; border-color: rgba(var(--accent-r),var(--accent-g),var(--accent-b),.1); animation-duration: 18s; animation-direction: reverse; }
+.photo-ring.ring-2 { inset: -16px; border-style: dashed; border-color: rgba(var(--accent-r),var(--accent-g),var(--accent-b),.14); animation-duration: 16s; animation-direction: reverse; }
 @keyframes ring-spin { to { transform: rotate(360deg); } }
 
 .profile-name {
@@ -2410,7 +2416,8 @@ strong { color: var(--text) !important; font-weight: 600 !important; }
 .term-title {
   margin-left: 6px;
   font-size: .71rem !important;
-  color: var(--text-muted) !important;
+  color: var(--text-sub) !important;
+  font-weight: 500;
   letter-spacing: .04em;
 }
 .term-body {
@@ -6975,7 +6982,7 @@ a, button { cursor: none !important; }
 
 /* ââ BRAND ââ */
 [data-theme='dark'] .brand-name { color: var(--r-head) !important; }
-[data-theme='dark'] .brand-role { color: rgba(0,255,65,.4) !important; }
+[data-theme='dark'] .brand-role { color: rgba(0,255,65,.88) !important; font-weight: 600 !important; }
 
 /* ââ TOPBAR: very subtle dark, not solid black ââ */
 [data-theme='dark'] .topbar {
@@ -9597,179 +9604,17 @@ html { scroll-behavior: smooth; }
   --border:  rgba(0,255,65,.10);
   --border2: rgba(0,255,65,.18);
 }
-
-/* ââ Scanline overlay on entire page âââââââââââââââââââââââââââââââââââââââ */
+/* == Scanline overlay on entire page == */
 body::before {
   content: '';
-  position:   position:   position:   position:   position:   position:   position:   position:   podient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,    rgba(0,0,0,    rgba(0,0,0,    rgba(0,0,0,    rgba(0,0,0,    rgba(0,0,0,    rgba(0,0,0,    rgba(0,0,0,    rgba( { background-position: 0 0; }
-  100% { background-position: 0 100px; }
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 4px);
+  pointer-events: none;
+  z-index: 9998;
 }
 
-/* ââ Glass panels: green-tinted ââââââââââââââââââââââââââââââââââââââââââââ */
-.glass {
-  background: rgba(0,18,5,.72) !important;
-  border-color: rgba(0,255,65,.10) !important;
-}
-
-/* ââ Section: terminal styling âââââââââââââââââââââââââââââââââââââââââââââ */
-.section.glass {
-  border-left: 2px solid rgba(0,255,65,.22) !important;
-  border-color: rgba(0,255,65,.10) !important;
-}
-.section.glass::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 1px; background: linear-gradient(90deg, var(--r-green), transparent);
-}
-
-/* ââ Typography: terminal-grade headings ââââââââââ/* ââââââââââââââââââââââââ */
-h1, h2, h3, h4, h5 {
-  font-family: 'Space Grotesk', monospace;
-  font-weight: 700;
-  letter-spacing: -.01em;
-  color: #d6f0dc;
-}
-
-h1 {
-  text-shadow: 0 0 40px rgba(0,255,65,.25), 0 0 80px rgba(0,255,65,.08);
-}
-
-h2 {
-  color: #b8e8c0;
-  position: relative;
-}
-h2::before {
-  content: '//';
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .55em;
-  color: rgba(0,255,65,.45);
-  margin-right: .5em;
-  font-weight: 400;
-  letter-spacing: .05em;
-}
-
-h3 {
-  color: #9cd4a8;
-}
-
-/* Readable body copy â keep inter for long-form */
-p, li, td, dd, dt {
-  font-family: 'Inter', system-ui, sans-  font-family: 'Inter', system-ui, sans-  font-family:or  font-family: 'Inter', system-ui, sans-  fondc;
-  font-weight: 600;
-}
-
-a {
-  color: rgba(0,255,65,.85);
-  transition: color .15s;
-}
-a:hover { color: #00ff41; }
-
-/* Mono text: sharper */
-.mono {
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: .84rem;
-  letter-spacing: .01em;
-}
-
-/* ââ Hero H1 Glitch ââââââââââââââââââ/* ââ Hero H1 Gââââââââââââââââââââââââââââââââ */
-.hero-name, h1 .name-text, h1 {
-  animation: glitchIdle 8s ease-in-out infinite;
-}
-@keyframes glitchIdle {
-  0%,94%,100%  { text-shadow: 0 0 40px rgba(0,255,65,.25); clip-path: none; transform: none; }
-  95%   { c  95%   { c  95%  %   95%   { c  95%   { c  9slate(-3px, 0); text-shado  95%   { c  95%  -3px 0 rgba(0,200,255,.7); }
-    %     %     %     nset(    %     %     %     nset(    %     %     %}
-  97%     97%     97%      transform: none; }
-  98%   { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); text-shadow: -3px 0 #00ff41, 3px 0 rgba(255,100,100,.5)  98%   { clip-pat-path: no  98%   { clip-path: inset(* ââ Section numbers: brig  98%   { clip-path:âââââââââââââââââââââââââââââââââ  98%   { clipâââ  98%   { clip-pat color: rgba(0,255,65,.6) !important;
-  font-size: .72rem !important;
-  letter-spacing: .12em !important;
-}
-
-/* ââ h2-prompt (terminal prefix) âââââââââââââââââââââââââââââââââââââââââââ */
-.h2-prompt {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace !important;
-  font-size: .52em !important;
-  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  col  colem;
-  ver  ver  ver  ver  ver  ver  ver  ver  ver  ver  ver  ver  veren prompt already there */
-h2:has(.h2-prompt)::before { display: none; }
-
-/* ââ Cards âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
-.card, .tl-head, .edu-card, .cert-card, .ach-card {
-  border-color: rgba(0,255,65,.10) !important;
-}
-.card:hover {
-  border-color: rgba(0,255,65,.30) !important;
-  box-shadow: 0 0 24px rgba(0,255,65,.08) !important;
-}
-
-/* ââ Buttons override ââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
-.btn-primary {
-  background: var(--r-green, #00ff41) !important;
-  color: #000 !important;
-  box-shadow: 0 0 18px rgba(0,255,65,.30);
-}
-.btn-primary:hover { box-shadow: 0 0 32px rgba(0,255,65,.55); }
-
-.btn-outline {
-  border-color: rgba(0,255,65,.4) !importa  border-color: rgba(0,255,65,.4) !importa  border-color: rgba(0,255,65,.4) !i,65,.08) !impo  border-color: rgba(0,255,65,.4) !importa  ccents âââââââââââââââââââââââââââââââââââââââ */
-#topbar {
-  background: rgba(1,11,4,.92) !important;
-  border-bottom-color: rgba(0,255,65,.12) !important;
-}
-
-/* ââ KPI cards âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
-.kpi-card {
-  border-color: rgba(0,255,65,.14) !important;
-  background: rgba(0,20,5,.6) !important;
-}
-.kpi-val, .v7-val { color: #00ff41 !important; }
-
-/* ââ Pills âââââââââââ/* ââ Pills âââââââââââ/ââââââââââââââââââââââââ/* ââ Pills âââââââââââ/* ââ Pilder-color: rgba(0,255,65,.14) !important;
-  background: rgba(0,255,65,.05) !important;
-}
-.green-pill {
-  background: rgba(0,255,65,.12) !important;
-  border-color: rgba(0,255,65,.35) !important;
-  color: #00ff41 !important;
-}
-
-/* ââ Terminal widget ââââââââââââââââââââââââââââââââââââââââââ/* ââââââââââââ */
-.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminal, .li.terminalâââââââââââââââââ */
-.form-input, .chatbot-input {
-  background: rgba(0,18,5,.8) !important;
-  border-color: rgba(0,255,65,.18) !important;
-  color: #d6f0dc !important;
-}
-.form-input:focus, .chatbot-input:focus {
-  border-color: rgba(0,255,65,.5) !important;
-  box-shadow: 0 0 0 3px rgba(0,255,65,.08) !important;
-}
-.form-input::placeholder, .chatbot-input::placeholder {
-  color: rgba(98,168,112,.45) !important;
-}
-
-/* ââ Gradient te/* ââ Grâ/* ââ Gradient te/* ââ Grâ/*âââââââââââââââââââââââââââââââââââââââââ */
-.gradient-text {
-  background: linear-gradient(135deg, #00ff41, #5fffb8) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-/* ââ Scrollbar âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
-::-webkit-scrollbar { width: 6px; }
-::-::-::-::-::-::-::-::-::-::-:kground: #010b04; }
-::-webkit-scrollbar-thumb { background: rgba(0,255,65,.25); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0,255,65,.45); }
-
-/* ââ Text selection âââââââââââââââââââââââââââââââââââââââââââ/* ââ Text selection âââââ */
-::selection { background: rgba(0,255,65,.25); color: #e4f4e8; }
-
-/* ââ QUICK CONNECT â Email CTA Terminal Block âââââââââââââââââââââââââââââââ */
+/* Quick Connect: Email CTA Terminal Block */
 .quick-connect-cta { margin-bottom: 2rem; }
 .qc-terminal {
   border-radius: 12px;
@@ -9783,46 +9628,48 @@ h2:has(.h2-prompt)::before { display: none; }
   padding: 9px 16px;
   background: rgba(0,255,65,.06);
   border-bottom: 1px solid rgba(0,255,65,.12);
-  font-size: .72rem; color: rgba(238,255,241,.5);  font-size: .72rem; color: rgba(238,255,241,.5);  font-size: .72rem; color: rgckground: #ff5f56; }
-.qc-yellow { background: #ffbd2e; }
-.qc-green  { background: #27c93f; }
-.qc-title  { margin-left: 8px; }
-
-.qc-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
-.qc-prompt {
-  font-size: .83rem; margin-bottom: 4px;
+  font-size: .72rem; color: rgba(238,255,241,.6);
+  font-family: 'JetBrains Mono', monospace;
 }
+.qc-red    { background: #ff5f56; width:10px; height:10px; border-radius:50%; display:inline-block; }
+.qc-yellow { background: #ffbd2e; width:10px; height:10px; border-radius:50%; display:inline-block; }
+.qc-green  { background: #27c93f; width:10px; height:10px; border-radius:50%; display:inline-block; }
+.qc-title  { margin-left: 8px; }
+.qc-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+.qc-prompt { font-size: .83rem; margin-bottom: 4px; }
 .qc-ps  { color: rgba(0,255,65,.6); margin-right: 8px; }
 .qc-cmd { color: #e4f4e8; }
 .qc-output { font-size: .78rem; padding-left: 1.2em; color: rgba(152,184,160,.75); }
 .qc-addr { color: #00ff41; font-weight: 600; }
-
 .qc-actions { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
-
 .qc-email-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  pa  p font-weight: 700;
-  font-size: .85rem; font-family: 'Space Gr  font-size: .85re;
+  padding: 10px 24px;
+  background: #00ff41;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .85rem; font-family: 'Space Grotesk', sans-serif;
   text-decoration: none;
   box-shadow: 0 0 24px rgba(0,255,65,.35);
-  transition:   transition:   transition:   transition:   transition:   transition:   transition:   transition:   transition:   transition:   transition:   trans-2px);
+  transition: box-shadow .2s, transform .15s;
   color: #000;
 }
-.qc-open-hint .qc-open-hint .qc-open-hint .qc-ot: 400; color: rgba(0,0,0,.5);
-  margin-left: 4px;
-}
-
+.qc-email-btn:hover { box-shadow: 0 0 40px rgba(0,255,65,.6); transform: translateY(-2px); }
+.qc-open-hint { font-weight: 400; color: rgba(0,0,0,.5); margin-left: 4px; }
 .qc-copy-btn {
-  display: inline-flex; align-items: center; gap:   disp paddin  display: inline-flex; align-items: ce,255,65,.3); border-radius: 8px;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(0,255,65,.3); border-radius: 8px;
   color: rgba(0,255,65,.8); font-size: .78rem;
   background: rgba(0,255,65,.05);
   transition: background .15s, border-color .15s;
   cursor: pointer;
 }
-.qc-copy-btn:hover { background: rgba.qc-copy-btn:hover { background: rgba.qc-copy-btn:hover { background: rgba.qc-copy.qc-email-btn { font-size: .8rem; padding: 10px 18px; }
+.qc-copy-btn:hover { background: rgba(0,255,65,.12); border-color: rgba(0,255,65,.5); }
+@media (max-width: 600px) {
+  .qc-email-btn { font-size: .8rem; padding: 10px 18px; }
   .qc-open-hint { display: none; }
 }
-
 
 /* == V14 Cloud-Native Hacker Design System == */
 
@@ -10062,7 +9909,7 @@ footer { background:rgba(4,10,22,.95) !important; border-top:1px solid rgba(74,1
   inset: 0;
   background:
     radial-gradient(ellipse 55% 60% at 15% 50%, rgba(0,230,118,.05) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 50% at 85% 30%, rgba(74,158,255,.06) 0%, tra    radial-gradiepointer-events: none;
+    radial-gradient(ellipse 40% 50% at 85% 30%, rgba(74,158,255,.06) 0%, transparent 65%);
   z-index: 0;
 }
 
@@ -10192,7 +10039,8 @@ footer { background:rgba(4,10,22,.95) !important; border-top:1px solid rgba(74,1
   line-height: 1.1 !important;
   display: block;
 }
-.....................e: .64rem !important;
+.kpi-label {
+  font-size: .64rem !important;
   color: var(--text-muted) !important;
   margin-top: 3px;
   line-height: 1.3;
@@ -10203,7 +10051,9 @@ footer { background:rgba(4,10,22,.95) !important; border-top:1px solid rgba(74,1
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  align-items:  align-ite.hero-cta .btn-primary {
+  align-items: center;
+}
+.hero-cta .btn-primary {
   font-size: .88rem !important;
   padding: 10px 20px !important;
   border-radius: 8px !important;
@@ -10222,7 +10072,7 @@ footer { background:rgba(4,10,22,.95) !important; border-top:1px solid rgba(74,1
 /* Responsive — mobile first */
 @media (max-width: 640px) {
   .kpi-grid.v7-kpi { grid-template-columns: repeat(2, 1fr); }
-  .hero h1, .hero h1 .na  .hero h1t { font-size: clamp(2.2rem,8vw,3rem) !important; }
+.hero h1, .hero h1 .name-gradient, .hero h1 .name-text { font-size: clamp(2.2rem,8vw,3rem) !important; }
   .security-status-bar { font-size: .65rem !important; }
 }
 
