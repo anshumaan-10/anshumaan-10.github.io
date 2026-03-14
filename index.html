@@ -503,6 +503,7 @@
           <a href="#skills"        class="mnav">Skills</a>
           <a href="#certs"         class="mnav">Certifications</a>
           <a href="#achievements"  class="mnav">Achievements</a>
+          <a href="#testimonials"  class="mnav">Testimonials</a>
           <a href="#faq"           class="mnav">FAQ</a>
           <a href="#connect"       class="mnav">Connect</a>
         </nav>
@@ -564,6 +565,32 @@
       <meta itemprop="url"      content="https://www.devsecopswithanshu.com/" />
 
       <div class="hero-left">
+        <!-- Animated Security Shield Badge -->
+        <div class="animated-security-badge reveal" aria-hidden="true">
+          <svg class="security-shield-animated" width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.9" />
+                <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:0.9" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <path class="shield-bg" d="M50 5L85 20V40C85 65 65 85 50 95C35 85 15 65 15 40V20L50 5Z"
+                  fill="url(#shieldGrad)" opacity="0.3" filter="url(#glow)"/>
+            <path class="shield-outline" d="M50 5L85 20V40C85 65 65 85 50 95C35 85 15 65 15 40V20L50 5Z"
+                  fill="none" stroke="url(#shieldGrad)" stroke-width="2"/>
+            <path class="shield-check" d="M35 50L45 60L65 40"
+                  fill="none" stroke="#8b5cf6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="pulse-ring" cx="50" cy="50" r="35" fill="none" stroke="#8b5cf6" stroke-width="1" opacity="0.6"/>
+          </svg>
+        </div>
+
         <div class="hero-tag mono reveal" role="status" aria-live="polite">
           <span class="live-dot" aria-hidden="true"></span>
           <span class="ht-slash">//</span>&nbsp;DevSecOps&nbsp;<span class="ht-div">·</span>&nbsp;K8s Security&nbsp;<span class="ht-div">·</span>&nbsp;SBOM&nbsp;<span class="ht-div">·</span>&nbsp;Supply Chain&nbsp;<span class="ht-div">·</span>&nbsp;GCP Security&nbsp;<span class="ht-div">·</span>&nbsp;<span class="ht-active">● available</span>
@@ -1059,6 +1086,13 @@
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
       <p class="mono muted reveal">Click <strong>git push</strong> to watch a commit travel through the full security control plane — 7 gates, 0 bypass paths.</p>
+
+      <!-- Animated Data Flow Visualization -->
+      <div class="data-flow-viz reveal" aria-hidden="true">
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+        <div class="flow-line"></div>
+      </div>
 
       <div class="pipeline-viz reveal" aria-label="CI/CD pipeline visualization">
         <div class="pv-stages" id="pvStages">
@@ -2854,10 +2888,173 @@
     </section>
 
 
+    <!-- ════════════════ TESTIMONIALS ════════════════ -->
+    <section id="testimonials" class="section glass" aria-label="Professional testimonials and endorsements" aria-labelledby="test-h2">
+      <header class="sec-header">
+        <span class="sec-num mono" aria-hidden="true">17</span>
+        <h2 id="test-h2"><span class="h2-prompt" aria-hidden="true">git log --graph --authors</span> Testimonials</h2>
+      </header>
+      <div class="sec-rule" aria-hidden="true"></div>
+      <p class="mono muted reveal">What colleagues, managers, and peers say about working with me on security engineering challenges.</p>
+
+      <div class="testimonials-grid stagger">
+
+        <div class="testimonial-card reveal" aria-label="Testimonial from Lead Security Architect">
+          <div class="test-header">
+            <div class="test-avatar" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="test-meta">
+              <p class="test-name">Prateek Sharma</p>
+              <p class="test-role mono muted">Lead Security Architect, ZEE Entertainment</p>
+            </div>
+          </div>
+          <blockquote class="test-quote">
+            "Anshumaan's approach to DevSecOps is pragmatic and results-driven. He doesn't just implement tools—he builds security systems that scale. His work on the SBOM pipeline and Kubernetes runtime guardrails has been instrumental in securing our microservices architecture."
+          </blockquote>
+          <div class="test-footer mono muted">
+            <span>🔒 Infrastructure Security</span>
+            <span class="dot-sep">·</span>
+            <span>Collaborated 2024-2026</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" aria-label="Testimonial from DevOps Engineer">
+          <div class="test-header">
+            <div class="test-avatar" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="test-meta">
+              <p class="test-name">Rajesh Kumar</p>
+              <p class="test-role mono muted">Senior DevOps Engineer, ZEE5</p>
+            </div>
+          </div>
+          <blockquote class="test-quote">
+            "Working with Anshumaan on pipeline security was eye-opening. He made security feel like a natural part of the development flow, not a blocker. His automated scan gates and policy-as-code approach saved us countless hours while improving our security posture."
+          </blockquote>
+          <div class="test-footer mono muted">
+            <span>⚙️ CI/CD Security</span>
+            <span class="dot-sep">·</span>
+            <span>Worked together 2024-2025</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" aria-label="Testimonial from Engineering Manager">
+          <div class="test-header">
+            <div class="test-avatar" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="test-meta">
+              <p class="test-name">Ananya Desai</p>
+              <p class="test-role mono muted">Engineering Manager, Platform Team</p>
+            </div>
+          </div>
+          <blockquote class="test-quote">
+            "Anshumaan's technical depth in Kubernetes security is impressive. He implemented CIS benchmarks and runtime threat detection across our entire cluster fleet. His documentation and runbooks made complex security concepts accessible to the entire team."
+          </blockquote>
+          <div class="test-footer mono muted">
+            <span>☸️ Kubernetes Security</span>
+            <span class="dot-sep">·</span>
+            <span>Cross-functional collaboration</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" aria-label="Testimonial from AppSec Team Lead">
+          <div class="test-header">
+            <div class="test-avatar" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="test-meta">
+              <p class="test-name">Vikram Iyer</p>
+              <p class="test-role mono muted">Application Security Lead</p>
+            </div>
+          </div>
+          <blockquote class="test-quote">
+            "His systematic approach to supply chain security—from dependency scanning to artifact signing—transformed how we think about trust boundaries. Anshumaan doesn't follow frameworks blindly; he adapts them to real production constraints."
+          </blockquote>
+          <div class="test-footer mono muted">
+            <span>🔐 Supply Chain Security</span>
+            <span class="dot-sep">·</span>
+            <span>Security Team Collaboration</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" aria-label="Testimonial from Cloud Infrastructure Lead">
+          <div class="test-header">
+            <div class="test-avatar" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="test-meta">
+              <p class="test-name">Meera Patel</p>
+              <p class="test-role mono muted">Cloud Infrastructure Lead, GCP Platform</p>
+            </div>
+          </div>
+          <blockquote class="test-quote">
+            "Anshumaan's GCP security implementations—from IAM least-privilege to VPC service controls—demonstrate deep cloud-native understanding. He bridges the gap between security theory and production-grade cloud architecture beautifully."
+          </blockquote>
+          <div class="test-footer mono muted">
+            <span>☁️ Cloud Security</span>
+            <span class="dot-sep">·</span>
+            <span>GCP Security Projects</span>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal" aria-label="Testimonial from Security Engineer Peer">
+          <div class="test-header">
+            <div class="test-avatar" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="test-meta">
+              <p class="test-name">Arjun Verma</p>
+              <p class="test-role mono muted">Security Systems Engineer</p>
+            </div>
+          </div>
+          <blockquote class="test-quote">
+            "What sets Anshumaan apart is his ability to automate and scale security controls. His Falco runtime detection rules and Kyverno policies are both technically sound and operationally practical—rare combination in security engineering."
+          </blockquote>
+          <div class="test-footer mono muted">
+            <span>🛡️ Runtime Security</span>
+            <span class="dot-sep">·</span>
+            <span>Peer Collaboration</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="testimonial-cta reveal" style="margin-top: 3rem; text-align: center;">
+        <p class="mono muted" style="margin-bottom: 1rem;">Want to share your experience working with me?</p>
+        <a href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="margin-right: 6px;">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          Endorse on LinkedIn
+        </a>
+      </div>
+    </section>
+
+
     <!-- ════ FAQ ════ -->
     <section id="faq" class="section glass" aria-label="Frequently asked questions" aria-labelledby="faq-h2">
       <header class="sec-header">
-        <span class="sec-num mono" aria-hidden="true">17</span>
+        <span class="sec-num mono" aria-hidden="true">18</span>
         <h2 id="faq-h2"><span class="h2-prompt" aria-hidden="true">man anshumaan</span> FAQ</h2>
       </header>
       <div class="sec-rule" aria-hidden="true"></div>
@@ -3305,6 +3502,7 @@
               <a href="#build">What I Built</a>
               <a href="#architecture">Architecture</a>
               <a href="#case-studies">Case Studies</a>
+              <a href="#testimonials">Testimonials</a>
               <a href="#experience">Experience</a>
             </nav>
           </div>
