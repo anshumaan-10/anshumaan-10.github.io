@@ -645,8 +645,8 @@ onScroll();
   }
 
   function draw() {
-    // Fade trail — very dark with slight green
-    ctx.fillStyle = "rgba(4, 8, 12, 0.18)";
+    // Fade trail — deep dark
+    ctx.fillStyle = "rgba(4, 5, 16, 0.18)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.font = `600 ${FONT_SIZE}px 'JetBrains Mono', monospace`;
@@ -659,15 +659,15 @@ onScroll();
       const isHead = drops[i] > 0;
 
       if (isHead) {
-        // Bright head — white-green
-        ctx.fillStyle = "rgba(180, 255, 200, 0.92)";
+        // Bright head — white-violet
+        ctx.fillStyle = "rgba(230, 220, 255, 0.92)";
         ctx.shadowBlur   = 12;
-        ctx.shadowColor  = "#00ff41";
+        ctx.shadowColor  = "#8b5cf6";
       } else {
         // Body gradient fading
         const progress = y / canvas.height;
         const alpha = Math.max(0.04, 0.55 * (1 - progress * 0.7));
-        ctx.fillStyle   = `rgba(0, 255, 65, ${alpha})`;
+        ctx.fillStyle   = `rgba(139, 92, 246, ${alpha})`;
         ctx.shadowBlur  = 4;
         ctx.shadowColor = "transparent";
       }
@@ -821,17 +821,17 @@ onScroll();
     if (isHover) {
       ring.style.width        = '46px';
       ring.style.height       = '46px';
-      ring.style.borderColor  = 'rgba(0,255,65,.55)';
-      ring.style.background   = 'rgba(0,255,65,.04)';
-      dot.style.background    = '#00ff41';
+      ring.style.borderColor  = 'rgba(139,92,246,.55)';
+      ring.style.background   = 'rgba(139,92,246,.04)';
+      dot.style.background    = '#8b5cf6';
       dot.style.width         = '7px';
       dot.style.height        = '7px';
     } else {
       ring.style.width        = '26px';
       ring.style.height       = '26px';
-      ring.style.borderColor  = 'rgba(0,255,65,.35)';
+      ring.style.borderColor  = 'rgba(139,92,246,.35)';
       ring.style.background   = 'transparent';
-      dot.style.background    = '#00ff41';
+      dot.style.background    = '#8b5cf6';
       dot.style.width         = '5px';
       dot.style.height        = '5px';
     }
@@ -1132,9 +1132,9 @@ onScroll();
       return [`<span class="exp-out">Opening resume PDF... <a href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank">Open Resume ↗</a></span>`];
     },
     matrix: () => [
-      `<span class="exp-out" style="color:rgba(0,255,65,.9)">There is no spoon.</span>`,
-      `<span class="exp-out" style="color:rgba(0,255,65,.7)">You already know the path. You just have to walk it.</span>`,
-      `<span class="exp-out" style="color:rgba(0,255,65,.5)">// The Matrix of DevSecOps has you...</span>`,
+      `<span class="exp-out" style="color:rgba(196,181,253,.9)">There is no spoon.</span>`,
+      `<span class="exp-out" style="color:rgba(196,181,253,.7)">You already know the path. You just have to walk it.</span>`,
+      `<span class="exp-out" style="color:rgba(139,92,246,.6)">// The Matrix of DevSecOps has you...</span>`,
     ],
     clear: () => { body.innerHTML = ''; return []; },
   };
@@ -1379,7 +1379,7 @@ onScroll();
   if (document.getElementById('rtStyle')) return;
   const s = document.createElement('style');
   s.id = 'rtStyle';
-  s.textContent = `.rt-badge{font-size:.62rem;color:rgba(0,255,65,.5);background:rgba(0,200,60,.06);border:1px solid rgba(0,200,60,.12);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
+  s.textContent = `.rt-badge{font-size:.62rem;color:rgba(196,181,253,.6);background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
   document.head.appendChild(s);
 })();
 
@@ -1493,7 +1493,7 @@ onScroll();
   if (document.getElementById('rtStyle')) return;
   const s = document.createElement('style');
   s.id = 'rtStyle';
-  s.textContent = `.rt-badge{font-size:.62rem;color:rgba(0,255,65,.5);background:rgba(0,200,60,.06);border:1px solid rgba(0,200,60,.12);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
+  s.textContent = `.rt-badge{font-size:.62rem;color:rgba(196,181,253,.6);background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);border-radius:3px;padding:1px 6px;margin-left:8px;white-space:nowrap;}`;
   document.head.appendChild(s);
 })();
 
@@ -1644,11 +1644,11 @@ onScroll();
     function draw() {
       ctx.fillStyle = 'rgba(0,0,0,0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00ff41';
+      ctx.fillStyle = '#8b5cf6';
       ctx.font = '14px JetBrains Mono, monospace';
       for (let i = 0; i < drops.length; i++) {
         const ch = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillStyle = drops[i] * 14 < 40 ? '#5fffb8' : '#00ff41';
+        ctx.fillStyle = drops[i] * 14 < 40 ? '#c4b5fd' : '#8b5cf6';
         ctx.fillText(ch, i * 14, drops[i] * 14);
         if (drops[i] * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
@@ -2062,7 +2062,7 @@ onScroll();
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          qcTerm.style.boxShadow = '0 0 60px rgba(0,255,65,.12), inset 0 1px 0 rgba(0,255,65,.15)';
+          qcTerm.style.boxShadow = '0 0 60px rgba(139,92,246,.12), inset 0 1px 0 rgba(139,92,246,.15)';
           io.disconnect();
         }
       });
@@ -2315,7 +2315,7 @@ onScroll();
       },
       particles: {
         number:  { value: 65, density: { enable: true, area: 900 } },
-        color:   { value: ['#00e676', '#4a9eff', '#00bcd4', '#69ffb4'] },
+        color:   { value: ['#8b5cf6', '#4a9eff', '#06b6d4', '#c4b5fd'] },
         shape:   { type: 'circle' },
         opacity: {
           value: { min: 0.06, max: 0.32 },
