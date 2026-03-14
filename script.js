@@ -1229,6 +1229,8 @@ onScroll();
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
+      }).catch(() => {
+        throw new Error('Network error - check your connection');
       });
 
       if (res.ok) {
@@ -2144,6 +2146,9 @@ onScroll();
     const allEnough = gsapReady && tiltOk;  // minimum for good visuals
 
     if (allEnough || retries >= MAX_RETRIES) {
+      if (retries >= MAX_RETRIES && !allEnough) {
+        console.warn('⚠️ Some CDN libraries failed to load. Animations may be limited.');
+      }
       if (gsapReady)     initGSAP();
       if (tsParticlesOk) initTsParticles();
       if (tiltOk)        initTilt();

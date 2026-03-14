@@ -1,0 +1,24 @@
+{
+  "name": "anshumaan-portfolio",
+  "version": "14.0.0",
+  "description": "Anshumaan Singh - Security Systems Engineer Portfolio",
+  "scripts": {
+    "minify:css": "cleancss -o styles.min.css styles.css",
+    "minify:js": "terser script.js -o script.min.js -c -m",
+    "minify:html": "html-minifier --collapse-whitespace --remove-comments --minify-css true --minify-js true -o index.min.html index.html",
+    "minify:all": "npm run minify:css && npm run minify:js && npm run minify:html",
+    "serve": "python3 -m http.server 8000",
+    "optimize": "npm run minify:all"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.31.0",
+    "html-minifier": "^4.0.0"
+  },
+  "author": "Anshumaan Singh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anshumaan-10/anshumaan-10.github.io.git"
+  }
+}
