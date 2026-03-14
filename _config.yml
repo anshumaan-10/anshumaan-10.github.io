@@ -1,0 +1,36 @@
+# GitHub Pages Configuration
+# Optimize for performance and security
+
+# Exclude files from Jekyll processing
+exclude:
+  - package.json
+  - package-lock.json
+  - node_modules/
+  - .gitignore
+  - PERFORMANCE.md
+  - README.md
+  - _*.py
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Markdown settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Compression
+sass:
+  style: compressed
+
+# URL
+url: "https://www.devsecopswithanshu.com"
+baseurl: ""
+
+# Site metadata
+title: "Anshumaan Singh | Security Systems Engineer"
+description: "Security Systems Engineer securing 350+ microservices at ZEE Entertainment. CKS · CKA · GCP certified."
+author: "Anshumaan Singh"
