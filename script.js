@@ -2456,3 +2456,367 @@ onScroll();
     console.log('[V14+] Lenis smooth scroll ready');
   }
 })();
+
+/* ══════════════════════════════════════════════════════════════════
+   ENHANCED FEATURES — Make the portfolio OVERWHELMING
+   Mouse trails, Konami code, Parallax, Dynamic effects
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ── ENHANCED MOUSE PARTICLE TRAIL ── */
+(function enhancedMouseTrail() {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'mouse-trail-canvas';
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let mouseX = -100, mouseY = -100;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  class Particle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 3 + 1;
+      this.speedX = Math.random() * 3 - 1.5;
+      this.speedY = Math.random() * 3 - 1.5;
+      this.life = 1;
+      this.decay = Math.random() * 0.01 + 0.01;
+      this.hue = Math.random() * 60 + 240; // Purple-blue range
+    }
+
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.life -= this.decay;
+      this.size *= 0.97;
+    }
+
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.life * 0.5;
+      ctx.fillStyle = `hsl(${this.hue}, 80%, 60%)`;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = `hsl(${this.hue}, 80%, 60%)`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    for (let i = 0; i < 2; i++) {
+      particles.push(new Particle(mouseX, mouseY));
+    }
+  });
+
+  function animate() {
+    ctx.fillStyle = 'rgba(8, 14, 26, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    particles = particles.filter(p => p.life > 0);
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+  console.log('[Enhanced] Mouse trail particles active');
+})();
+
+/* ── KONAMI CODE EASTER EGG ── */
+(function konamiCode() {
+  const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  let konamiIndex = 0;
+
+  function activateHackerMode() {
+    document.body.classList.add('hacker-mode-active');
+
+    // Matrix rain effect
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes matrix-fall {
+        0% { transform: translateY(-100%); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+      }
+
+      .matrix-char {
+        position: fixed;
+        color: #0f0;
+        font-family: 'Courier New', monospace;
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 0 0 10px #0f0;
+        pointer-events: none;
+        z-index: 9998;
+        animation: matrix-fall linear infinite;
+      }
+
+      body.hacker-mode-active {
+        animation: hacker-pulse 2s ease-in-out;
+      }
+
+      @keyframes hacker-pulse {
+        0%, 100% { filter: hue-rotate(0deg); }
+        50% { filter: hue-rotate(120deg); }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Create matrix rain
+    for (let i = 0; i < 50; i++) {
+      setTimeout(() => {
+        const char = document.createElement('div');
+        char.className = 'matrix-char';
+        char.textContent = String.fromCharCode(0x30A0 + Math.random() * 96);
+        char.style.left = Math.random() * 100 + '%';
+        char.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        char.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(char);
+
+        setTimeout(() => char.remove(), 8000);
+      }, i * 100);
+    }
+
+    showToast('🎮 KONAMI CODE ACTIVATED! HACKER MODE ENGAGED! 🔓');
+
+    // Add special effects
+    document.querySelectorAll('.glass').forEach(el => {
+      el.style.transition = 'all 0.5s ease';
+      el.style.boxShadow = '0 0 30px rgba(0, 255, 0, 0.3), inset 0 0 20px rgba(0, 255, 0, 0.1)';
+    });
+
+    setTimeout(() => {
+      document.body.classList.remove('hacker-mode-active');
+      document.querySelectorAll('.glass').forEach(el => {
+        el.style.boxShadow = '';
+      });
+    }, 10000);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === konamiSequence[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiSequence.length) {
+        activateHackerMode();
+        konamiIndex = 0;
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  console.log('[Easter Egg] Konami code listener active');
+})();
+
+/* ── PARALLAX SCROLLING EFFECT ── */
+(function parallaxScrolling() {
+  const parallaxElements = document.querySelectorAll('.hero, .profile-card, .cp-dashboard');
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+
+    parallaxElements.forEach((el, index) => {
+      const speed = 0.3 + (index * 0.1);
+      const yPos = -(scrolled * speed);
+      el.style.transform = `translateY(${yPos}px)`;
+    });
+  }, { passive: true });
+
+  console.log('[Enhanced] Parallax scrolling active');
+})();
+
+/* ── DYNAMIC GRADIENT BACKGROUND SHIFT ── */
+(function dynamicGradients() {
+  let hue = 260;
+
+  setInterval(() => {
+    hue = (hue + 0.5) % 360;
+    document.documentElement.style.setProperty('--dynamic-hue', hue);
+  }, 100);
+
+  console.log('[Enhanced] Dynamic gradient shift active');
+})();
+
+/* ── ENHANCED HOVER EFFECTS ON CARDS ── */
+(function enhancedCardEffects() {
+  const cards = document.querySelectorAll('.card, .cert-card, .proj-card, .kpi-card');
+
+  cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+      this.style.transform = 'translateY(-8px) scale(1.02)';
+      this.style.boxShadow = '0 20px 60px rgba(139, 92, 246, 0.3), 0 0 40px rgba(139, 92, 246, 0.2)';
+      this.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+    });
+
+    card.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+      this.style.boxShadow = '';
+      this.style.borderColor = '';
+    });
+  });
+
+  console.log('[Enhanced] Card hover effects active');
+})();
+
+/* ── SECTION ENTRANCE ANIMATIONS ── */
+(function sectionEntranceAnimations() {
+  const sections = document.querySelectorAll('section.section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'section-enter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes section-enter {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  sections.forEach(section => observer.observe(section));
+
+  console.log('[Enhanced] Section entrance animations active');
+})();
+
+/* ── FLOATING SKILL TAGS ── */
+(function floatingSkillTags() {
+  const skillTags = document.querySelectorAll('.skill-tag, .tech-badge, .pill');
+
+  skillTags.forEach((tag, index) => {
+    const delay = index * 0.1;
+    const duration = 3 + Math.random() * 2;
+
+    tag.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+  });
+
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  console.log('[Enhanced] Floating skill tags active');
+})();
+
+/* ── CLICK RIPPLE EFFECT ── */
+(function clickRippleEffect() {
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.cssText = `
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 9999;
+      animation: ripple-expand 0.6s ease-out;
+      left: ${e.clientX - 10}px;
+      top: ${e.clientY - 10}px;
+    `;
+
+    document.body.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+  });
+
+  const style = document.createElement('style');
+  style.innerHTML = `
+    @keyframes ripple-expand {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(20);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  console.log('[Enhanced] Click ripple effect active');
+})();
+
+/* ── ACHIEVEMENT SOUND EFFECTS (OPTIONAL) ── */
+(function achievementSounds() {
+  let soundEnabled = localStorage.getItem('portfolio-sound-enabled') === 'true';
+
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  function playTone(frequency, duration) {
+    if (!soundEnabled) return;
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.frequency.value = frequency;
+    oscillator.type = 'sine';
+
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + duration);
+  }
+
+  // Play sound when sections come into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && soundEnabled) {
+        playTone(440 + Math.random() * 220, 0.2);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('section[id]').forEach(section => {
+    observer.observe(section);
+  });
+
+  console.log('[Enhanced] Achievement sounds initialized (disabled by default)');
+})();
+
+console.log('[🚀 ENHANCED PORTFOLIO] All advanced features loaded and active!');
