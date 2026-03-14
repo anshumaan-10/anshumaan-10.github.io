@@ -57,7 +57,7 @@
   <link rel="dns-prefetch" href="https://unpkg.com" />
 
   <!-- ═══ FONTS ═══ -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
 
   <!-- ═══ FAVICON ═══ -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
@@ -72,19 +72,19 @@
     html,body{margin:0;padding:0;background:#080e1a;color:#e2eeff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
     .loader{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:#080e1a;transition:opacity .5s ease,visibility .5s ease}
     .loader.hide{opacity:0;visibility:hidden;pointer-events:none}
-    .loader-terminal{background:#0c1526;border:1px solid rgba(0,230,118,.25);border-radius:12px;min-width:min(460px,92vw);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.7)}
-    .lt-header{background:rgba(0,0,0,.4);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(0,230,118,.12)}
+    .loader-terminal{background:#0c1526;border:1px solid rgba(139,92,246,.25);border-radius:12px;min-width:min(460px,92vw);overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.7)}
+    .lt-header{background:rgba(0,0,0,.4);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(139,92,246,.12)}
     .lt-dot{width:12px;height:12px;border-radius:50%;display:inline-block}
-    .lt-red{background:#ff5f57}.lt-yellow{background:#ffbd2e}.lt-green{background:#28c840}
-    .lt-title,.lt-clock{font-family:'JetBrains Mono',monospace,monospace;font-size:.75rem;color:rgba(0,230,118,.9);margin-left:6px}
+    .lt-red{background:#ff5f57}.lt-yellow{background:#ffbd2e}.lt-green{background:#7c3aed}
+    .lt-title,.lt-clock{font-family:'JetBrains Mono',monospace,monospace;font-size:.75rem;color:rgba(139,92,246,.9);margin-left:6px}
     .lt-body{padding:16px 18px;display:flex;flex-direction:column;gap:6px}
     .lt-line{font-family:'JetBrains Mono',monospace,monospace;font-size:.78rem;color:#8ba8cc;display:flex;align-items:center;gap:8px}
-    .lt-prompt{color:#00e676;font-weight:700}.lt-cmd{color:#e2eeff}.lt-out{color:#8ba8cc}.lt-ok{color:#00e676}
+    .lt-prompt{color:#8b5cf6;font-weight:700}.lt-cmd{color:#e2eeff}.lt-out{color:#8ba8cc}.lt-ok{color:#a78bfa}
     .lt-progress{height:3px;background:#111e35;margin:0 18px 14px}
-    .lt-fill{height:100%;background:linear-gradient(90deg,#00e676,#4a9eff);width:0;transition:width .08s linear;border-radius:3px}
+    .lt-fill{height:100%;background:linear-gradient(90deg,#8b5cf6,#4a9eff);width:0;transition:width .08s linear;border-radius:3px}
     .loader-dots::after{content:'';animation:dotCycle 1.4s steps(4,end) infinite}
     @keyframes dotCycle{0%{content:'.'}25%{content:'..'}50%{content:'...'}75%{content:'....'}}
-    .lt-cursor-blink{animation:cursorBlink .7s step-end infinite;color:#00e676}
+    .lt-cursor-blink{animation:cursorBlink .7s step-end infinite;color:#8b5cf6}
     @keyframes cursorBlink{50%{opacity:0}}
   </style>
 
@@ -336,7 +336,7 @@
         <div class="lt-line"><span class="lt-prompt">$</span> <span class="lt-cmd">sudo init security-context --env=production</span></div>
         <div class="lt-line lt-out">[OK] Kernel security modules loaded — v2.6.0</div>
         <div class="lt-line lt-out">[OK] Identity federation verified — sha256:a3f2b1</div>
-        <div class="lt-line lt-out">[OK] Certificate chain valid &nbsp;CKS &middot; CKA &middot; GCP</div>
+        <div class="lt-line lt-out">[VERIFIED] Credentials chain valid · CKS · CKA · GCP-SEC · GCP-PCA · TF · ACE</div>
         <div class="lt-line lt-out" id="ltScan">[..] Scanning 350+ microservices<span class="loader-dots">...</span></div>
         <div class="lt-line lt-ok" id="ltDone" style="display:none">[OK] All gates active. Zero incidents. Launching...</div>
         <div class="lt-line"><span class="lt-prompt">$</span> <span class="lt-cursor-blink" aria-hidden="true">&#9608;</span></div>
@@ -582,17 +582,17 @@
         </div>
 
         <div class="security-status-bar mono reveal" role="status" aria-label="Security system status">
-          <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>CI/CD Gates Active</span>
+          <span class="ssb-item"><span class="ssb-dot accent" aria-hidden="true"></span>CI/CD Gates Active</span>
           <span class="ssb-sep" aria-hidden="true">|</span>
-          <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>350+ Services Secured</span>
+          <span class="ssb-item"><span class="ssb-dot accent" aria-hidden="true"></span>350+ Services Secured</span>
           <span class="ssb-sep" aria-hidden="true">|</span>
           <span class="ssb-item"><span class="ssb-dot accent" aria-hidden="true"></span>SBOM Enabled</span>
           <span class="ssb-sep" aria-hidden="true">|</span>
-          <span class="ssb-item"><span class="ssb-dot green" aria-hidden="true"></span>Zero Prod Incidents</span>
+          <span class="ssb-item"><span class="ssb-dot accent" aria-hidden="true"></span>Zero Prod Incidents</span>
         </div>
 
         <div class="access-node reveal" aria-hidden="true"><span class="an-bracket">[</span><span class="an-status">ACCESS</span><span class="an-ok">GRANTED</span><span class="an-bracket">]</span><span class="an-sep">::</span><span class="an-node">security-node-BLR-01</span></div>
-        <p class="hero-greeting mono reveal" aria-hidden="true">root@security ~ $</p>
+        <p class="hero-greeting mono reveal" aria-hidden="true">anshumaan@portfolio:~$ whoami</p>
         <h1 class="reveal" itemprop="name">
           <span class="name-gradient glitch-text v14-h1-glow" data-text="Anshumaan Singh">Anshumaan Singh</span>
         </h1>
@@ -610,18 +610,18 @@
         </blockquote>
 
         <p class="hero-lead reveal" itemprop="description">
-          Information Security Analyst (IC-2) at <strong>ZEE Entertainment</strong>, building
-          <strong>security control planes</strong> across <strong>CI/CD</strong>,
-          <strong>artifact supply chains</strong>, <strong>Kubernetes runtime</strong>, and
-          <strong>GCP cloud governance</strong> — securing 350+ microservices so that
-          insecure paths become operationally hard and <em>secure delivery is the default</em>.
+          Information Security Analyst (IC-2) at <strong>ZEE Entertainment</strong> — building
+          <strong>security control planes</strong> that make insecure releases
+          <em>structurally impossible</em> across <strong>350+ microservices</strong>,
+          <strong>Kubernetes runtime</strong>, <strong>CI/CD pipelines</strong>, and
+          <strong>GCP cloud governance</strong>. 6 professional certifications. 0 production incidents.
         </p>
 
         <div class="meta-pills reveal" role="list">
           <span class="pill" role="listitem">📍 Bengaluru, India</span>
           <span class="pill" role="listitem">🏢 InfoSec Analyst IC-2 @ ZEE</span>
           <span class="pill" role="listitem">🧩 DevSecOps · K8s · AppSec · Cloud</span>
-          <span class="pill green-pill" role="listitem">🟢 Open to DevSecOps opportunities</span>
+          <span class="pill accent-pill" role="listitem">✦ Open to DevSecOps opportunities</span>
         </div>
 
         <div class="kpi-grid v7-kpi reveal" role="list" aria-label="Key metrics">
@@ -634,8 +634,8 @@
             <div class="kpi-lbl">CI/CD security gates</div>
           </div>
           <div class="kpi-card" role="listitem">
-            <div class="kpi-val v7-val mono"><span class="counter" data-target="6">0</span></div>
-            <div class="kpi-lbl">Pro certifications</div>
+            <div class="kpi-val v7-val mono"><span class="counter" data-target="10">0</span>+</div>
+            <div class="kpi-lbl">Credentials earned</div>
           </div>
           <div class="kpi-card" role="listitem">
             <div class="kpi-val v7-val mono"><span class="counter" data-target="2">0</span>+</div>
@@ -709,37 +709,37 @@
                 <!-- Hex grid pattern -->
                 <defs>
                   <pattern id="hexPat" x="0" y="0" width="18" height="20.8" patternUnits="userSpaceOnUse">
-                    <polygon points="9,1 17,5.5 17,15.3 9,19.8 1,15.3 1,5.5" fill="none" stroke="rgba(0,255,65,.12)" stroke-width=".6"/>
+                    <polygon points="9,1 17,5.5 17,15.3 9,19.8 1,15.3 1,5.5" fill="none" stroke="rgba(139,92,246,.12)" stroke-width=".6"/>
                   </pattern>
                   <clipPath id="circleClip">
                     <circle cx="45" cy="45" r="40"/>
                   </clipPath>
                 </defs>
-                <circle cx="45" cy="45" r="43" fill="none" stroke="rgba(0,255,65,.25)" stroke-width="1.2"/>
-                <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(0,255,65,.10)" stroke-width=".6" stroke-dasharray="4 3"/>
+                <circle cx="45" cy="45" r="43" fill="none" stroke="rgba(139,92,246,.25)" stroke-width="1.2"/>
+                <circle cx="45" cy="45" r="38" fill="none" stroke="rgba(139,92,246,.10)" stroke-width=".6" stroke-dasharray="4 3"/>
                 <rect width="90" height="90" fill="url(#hexPat)" clip-path="url(#circleClip)" opacity=".5"/>
                 <!-- Corner marks -->
-                <line x1="5" y1="5" x2="15" y2="5"   stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="5" y1="5" x2="5"  y2="15"  stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="85" y1="5"  x2="75" y2="5"  stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="85" y1="5"  x2="85" y2="15" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="5"  y1="85" x2="15" y2="85" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="5"  y1="85" x2="5"  y2="75" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="85" y1="85" x2="75" y2="85" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
-                <line x1="85" y1="85" x2="85" y2="75" stroke="rgba(0,255,65,.6)" stroke-width="1.5"/>
+                <line x1="5" y1="5" x2="15" y2="5"   stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="5" y1="5" x2="5"  y2="15"  stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="5"  x2="75" y2="5"  stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="5"  x2="85" y2="15" stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="5"  y1="85" x2="15" y2="85" stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="5"  y1="85" x2="5"  y2="75" stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="85" x2="75" y2="85" stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
+                <line x1="85" y1="85" x2="85" y2="75" stroke="rgba(139,92,246,.6)" stroke-width="1.5"/>
                 <!-- Scan line (animated via CSS) -->
-                <line class="hf-scan" x1="5" y1="45" x2="85" y2="45" stroke="rgba(0,255,65,.3)" stroke-width=".8"/>
+                <line class="hf-scan" x1="5" y1="45" x2="85" y2="45" stroke="rgba(139,92,246,.3)" stroke-width=".8"/>
                 <!-- ID label -->
-                <text x="45" y="87" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.5" fill="rgba(0,255,65,.45)" letter-spacing="2">SECURITY ENGINEER</text>
+                <text x="45" y="87" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="5.5" fill="rgba(139,92,246,.45)" letter-spacing="2">SECURITY ENGINEER</text>
               </svg>
             </div>
             <img class="profile-photo" src="./assests/me.jpg" alt="Anshumaan Singh, Security Systems Engineer, Bengaluru India" width="210" height="210" loading="eager" fetchpriority="high" decoding="sync" itemprop="image" style="opacity:1!important;visibility:visible!important" />
             <div class="photo-ring" aria-hidden="true"></div>
             <div class="photo-ring ring-2" aria-hidden="true"></div>
             <!-- Verified badge -->
-            <div class="profile-verified-badge" title="6 professional certifications verified on Credly" aria-label="Verified: 6 professional certifications">
+            <div class="profile-verified-badge" title="10+ professional credentials verified on Credly" aria-label="Verified: 10+ professional credentials">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
-                <path d="M12 1L15.5 5H21V10.5L24 12L21 13.5V19H15.5L12 23L8.5 19H3V13.5L0 12L3 10.5V5H8.5L12 1Z" fill="#00ff41" opacity=".9"/>
+                <path d="M12 1L15.5 5H21V10.5L24 12L21 13.5V19H15.5L12 23L8.5 19H3V13.5L0 12L3 10.5V5H8.5L12 1Z" fill="#8b5cf6" opacity=".9"/>
                 <polyline points="8 12 11 15 16 9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
             </div>
@@ -811,20 +811,20 @@
           </div>
           <div class="psc-body">
             <svg class="psc-ring" viewBox="0 0 100 100" width="90" height="90" aria-hidden="true">
-              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(0,200,60,.08)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(139,92,246,.12)" stroke-width="8"/>
               <circle cx="50" cy="50" r="42" fill="none" stroke="url(#scoreGrad)" stroke-width="8"
                 stroke-dasharray="263" stroke-dashoffset="26" stroke-linecap="round"
                 transform="rotate(-90 50 50)" class="psc-arc"/>
               <defs>
                 <linearGradient id="scoreGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#00ff41"/>
-                  <stop offset="100%" stop-color="#5fffb8"/>
+                  <stop offset="0%" stop-color="#8b5cf6"/>
+                  <stop offset="100%" stop-color="#06b6d4"/>
                 </linearGradient>
               </defs>
               <text x="50" y="46" text-anchor="middle" font-family="JetBrains Mono,monospace"
-                font-size="18" font-weight="700" fill="#00ff41">97</text>
+                font-size="18" font-weight="700" fill="#8b5cf6">97</text>
               <text x="50" y="57" text-anchor="middle" font-family="JetBrains Mono,monospace"
-                font-size="7" fill="rgba(0,255,65,.5)">/ 100</text>
+                font-size="7" fill="rgba(139,92,246,.5)">/ 100</text>
             </svg>
             <div class="psc-details">
               <div class="psc-row"><span class="psc-label">Pipeline Security</span><span class="psc-val mono">A+</span></div>
@@ -921,8 +921,8 @@
               <span class="stat-key">microservices in scope</span>
             </div>
             <div class="stat-item">
-              <span class="stat-val mono gradient-text">6</span>
-              <span class="stat-key">industry certifications</span>
+              <span class="stat-val mono gradient-text">10+</span>
+              <span class="stat-key">credentials & certifications</span>
             </div>
             <div class="stat-item">
               <span class="stat-val mono gradient-text">2+</span>
@@ -1158,20 +1158,20 @@
                 <polygon points="0 0, 8 3, 0 6" fill="rgba(var(--accent-r-val,139),var(--accent-g-val,92),var(--accent-b-val,246),.7)"/>
               </marker>
               <marker id="sd-arr-ok" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
-                <polygon points="0 0, 8 3, 0 6" fill="rgba(0,230,118,.7)"/>
+                <polygon points="0 0, 8 3, 0 6" fill="rgba(139,92,246,.7)"/>
               </marker>
               <marker id="sd-arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
                 <polygon points="0 0, 8 3, 0 6" fill="rgba(255,80,80,.7)"/>
               </marker>
               <style>
                 .sd-box { rx: 6; ry: 6; fill: rgba(15,25,45,.9); stroke-width: 1.4; }
-                .sd-box-sec { rx: 6; ry: 6; fill: rgba(10,30,18,.9); stroke: rgba(0,230,118,.5); stroke-width: 1.8; }
-                .sd-box-gate { rx: 6; ry: 6; fill: rgba(5,20,10,.95); stroke: rgba(0,255,65,.65); stroke-width: 2; }
+                .sd-box-sec { rx: 6; ry: 6; fill: rgba(10,5,24,.9); stroke: rgba(139,92,246,.5); stroke-width: 1.8; }
+                .sd-box-gate { rx: 6; ry: 6; fill: rgba(8,5,20,.95); stroke: rgba(139,92,246,.65); stroke-width: 2; }
                 .sd-label { font-family: JetBrains Mono,monospace; fill: #dde8ef; font-size: 8.5px; font-weight: 600; }
-                .sd-sub { font-family: JetBrains Mono,monospace; fill: rgba(0,230,118,.6); font-size: 6.5px; }
-                .sd-gate-lbl { font-family: JetBrains Mono,monospace; fill: rgba(0,255,65,.75); font-size: 6px; letter-spacing: 1px; }
+                .sd-sub { font-family: JetBrains Mono,monospace; fill: rgba(139,92,246,.6); font-size: 6.5px; }
+                .sd-gate-lbl { font-family: JetBrains Mono,monospace; fill: rgba(196,181,253,.75); font-size: 6px; letter-spacing: 1px; }
                 .sd-arrow { stroke-width: 1.3; fill: none; marker-end: url(#sd-arr); stroke: rgba(139,92,246,.5); }
-                .sd-arrow-ok { stroke-width: 1.3; fill: none; marker-end: url(#sd-arr-ok); stroke: rgba(0,230,118,.5); }
+                .sd-arrow-ok { stroke-width: 1.3; fill: none; marker-end: url(#sd-arr-ok); stroke: rgba(139,92,246,.5); }
                 .sd-arrow-dsh { stroke-width: 1.1; fill: none; stroke-dasharray: 4 3; marker-end: url(#sd-arr); stroke: rgba(139,92,246,.35); }
               </style>
             </defs>
@@ -1184,8 +1184,8 @@
 
             <!-- Layer bands -->
             <rect x="38" y="28" width="852" height="54" rx="4" fill="rgba(139,92,246,.04)" stroke="rgba(139,92,246,.08)" stroke-width=".8"/>
-            <rect x="38" y="98" width="852" height="54" rx="4" fill="rgba(0,230,118,.03)" stroke="rgba(0,230,118,.07)" stroke-width=".8"/>
-            <rect x="38" y="168" width="852" height="54" rx="4" fill="rgba(0,230,118,.03)" stroke="rgba(0,230,118,.07)" stroke-width=".8"/>
+            <rect x="38" y="98" width="852" height="54" rx="4" fill="rgba(139,92,246,.03)" stroke="rgba(139,92,246,.07)" stroke-width=".8"/>
+            <rect x="38" y="168" width="852" height="54" rx="4" fill="rgba(139,92,246,.03)" stroke="rgba(139,92,246,.07)" stroke-width=".8"/>
             <rect x="38" y="238" width="852" height="54" rx="4" fill="rgba(139,92,246,.04)" stroke="rgba(139,92,246,.08)" stroke-width=".8"/>
 
             <!-- DEV layer: Dev → Pre-commit → Signed Commit → PR Review -->
@@ -1216,7 +1216,7 @@
             <text class="sd-sub" x="449" y="140" text-anchor="middle">Semgrep·Trivy</text>
 
             <line class="sd-arrow-ok" x1="492" y1="126" x2="528" y2="126"/>
-            <rect class="sd-box" x="528" y="108" width="76" height="36" stroke="rgba(0,230,118,.35)"/>
+            <rect class="sd-box" x="528" y="108" width="76" height="36" stroke="rgba(139,92,246,.35)"/>
             <text class="sd-label" x="566" y="124" text-anchor="middle">Build</text>
             <text class="sd-sub" x="566" y="135" text-anchor="middle">distroless</text>
 
@@ -1374,7 +1374,7 @@
         <svg class="sbom-svg" viewBox="0 0 1080 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="presentation" aria-hidden="true">
           <defs>
             <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-              <path d="M0,0 L0,6 L8,3 z" fill="rgba(0,255,65,.45)"/>
+              <path d="M0,0 L0,6 L8,3 z" fill="rgba(139,92,246,.45)"/>
             </marker>
             <marker id="arr-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
               <path d="M0,0 L0,6 L8,3 z" fill="rgba(255,100,100,.6)"/>
@@ -1384,90 +1384,90 @@
               <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
             <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%"   stop-color="rgba(0,255,65,.08)"/>
-              <stop offset="50%"  stop-color="rgba(0,255,65,.14)"/>
-              <stop offset="100%" stop-color="rgba(0,255,65,.06)"/>
+              <stop offset="0%"   stop-color="rgba(139,92,246,.08)"/>
+              <stop offset="50%"  stop-color="rgba(139,92,246,.14)"/>
+              <stop offset="100%" stop-color="rgba(139,92,246,.06)"/>
             </linearGradient>
           </defs>
 
           <!-- Pipeline backbone -->
-          <rect x="20" y="130" width="1040" height="60" rx="4" fill="url(#pipeGrad)" stroke="rgba(0,255,65,.12)" stroke-width="1"/>
+          <rect x="20" y="130" width="1040" height="60" rx="4" fill="url(#pipeGrad)" stroke="rgba(139,92,246,.12)" stroke-width="1"/>
 
           <!-- Flow arrows between stages -->
-          <line x1="111" y1="160" x2="161" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="237" y1="160" x2="287" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="363" y1="160" x2="413" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="489" y1="160" x2="539" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="615" y1="160" x2="665" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="741" y1="160" x2="791" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="867" y1="160" x2="917" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5" marker-end="url(#arr)"/>
-          <line x1="993" y1="160" x2="1040" y2="160" stroke="rgba(0,255,65,.4)" stroke-width="1.5"/>
+          <line x1="111" y1="160" x2="161" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="237" y1="160" x2="287" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="363" y1="160" x2="413" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="489" y1="160" x2="539" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="615" y1="160" x2="665" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="741" y1="160" x2="791" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="867" y1="160" x2="917" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5" marker-end="url(#arr)"/>
+          <line x1="993" y1="160" x2="1040" y2="160" stroke="rgba(139,92,246,.5)" stroke-width="1.5"/>
 
           <!-- STAGE 1: CODE -->
           <g class="sbom-stage" data-tip="Developer writes code. Pre-commit hooks run secret scanning and lint.">
-            <rect x="22" y="135" width="88" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,255,65,.28)" stroke-width="1.2"/>
+            <rect x="22" y="135" width="88" height="50" rx="4" fill="rgba(8,5,24,.8)" stroke="rgba(139,92,246,.28)" stroke-width="1.2"/>
             <text x="66" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">CODE</text>
-            <text x="66" y="168" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="7" font-family="JetBrains Mono,monospace">pre-commit</text>
+            <text x="66" y="168" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="7" font-family="JetBrains Mono,monospace">pre-commit</text>
             <text x="66" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">secret scan</text>
           </g>
 
           <!-- STAGE 2: COMMIT -->
           <g class="sbom-stage" data-tip="Signed commit pushed. Branch protection + CODEOWNERS enforce PR-only merges.">
-            <rect x="163" y="135" width="73" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,255,65,.28)" stroke-width="1.2"/>
+            <rect x="163" y="135" width="73" height="50" rx="4" fill="rgba(8,5,24,.8)" stroke="rgba(139,92,246,.28)" stroke-width="1.2"/>
             <text x="200" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">COMMIT</text>
-            <text x="200" y="168" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="7" font-family="JetBrains Mono,monospace">signed</text>
+            <text x="200" y="168" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="7" font-family="JetBrains Mono,monospace">signed</text>
             <text x="200" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">PR only</text>
           </g>
 
           <!-- STAGE 3: CI SCAN ← security gate -->
           <g class="sbom-stage sbom-gate" data-tip="CI security gate: SAST, SCA, secrets scan, IaC scan. Fails block merge. Evidence retained.">
-            <rect x="289" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
-            <rect x="289" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
-            <text x="325" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 1</text>
+            <rect x="289" y="128" width="73" height="64" rx="4" fill="rgba(12,5,30,.88)" stroke="rgba(139,92,246,.5)" stroke-width="1.8"/>
+            <rect x="289" y="128" width="73" height="12" rx="4" fill="rgba(139,92,246,.12)"/>
+            <text x="325" y="137.5" text-anchor="middle" fill="rgba(196,181,253,.85)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 1</text>
             <text x="325" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">CI SCAN</text>
-            <text x="325" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">SAST / SCA</text>
-            <text x="325" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Secrets / IaC</text>
+            <text x="325" y="166" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">SAST / SCA</text>
+            <text x="325" y="176" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Secrets / IaC</text>
             <text x="325" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">evidence</text>
           </g>
 
           <!-- STAGE 4: BUILD -->
           <g class="sbom-stage" data-tip="Deterministic build. Ephemeral runner. Output is a tagged container image.">
-            <rect x="415" y="135" width="73" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,255,65,.28)" stroke-width="1.2"/>
+            <rect x="415" y="135" width="73" height="50" rx="4" fill="rgba(8,5,24,.8)" stroke="rgba(139,92,246,.28)" stroke-width="1.2"/>
             <text x="451" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">BUILD</text>
-            <text x="451" y="168" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="7" font-family="JetBrains Mono,monospace">immutable</text>
+            <text x="451" y="168" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="7" font-family="JetBrains Mono,monospace">immutable</text>
             <text x="451" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">v1.0 tag</text>
           </g>
 
           <!-- STAGE 5: SBOM+SIGN ← security gate -->
           <g class="sbom-stage sbom-gate" data-tip="SBOM generated with Syft. Image signed with Cosign/Sigstore. Digest recorded. Supply chain provenance attached.">
-            <rect x="541" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
-            <rect x="541" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
-            <text x="578" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 2</text>
+            <rect x="541" y="128" width="73" height="64" rx="4" fill="rgba(12,5,30,.88)" stroke="rgba(139,92,246,.5)" stroke-width="1.8"/>
+            <rect x="541" y="128" width="73" height="12" rx="4" fill="rgba(139,92,246,.12)"/>
+            <text x="578" y="137.5" text-anchor="middle" fill="rgba(196,181,253,.85)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 2</text>
             <text x="578" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">SBOM</text>
-            <text x="578" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Syft generate</text>
-            <text x="578" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Cosign sign</text>
+            <text x="578" y="166" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Syft generate</text>
+            <text x="578" y="176" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Cosign sign</text>
             <text x="578" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">digest lock</text>
           </g>
 
           <!-- STAGE 6: IMAGE SCAN ← security gate -->
           <g class="sbom-stage sbom-gate" data-tip="Container image scanned: Trivy + Prisma Cloud cross-validation. Policy threshold blocks on criticals.">
-            <rect x="667" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
-            <rect x="667" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
-            <text x="704" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 3</text>
+            <rect x="667" y="128" width="73" height="64" rx="4" fill="rgba(12,5,30,.88)" stroke="rgba(139,92,246,.5)" stroke-width="1.8"/>
+            <rect x="667" y="128" width="73" height="12" rx="4" fill="rgba(139,92,246,.12)"/>
+            <text x="704" y="137.5" text-anchor="middle" fill="rgba(196,181,253,.85)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 3</text>
             <text x="704" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">IMG SCAN</text>
-            <text x="704" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Trivy</text>
-            <text x="704" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Prisma Cloud</text>
+            <text x="704" y="166" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Trivy</text>
+            <text x="704" y="176" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Prisma Cloud</text>
             <text x="704" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">CVE gate</text>
           </g>
 
           <!-- STAGE 7: PROMOTE/DEPLOY ← security gate -->
           <g class="sbom-stage sbom-gate" data-tip="Controlled promotion: Dev → UAT → Prod. QA approves. Only digest-verified images eligible. No rebuilds in prod.">
-            <rect x="793" y="128" width="73" height="64" rx="4" fill="rgba(0,20,8,.88)" stroke="rgba(0,255,65,.5)" stroke-width="1.8"/>
-            <rect x="793" y="128" width="73" height="12" rx="4" fill="rgba(0,255,65,.12)"/>
-            <text x="829" y="137.5" text-anchor="middle" fill="rgba(0,255,65,.8)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 4</text>
+            <rect x="793" y="128" width="73" height="64" rx="4" fill="rgba(12,5,30,.88)" stroke="rgba(139,92,246,.5)" stroke-width="1.8"/>
+            <rect x="793" y="128" width="73" height="12" rx="4" fill="rgba(139,92,246,.12)"/>
+            <text x="829" y="137.5" text-anchor="middle" fill="rgba(196,181,253,.85)" font-size="6" font-family="JetBrains Mono,monospace">⬡ GATE 4</text>
             <text x="829" y="154" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">PROMOTE</text>
-            <text x="829" y="166" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Dev→UAT→Prod</text>
-            <text x="829" y="176" text-anchor="middle" fill="rgba(0,255,65,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">QA approval</text>
+            <text x="829" y="166" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">Dev→UAT→Prod</text>
+            <text x="829" y="176" text-anchor="middle" fill="rgba(139,92,246,.5)" font-size="6.5" font-family="JetBrains Mono,monospace">QA approval</text>
             <text x="829" y="185" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6" font-family="JetBrains Mono,monospace">digest verify</text>
           </g>
 
@@ -1475,7 +1475,7 @@
           <g class="sbom-stage" data-tip="Kubernetes runtime: admission control, RBAC, securityContext, network policies. DAST post-deploy. SIEM monitoring.">
             <rect x="919" y="135" width="73" height="50" rx="4" fill="rgba(0,12,6,.8)" stroke="rgba(0,230,100,.35)" stroke-width="1.5" filter="url(#glow)"/>
             <text x="955" y="155" text-anchor="middle" fill="#eef5ee" font-size="8.5" font-family="JetBrains Mono,monospace" font-weight="600">RUNTIME</text>
-            <text x="955" y="168" text-anchor="middle" fill="rgba(0,255,65,.6)" font-size="7" font-family="JetBrains Mono,monospace">K8s ✓ DAST</text>
+            <text x="955" y="168" text-anchor="middle" fill="rgba(139,92,246,.6)" font-size="7" font-family="JetBrains Mono,monospace">K8s ✓ DAST</text>
             <text x="955" y="178" text-anchor="middle" fill="rgba(200,220,200,.55)" font-size="6.5" font-family="JetBrains Mono,monospace">SIEM + RBAC</text>
           </g>
 
@@ -1494,13 +1494,13 @@
           </g>
 
           <!-- Top labels -->
-          <text x="540" y="25" text-anchor="middle" fill="rgba(0,255,65,.35)" font-size="8" font-family="JetBrains Mono,monospace" letter-spacing="3">SUPPLY CHAIN INTEGRITY PIPELINE — ANSHUMAAN SINGH</text>
+          <text x="540" y="25" text-anchor="middle" fill="rgba(139,92,246,.35)" font-size="8" font-family="JetBrains Mono,monospace" letter-spacing="3">SUPPLY CHAIN INTEGRITY PIPELINE — ANSHUMAAN SINGH</text>
           <text x="540" y="38" text-anchor="middle" fill="rgba(200,220,200,.3)" font-size="7" font-family="JetBrains Mono,monospace">⬡ = Security Gate · Every gate leaves evidence · No untrusted artifact reaches runtime</text>
 
           <!-- Status bar: bottom -->
-          <text x="20" y="308" fill="rgba(0,255,65,.4)" font-size="7" font-family="JetBrains Mono,monospace">[STATUS: ACTIVE]</text>
+          <text x="20" y="308" fill="rgba(139,92,246,.4)" font-size="7" font-family="JetBrains Mono,monospace">[STATUS: ACTIVE]</text>
           <text x="180" y="308" fill="rgba(200,220,200,.3)" font-size="7" font-family="JetBrains Mono,monospace">4 Security Gates · SBOM enabled · Digest-locked promotions</text>
-          <text x="900" y="308" fill="rgba(0,255,65,.4)" font-size="7" font-family="JetBrains Mono,monospace">0 prod incidents</text>
+          <text x="900" y="308" fill="rgba(139,92,246,.4)" font-size="7" font-family="JetBrains Mono,monospace">0 prod incidents</text>
         </svg>
       </div>
 
@@ -2625,6 +2625,100 @@
         </div>
         <a class="csb-link btn btn-outline" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer">View all on Credly ↗</a>
       </div>
+
+      <!-- ════ CREDENTIAL & SKILL BADGES (10+) ════ -->
+      <div class="cred-badges-section reveal" aria-label="Credential and skill badges">
+        <h3 class="cred-badges-title mono">// credential &amp; skill badges</h3>
+        <div class="cred-badges-grid" role="list">
+
+          <!-- Cert badges -->
+          <a class="cred-badge cred-badge--cert" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="CKS Certified Kubernetes Security Specialist">
+            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">CKS</span>
+            <span class="cb-sub">Certified K8s Security Specialist</span>
+          </a>
+
+          <a class="cred-badge cred-badge--cert" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="CKA Certified Kubernetes Administrator">
+            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">CKA</span>
+            <span class="cb-sub">Certified K8s Administrator</span>
+          </a>
+
+          <a class="cred-badge cred-badge--cert" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="GCP Professional Cloud Security Engineer">
+            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">GCP-SEC</span>
+            <span class="cb-sub">Professional Cloud Security Eng.</span>
+          </a>
+
+          <a class="cred-badge cred-badge--cert" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="GCP Professional Cloud Architect">
+            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">GCP-PCA</span>
+            <span class="cb-sub">Professional Cloud Architect</span>
+          </a>
+
+          <a class="cred-badge cred-badge--cert" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="HashiCorp Certified Terraform Associate">
+            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">TF-ASC</span>
+            <span class="cb-sub">HashiCorp Terraform Associate</span>
+          </a>
+
+          <a class="cred-badge cred-badge--cert" href="https://www.credly.com/users/anshumaan-singh" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="GCP Associate Cloud Engineer">
+            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">GCP-ACE</span>
+            <span class="cb-sub">Associate Cloud Engineer</span>
+          </a>
+
+          <!-- Skill / identity badges -->
+          <span class="cred-badge cred-badge--skill" role="listitem" aria-label="DevSecOps Engineer">
+            <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">DevSecOps</span>
+            <span class="cb-sub">Security Engineering</span>
+          </span>
+
+          <span class="cred-badge cred-badge--skill" role="listitem" aria-label="Kubernetes Security">
+            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">K8s Security</span>
+            <span class="cb-sub">CIS 100% · OWASP 93%</span>
+          </span>
+
+          <span class="cred-badge cred-badge--skill" role="listitem" aria-label="Supply Chain Security and SBOM">
+            <img src="https://cdn.simpleicons.org/sigstore/4A90D9" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">SBOM / Supply Chain</span>
+            <span class="cb-sub">Sigstore · Cosign · Syft</span>
+          </span>
+
+          <span class="cred-badge cred-badge--skill" role="listitem" aria-label="Cloud Security GCP AWS Azure">
+            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">Cloud Security</span>
+            <span class="cb-sub">GCP · AWS · Azure</span>
+          </span>
+
+          <a class="cred-badge cred-badge--edu" href="https://www.bits-pilani.ac.in/" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="BITS Pilani M.Tech Cybersecurity">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span class="cb-label">BITS Pilani</span>
+            <span class="cb-sub">M.Tech CS — Cybersecurity</span>
+          </a>
+
+          <a class="cred-badge cred-badge--open" href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Open to DevSecOps opportunities">
+            <span class="cb-dot" aria-hidden="true"></span>
+            <span class="cb-label">Open to Work</span>
+            <span class="cb-sub">DevSecOps · Cloud Security</span>
+          </a>
+
+          <span class="cred-badge cred-badge--stat" role="listitem" aria-label="350 plus microservices secured">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span class="cb-label">350+ Secured</span>
+            <span class="cb-sub">Microservices at ZEE</span>
+          </span>
+
+          <a class="cred-badge cred-badge--write" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener noreferrer" role="listitem" aria-label="Medium writer 221 followers">
+            <img src="https://cdn.simpleicons.org/medium/FFFFFF" alt="" width="16" height="16" loading="lazy" aria-hidden="true" />
+            <span class="cb-label">Medium Writer</span>
+            <span class="cb-sub">221 followers · 700+ claps</span>
+          </a>
+
+        </div>
+      </div>
     </section>
 
 
@@ -3282,7 +3376,7 @@
   <div class="explorer-badge" id="explorerBadge" aria-label="Sections explored" title="Sections explored" hidden>
     <div class="eb-ring">
       <svg viewBox="0 0 36 36" class="eb-svg" aria-hidden="true">
-        <circle class="eb-track" cx="18" cy="18" r="15.9" fill="none" stroke="rgba(0,255,65,.12)" stroke-width="3"/>
+        <circle class="eb-track" cx="18" cy="18" r="15.9" fill="none" stroke="rgba(139,92,246,.12)" stroke-width="3"/>
         <circle class="eb-arc" cx="18" cy="18" r="15.9" fill="none" stroke="var(--r-green)" stroke-width="3"
           stroke-dasharray="100 100" stroke-dashoffset="100" stroke-linecap="round"
           transform="rotate(-90 18 18)" id="ebArc"/>
