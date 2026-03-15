@@ -26,10 +26,10 @@
   --accent-soft: rgba(139,92,246,.10);
 
   /* Deep navy backgrounds */
-  --bg:  #080e1a;
-  --bg2: #0c1526;
-  --bg3: #111e35;
-  --bg4: #162540;
+  --bg:  #0a0e27;
+  --bg2: #0f1433;
+  --bg3: #141a40;
+  --bg4: #1a2050;
 
   /* Elevated surfaces */
   --surface:  rgba(255,255,255,.04);
@@ -49,7 +49,7 @@
 
 /* ââ THEMES ââ */
 [data-theme='dark'] {
-  --bg:#080e1a; --bg2:#0c1526; --bg3:#111e35;
+  --bg:#0a0e27; --bg2:#0f1433; --bg3:#141a40;
   --text:#f0f4ff; --text-sub:#94a3c8; --text-muted:#4a6080;
   --surface:rgba(255,255,255,.04); --border:rgba(139,92,246,.15);
 }
@@ -3917,11 +3917,11 @@ strong { color: var(--text) !important; font-weight: 600 !important; }
 
 /* ââ Background: darken + green tint ââ */
 [data-theme='dark'] body {
-  background: #030508 !important;
+  background: #050a1f !important;
 }
 [data-theme='dark']:root,
 html[data-theme='dark'] {
-  --bg: #030508 !important;
+  --bg: #050a1f !important;
 }
 
 /* ââ Glitch text â hero name ââ */
@@ -4112,9 +4112,9 @@ html[data-theme='dark'] {
 
 /* ââ ROOT OVERRIDES: deeper black, green phosphor ââ */
 [data-theme='dark'] {
-  --bg:  #020408 !important;
-  --bg2: #060c10 !important;
-  --bg3: #0a1218 !important;
+  --bg:  #050a20 !important;
+  --bg2: #080f28 !important;
+  --bg3: #0d1530 !important;
   --border: rgba(139,92,246,.1) !important;
   --border2: rgba(139,92,246,.18) !important;
   --surface: rgba(139,92,246,.03) !important;
@@ -5219,7 +5219,7 @@ html[data-theme='dark'] {
   --hk-shadow:       0 4px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(139,92,246,.06);
 }
 [data-theme='dark'] {
-  --bg: #010306 !important;
+  --bg: #030819 !important;
   --surface: rgba(0,5,2,.88) !important;
   --border: rgba(139,92,246,.1) !important;
   --text: #d0ffd0 !important;
@@ -9805,9 +9805,9 @@ html { scroll-behavior: smooth; }
   --accent-soft: rgba(139,92,246,.09);
 
   /* Background: true terminal black */
-  --bg:  #010b04;
-  --bg2: #040d07;
-  --bg3: #081208;
+  --bg:  #030e1b;
+  --bg2: #07121f;
+  --bg3: #0b1625;
 
   /* Text: green-tinted white for readability */
   --text:       #e4f4e8;
