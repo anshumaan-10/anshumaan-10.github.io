@@ -1,0 +1,38 @@
+{
+  "name": "Anshumaan Singh | Security Systems Engineer",
+  "short_name": "Anshumaan",
+  "description": "Security Systems Engineer securing 350+ microservices at ZEE Entertainment. CKS · CKA · GCP certified. DevSecOps pipelines, K8s runtime guardrails, SBOM, supply-chain integrity & zero-trust cloud governance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080e1a",
+  "theme_color": "#8b5cf6",
+  "orientation": "any",
+  "categories": ["portfolio", "technology", "security", "devops"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assests/me.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Portfolio Homepage"
+    }
+  ],
+  "prefer_related_applications": false
+}

@@ -5,6 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
+  <!-- ═══ PERFORMANCE HINTS ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+
   <!-- ═══ PRIMARY SEO ═══ -->
   <title>Anshumaan Singh | Security Systems Engineer | DevSecOps | CKS CKA GCP</title>
   <meta name="description" content="Anshumaan Singh — Security Systems Engineer securing 350+ microservices at ZEE Entertainment. CKS · CKA · GCP certified. Specialises in DevSecOps pipelines, Kubernetes runtime guardrails, SBOM supply-chain security, and zero-trust cloud governance. Open to connect." />
@@ -14,6 +19,8 @@
   <meta name="googlebot" content="index, follow" />
   <meta name="theme-color" content="#080e1a" />
   <meta name="color-scheme" content="dark light" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
   <meta name="rating" content="general" />
   <meta name="revisit-after" content="7 days" />
   <meta name="language" content="English" />
@@ -47,23 +54,24 @@
   <meta name="twitter:image"       content="https://www.devsecopswithanshu.com/assests/me.jpg" />
   <meta name="twitter:image:alt"   content="Anshumaan Singh — Security Systems Engineer portfolio" />
 
-  <!-- ═══ PRECONNECT ═══ -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- ═══ PRECONNECT — High Priority Early Hints ═══ -->
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://cdn.simpleicons.org" />
   <link rel="dns-prefetch" href="https://cdn.simpleicons.org" />
-  <link rel="preconnect" href="https://unpkg.com" />
   <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://formspree.io" />
 
-  <!-- ═══ FONTS ═══ -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+  <!-- ═══ FONTS — Optimized with font-display:swap ═══ -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" /></noscript>
 
   <!-- ═══ FAVICON ═══ -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 
-  <!-- ═══ CSS ═══ -->
-  <link rel="stylesheet" href="./styles.css" />
+  <!-- ═══ CSS — Async non-blocking load ═══ -->
+  <link rel="preload" href="./styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="./styles.css" /></noscript>
 
   <!-- ═══ CRITICAL INLINE CSS — loader + body base renders instantly ═══ -->
   <style>
@@ -88,8 +96,18 @@
     @keyframes cursorBlink{50%{opacity:0}}
   </style>
 
-  <!-- ═══ PRELOAD ═══ -->
-  <link rel="preload" as="image" href="./assests/me.jpg" />
+  <!-- ═══ PRELOAD — Critical Resources ═══ -->
+  <link rel="preload" as="image" href="./assests/me.jpg" fetchpriority="high" />
+  <link rel="preload" as="script" href="./script.js" />
+
+  <!-- ═══ PERFORMANCE — Service Worker Registration ═══ -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
 
   <!-- ═══ SEO EXTRAS ═══ -->
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
@@ -101,8 +119,9 @@
   <!-- ═══ LUCIDE ICONS ═══ -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
-  <!-- ═══ AOS: Animate On Scroll ═══ -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <!-- ═══ AOS: Animate On Scroll — Non-blocking ═══ -->
+  <link rel="preload" href="https://unpkg.com/aos@2.3.4/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" /></noscript>
   <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <!-- ═══ Chart.js ═══ -->
