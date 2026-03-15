@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Anshumaan Singh</ShortName>
+  <Description>Search Anshumaan Singh's Portfolio - DevSecOps &amp; Security Engineering</Description>
+  <Tags>DevSecOps Security Kubernetes Cloud GCP CKS CKA</Tags>
+  <Contact>anshumaansingh10jan@gmail.com</Contact>
+  <Url type="text/html" template="https://www.devsecopswithanshu.com/?q={searchTerms}"/>
+  <Url type="application/opensearchdescription+xml" rel="self" template="https://www.devsecopswithanshu.com/opensearch.xml"/>
+  <Language>en-us</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image height="64" width="64" type="image/png">https://www.devsecopswithanshu.com/assests/me.jpg</Image>
+  <Developer>Anshumaan Singh</Developer>
+  <Attribution>Anshumaan Singh Portfolio © 2026</Attribution>
+  <SyndicationRight>open</SyndicationRight>
+  <AdultContent>false</AdultContent>
+</OpenSearchDescription>

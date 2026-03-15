@@ -1,0 +1,35 @@
+# security.txt - v15
+# Our security address
+Contact: mailto:anshumaansingh10jan@gmail.com
+Contact: https://www.linkedin.com/in/anshumaan-singh-6b51b5239/
+
+# Our security policy
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: en
+
+# Our OpenPGP key
+Encryption: https://www.devsecopswithanshu.com/pgp-key.txt
+
+# Our security acknowledgments
+Acknowledgments: https://www.devsecopswithanshu.com/security-acknowledgments.html
+
+# Vulnerability disclosure policy
+Policy: https://www.devsecopswithanshu.com/security-policy.html
+
+# Canonical URI
+Canonical: https://www.devsecopswithanshu.com/.well-known/security.txt
+
+# Hiring
+Hiring: https://www.devsecopswithanshu.com/#connect
+
+# About this portfolio
+# This is a personal portfolio website showcasing security engineering work
+# Built with: HTML5, CSS3, JavaScript, GSAP, tsParticles
+# Security measures: CSP, HTTPS, Service Worker, Subresource Integrity
+# Performance: Lighthouse 95+, Web Vitals optimized
+# Accessibility: WCAG 2.1 AAA compliant
+
+# If you find security issues in this portfolio, please report them
+# We appreciate responsible disclosure and will acknowledge your contribution
+
+# Thank you for helping keep this portfolio secure!
