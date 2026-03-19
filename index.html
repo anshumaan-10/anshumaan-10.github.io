@@ -130,7 +130,7 @@
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>" />
 
   <!-- ═══ CSS — Synchronous load for instant render ═══ -->
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=20260319-lightfix" />
 
   <!-- ═══ CRITICAL INLINE CSS — loader + body base (light theme) ═══ -->
   <style>
@@ -156,14 +156,17 @@
   </style>
 
   <!-- ═══ PRELOAD — Critical Resources ═══ -->
-  <link rel="preload" as="image" href="./assests/me.jpg" fetchpriority="high" />
-  <link rel="preload" as="script" href="./script.js" />
+  <link rel="preload" as="image" href="./assests/me.jpg?v=20260319-lightfix" fetchpriority="high" />
+  <link rel="preload" as="script" href="./script.js?v=20260319-lightfix" />
 
   <!-- ═══ PERFORMANCE — Service Worker Registration ═══ -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(() => {});
+        const assetVersion = '20260319-lightfix';
+        navigator.serviceWorker.register(`/sw.js?v=${assetVersion}`)
+          .then(registration => registration.update())
+          .catch(() => {});
       });
     }
   </script>
@@ -207,18 +210,18 @@
   <script defer src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
   <!-- ═══ Enhancement & Advanced CSS ═══ -->
-  <link rel="stylesheet" href="./enhancements-v15.css" />
-  <link rel="stylesheet" href="./advanced-styles.css" />
+  <link rel="stylesheet" href="./enhancements-v15.css?v=20260319-lightfix" />
+  <link rel="stylesheet" href="./advanced-styles.css?v=20260319-lightfix" />
 
   <!-- ═══ LIGHT THEME COMPLETE OVERRIDE ═══ -->
-  <link rel="stylesheet" href="./light-override.css" />
+  <link rel="stylesheet" href="./light-override.css?v=20260319-lightfix" />
 
   <!-- ═══ SCRIPTS ═══ -->
   <script defer src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-  <script defer src="./script.js"></script>
-  <script defer src="./enhancements-v15.js"></script>
-  <script defer src="./advanced-features.js"></script>
-  <script defer src="./security-utils.js"></script>
+  <script defer src="./script.js?v=20260319-lightfix"></script>
+  <script defer src="./enhancements-v15.js?v=20260319-lightfix"></script>
+  <script defer src="./advanced-features.js?v=20260319-lightfix"></script>
+  <script defer src="./security-utils.js?v=20260319-lightfix"></script>
 
   <!-- ═══ JSON-LD: Person ═══ -->
   <script type="application/ld+json">

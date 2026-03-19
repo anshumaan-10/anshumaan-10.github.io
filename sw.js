@@ -3,16 +3,22 @@
  * Aggressive caching strategy for optimal performance
  */
 
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v2.0.0-lightfix';
 const CACHE_NAME = `portfolio-cache-${CACHE_VERSION}`;
 
 // Critical resources to cache immediately
 const PRECACHE_URLS = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/script.js',
-  '/assests/me.jpg',
+  '/styles.css?v=20260319-lightfix',
+  '/enhancements-v15.css?v=20260319-lightfix',
+  '/advanced-styles.css?v=20260319-lightfix',
+  '/light-override.css?v=20260319-lightfix',
+  '/script.js?v=20260319-lightfix',
+  '/enhancements-v15.js?v=20260319-lightfix',
+  '/advanced-features.js?v=20260319-lightfix',
+  '/security-utils.js?v=20260319-lightfix',
+  '/assests/me.jpg?v=20260319-lightfix',
   '/assests/cka.jpg',
   '/assests/cks.jpg',
   '/assests/gcp.jpg',
@@ -52,6 +58,10 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
+  if (request.method !== 'GET') {
+    return;
+  }
+
   // Skip cross-origin requests for formspree or analytics
   if (url.origin !== location.origin &&
       (url.hostname.includes('formspree.io') ||
@@ -60,27 +70,38 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Cache-first strategy for same-origin resources
+  // Network-first for HTML so deployments show up immediately
+  if (request.mode === 'navigate' || request.destination === 'document') {
+    event.respondWith(
+      fetch(request)
+        .then(fetchResponse => {
+          const responseToCache = fetchResponse.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(request, responseToCache);
+          });
+          return fetchResponse;
+        })
+        .catch(() => caches.match(request).then(response => response || caches.match('/index.html')))
+    );
+    return;
+  }
+
+  // Stale-while-revalidate strategy for same-origin assets
   if (url.origin === location.origin) {
     event.respondWith(
-      caches.match(request)
-        .then(response => {
-          if (response) {
-            return response;
-          }
-          return fetch(request).then(fetchResponse => {
-            // Clone response before caching
+      caches.match(request).then(cachedResponse => {
+        const fetchPromise = fetch(request)
+          .then(fetchResponse => {
             const responseToCache = fetchResponse.clone();
             caches.open(CACHE_NAME).then(cache => {
               cache.put(request, responseToCache);
             });
             return fetchResponse;
-          });
-        })
-        .catch(() => {
-          // Return offline page or cached version
-          return caches.match('/index.html');
-        })
+          })
+          .catch(() => cachedResponse || caches.match('/index.html'));
+
+        return cachedResponse || fetchPromise;
+      })
     );
     return;
   }

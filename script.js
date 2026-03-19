@@ -50,6 +50,55 @@ const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const byId = id => document.getElementById(id);
 
+function isDarkTheme() {
+  return document.documentElement.dataset.theme === "dark";
+}
+
+function applyVisualThemeRuntime(theme = document.documentElement.dataset.theme || "light") {
+  const isLight = theme !== "dark";
+  const matrixBg = byId("matrix-bg");
+  const particleCanvas = byId("particleCanvas");
+  const tsParticlesBg = byId("tsparticles-bg");
+
+  if (isLight) {
+    document.body.classList.remove("light-mode", "hacker-mode", "hacker-mode-active");
+
+    if (matrixBg) {
+      matrixBg.style.display = "none";
+      matrixBg.style.opacity = "0";
+    }
+
+    if (particleCanvas) {
+      particleCanvas.style.display = "none";
+      particleCanvas.style.opacity = "0";
+    }
+
+    if (tsParticlesBg) {
+      tsParticlesBg.style.display = "none";
+      tsParticlesBg.style.opacity = "0";
+      tsParticlesBg.innerHTML = "";
+    }
+
+    document.querySelectorAll(".matrix-char").forEach(el => el.remove());
+    return;
+  }
+
+  if (matrixBg) {
+    matrixBg.style.display = "block";
+    matrixBg.style.opacity = "";
+  }
+
+  if (particleCanvas) {
+    particleCanvas.style.display = "block";
+    particleCanvas.style.opacity = "";
+  }
+
+  if (tsParticlesBg) {
+    tsParticlesBg.style.display = "block";
+    tsParticlesBg.style.opacity = "";
+  }
+}
+
 function scrollToSection(id) {
   const el = byId(id);
   if (!el) return;
@@ -339,6 +388,10 @@ $$(".magnetic").forEach(btn => {
 (function particles() {
   const canvas = byId("particleCanvas");
   if (!canvas) return;
+  if (!isDarkTheme()) {
+    canvas.style.display = "none";
+    return;
+  }
   if (window.matchMedia("(prefers-reduced-motion:reduce)").matches) { canvas.style.display = "none"; return; }
 
   const ctx = canvas.getContext("2d");
@@ -426,6 +479,7 @@ function toggleTheme() {
   } else {
     localStorage.removeItem("as-theme-pref");
   }
+  applyVisualThemeRuntime(next);
   const icon = byId("themeIcon");
   if (icon) icon.textContent = next === "dark" ? "🌙" : "☀️";
   showToast(next === "dark" ? "🌙 Dark mode" : "☀️ Light mode");
@@ -451,6 +505,7 @@ document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
   const theme = savedTheme || "light";
   document.documentElement.dataset.accent = accent;
   document.documentElement.dataset.theme  = theme;
+  applyVisualThemeRuntime(theme);
   $$(".accent-dot").forEach(d => d.classList.toggle("active", d.dataset.accent === accent));
   const icon = byId("themeIcon");
   if (icon) icon.textContent = theme === "dark" ? "🌙" : "☀️";
@@ -597,6 +652,10 @@ onScroll();
 (function initMatrixRain() {
   const canvas = document.getElementById("matrix-bg");
   if (!canvas) return;
+  if (!isDarkTheme()) {
+    canvas.style.display = "none";
+    return;
+  }
 
   const ctx = canvas.getContext("2d");
 
@@ -1525,7 +1584,7 @@ onScroll();
     { icon: '🔗', label: 'LinkedIn',           hint: 'linkedin.com',  action: () => window.open('https://www.linkedin.com/in/anshumaan-singh-6b51b5239/','_blank') },
     { icon: '🐙', label: 'GitHub',             hint: 'github.com',    action: () => window.open('https://github.com/anshumaan-10','_blank') },
     { icon: '📧', label: 'Email',              hint: 'anshumaansingh10jan@gmail.com', action: () => location.href='mailto:anshumaansingh10jan@gmail.com' },
-    { icon: '🌙', label: 'Toggle Dark/Light',  hint: 'theme',         action: () => document.body.classList.toggle('light-mode') },
+    { icon: '🌙', label: 'Toggle Dark/Light',  hint: 'theme',         action: () => toggleTheme() },
     { icon: '🖨', label: 'Print / Save as PDF',hint: 'window.print',  action: () => window.print() },
     { icon: '🔝', label: 'Back to Top',        hint: 'scroll top',    action: () => scrollTo({top:0,behavior:'smooth'}) },
     { icon: '🎮', label: 'Easter Egg — Matrix Rain', hint: 'try me', action: () => { closePalette(); triggerMatrix(); } },
@@ -2294,6 +2353,15 @@ onScroll();
 
   /* ── 2. tsParticles — neural network interactive background ────── */
   function initTsParticles() {
+    if (!isDarkTheme()) {
+      const container = document.getElementById('tsparticles-bg');
+      if (container) {
+        container.style.display = 'none';
+        container.innerHTML = '';
+      }
+      return;
+    }
+
     // Hide old static particle canvas
     const oldCanvas = document.getElementById('particleCanvas');
     if (oldCanvas) oldCanvas.style.display = 'none';

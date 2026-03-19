@@ -51,6 +51,13 @@ html[data-theme='light'] body {
   background-color: #f8fafc !important;
   color: #0f172a !important;
 }
+html[data-theme='light'] body.light-mode,
+html[data-theme='light'] body.hacker-mode,
+html[data-theme='light'] body.hacker-mode-active {
+  background-color: #f8fafc !important;
+  filter: none !important;
+  color: #0f172a !important;
+}
 
 /* ── HIDE ALL DARK OVERLAY/HACKER BG ELEMENTS ── */
 html[data-theme='light'] #matrix-bg,
@@ -59,7 +66,10 @@ html[data-theme='light'] .terminal-grid,
 html[data-theme='light'] .grid-lines,
 html[data-theme='light'] .grid-noise,
 html[data-theme='light'] .particle-canvas,
-html[data-theme='light'] #tsparticles-bg {
+html[data-theme='light'] #tsparticles-bg,
+html[data-theme='light'] #particleCanvas,
+html[data-theme='light'] #matrixCanvas,
+html[data-theme='light'] .matrix-char {
   display: none !important;
   opacity: 0 !important;
   pointer-events: none !important;
@@ -271,6 +281,27 @@ html[data-theme='light'] .cmdk-title,
 html[data-theme='light'] .cmdk-heading { color: #0f172a !important; }
 html[data-theme='light'] .cmdk-search-wrap {
   border-color: rgba(0,0,0,.08) !important;
+}
+
+/* ── MODALS / DYNAMIC PANELS ── */
+html[data-theme='light'] .modal-backdrop {
+  background: rgba(15,23,42,.18) !important;
+  backdrop-filter: blur(10px) !important;
+}
+html[data-theme='light'] .modal-content,
+html[data-theme='light'] .modal {
+  color: #0f172a !important;
+}
+html[data-theme='light'] .modal-content {
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(248,250,252,.98) 100%) !important;
+  border: 1px solid rgba(0,0,0,.08) !important;
+  box-shadow: 0 24px 70px rgba(15,23,42,.16) !important;
+}
+html[data-theme='light'] .modal-close {
+  color: #475569 !important;
+}
+html[data-theme='light'] .modal-close:hover {
+  color: #0f172a !important;
 }
 
 /* ── HERO SECTION ── */
