@@ -421,8 +421,8 @@ function toggleTheme() {
   const html = document.documentElement;
   const next = html.dataset.theme === "dark" ? "light" : "dark";
   html.dataset.theme = next;
-  if (next === "light") {
-    localStorage.setItem("as-theme-pref", "light");
+  if (next === "dark") {
+    localStorage.setItem("as-theme-pref", "dark");
   } else {
     localStorage.removeItem("as-theme-pref");
   }
@@ -444,12 +444,11 @@ function setAccent(name) {
 $$(".accent-dot").forEach(d => d.addEventListener("click", () => setAccent(d.dataset.accent)));
 document.getElementById("theme-toggle")?.addEventListener("click", toggleTheme);
 
-/* Sync persisted preferences — dark mode is ALWAYS the default on every visit */
+/* Sync persisted preferences — light mode is default unless user opts into dark */
 (function syncUI() {
   const accent = localStorage.getItem("as-accent") || document.documentElement.dataset.accent || "violet";
-  // Only restore light mode if user explicitly switched to it in this device profile
   const savedTheme = localStorage.getItem("as-theme-pref");
-  const theme = savedTheme || "dark";
+  const theme = savedTheme || "light";
   document.documentElement.dataset.accent = accent;
   document.documentElement.dataset.theme  = theme;
   $$(".accent-dot").forEach(d => d.classList.toggle("active", d.dataset.accent === accent));
