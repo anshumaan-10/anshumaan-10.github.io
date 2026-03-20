@@ -55,6 +55,7 @@
 
   <!-- Our fresh portfolio CSS ONLY — no old dark CSS loaded -->
   <link rel="stylesheet" href="./portfolio.css?v=18" />
+  <link rel="stylesheet" href="./enhancements-v19.css?v=19" />
 
   <!-- Critical inline CSS to guarantee white bg before CSS loads -->
   <style>
@@ -2755,6 +2756,74 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       RECRUITER COMMAND CENTER — V19
+  ═══════════════════════════════════════ -->
+  <section id="recruiter-command" class="section recruiter-command-section section-alt">
+    <div class="container">
+      <div class="sec-hd v19-hero-copy v19-reveal" data-aos="fade-up">
+        <span class="sec-num">Command Center</span>
+        <h2>Recruiter Command Center</h2>
+        <p>For hiring managers who want signal fast: what role fit looks like, what gets delivered in practice, and how I operate inside real engineering organizations without becoming the human version of a blocking Jira ticket.</p>
+        <div class="v19-section-anchor-row">
+          <a class="v19-anchor-link" href="#proof-engine">Proof Engine</a>
+          <a class="v19-anchor-link" href="#delivery-lab">Delivery Lab</a>
+          <a class="v19-anchor-link" href="#first-90">First 90 Days</a>
+        </div>
+      </div>
+      <div id="recruiterCommandMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       PROOF ENGINE — V19
+  ═══════════════════════════════════════ -->
+  <section id="proof-engine" class="section proof-engine-section">
+    <div class="container">
+      <div class="sec-hd v19-hero-copy v19-reveal" data-aos="fade-up">
+        <span class="sec-num">Proof Engine</span>
+        <h2>Operational Proof, Not Portfolio Fluff</h2>
+        <p>Each artifact below maps hands-on security engineering work to control outcomes, delivery mechanics, and the kinds of evidence leadership teams, auditors, and platform owners actually trust.</p>
+      </div>
+
+      <div id="proofFilterMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="40"></div>
+      <div id="proofMetricsMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80"></div>
+      <div id="proofArtifactMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="120"></div>
+      <div id="proofMatrixMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="160"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       DELIVERY LAB — V19
+  ═══════════════════════════════════════ -->
+  <section id="delivery-lab" class="section delivery-lab-section section-alt">
+    <div class="container">
+      <div class="sec-hd v19-hero-copy v19-reveal" data-aos="fade-up">
+        <span class="sec-num">Delivery Lab</span>
+        <h2>How I Run Security Work in Production</h2>
+        <p>Different orgs need different security lanes. This breaks down how I approach DevSecOps, platform hardening, AppSec, cloud guardrails, and incident response with repeatable operating models instead of heroics.</p>
+      </div>
+      <div id="deliveryLabMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FIRST 90 DAYS — V19
+  ═══════════════════════════════════════ -->
+  <section id="first-90" class="section first-90-section">
+    <div class="container">
+      <div class="sec-hd v19-hero-copy v19-reveal" data-aos="fade-up">
+        <span class="sec-num">90-Day Plan</span>
+        <h2>What the First 90 Days Could Look Like</h2>
+        <p>A realistic onboarding ramp for a security engineer joining a team that wants measurable progress: baseline the risk, remove the sharpest pain, improve defaults, and leave behind systems the team can keep operating.</p>
+      </div>
+
+      <div id="first90RoadmapMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="50"></div>
+      <div id="first90PrinciplesMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="90"></div>
+      <div id="first90IssueMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="130"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        MOMENTS & MEDIA
   ═══════════════════════════════════════ -->
   <section id="moments" class="section section-alt">
@@ -3225,6 +3294,8 @@
   </button>
 
   <!-- Only our portfolio.js -->
+  <script src="./enhancements-v19-data.js?v=19" defer></script>
+  <script src="./enhancements-v19.js?v=19" defer></script>
   <script src="./portfolio.js?v=18" defer></script>
   <!-- Failsafe: force-hide loader if JS fails -->
   <script>
