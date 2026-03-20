@@ -9360,3 +9360,3275 @@ section {
 /* ────────────────────────────────────────────────────────
    END V16 UI/UX MASTERCLASS
    ──────────────────────────────────────────────────────── */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   V17 PROTOTYPE POLISH — 3000+ lines of micro-detail perfection
+   Every pixel deliberate. Every transition crafted. Best-in-class.
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ────────────────────────────────────────────────────────
+   V17-1. FLUID TYPOGRAPHY SYSTEM — Clamp-Based Scale
+   ──────────────────────────────────────────────────────── */
+
+:root {
+  --fs-3xl: clamp(2.4rem, 5.2vw + 1rem, 4rem);
+  --fs-2xl: clamp(1.8rem, 3.6vw + .8rem, 3rem);
+  --fs-xl:  clamp(1.4rem, 2.8vw + .6rem, 2.2rem);
+  --fs-lg:  clamp(1.1rem, 1.6vw + .5rem, 1.5rem);
+  --fs-md:  clamp(.92rem, .8vw + .5rem, 1.1rem);
+  --fs-sm:  clamp(.8rem, .4vw + .5rem, .9rem);
+  --fs-xs:  clamp(.68rem, .3vw + .4rem, .78rem);
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.3;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.75;
+  --lh-loose: 2;
+
+  /* V17 spacing scale */
+  --sp-2xs: clamp(4px, .4vw, 6px);
+  --sp-xs:  clamp(6px, .6vw, 10px);
+  --sp-sm:  clamp(10px, 1vw, 16px);
+  --sp-md:  clamp(16px, 2vw, 24px);
+  --sp-lg:  clamp(24px, 3vw, 40px);
+  --sp-xl:  clamp(40px, 5vw, 64px);
+  --sp-2xl: clamp(56px, 7vw, 96px);
+  --sp-3xl: clamp(80px, 10vw, 128px);
+}
+
+/* --- Type fluid classes --- */
+.type-3xl { font-size: var(--fs-3xl); line-height: var(--lh-tight); }
+.type-2xl { font-size: var(--fs-2xl); line-height: var(--lh-tight); }
+.type-xl  { font-size: var(--fs-xl);  line-height: var(--lh-snug); }
+.type-lg  { font-size: var(--fs-lg);  line-height: var(--lh-snug); }
+.type-md  { font-size: var(--fs-md);  line-height: var(--lh-normal); }
+.type-sm  { font-size: var(--fs-sm);  line-height: var(--lh-normal); }
+.type-xs  { font-size: var(--fs-xs);  line-height: var(--lh-relaxed); }
+
+/* --- Optical alignment for headings --- */
+.heading-optical {
+  margin-left: -.04em;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+
+/* --- Text gradient utility --- */
+.text-gradient-violet {
+  background: linear-gradient(135deg, var(--violet), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-rainbow {
+  background: linear-gradient(135deg, var(--violet), var(--blue), var(--green), var(--amber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, var(--amber), var(--red));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Dropcap --- */
+.dropcap::first-letter {
+  float: left;
+  font-size: 3.2em;
+  line-height: .8;
+  font-weight: 900;
+  font-family: var(--font-display);
+  color: var(--violet);
+  padding-right: 8px;
+  padding-top: 4px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-2. ADVANCED KEYFRAMES — Third Generation
+   ──────────────────────────────────────────────────────── */
+
+@keyframes revealLeft {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes revealRight {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes revealUp {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes revealDown {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes revealCenter {
+  from { clip-path: inset(50% 50% 50% 50%); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes elastic {
+  0%   { transform: scale(0); }
+  55%  { transform: scale(1.08); }
+  70%  { transform: scale(.96); }
+  85%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0); }
+  15%      { transform: rotate(6deg); }
+  30%      { transform: rotate(-5deg); }
+  45%      { transform: rotate(4deg); }
+  60%      { transform: rotate(-2deg); }
+  75%      { transform: rotate(1deg); }
+}
+
+@keyframes rubberBand {
+  0%   { transform: scaleX(1) scaleY(1); }
+  30%  { transform: scaleX(1.25) scaleY(.75); }
+  40%  { transform: scaleX(.75) scaleY(1.25); }
+  50%  { transform: scaleX(1.15) scaleY(.85); }
+  65%  { transform: scaleX(.95) scaleY(1.05); }
+  75%  { transform: scaleX(1.05) scaleY(.95); }
+  100% { transform: scaleX(1) scaleY(1); }
+}
+
+@keyframes skeletonPulse {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: .6; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes confetti {
+  0%   { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(-200px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideRight {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes rotatePerspective {
+  0%   { transform: perspective(600px) rotateY(0deg); }
+  100% { transform: perspective(600px) rotateY(360deg); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.04); opacity: .85; }
+}
+
+@keyframes blinkSoft {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .4; }
+}
+
+@keyframes dashOffset {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes borderGlow {
+  0%, 100% { border-color: var(--violet); box-shadow: 0 0 8px var(--violet-glow); }
+  50%      { border-color: var(--blue); box-shadow: 0 0 12px rgba(37,99,235,.2); }
+}
+
+@keyframes panBackground {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-3. GLASSMORPHISM V2 — Layered Depth Cards
+   ──────────────────────────────────────────────────────── */
+
+.glass-card {
+  background: rgba(255,255,255,.65);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    0 1px 2px rgba(0,0,0,.04),
+    0 4px 12px rgba(0,0,0,.04),
+    0 16px 40px rgba(0,0,0,.04);
+  transition: all var(--spring);
+}
+
+.glass-card:hover {
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.05),
+    0 8px 20px rgba(0,0,0,.06),
+    0 24px 56px rgba(0,0,0,.08);
+  transform: translateY(-4px);
+}
+
+.glass-card-frosted {
+  background: rgba(255,255,255,.45);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+.glass-card-dark {
+  background: rgba(15,23,42,.7);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255,255,255,.06);
+}
+
+[data-theme="dark"] .glass-card,
+.dark-mode .glass-card {
+  background: rgba(30,41,59,.6);
+  border-color: rgba(255,255,255,.06);
+}
+
+/* --- Stacked glass layers --- */
+.glass-stack {
+  position: relative;
+}
+
+.glass-stack::before,
+.glass-stack::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glass-stack::before {
+  transform: rotate(-2deg) translateY(6px);
+  background: rgba(124,58,237,.05);
+  z-index: -1;
+}
+
+.glass-stack::after {
+  transform: rotate(1.5deg) translateY(12px);
+  background: rgba(37,99,235,.04);
+  z-index: -2;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-4. NEUMORPHISM — Soft UI Components
+   ──────────────────────────────────────────────────────── */
+
+.neu-raised {
+  background: var(--bg);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow:
+    6px 6px 12px rgba(0,0,0,.06),
+    -6px -6px 12px rgba(255,255,255,.8);
+  transition: all var(--spring);
+}
+
+.neu-raised:hover {
+  box-shadow:
+    8px 8px 16px rgba(0,0,0,.08),
+    -8px -8px 16px rgba(255,255,255,.9);
+}
+
+.neu-inset {
+  background: var(--bg);
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,.06),
+    inset -4px -4px 8px rgba(255,255,255,.8);
+}
+
+.neu-flat {
+  background: linear-gradient(145deg, rgba(255,255,255,.6), rgba(0,0,0,.02));
+  border: none;
+  border-radius: var(--radius-md);
+  box-shadow: 4px 4px 10px rgba(0,0,0,.05), -4px -4px 10px rgba(255,255,255,.7);
+}
+
+[data-theme="dark"] .neu-raised,
+.dark-mode .neu-raised {
+  box-shadow:
+    6px 6px 12px rgba(0,0,0,.3),
+    -6px -6px 12px rgba(255,255,255,.03);
+}
+
+[data-theme="dark"] .neu-inset,
+.dark-mode .neu-inset {
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,.3),
+    inset -4px -4px 8px rgba(255,255,255,.03);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-5. CARD FLIP SYSTEM — 3D Transform
+   ──────────────────────────────────────────────────────── */
+
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform .6s var(--spring);
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-6. RIPPLE EFFECT — Material Button Feedback
+   ──────────────────────────────────────────────────────── */
+
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ripple-btn .ripple-wave {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  pointer-events: none;
+  animation: ripple .6s ease-out forwards;
+  z-index: 0;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-7. STAGGERED GRID — Masonry-Style Layouts
+   ──────────────────────────────────────────────────────── */
+
+.grid-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 10px;
+  gap: 16px;
+}
+
+.grid-masonry-item {
+  grid-row-end: span var(--span, 20);
+}
+
+.grid-masonry-sm { --span: 15; }
+.grid-masonry-md { --span: 22; }
+.grid-masonry-lg { --span: 30; }
+.grid-masonry-xl { --span: 38; }
+
+/* --- Auto-fill grid --- */
+.grid-auto-sm {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.grid-auto-md {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.grid-auto-lg {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-8. ANIMATED UNDERLINES — Link Polish
+   ──────────────────────────────────────────────────────── */
+
+.underline-slide {
+  position: relative;
+  display: inline;
+  text-decoration: none;
+}
+
+.underline-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--violet);
+  transition: width .3s ease;
+}
+
+.underline-slide:hover::after {
+  width: 100%;
+}
+
+.underline-center::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.underline-right::after {
+  left: auto;
+  right: 0;
+}
+
+/* --- Underline grow from center --- */
+.underline-grow {
+  position: relative;
+  display: inline;
+  text-decoration: none;
+  background-image: linear-gradient(var(--violet), var(--violet));
+  background-size: 0% 2px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  transition: background-size .3s ease;
+}
+
+.underline-grow:hover {
+  background-size: 100% 2px;
+}
+
+/* --- Underline thick highlight --- */
+.underline-highlight {
+  position: relative;
+  display: inline;
+  text-decoration: none;
+  background-image: linear-gradient(transparent 65%, var(--violet-dim) 65%);
+  transition: background-image .3s ease;
+}
+
+.underline-highlight:hover {
+  background-image: linear-gradient(transparent 65%, var(--violet) 65%);
+  color: #fff;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-9. HERO RETOUCH — Micro-Precision
+   ──────────────────────────────────────────────────────── */
+
+/* --- Hero greeting gradient word --- */
+.hero-greeting .gradient-word {
+  background: linear-gradient(135deg, var(--violet), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+/* --- Hero availability badge --- */
+.hero-availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(16,185,129,.08);
+  border: 1px solid rgba(16,185,129,.2);
+  border-radius: var(--radius-full);
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--green);
+  margin-top: 12px;
+}
+
+.hero-availability::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: gentlePulse 2s ease infinite;
+  flex-shrink: 0;
+}
+
+/* --- Hero stack row --- */
+.hero-stack {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.hero-stack-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--spring);
+}
+
+.hero-stack-item:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--violet-glow);
+}
+
+.hero-stack-icon {
+  font-size: .85rem;
+  line-height: 1;
+}
+
+/* --- Hero CTA arrow animation --- */
+.hero-cta .cta-arrow {
+  display: inline-block;
+  transition: transform .3s var(--spring);
+}
+
+.hero-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-10. ABOUT REFRESH — Refined Detail Cards
+   ──────────────────────────────────────────────────────── */
+
+/* --- About highlight number --- */
+.about-highlight-num {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: var(--font-display);
+  color: var(--violet);
+  line-height: 1;
+  letter-spacing: -.03em;
+}
+
+.about-highlight-label {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* --- About location pin --- */
+.about-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+
+.about-location::before {
+  content: '📍';
+  font-size: .85rem;
+}
+
+/* --- About tools strip --- */
+.about-tools {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.about-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all .2s ease;
+}
+
+.about-tool:hover {
+  border-color: var(--violet);
+  color: var(--violet);
+  background: var(--violet-dim);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-11. EXPERIENCE MICRO-POLISH
+   ──────────────────────────────────────────────────────── */
+
+/* --- Domain icon glow on hover --- */
+.epd-icon {
+  position: relative;
+  transition: all var(--spring);
+}
+
+.exp-domain:hover .epd-icon {
+  filter: drop-shadow(0 0 8px var(--domain-accent, var(--violet)));
+  transform: scale(1.08);
+}
+
+/* --- Bullet metric highlight chip --- */
+.bullet-metric {
+  display: inline-flex;
+  padding: 1px 8px;
+  background: rgba(124,58,237,.06);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  color: var(--violet);
+  font-size: .85em;
+  margin: 0 2px;
+  white-space: nowrap;
+}
+
+/* --- Domain header underline --- */
+.epd-head h4 {
+  position: relative;
+  display: inline;
+}
+
+.epd-head h4::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--domain-accent, var(--violet));
+  transition: width .4s var(--spring);
+  border-radius: 1px;
+}
+
+.exp-domain:hover .epd-head h4::after {
+  width: 60%;
+}
+
+/* --- Domain tools area --- */
+.domain-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.domain-tool {
+  padding: 2px 8px;
+  font-size: .68rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  background: var(--bg-alt);
+  color: var(--text-faint);
+  border: 1px solid var(--border);
+  transition: all .2s ease;
+}
+
+.domain-tool:hover {
+  background: var(--violet-dim);
+  border-color: var(--violet);
+  color: var(--violet);
+}
+
+/* --- Domain duration bar visual --- */
+.domain-bar {
+  height: 3px;
+  background: var(--bg-alt);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.domain-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--domain-accent, var(--violet)), var(--blue));
+  border-radius: 2px;
+  transition: width 1.2s var(--spring);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-12. CERTIFICATION CARD RETOUCH
+   ──────────────────────────────────────────────────────── */
+
+/* --- Cert progress ring SVG --- */
+.cert-ring {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+
+.cert-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.cert-ring-bg {
+  fill: none;
+  stroke: var(--bg-alt);
+  stroke-width: 3;
+}
+
+.cert-ring-fill {
+  fill: none;
+  stroke: var(--violet);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1s ease;
+}
+
+/* --- Cert hover shine --- */
+.cert-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(255,255,255,.08) 50%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.cert-card:hover::after {
+  opacity: 1;
+}
+
+/* --- Cert issuer badge --- */
+.cert-issuer {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--bg-alt);
+  border-radius: var(--radius-full);
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  margin-top: 6px;
+}
+
+/* --- Cert skills list --- */
+.cert-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.cert-skill {
+  padding: 2px 8px;
+  background: var(--violet-dim);
+  border-radius: var(--radius-full);
+  font-size: .65rem;
+  font-weight: 600;
+  color: var(--violet);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-13. TIMELINE PRECISION — Every Node Polished
+   ──────────────────────────────────────────────────────── */
+
+/* --- Timeline node pulse --- */
+.timeline-node {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--violet);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--violet);
+  position: relative;
+  z-index: 3;
+  transition: all var(--spring);
+}
+
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--violet);
+  opacity: .15;
+  animation: breathe 3s ease infinite;
+}
+
+.timeline-item:hover .timeline-node {
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px var(--violet), 0 4px 16px var(--violet-glow);
+}
+
+/* --- Timeline hover card highlight --- */
+.timeline-item:hover .timeline-card {
+  border-color: var(--violet);
+  box-shadow: 0 8px 32px var(--violet-glow);
+}
+
+/* --- Timeline year marker --- */
+.timeline-year {
+  display: inline-block;
+  padding: 4px 16px;
+  background: var(--bg-card);
+  border: 2px solid var(--violet);
+  border-radius: var(--radius-full);
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--violet);
+  font-family: var(--font-mono);
+  letter-spacing: .04em;
+  position: relative;
+  z-index: 4;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-14. SKILL BAR PROGRESSIVE FILL
+   ──────────────────────────────────────────────────────── */
+
+/* --- Skill bar with gradient fill --- */
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  transition: width 1.2s var(--spring);
+}
+
+.skill-bar-fill-violet {
+  background: linear-gradient(90deg, var(--violet), #a78bfa);
+}
+
+.skill-bar-fill-blue {
+  background: linear-gradient(90deg, var(--blue), #60a5fa);
+}
+
+.skill-bar-fill-green {
+  background: linear-gradient(90deg, var(--green), #34d399);
+}
+
+.skill-bar-fill-amber {
+  background: linear-gradient(90deg, var(--amber), #fbbf24);
+}
+
+/* --- Skill bar shimmer on fill --- */
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,.2) 50%,
+    transparent 100%
+  );
+  animation: shimmerSlide 2s ease infinite;
+}
+
+/* --- Skill percentage tooltip --- */
+.skill-pct {
+  position: absolute;
+  right: -8px;
+  top: -28px;
+  padding: 2px 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: .68rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all .3s ease;
+  pointer-events: none;
+  box-shadow: var(--shadow-sm);
+}
+
+.skill-bar-fill:hover .skill-pct {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-pct::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 6px;
+  height: 6px;
+  background: var(--bg-card);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-15. PIPELINE RETOUCH — Stage Connectors
+   ──────────────────────────────────────────────────────── */
+
+/* --- Pipeline stage icon container --- */
+.pipe-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 10px;
+  transition: all var(--spring);
+}
+
+.pipe-icon-plan   { background: rgba(124,58,237,.1); color: var(--violet); }
+.pipe-icon-code   { background: rgba(37,99,235,.1); color: var(--blue); }
+.pipe-icon-build  { background: rgba(245,158,11,.1); color: var(--amber); }
+.pipe-icon-test   { background: rgba(239,68,68,.1); color: var(--red); }
+.pipe-icon-deploy { background: rgba(16,185,129,.1); color: var(--green); }
+
+.pipeline-stage:hover .pipe-icon {
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+/* --- Pipeline dotted connector --- */
+.pipe-connector {
+  width: 40px;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--border) 0px,
+    var(--border) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  flex-shrink: 0;
+  position: relative;
+}
+
+.pipe-connector::after {
+  content: '→';
+  position: absolute;
+  right: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .7rem;
+  color: var(--text-faint);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-16. WRITING CARD REFRESH
+   ──────────────────────────────────────────────────────── */
+
+/* --- Writing card image hover zoom --- */
+.writing-card-img {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.writing-card-img img {
+  transition: transform .6s var(--spring);
+}
+
+.writing-card:hover .writing-card-img img {
+  transform: scale(1.05);
+}
+
+/* --- Writing card gradient overlay --- */
+.writing-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,.4) 100%);
+  pointer-events: none;
+}
+
+/* --- Writing card author bar --- */
+.writing-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.writing-author-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}
+
+.writing-author-name {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.writing-author-date {
+  font-size: .72rem;
+  color: var(--text-faint);
+  margin-left: auto;
+}
+
+/* --- Writing card tag list --- */
+.writing-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.writing-tag {
+  padding: 2px 8px;
+  font-size: .68rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  background: var(--bg-alt);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  transition: all .2s ease;
+}
+
+.writing-tag:hover {
+  background: var(--violet-dim);
+  color: var(--violet);
+  border-color: var(--violet);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-17. ACHIEVEMENT & RECOGNITION POLISH
+   ──────────────────────────────────────────────────────── */
+
+/* --- Achievement card trophy shine --- */
+.achieve-card {
+  position: relative;
+}
+
+.achieve-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: left .6s ease;
+  pointer-events: none;
+}
+
+.achieve-card:hover::before {
+  left: 125%;
+}
+
+/* --- Achievement level stars --- */
+.achieve-stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 6px;
+}
+
+.achieve-star {
+  font-size: .7rem;
+  color: var(--amber);
+  opacity: .3;
+}
+
+.achieve-star.filled {
+  opacity: 1;
+  filter: drop-shadow(0 1px 3px rgba(245,158,11,.3));
+}
+
+/* --- Recognition quote bubble --- */
+.recognition-quote {
+  position: relative;
+  padding: 16px 20px;
+  background: var(--bg-alt);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--violet);
+  font-style: italic;
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+.recognition-quote::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--violet);
+  opacity: .2;
+  font-family: Georgia, serif;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-18. MOMENTS V5 — Gallery Precision
+   ──────────────────────────────────────────────────────── */
+
+/* --- Moment card image zoom with overlay --- */
+.moment-card .mc-media {
+  overflow: hidden;
+}
+
+.moment-card .mc-media img {
+  transition: transform .6s var(--spring), filter .3s ease;
+}
+
+.moment-card:hover .mc-media img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* --- Moment expand icon --- */
+.mc-expand {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all .3s ease;
+  cursor: zoom-in;
+  z-index: 5;
+}
+
+.moment-card:hover .mc-expand {
+  opacity: 1;
+}
+
+.mc-expand:hover {
+  background: rgba(0,0,0,.6);
+  transform: scale(1.1);
+}
+
+/* --- Moment card date badge --- */
+.mc-date {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 3px 10px;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: rgba(255,255,255,.9);
+  font-size: .68rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  border-radius: var(--radius-full);
+  z-index: 5;
+  letter-spacing: .02em;
+}
+
+/* --- Moment filter strip --- */
+.moment-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.moment-filter {
+  padding: 6px 16px;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.moment-filter:hover,
+.moment-filter.active {
+  background: var(--violet);
+  color: #fff;
+  border-color: var(--violet);
+  box-shadow: 0 4px 12px var(--violet-glow);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-19. FAQ ACCORDION SMOOTH
+   ──────────────────────────────────────────────────────── */
+
+/* --- FAQ smooth expand --- */
+.faq-answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .4s ease;
+  overflow: hidden;
+}
+
+.faq-item.active .faq-answer-wrap {
+  grid-template-rows: 1fr;
+}
+
+.faq-answer-wrap > div {
+  min-height: 0;
+}
+
+/* --- FAQ icon rotation --- */
+.faq-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  font-size: .7rem;
+  color: var(--text-muted);
+  transition: all .3s var(--spring);
+  flex-shrink: 0;
+}
+
+.faq-item.active .faq-toggle-icon {
+  background: var(--violet);
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-20. CONNECT FORM — Input Polish
+   ──────────────────────────────────────────────────────── */
+
+/* --- Floating label inputs --- */
+.float-label {
+  position: relative;
+}
+
+.float-label input,
+.float-label textarea {
+  padding-top: 20px;
+}
+
+.float-label label {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .88rem;
+  color: var(--text-faint);
+  pointer-events: none;
+  transition: all .2s ease;
+  background: transparent;
+}
+
+.float-label textarea ~ label {
+  top: 20px;
+  transform: none;
+}
+
+.float-label input:focus ~ label,
+.float-label input:not(:placeholder-shown) ~ label,
+.float-label textarea:focus ~ label,
+.float-label textarea:not(:placeholder-shown) ~ label {
+  top: 6px;
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--violet);
+  transform: none;
+}
+
+/* --- Form submit button state --- */
+.form-submit {
+  position: relative;
+  min-width: 160px;
+  min-height: 48px;
+}
+
+.form-submit.sending {
+  pointer-events: none;
+  opacity: .7;
+}
+
+.form-submit.sending::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spinSlow .6s linear infinite;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.form-submit.sent {
+  background: var(--green) !important;
+  border-color: var(--green) !important;
+}
+
+/* --- Form field group with icon --- */
+.field-icon-wrap {
+  position: relative;
+}
+
+.field-icon-wrap .field-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  font-size: 1rem;
+  pointer-events: none;
+  transition: color .2s ease;
+}
+
+.field-icon-wrap input,
+.field-icon-wrap textarea {
+  padding-left: 42px;
+}
+
+.field-icon-wrap input:focus ~ .field-icon {
+  color: var(--violet);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-21. FOOTER V2 — Refined Bottom
+   ──────────────────────────────────────────────────────── */
+
+/* --- Footer newsletter mini-form --- */
+.footer-newsletter {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.footer-newsletter input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--bg);
+  font-size: .85rem;
+  color: var(--text-primary);
+  transition: all .2s ease;
+}
+
+.footer-newsletter input:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px var(--violet-dim);
+}
+
+.footer-newsletter button {
+  padding: 10px 20px;
+  background: var(--violet);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--spring);
+  white-space: nowrap;
+}
+
+.footer-newsletter button:hover {
+  background: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--violet-glow);
+}
+
+/* --- Footer status badge --- */
+.footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .75rem;
+  color: var(--text-faint);
+}
+
+.footer-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: gentlePulse 2s ease infinite;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-22. SKELETON LOADING V2 — Content Placeholders
+   ──────────────────────────────────────────────────────── */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-alt) 0%,
+    rgba(255,255,255,.5) 50%,
+    var(--bg-alt) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.5s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 14px;
+  margin: 8px 0;
+  width: 80%;
+}
+
+.skeleton-text-sm {
+  height: 10px;
+  width: 60%;
+}
+
+.skeleton-title {
+  height: 22px;
+  width: 50%;
+  margin-bottom: 12px;
+}
+
+.skeleton-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeleton-card {
+  height: 200px;
+  border-radius: var(--radius-md);
+}
+
+.skeleton-badge {
+  height: 24px;
+  width: 80px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+[data-theme="dark"] .skeleton,
+.dark-mode .skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(30,41,59,.8) 0%,
+    rgba(51,65,85,.5) 50%,
+    rgba(30,41,59,.8) 100%
+  );
+  background-size: 200% 100%;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-23. TOOLTIP V2 — Rich Tooltips
+   ──────────────────────────────────────────────────────── */
+
+.tooltip-v2 {
+  position: relative;
+}
+
+.tooltip-v2[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  padding: 8px 14px;
+  background: var(--text-primary);
+  color: var(--bg);
+  font-size: .75rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all .2s ease;
+  z-index: 9000;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+.tooltip-v2[data-tip]::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  border: 5px solid transparent;
+  border-top-color: var(--text-primary);
+  pointer-events: none;
+  opacity: 0;
+  transition: all .2s ease;
+  z-index: 9001;
+}
+
+.tooltip-v2:hover[data-tip]::after,
+.tooltip-v2:hover[data-tip]::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- Tooltip positions --- */
+.tooltip-bottom[data-tip]::after {
+  bottom: auto;
+  top: calc(100% + 10px);
+}
+
+.tooltip-bottom[data-tip]::before {
+  bottom: auto;
+  top: calc(100% + 4px);
+  border-top-color: transparent;
+  border-bottom-color: var(--text-primary);
+}
+
+.tooltip-left[data-tip]::after {
+  bottom: auto;
+  top: 50%;
+  left: auto;
+  right: calc(100% + 10px);
+  transform: translateY(-50%) translateX(6px);
+}
+
+.tooltip-left:hover[data-tip]::after {
+  transform: translateY(-50%) translateX(0);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-24. PROGRESS INDICATORS — Multi-Variant
+   ──────────────────────────────────────────────────────── */
+
+/* --- Circular progress --- */
+.progress-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-circle-track {
+  fill: none;
+  stroke: var(--bg-alt);
+  stroke-width: 4;
+}
+
+.progress-circle-fill {
+  fill: none;
+  stroke: var(--violet);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .8s ease;
+}
+
+.progress-circle-text {
+  font-size: .78rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  z-index: 1;
+}
+
+/* --- Step progress --- */
+.progress-steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  flex: 1;
+}
+
+.progress-step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .7rem;
+  font-weight: 700;
+  color: var(--text-faint);
+  z-index: 2;
+  transition: all var(--spring);
+}
+
+.progress-step.active .progress-step-dot {
+  background: var(--violet);
+  border-color: var(--violet);
+  color: #fff;
+  box-shadow: 0 0 0 4px var(--violet-dim);
+}
+
+.progress-step.completed .progress-step-dot {
+  background: var(--green);
+  border-color: var(--green);
+  color: #fff;
+}
+
+.progress-step-label {
+  font-size: .72rem;
+  font-weight: 500;
+  color: var(--text-faint);
+  text-align: center;
+}
+
+.progress-step.active .progress-step-label {
+  color: var(--violet);
+  font-weight: 700;
+}
+
+/* --- Step connector --- */
+.progress-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: calc(50% + 18px);
+  width: calc(100% - 36px);
+  height: 2px;
+  background: var(--border);
+  z-index: 1;
+}
+
+.progress-step.completed:not(:last-child)::after {
+  background: var(--green);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-25. TAG CLOUD — Weighted Sizing
+   ──────────────────────────────────────────────────────── */
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.tag-cloud-item {
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all var(--spring);
+  cursor: default;
+}
+
+.tag-cloud-item:hover {
+  background: var(--violet-dim);
+  border-color: var(--violet);
+  color: var(--violet);
+  transform: translateY(-2px);
+}
+
+.tag-cloud-1 { font-size: .68rem; }
+.tag-cloud-2 { font-size: .78rem; }
+.tag-cloud-3 { font-size: .88rem; }
+.tag-cloud-4 { font-size: 1rem; font-weight: 700; }
+.tag-cloud-5 { font-size: 1.15rem; font-weight: 800; }
+
+
+/* ────────────────────────────────────────────────────────
+   V17-26. COMPARISON TABLE — Feature Matrix
+   ──────────────────────────────────────────────────────── */
+
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: .85rem;
+}
+
+.compare-table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 700;
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-faint);
+  background: var(--bg-alt);
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.compare-table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: background .2s ease;
+}
+
+.compare-table tr:hover td {
+  background: var(--violet-dim);
+}
+
+.compare-table .check { color: var(--green); font-weight: 700; }
+.compare-table .cross { color: var(--text-faint); }
+.compare-table .partial { color: var(--amber); }
+
+.compare-table th:first-child,
+.compare-table td:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.compare-table th:last-child,
+.compare-table td:last-child {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-27. PRICING / TIER CARD — Service Showcase
+   ──────────────────────────────────────────────────────── */
+
+.tier-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.tier-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  transition: all var(--spring);
+  text-align: center;
+}
+
+.tier-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,.08);
+  border-color: var(--violet);
+}
+
+.tier-card.featured {
+  border-color: var(--violet);
+  box-shadow: 0 8px 32px var(--violet-glow);
+}
+
+.tier-card.featured::before {
+  content: 'Popular';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 16px;
+  background: var(--violet);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.tier-name {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.tier-price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  font-family: var(--font-display);
+  color: var(--violet);
+  margin: 16px 0;
+  line-height: 1;
+}
+
+.tier-price-period {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--text-faint);
+}
+
+.tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.tier-features li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: .85rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tier-features li::before {
+  content: '✓';
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.tier-features li.disabled {
+  color: var(--text-faint);
+  text-decoration: line-through;
+}
+
+.tier-features li.disabled::before {
+  content: '—';
+  color: var(--text-faint);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-28. STATS CARD — Metric Showcase Row
+   ──────────────────────────────────────────────────────── */
+
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px 20px;
+  text-align: center;
+  transition: all var(--spring);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--violet);
+}
+
+.stat-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--violet-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 0 auto 12px;
+  transition: all var(--spring);
+}
+
+.stat-card:hover .stat-card-icon {
+  background: var(--violet);
+  color: #fff;
+  transform: rotate(-5deg) scale(1.08);
+}
+
+.stat-card-num {
+  font-size: 1.8rem;
+  font-weight: 900;
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-card-label {
+  font-size: .78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.stat-card-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: .72rem;
+  font-weight: 600;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.stat-card-trend-up {
+  background: rgba(16,185,129,.08);
+  color: var(--green);
+}
+
+.stat-card-trend-down {
+  background: rgba(239,68,68,.08);
+  color: var(--red);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-29. BANNER / ALERT SYSTEM
+   ──────────────────────────────────────────────────────── */
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  font-size: .88rem;
+  line-height: 1.5;
+}
+
+.alert-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  margin-top: 1px;
+}
+
+.alert-close {
+  margin-left: auto;
+  cursor: pointer;
+  opacity: .6;
+  font-size: .9rem;
+  transition: opacity .2s;
+}
+
+.alert-close:hover { opacity: 1; }
+
+.alert-info {
+  background: rgba(37,99,235,.06);
+  color: var(--blue);
+  border: 1px solid rgba(37,99,235,.15);
+}
+
+.alert-success {
+  background: rgba(16,185,129,.06);
+  color: var(--green);
+  border: 1px solid rgba(16,185,129,.15);
+}
+
+.alert-warning {
+  background: rgba(245,158,11,.06);
+  color: var(--amber);
+  border: 1px solid rgba(245,158,11,.15);
+}
+
+.alert-error {
+  background: rgba(239,68,68,.06);
+  color: var(--red);
+  border: 1px solid rgba(239,68,68,.15);
+}
+
+.alert-violet {
+  background: var(--violet-dim);
+  color: var(--violet);
+  border: 1px solid var(--border-violet);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-30. ACCORDION V2 — Multi-Panel
+   ──────────────────────────────────────────────────────── */
+
+.accordion {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--text-primary);
+  transition: all .2s ease;
+}
+
+.accordion-header:hover {
+  background: var(--bg-alt);
+}
+
+.accordion-item.active .accordion-header {
+  background: var(--violet-dim);
+  color: var(--violet);
+}
+
+.accordion-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.accordion-icon::before,
+.accordion-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  transition: transform .3s ease;
+}
+
+.accordion-icon::before {
+  left: 50%;
+  top: 2px;
+  bottom: 2px;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.accordion-icon::after {
+  top: 50%;
+  left: 2px;
+  right: 2px;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.accordion-item.active .accordion-icon::before {
+  transform: translateX(-50%) rotate(90deg);
+  opacity: 0;
+}
+
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+
+.accordion-item.active .accordion-body {
+  grid-template-rows: 1fr;
+}
+
+.accordion-body-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.accordion-content {
+  padding: 0 20px 16px;
+  font-size: .88rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-31. BADGE SYSTEM V2 — Refined
+   ──────────────────────────────────────────────────────── */
+
+.badge-v2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+.badge-v2-sm {
+  padding: 2px 8px;
+  font-size: .68rem;
+}
+
+.badge-v2-violet { background: var(--violet-dim); color: var(--violet); }
+.badge-v2-blue   { background: var(--blue-dim); color: var(--blue); }
+.badge-v2-green  { background: var(--green-dim); color: var(--green); }
+.badge-v2-amber  { background: rgba(245,158,11,.08); color: var(--amber); }
+.badge-v2-red    { background: rgba(239,68,68,.08); color: var(--red); }
+.badge-v2-gray   { background: var(--bg-alt); color: var(--text-muted); }
+
+/* --- Badge with dot --- */
+.badge-v2-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* --- Badge with count --- */
+.badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--red);
+  color: #fff;
+  font-size: .68rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-32. TOGGLE / SWITCH COMPONENT
+   ──────────────────────────────────────────────────────── */
+
+.toggle-switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.toggle-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-track {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-alt);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: all .3s ease;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  transition: all .3s var(--spring);
+}
+
+.toggle-switch input:checked ~ .toggle-track {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+
+.toggle-switch input:checked ~ .toggle-thumb {
+  left: 23px;
+}
+
+.toggle-switch input:focus-visible ~ .toggle-track {
+  box-shadow: 0 0 0 3px var(--violet-dim);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-33. DARK MODE V17 EXTENSIONS
+   ──────────────────────────────────────────────────────── */
+
+[data-theme="dark"] .glass-card-frosted,
+.dark-mode .glass-card-frosted {
+  background: rgba(15,23,42,.6);
+  border-color: rgba(255,255,255,.05);
+}
+
+[data-theme="dark"] .tier-card,
+.dark-mode .tier-card {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .stat-card,
+.dark-mode .stat-card {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .alert-info,
+.dark-mode .alert-info {
+  background: rgba(37,99,235,.1);
+}
+
+[data-theme="dark"] .alert-success,
+.dark-mode .alert-success {
+  background: rgba(16,185,129,.1);
+}
+
+[data-theme="dark"] .alert-warning,
+.dark-mode .alert-warning {
+  background: rgba(245,158,11,.1);
+}
+
+[data-theme="dark"] .alert-error,
+.dark-mode .alert-error {
+  background: rgba(239,68,68,.1);
+}
+
+[data-theme="dark"] .accordion-header,
+.dark-mode .accordion-header {
+  background: var(--bg-card);
+}
+
+[data-theme="dark"] .accordion-item.active .accordion-header,
+.dark-mode .accordion-item.active .accordion-header {
+  background: rgba(124,58,237,.1);
+}
+
+[data-theme="dark"] .compare-table th,
+.dark-mode .compare-table th {
+  background: var(--bg-card);
+}
+
+[data-theme="dark"] .toggle-track,
+.dark-mode .toggle-track {
+  background: var(--bg);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .tooltip-v2[data-tip]::after,
+.dark-mode .tooltip-v2[data-tip]::after {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+[data-theme="dark"] .footer-newsletter input,
+.dark-mode .footer-newsletter input {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .moment-filter,
+.dark-mode .moment-filter {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .writing-tag,
+.dark-mode .writing-tag {
+  background: var(--bg);
+  border-color: var(--border);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-34. RESPONSIVE V17 — Breakpoint Refinements
+   ──────────────────────────────────────────────────────── */
+
+/* --- Ultra-wide (2K+) --- */
+@media (min-width: 1600px) {
+  .sec-inner {
+    max-width: 1320px;
+  }
+
+  .stat-cards {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .tier-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- 1440px breakpoint --- */
+@media (min-width: 1440px) {
+  .exp-domains {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --- Tablet (768-1024) --- */
+@media (max-width: 1024px) {
+  .tier-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .compare-table {
+    font-size: .8rem;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: 10px 12px;
+  }
+}
+
+/* --- Phone (max 640px) --- */
+@media (max-width: 640px) {
+  .tier-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-stack {
+    justify-content: center;
+  }
+
+  .hero-availability {
+    justify-content: center;
+  }
+
+  .progress-steps {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .progress-step:not(:last-child)::after {
+    display: none;
+  }
+
+  .compare-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .tag-cloud {
+    gap: 6px;
+  }
+
+  .pullquote {
+    padding: 32px 20px;
+    font-size: 1.1rem;
+  }
+
+  .footer-newsletter {
+    flex-direction: column;
+  }
+
+  .footer-newsletter button {
+    width: 100%;
+  }
+}
+
+/* --- Extra small (max 380px) --- */
+@media (max-width: 380px) {
+  .stat-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card-num {
+    font-size: 1.4rem;
+  }
+
+  .tier-price {
+    font-size: 2rem;
+  }
+
+  .hero-stack-item {
+    font-size: .65rem;
+    padding: 3px 8px;
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-35. PRINT V17 — Extended Coverage
+   ──────────────────────────────────────────────────────── */
+
+@media print {
+  .glass-card,
+  .glass-card-frosted,
+  .glass-card-dark {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .skeleton,
+  .skeleton-text,
+  .skeleton-card {
+    display: none !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring,
+  .section-indicator,
+  .back-to-top,
+  .cookie-banner,
+  .lightbox-overlay {
+    display: none !important;
+  }
+
+  .tier-card {
+    page-break-inside: avoid;
+  }
+
+  .stat-card {
+    page-break-inside: avoid;
+  }
+
+  .alert {
+    page-break-inside: avoid;
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-36. ANIMATED NUMBER INPUT — Stepper
+   ──────────────────────────────────────────────────────── */
+
+.number-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.number-stepper button {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-alt);
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+  color: var(--text-muted);
+}
+
+.number-stepper button:hover {
+  background: var(--violet-dim);
+  color: var(--violet);
+}
+
+.number-stepper input {
+  width: 48px;
+  height: 36px;
+  border: none;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: .88rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-37. RANGE SLIDER — Custom Style
+   ──────────────────────────────────────────────────────── */
+
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--bg-alt);
+  border-radius: 3px;
+  outline: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--violet);
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px var(--violet-glow);
+  transition: all .2s ease;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 16px var(--violet-glow);
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--violet);
+  cursor: pointer;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px var(--violet-glow);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-38. CHECKBOX & RADIO — Custom Style
+   ──────────────────────────────────────────────────────── */
+
+.custom-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: .88rem;
+  color: var(--text-secondary);
+}
+
+.custom-check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-check-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+  flex-shrink: 0;
+}
+
+.custom-check input:checked ~ .custom-check-box {
+  background: var(--violet);
+  border-color: var(--violet);
+}
+
+.custom-check input:checked ~ .custom-check-box::after {
+  content: '✓';
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 900;
+}
+
+.custom-check input:focus-visible ~ .custom-check-box {
+  box-shadow: 0 0 0 3px var(--violet-dim);
+}
+
+/* --- Radio --- */
+.custom-radio .custom-check-box {
+  border-radius: 50%;
+}
+
+.custom-radio input:checked ~ .custom-check-box::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-39. DROPDOWN / SELECT — Custom
+   ──────────────────────────────────────────────────────── */
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+}
+
+.custom-select select {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  font-size: .88rem;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.custom-select select:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px var(--violet-dim);
+}
+
+.custom-select::after {
+  content: '▾';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-faint);
+  font-size: .8rem;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-40. SEARCH INPUT — Enhanced
+   ──────────────────────────────────────────────────────── */
+
+.search-input-wrap {
+  position: relative;
+  max-width: 400px;
+}
+
+.search-input-wrap input {
+  width: 100%;
+  padding: 12px 44px 12px 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  font-size: .88rem;
+  font-family: var(--font-sans);
+  transition: all .3s ease;
+}
+
+.search-input-wrap input:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px var(--violet-dim), 0 4px 12px rgba(0,0,0,.04);
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-faint);
+  font-size: .95rem;
+  pointer-events: none;
+  transition: color .2s;
+}
+
+.search-input-wrap input:focus ~ .search-input-icon {
+  color: var(--violet);
+}
+
+.search-clear {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--text-faint);
+  font-size: .65rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all .2s ease;
+}
+
+.search-input-wrap input:not(:placeholder-shown) ~ .search-clear {
+  opacity: 1;
+}
+
+.search-clear:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-41. BREADCRUMB WITH ICONS
+   ──────────────────────────────────────────────────────── */
+
+.breadcrumb-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .82rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+
+.breadcrumb-icon a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  transition: color .2s;
+}
+
+.breadcrumb-icon a:hover {
+  color: var(--violet);
+}
+
+.breadcrumb-icon .bc-sep {
+  font-size: .6rem;
+  color: var(--text-faint);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-42. FOCUS VISIBLE — Global Polish
+   ──────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-43. MOTION SAFE / MOTION REDUCE
+   ──────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+
+  .lightbox-overlay {
+    transition: none !important;
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-44. COLOR SCHEME — Extended Palette Utilities
+   ──────────────────────────────────────────────────────── */
+
+.bg-violet-subtle   { background: var(--violet-dim); }
+.bg-blue-subtle     { background: var(--blue-dim); }
+.bg-green-subtle    { background: var(--green-dim); }
+.bg-amber-subtle    { background: rgba(245,158,11,.06); }
+.bg-red-subtle      { background: rgba(239,68,68,.06); }
+
+.text-violet { color: var(--violet); }
+.text-blue   { color: var(--blue); }
+.text-green  { color: var(--green); }
+.text-amber  { color: var(--amber); }
+.text-red    { color: var(--red); }
+.text-muted  { color: var(--text-muted); }
+.text-faint  { color: var(--text-faint); }
+
+.border-violet { border-color: var(--violet) !important; }
+.border-blue   { border-color: var(--blue) !important; }
+.border-green  { border-color: var(--green) !important; }
+
+
+/* ────────────────────────────────────────────────────────
+   V17-45. LINK CARD — Rich Preview
+   ──────────────────────────────────────────────────────── */
+
+.link-card {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--spring);
+  text-decoration: none;
+  color: inherit;
+}
+
+.link-card:hover {
+  border-color: var(--violet);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.link-card-thumb {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.link-card-title {
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.link-card-desc {
+  font-size: .8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.link-card-domain {
+  font-size: .72rem;
+  color: var(--text-faint);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-46. IMAGE COMPARISON SLIDER
+   ──────────────────────────────────────────────────────── */
+
+.img-compare {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: col-resize;
+}
+
+.img-compare-before,
+.img-compare-after {
+  display: block;
+  width: 100%;
+}
+
+.img-compare-before {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 50% 0 0);
+  z-index: 2;
+}
+
+.img-compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: #fff;
+  z-index: 3;
+  transform: translateX(-50%);
+  box-shadow: 0 0 8px rgba(0,0,0,.3);
+}
+
+.img-compare-handle::before,
+.img-compare-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+.img-compare-handle::before {
+  left: -14px;
+  transform: translateY(-50%);
+}
+
+.img-compare-handle::after {
+  right: -14px;
+  transform: translateY(-50%);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-47. SCROLL DECORATIONS — Stylised Scrollbar
+   ──────────────────────────────────────────────────────── */
+
+/* --- Thin scrollbar for containers --- */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.scroll-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.scroll-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
+
+/* --- Violet accent scrollbar --- */
+.scroll-violet::-webkit-scrollbar-thumb {
+  background: var(--violet);
+}
+
+/* --- Hidden scrollbar utility --- */
+.scroll-hide {
+  scrollbar-width: none;
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-48. GRADIENT BORDER — Conic
+   ──────────────────────────────────────────────────────── */
+
+.gradient-border-conic {
+  position: relative;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  z-index: 0;
+}
+
+.gradient-border-conic::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    var(--violet),
+    var(--blue),
+    var(--green),
+    var(--amber),
+    var(--violet)
+  );
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 2px;
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-49. SELECTION COLOUR — Branded
+   ──────────────────────────────────────────────────────── */
+
+::selection {
+  background: rgba(124,58,237,.2);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(124,58,237,.2);
+  color: var(--text-primary);
+}
+
+
+/* ────────────────────────────────────────────────────────
+   V17-50. FINAL MICRO-UTILITIES
+   ──────────────────────────────────────────────────────── */
+
+/* --- Spacing utilities --- */
+.mt-0  { margin-top: 0; }
+.mt-xs { margin-top: var(--sp-xs); }
+.mt-sm { margin-top: var(--sp-sm); }
+.mt-md { margin-top: var(--sp-md); }
+.mt-lg { margin-top: var(--sp-lg); }
+.mt-xl { margin-top: var(--sp-xl); }
+
+.mb-0  { margin-bottom: 0; }
+.mb-xs { margin-bottom: var(--sp-xs); }
+.mb-sm { margin-bottom: var(--sp-sm); }
+.mb-md { margin-bottom: var(--sp-md); }
+.mb-lg { margin-bottom: var(--sp-lg); }
+.mb-xl { margin-bottom: var(--sp-xl); }
+
+.pt-0  { padding-top: 0; }
+.pt-xs { padding-top: var(--sp-xs); }
+.pt-sm { padding-top: var(--sp-sm); }
+.pt-md { padding-top: var(--sp-md); }
+.pt-lg { padding-top: var(--sp-lg); }
+.pt-xl { padding-top: var(--sp-xl); }
+
+.pb-0  { padding-bottom: 0; }
+.pb-xs { padding-bottom: var(--sp-xs); }
+.pb-sm { padding-bottom: var(--sp-sm); }
+.pb-md { padding-bottom: var(--sp-md); }
+.pb-lg { padding-bottom: var(--sp-lg); }
+.pb-xl { padding-bottom: var(--sp-xl); }
+
+.px-xs { padding-left: var(--sp-xs); padding-right: var(--sp-xs); }
+.px-sm { padding-left: var(--sp-sm); padding-right: var(--sp-sm); }
+.px-md { padding-left: var(--sp-md); padding-right: var(--sp-md); }
+.px-lg { padding-left: var(--sp-lg); padding-right: var(--sp-lg); }
+
+.py-xs { padding-top: var(--sp-xs); padding-bottom: var(--sp-xs); }
+.py-sm { padding-top: var(--sp-sm); padding-bottom: var(--sp-sm); }
+.py-md { padding-top: var(--sp-md); padding-bottom: var(--sp-md); }
+.py-lg { padding-top: var(--sp-lg); padding-bottom: var(--sp-lg); }
+
+/* --- Gap utilities --- */
+.gap-xs { gap: var(--sp-xs); }
+.gap-sm { gap: var(--sp-sm); }
+.gap-md { gap: var(--sp-md); }
+.gap-lg { gap: var(--sp-lg); }
+.gap-xl { gap: var(--sp-xl); }
+
+/* --- Display utilities --- */
+.d-flex    { display: flex; }
+.d-grid    { display: grid; }
+.d-block   { display: block; }
+.d-inline  { display: inline; }
+.d-ib      { display: inline-block; }
+.d-none    { display: none; }
+
+.flex-col   { flex-direction: column; }
+.flex-row   { flex-direction: row; }
+.flex-wrap  { flex-wrap: wrap; }
+.flex-1     { flex: 1; }
+.flex-center{ display: flex; align-items: center; justify-content: center; }
+
+.items-center  { align-items: center; }
+.items-start   { align-items: flex-start; }
+.items-end     { align-items: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-center  { justify-content: center; }
+
+/* --- Text align --- */
+.text-left    { text-align: left; }
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+
+/* --- Width utilities --- */
+.w-full  { width: 100%; }
+.w-auto  { width: auto; }
+.w-fit   { width: fit-content; }
+.max-w-sm  { max-width: 480px; }
+.max-w-md  { max-width: 680px; }
+.max-w-lg  { max-width: 960px; }
+.max-w-xl  { max-width: 1200px; }
+
+/* --- Border radius shortcuts --- */
+.rounded-none { border-radius: 0; }
+.rounded-sm   { border-radius: var(--radius-sm); }
+.rounded-md   { border-radius: var(--radius-md); }
+.rounded-lg   { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: 9999px; }
+
+/* --- Overflow --- */
+.overflow-hidden  { overflow: hidden; }
+.overflow-auto    { overflow: auto; }
+.overflow-x-auto  { overflow-x: auto; }
+.overflow-y-auto  { overflow-y: auto; }
+
+/* --- Positioning --- */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.sticky   { position: sticky; }
+.fixed    { position: fixed; }
+
+/* --- Z-index layering --- */
+.z-0   { z-index: 0; }
+.z-10  { z-index: 10; }
+.z-20  { z-index: 20; }
+.z-50  { z-index: 50; }
+.z-100 { z-index: 100; }
+
+/* --- Opacity utilities --- */
+.opacity-0   { opacity: 0; }
+.opacity-25  { opacity: .25; }
+.opacity-50  { opacity: .5; }
+.opacity-75  { opacity: .75; }
+.opacity-100 { opacity: 1; }
+
+/* --- Cursor utilities --- */
+.cursor-pointer  { cursor: pointer; }
+.cursor-default  { cursor: default; }
+.cursor-grab     { cursor: grab; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* --- Truncate utility --- */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Visually hidden (a11y) --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Transition utilities --- */
+.transition-fast { transition: all .15s ease; }
+.transition-base { transition: all .3s ease; }
+.transition-slow { transition: all .5s ease; }
+.transition-spring { transition: all var(--spring); }
+
+/* --- Transform utilities --- */
+.hover-lift:hover { transform: translateY(-4px); }
+.hover-scale:hover { transform: scale(1.05); }
+.hover-glow:hover { box-shadow: 0 8px 32px var(--violet-glow); }
+
+/* --- Ring utility --- */
+.ring-violet {
+  box-shadow: 0 0 0 3px var(--violet-dim);
+}
+
+.ring-focus:focus-visible {
+  box-shadow: 0 0 0 3px var(--violet-dim);
+}
+
+/* ────────────────────────────────────────────────────────
+   END V17 PROTOTYPE POLISH
+   ──────────────────────────────────────────────────────── */

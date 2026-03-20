@@ -1512,4 +1512,255 @@
     document.head.appendChild(style);
   })();
 
+  /* ═══════════════════════════════════════════════════════
+     V17 PROTOTYPE POLISH — JS Micro-Interactions
+     ═══════════════════════════════════════════════════════ */
+
+  /* ── 31. RIPPLE EFFECT ON BUTTONS ── */
+  (function initRipple() {
+    document.querySelectorAll('.ripple-btn,.cta-primary,.cta-secondary,button[type="submit"]').forEach(function(btn) {
+      btn.style.position = 'relative';
+      btn.style.overflow = 'hidden';
+      btn.addEventListener('click', function(e) {
+        var rect = btn.getBoundingClientRect();
+        var size = Math.max(rect.width, rect.height) * 2;
+        var wave = document.createElement('span');
+        wave.className = 'ripple-wave';
+        wave.style.cssText = 'position:absolute;border-radius:50%;background:rgba(255,255,255,.3);pointer-events:none;animation:ripple .6s ease-out forwards;width:'+size+'px;height:'+size+'px;left:'+(e.clientX-rect.left-size/2)+'px;top:'+(e.clientY-rect.top-size/2)+'px;';
+        btn.appendChild(wave);
+        setTimeout(function() { wave.remove(); }, 700);
+      });
+    });
+  })();
+
+  /* ── 32. FAQ ACCORDION SMOOTH TOGGLE ── */
+  (function initFAQAccordion() {
+    var items = document.querySelectorAll('.faq-item');
+    if (!items.length) return;
+    items.forEach(function(item) {
+      var toggle = item.querySelector('.faq-toggle,.faq-q');
+      if (!toggle) return;
+      toggle.addEventListener('click', function() {
+        var wasActive = item.classList.contains('active');
+        items.forEach(function(i) { i.classList.remove('active'); });
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+  })();
+
+  /* ── 33. ACCORDION V2 GENERAL ── */
+  (function initAccordion() {
+    document.querySelectorAll('.accordion-header').forEach(function(header) {
+      header.addEventListener('click', function() {
+        var item = header.closest('.accordion-item');
+        if (!item) return;
+        var wasActive = item.classList.contains('active');
+        var accordion = item.closest('.accordion');
+        if (accordion) {
+          accordion.querySelectorAll('.accordion-item').forEach(function(i) {
+            i.classList.remove('active');
+          });
+        }
+        if (!wasActive) item.classList.add('active');
+      });
+    });
+  })();
+
+  /* ── 34. TOOLTIP POSITION FIX ── */
+  (function initTooltipFix() {
+    document.querySelectorAll('.tooltip-v2[data-tip]').forEach(function(el) {
+      el.addEventListener('mouseenter', function() {
+        var tip = el.querySelector('.tooltip-generated');
+        if (!tip) return;
+        var rect = tip.getBoundingClientRect();
+        if (rect.right > window.innerWidth) {
+          tip.style.left = 'auto';
+          tip.style.right = '0';
+          tip.style.transform = 'none';
+        }
+        if (rect.left < 0) {
+          tip.style.left = '0';
+          tip.style.transform = 'none';
+        }
+      });
+    });
+  })();
+
+  /* ── 35. NUMBER STEPPER ── */
+  (function initSteppers() {
+    document.querySelectorAll('.number-stepper').forEach(function(wrap) {
+      var input = wrap.querySelector('input');
+      var btns = wrap.querySelectorAll('button');
+      if (!input || btns.length < 2) return;
+      var min = parseInt(input.min, 10) || 0;
+      var max = parseInt(input.max, 10) || 999;
+      btns[0].addEventListener('click', function() {
+        var v = parseInt(input.value, 10) || 0;
+        if (v > min) { input.value = v - 1; input.dispatchEvent(new Event('change')); }
+      });
+      btns[1].addEventListener('click', function() {
+        var v = parseInt(input.value, 10) || 0;
+        if (v < max) { input.value = v + 1; input.dispatchEvent(new Event('change')); }
+      });
+    });
+  })();
+
+  /* ── 36. TOGGLE SWITCH ── */
+  (function initToggles() {
+    document.querySelectorAll('.toggle-switch input').forEach(function(inp) {
+      inp.addEventListener('change', function() {
+        var ev = new CustomEvent('toggle-change', { detail: { checked: inp.checked } });
+        inp.closest('.toggle-switch').dispatchEvent(ev);
+      });
+    });
+  })();
+
+  /* ── 37. IMAGE COMPARE SLIDER ── */
+  (function initImageCompare() {
+    document.querySelectorAll('.img-compare').forEach(function(wrap) {
+      var handle = wrap.querySelector('.img-compare-handle');
+      var before = wrap.querySelector('.img-compare-before');
+      if (!handle || !before) return;
+      var dragging = false;
+      function update(x) {
+        var rect = wrap.getBoundingClientRect();
+        var pct = Math.max(0, Math.min(100, ((x - rect.left) / rect.width) * 100));
+        handle.style.left = pct + '%';
+        before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+      }
+      handle.addEventListener('mousedown', function() { dragging = true; });
+      handle.addEventListener('touchstart', function() { dragging = true; }, { passive: true });
+      window.addEventListener('mouseup', function() { dragging = false; });
+      window.addEventListener('touchend', function() { dragging = false; });
+      window.addEventListener('mousemove', function(e) { if (dragging) update(e.clientX); });
+      window.addEventListener('touchmove', function(e) { if (dragging) update(e.touches[0].clientX); }, { passive: true });
+    });
+  })();
+
+  /* ── 38. SEARCH INPUT CLEAR ── */
+  (function initSearchClear() {
+    document.querySelectorAll('.search-clear').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var wrap = btn.closest('.search-input-wrap');
+        if (!wrap) return;
+        var input = wrap.querySelector('input');
+        if (input) { input.value = ''; input.focus(); input.dispatchEvent(new Event('input')); }
+      });
+    });
+  })();
+
+  /* ── 39. SCROLL TO TOP ENHANCED ── */
+  (function initScrollTopV2() {
+    var btn = document.querySelector('.back-to-top');
+    if (!btn) return;
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    var lastY = 0;
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y > 400) {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+        btn.style.transform = y < lastY ? 'translateY(0)' : 'translateY(80px)';
+      } else {
+        btn.style.opacity = '0';
+        btn.style.pointerEvents = 'none';
+      }
+      lastY = y;
+    }, { passive: true });
+  })();
+
+  /* ── 40. CHAR COUNT FOR TEXTAREAS ── */
+  (function initCharCount() {
+    document.querySelectorAll('.form-textarea[maxlength]').forEach(function(ta) {
+      var max = parseInt(ta.getAttribute('maxlength'), 10);
+      var counter = ta.parentElement.querySelector('.form-char-count');
+      if (!counter) {
+        counter = document.createElement('div');
+        counter.className = 'form-char-count';
+        ta.parentElement.appendChild(counter);
+      }
+      function update() { counter.textContent = ta.value.length + '/' + max; }
+      ta.addEventListener('input', update);
+      update();
+    });
+  })();
+
+  /* ── 41. FLOATING LABEL INTERACTION ── */
+  (function initFloatLabels() {
+    document.querySelectorAll('.float-label input, .float-label textarea').forEach(function(el) {
+      if (!el.placeholder) el.setAttribute('placeholder', ' ');
+    });
+  })();
+
+  /* ── 42. FORM VALIDATION FEEDBACK ── */
+  (function initFormValidation() {
+    var form = document.querySelector('form[action*="formspree"]');
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      var valid = true;
+      form.querySelectorAll('[required]').forEach(function(field) {
+        field.classList.remove('error', 'success');
+        if (!field.value.trim()) {
+          field.classList.add('error');
+          valid = false;
+        } else {
+          field.classList.add('success');
+        }
+      });
+      if (!valid) e.preventDefault();
+    });
+    form.querySelectorAll('[required]').forEach(function(field) {
+      field.addEventListener('blur', function() {
+        field.classList.remove('error', 'success');
+        if (!field.value.trim()) {
+          field.classList.add('error');
+        } else {
+          field.classList.add('success');
+        }
+      });
+    });
+  })();
+
+  /* ── 43. EXTERNAL LINK INDICATOR ── */
+  (function initExternalLinks() {
+    document.querySelectorAll('a[href^="http"]').forEach(function(a) {
+      if (a.hostname === location.hostname) return;
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+  })();
+
+  /* ── 44. COPY CODE BLOCK ── */
+  (function initCodeCopy() {
+    document.querySelectorAll('pre code').forEach(function(block) {
+      var pre = block.parentElement;
+      pre.style.position = 'relative';
+      var btn = document.createElement('button');
+      btn.textContent = 'Copy';
+      btn.style.cssText = 'position:absolute;top:8px;right:8px;padding:3px 10px;font-size:.72rem;font-weight:600;background:var(--bg-alt);border:1px solid var(--border);border-radius:4px;cursor:pointer;color:var(--text-muted);transition:all .2s;';
+      btn.addEventListener('click', function() {
+        navigator.clipboard.writeText(block.textContent).then(function() {
+          btn.textContent = 'Copied!';
+          btn.style.color = 'var(--green)';
+          setTimeout(function() { btn.textContent = 'Copy'; btn.style.color = ''; }, 2000);
+        });
+      });
+      pre.appendChild(btn);
+    });
+  })();
+
+  /* ── 45. PAGE VISIBILITY — Pause Animations ── */
+  (function initVisibilityPause() {
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        document.body.style.animationPlayState = 'paused';
+      } else {
+        document.body.style.animationPlayState = 'running';
+      }
+    });
+  })();
+
 })();
