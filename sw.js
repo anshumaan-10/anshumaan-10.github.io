@@ -3,22 +3,16 @@
  * Aggressive caching strategy for optimal performance
  */
 
-const CACHE_VERSION = 'v2.0.0-lightfix';
+const CACHE_VERSION = 'v18';
 const CACHE_NAME = `portfolio-cache-${CACHE_VERSION}`;
 
 // Critical resources to cache immediately
 const PRECACHE_URLS = [
   '/',
   '/index.html',
-  '/styles.css?v=20260319-lightfix',
-  '/enhancements-v15.css?v=20260319-lightfix',
-  '/advanced-styles.css?v=20260319-lightfix',
-  '/light-override.css?v=20260319-lightfix',
-  '/script.js?v=20260319-lightfix',
-  '/enhancements-v15.js?v=20260319-lightfix',
-  '/advanced-features.js?v=20260319-lightfix',
-  '/security-utils.js?v=20260319-lightfix',
-  '/assests/me.jpg?v=20260319-lightfix',
+  '/portfolio.css?v=18',
+  '/portfolio.js?v=18',
+  '/assests/me.jpg',
   '/assests/cka.jpg',
   '/assests/cks.jpg',
   '/assests/gcp.jpg',

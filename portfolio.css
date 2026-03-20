@@ -28,6 +28,7 @@
   --text-secondary: #374151;
   --text-muted:     #6b7280;
   --text-faint:     #9ca3af;
+  --text:           #0f172a;
 
   --border:         #e5e7eb;
   --border-violet:  rgba(124,58,237,.2);
@@ -51,6 +52,7 @@
   --font-sans:  'Inter', 'Outfit', system-ui, sans-serif;
   --font-display: 'Outfit', 'Inter', sans-serif;
   --font-mono:  'JetBrains Mono', 'Fira Code', monospace;
+  --font:       'Inter', 'Outfit', system-ui, sans-serif;
 
   --transition: .22s cubic-bezier(.4,0,.2,1);
   --spring:     .35s cubic-bezier(.34,1.56,.64,1);
@@ -4528,6 +4530,7 @@ button:focus-visible {
   --text-secondary: #cbd5e1;
   --text-muted:     #94a3b8;
   --text-faint:     #64748b;
+  --text:           #f8fafc;
 
   --border:         #334155;
   --border-violet:  rgba(124,58,237,.35);

@@ -54,7 +54,7 @@
   <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <!-- Our fresh portfolio CSS ONLY — no old dark CSS loaded -->
-  <link rel="stylesheet" href="./portfolio.css?v=3" />
+  <link rel="stylesheet" href="./portfolio.css?v=18" />
 
   <!-- Critical inline CSS to guarantee white bg before CSS loads -->
   <style>
@@ -74,7 +74,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=3')
+        navigator.serviceWorker.register('/sw.js?v=18')
           .then(r => r.update())
           .catch(() => {});
       });
@@ -3111,6 +3111,6 @@
   </button>
 
   <!-- Only our portfolio.js -->
-  <script src="./portfolio.js?v=3" defer></script>
+  <script src="./portfolio.js?v=18" defer></script>
 </body>
 </html>
