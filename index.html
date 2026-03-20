@@ -56,6 +56,7 @@
   <!-- Our fresh portfolio CSS ONLY — no old dark CSS loaded -->
   <link rel="stylesheet" href="./portfolio.css?v=22" />
   <link rel="stylesheet" href="./enhancements-v19.css?v=19" />
+  <link rel="stylesheet" href="./enhancements-v22.css?v=22" />
 
   <!-- Schema.org Person structured data -->
   <script type="application/ld+json">
@@ -1877,6 +1878,30 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       TOOL ECOSYSTEM (V23)
+  ═══════════════════════════════════════ -->
+  <section id="toolstack" class="toolstack-section">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Arsenal</span>
+        <h2>Tool Ecosystem — 30+ Security Tools in Production</h2>
+        <p>Every tool earned through shipping real security solutions — not just certifications.</p>
+      </div>
+
+      <div class="eco-categories" id="ecoGrid">
+        <!-- Rendered by EcosystemRenderer in enhancements-v22.js -->
+      </div>
+
+      <div class="eco-legend">
+        <span style="font-size:.8rem;font-weight:700;color:#374151;margin-right:.5rem">Proficiency:</span>
+        <div class="eco-legend-item"><div class="eco-lswatch expert"></div> Expert — led production deployments</div>
+        <div class="eco-legend-item"><div class="eco-lswatch advanced"></div> Advanced — own features end-to-end</div>
+        <div class="eco-legend-item"><div class="eco-lswatch proficient"></div> Proficient — comfortable with core workflows</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        SKILL RADAR CHART
   ═══════════════════════════════════════ -->
   <section class="radar-section" id="radar">
@@ -2633,6 +2658,162 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       INTERACTIVE PIPELINE DEMO  (V23)
+  ═══════════════════════════════════════ -->
+  <section id="pipeline-demo" class="pipeline-demo-section">
+    <div class="container">
+
+      <div class="pd-head">
+        <span class="pd-kicker">Live Interactive Demo</span>
+        <h2 class="pd-title">Secure CI/CD Pipeline — Every Step Enforced</h2>
+        <p class="pd-sub">
+          Walk through a real supply-chain-secure pipeline. Each gate blocks the deploy until the
+          security check passes. This is exactly how code ships in production at ZEE Entertainment.
+        </p>
+        <button class="pd-run-btn" id="pdRunBtn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Run Secure Pipeline
+        </button>
+      </div>
+
+      <!-- Stage track row 1 (stages 1-5) -->
+      <div class="pipeline-flow">
+        <div class="pipeline-track" id="pdTrack1">
+
+          <div class="pi-stage" data-stage="0">
+            <div class="pi-icon-wrap">
+              <img src="https://cdn.simpleicons.org/github/6b7280" alt="GitHub" loading="lazy">
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">Code Commit</div>
+            <div class="pi-tool-name">GitHub</div>
+          </div>
+
+          <div class="pi-stage" data-stage="1">
+            <div class="pi-icon-wrap">
+              <span style="font-size:1.2rem">🔍</span>
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">SAST Scan</div>
+            <div class="pi-tool-name">Semgrep</div>
+          </div>
+
+          <div class="pi-stage" data-stage="2">
+            <div class="pi-icon-wrap">
+              <img src="https://cdn.simpleicons.org/snyk/4C4A73" alt="Snyk" loading="lazy">
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">SCA / Deps</div>
+            <div class="pi-tool-name">Snyk</div>
+          </div>
+
+          <div class="pi-stage" data-stage="3">
+            <div class="pi-icon-wrap">
+              <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" loading="lazy">
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">Build Image</div>
+            <div class="pi-tool-name">Docker</div>
+          </div>
+
+          <div class="pi-stage" data-stage="4">
+            <div class="pi-icon-wrap">
+              <span style="font-size:1.2rem">🔬</span>
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">Container Scan</div>
+            <div class="pi-tool-name">Trivy</div>
+          </div>
+
+        </div><!-- /pipeline-track -->
+
+        <!-- Vertical connector between track rows -->
+        <div class="pi-connector-vert"></div>
+
+        <!-- Stage track row 2 (stages 6-10, reversed so arrow flows right→left→right) -->
+        <div class="pipeline-track-2" id="pdTrack2">
+
+          <div class="pi-stage" data-stage="5">
+            <div class="pi-icon-wrap">
+              <span style="font-size:1.2rem">📋</span>
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">SBOM Generate</div>
+            <div class="pi-tool-name">Syft + Grype</div>
+          </div>
+
+          <div class="pi-stage" data-stage="6">
+            <div class="pi-icon-wrap">
+              <span style="font-size:1.2rem">🔏</span>
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">Sign Image</div>
+            <div class="pi-tool-name">Cosign</div>
+          </div>
+
+          <div class="pi-stage" data-stage="7">
+            <div class="pi-icon-wrap">
+              <span style="font-size:1.2rem">🛡️</span>
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">Kyverno Gate</div>
+            <div class="pi-tool-name">Kyverno</div>
+          </div>
+
+          <div class="pi-stage" data-stage="8">
+            <div class="pi-icon-wrap">
+              <img src="https://cdn.simpleicons.org/argo/EF7B4D" alt="ArgoCD" loading="lazy">
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">GitOps Deploy</div>
+            <div class="pi-tool-name">Argo CD</div>
+          </div>
+
+          <div class="pi-stage" data-stage="9">
+            <div class="pi-icon-wrap">
+              <span style="font-size:1.2rem">👁️</span>
+              <span class="pi-status-dot"></span>
+            </div>
+            <div class="pi-label">Runtime Watch</div>
+            <div class="pi-tool-name">Falco</div>
+          </div>
+
+        </div><!-- /pipeline-track-2 -->
+      </div><!-- /pipeline-flow -->
+
+      <!-- Stage detail + terminal panel -->
+      <div class="pipeline-detail" id="pdDetailPane">
+        <div class="pd-detail-idle">Click <strong>▶ Run Secure Pipeline</strong> above to start the interactive demo</div>
+      </div>
+
+      <!-- Pipeline run stats -->
+      <div class="pipeline-stats-row">
+        <div class="pipeline-stat">
+          <div class="pipeline-stat-val" id="pdElapsed">0.0s</div>
+          <div class="pipeline-stat-lbl">Elapsed</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat-val" id="pdCurrentStage">—</div>
+          <div class="pipeline-stat-lbl">Current Stage</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat-val" id="pdPassCount">0</div>
+          <div class="pipeline-stat-lbl">Gates Passed</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat-val">10</div>
+          <div class="pipeline-stat-lbl">Total Gates</div>
+        </div>
+        <div class="pipeline-stat">
+          <div class="pipeline-stat-val">~4 min</div>
+          <div class="pipeline-stat-lbl">Avg Pipeline Time</div>
+        </div>
+      </div>
+
+    </div><!-- /container -->
+  </section>
+
+  <!-- ═══════════════════════════════════════
        TECHNICAL CASE STUDY
   ═══════════════════════════════════════ -->
   <section id="case-study" class="section case-study-section">
@@ -3123,6 +3304,874 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       STACK EVOLUTION — BEFORE / AFTER (V23)
+  ═══════════════════════════════════════ -->
+  <section id="stack-evolution" class="stack-evolution-section">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Transformation</span>
+        <h2>Before DevSecOps → After: The Stack That Changed</h2>
+        <p>What the security posture looked like before Anshumaan joined, and what changed after 18 months of systematic improvement.</p>
+      </div>
+
+      <div class="se-grid">
+        <!-- Header row -->
+        <div class="se-col-header before">❌ Before — Manual &amp; Reactive</div>
+        <div class="se-divider-header"><div class="se-divider-arr">→</div></div>
+        <div class="se-col-header after">✅ After — Automated &amp; Proactive</div>
+
+        <!-- CVE Scanning -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Manual base image audit (quarterly)</div>
+              <div class="se-tool-desc">Engineers manually checked Dockerfiles once per quarter. No automated tracking.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <img class="se-tool-logo" src="https://cdn.simpleicons.org/snyk/4C4A73" alt="Snyk" loading="lazy">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Trivy + Snyk — every pipeline run</div>
+              <div class="se-tool-desc">CVE scan on every commit and nightly full fleet scan. 1200+ vulns closed in 2024.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAST -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">No SAST — code review only</div>
+              <div class="se-tool-desc">Security review depended on individual reviewer knowledge. Inconsistent.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Semgrep — 847 rules, PR gate</div>
+              <div class="se-tool-desc">SAST runs on every PR. Custom OWASP ruleset catches injection, XXE, path traversal automatically.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secret Management -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Secrets in K8s env vars</div>
+              <div class="se-tool-desc">Static secrets stored in K8s Secrets (base64 — effectively plaintext). No rotation.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <img class="se-tool-logo" src="https://cdn.simpleicons.org/vault/FFD814" alt="Vault" loading="lazy">
+            <div class="se-tool-info">
+              <div class="se-tool-name">HashiCorp Vault — dynamic secrets</div>
+              <div class="se-tool-desc">Vault Agent Injector + Kubernetes Auth. Dynamic short-lived creds. Automatic rotation. Zero static keys.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Trust -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Any image from any registry</div>
+              <div class="se-tool-desc">No admission policy. Public images could be deployed with no provenance checks.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Cosign + Kyverno — signed-only deploy</div>
+              <div class="se-tool-desc">Every image must carry a Cosign signature and SBOM attestation. Kyverno blocks unsigned images at admission.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Policy Enforcement -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">No K8s admission control</div>
+              <div class="se-tool-desc">Privileged pods, missing resource limits, root containers all running in prod.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Kyverno — 50+ ClusterPolicy rules</div>
+              <div class="se-tool-desc">Non-root, resource limits, no privileged, no hostNetwork — all enforced by admission webhook. Policy violations blocked before deploy.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Runtime -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">No runtime security monitoring</div>
+              <div class="se-tool-desc">No visibility into container runtime behavior. Attacks would go undetected.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Falco — syscall monitoring</div>
+              <div class="se-tool-desc">Custom Falco rules alert on shell-in-container, privilege escalation, unexpected outbound traffic in real time.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- IaC -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Click-ops infra provisioning</div>
+              <div class="se-tool-desc">GCP resources provisioned via Console. No audit trail, no drift detection.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <img class="se-tool-logo" src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform" loading="lazy">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Terraform — GitOps IaC</div>
+              <div class="se-tool-desc">All GCP infra code-reviewed and applied via CI. Drift detection in nightly plan runs. Full audit history in Git.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SBOM -->
+        <div class="se-item">
+          <div class="se-cell before">
+            <div class="se-tool-info">
+              <div class="se-tool-name">No SBOM — unknown dependencies</div>
+              <div class="se-tool-desc">No software bill of materials. Impossible to assess supply chain blast radius.</div>
+            </div>
+          </div>
+          <div class="se-cell-arrow">→</div>
+          <div class="se-cell after">
+            <div class="se-tool-info">
+              <div class="se-tool-name">Syft — SBOM on every image</div>
+              <div class="se-tool-desc">CycloneDX + SPDX SBOM attached as Cosign attestation. Every production image has a verifiable dependency manifest.</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /se-grid -->
+
+      <div class="se-stat-row">
+        <div class="se-stat">
+          <div class="se-stat-val" data-count-to="350" data-count-suffix="+">0</div>
+          <div class="se-stat-label">Microservices now secured end-to-end</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-val" data-count-to="8">0</div>
+          <div class="se-stat-label">Major security initiatives shipped in 18 months</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-val" data-count-to="100" data-count-suffix="%">0</div>
+          <div class="se-stat-label">Images signed &amp; SBOM-attested before deploy</div>
+        </div>
+        <div class="se-stat">
+          <div class="se-stat-val" data-count-to="0">0</div>
+          <div class="se-stat-label">Security breaches post-implementation</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECURITY ARCHITECTURE DIAGRAM (V23)
+  ═══════════════════════════════════════ -->
+  <section id="arch-diagram" class="arch-diagram-section">
+    <div class="container">
+      <div class="arch-head">
+        <span class="arch-kicker">Architecture</span>
+        <h2 class="arch-title">Zero-Trust Security Architecture — Production</h2>
+        <p class="arch-sub">Six-layer security model protecting 350+ microservices. Every arrow is an enforced control, not a diagram flourish.</p>
+      </div>
+
+      <div class="arch-diagram-wrap">
+        <div class="arch-layers">
+
+          <div class="arch-layer layer-source">
+            <div class="arch-layer-label">
+              <div class="arch-layer-num">Layer 1</div>
+              <div class="arch-layer-name">Source &amp; SCM</div>
+              <div class="arch-layer-desc">Developer workflow</div>
+            </div>
+            <div class="arch-layer-nodes">
+              <div class="arch-node" data-tip="Branch protection, required reviews, signed commits">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/github/f1f5f9" alt="GitHub" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">GitHub</div><div class="arch-node-role">Signed commits + CODEOWNERS</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node" data-tip="Pre-commit hooks: Gitleaks, Semgrep, tf-lint">
+                <span style="font-size:1.2rem">🔐</span>
+                <div class="arch-node-info"><div class="arch-node-name">Pre-commit</div><div class="arch-node-role">Secret &amp; lint gates</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-secure" data-tip="All workflows run signed actions with pinned SHAs">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/githubactions/2088FF" alt="Actions" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">GH Actions</div><div class="arch-node-role">OIDC + pinned SHAs</div></div>
+              </div>
+            </div>
+          </div><!-- /layer-source -->
+
+          <div class="arch-layer layer-cicd">
+            <div class="arch-layer-label">
+              <div class="arch-layer-num">Layer 2</div>
+              <div class="arch-layer-name">CI Security Gates</div>
+              <div class="arch-layer-desc">Every commit scanned</div>
+            </div>
+            <div class="arch-layer-nodes">
+              <div class="arch-node arch-node-enforce" data-tip="Custom OWASP ruleset, blocks on HIGH+">
+                <span style="font-size:1.2rem">🔍</span>
+                <div class="arch-node-info"><div class="arch-node-name">Semgrep SAST</div><div class="arch-node-role">847 rules</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-enforce" data-tip="CVE scan: direct + transitive deps">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/snyk/4C4A73" alt="Snyk" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Snyk SCA</div><div class="arch-node-role">Dep + container</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-enforce" data-tip="Container CVE scan — blocks CRITICAL">
+                <span style="font-size:1.2rem">🔬</span>
+                <div class="arch-node-info"><div class="arch-node-name">Trivy Scan</div><div class="arch-node-role">OS + libs</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-sign" data-tip="Keyless signing via Sigstore OIDC, SBOM attached">
+                <span style="font-size:1.2rem">🔏</span>
+                <div class="arch-node-info"><div class="arch-node-name">Cosign Sign</div><div class="arch-node-role">SBOM + Rekor log</div></div>
+              </div>
+            </div>
+          </div><!-- /layer-cicd -->
+
+          <div class="arch-layer layer-registry">
+            <div class="arch-layer-label">
+              <div class="arch-layer-num">Layer 3</div>
+              <div class="arch-layer-name">Artifact Registry</div>
+              <div class="arch-layer-desc">Signed + scanned images</div>
+            </div>
+            <div class="arch-layer-nodes">
+              <div class="arch-node" data-tip="GCP Artifact Registry with vulnerability scanning enabled">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="GCP" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Artifact Registry</div><div class="arch-node-role">VPC-SC perimeter</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-secure" data-tip="Binary Authorization policy — only signed images admitted">
+                <span style="font-size:1.2rem">✅</span>
+                <div class="arch-node-info"><div class="arch-node-name">Binary Auth</div><div class="arch-node-role">GCP attestation policy</div></div>
+              </div>
+            </div>
+          </div><!-- /layer-registry -->
+
+          <div class="arch-layer layer-k8s">
+            <div class="arch-layer-label">
+              <div class="arch-layer-num">Layer 4</div>
+              <div class="arch-layer-name">Kubernetes Admission</div>
+              <div class="arch-layer-desc">Policy-as-code gates</div>
+            </div>
+            <div class="arch-layer-nodes">
+              <div class="arch-node arch-node-enforce" data-tip="50+ ClusterPolicy rules: image verify, resource limits, no privileged">
+                <span style="font-size:1.2rem">🛡️</span>
+                <div class="arch-node-info"><div class="arch-node-name">Kyverno</div><div class="arch-node-role">50+ policies</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-secure" data-tip="eBPF network policy — deny-all default, allow-listed egress">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/cilium/F8C517" alt="Cilium" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Cilium</div><div class="arch-node-role">eBPF net policy</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-secure" data-tip="Workload Identity, no static credentials in cluster">
+                <span style="font-size:1.2rem">🔑</span>
+                <div class="arch-node-info"><div class="arch-node-name">GCP Workload ID</div><div class="arch-node-role">No static keys</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-enforce" data-tip="Dynamic secrets injection at pod start — no env vars with secrets">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/vault/FFD814" alt="Vault" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Vault Agent</div><div class="arch-node-role">Dynamic secrets</div></div>
+              </div>
+            </div>
+          </div><!-- /layer-k8s -->
+
+          <div class="arch-layer layer-runtime">
+            <div class="arch-layer-label">
+              <div class="arch-layer-num">Layer 5</div>
+              <div class="arch-layer-name">Runtime Detection</div>
+              <div class="arch-layer-desc">Kernel-level visibility</div>
+            </div>
+            <div class="arch-layer-nodes">
+              <div class="arch-node arch-node-monitor" data-tip="Custom Falco rules: shell in container, privilege escalation, outbound to unknown IP">
+                <span style="font-size:1.2rem">👁️</span>
+                <div class="arch-node-info"><div class="arch-node-name">Falco</div><div class="arch-node-role">Syscall anomaly detection</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-monitor" data-tip="Falco alerts → Elasticsearch → Kibana SIEM dashboards">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/elasticsearch/005571" alt="ELK" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Elastic SIEM</div><div class="arch-node-role">Alert correlation</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-monitor" data-tip="PagerDuty P1 alerts, Slack P2/P3 notifications">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/slack/611F69" alt="Slack" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">PagerDuty / Slack</div><div class="arch-node-role">Alerting + IR</div></div>
+              </div>
+            </div>
+          </div><!-- /layer-runtime -->
+
+          <div class="arch-layer layer-observe">
+            <div class="arch-layer-label">
+              <div class="arch-layer-num">Layer 6</div>
+              <div class="arch-layer-name">Observability</div>
+              <div class="arch-layer-desc">Full-stack metrics</div>
+            </div>
+            <div class="arch-layer-nodes">
+              <div class="arch-node" data-tip="K8s + application metrics, custom security recording rules">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/prometheus/E6522C" alt="Prometheus" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Prometheus</div><div class="arch-node-role">Metrics + alertrules</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node" data-tip="7 security dashboards: policy violations, CVE trends, admission events">
+                <img class="arch-node-icon colored" src="https://cdn.simpleicons.org/grafana/F46800" alt="Grafana" loading="lazy">
+                <div class="arch-node-info"><div class="arch-node-name">Grafana</div><div class="arch-node-role">7 security dashboards</div></div>
+              </div>
+              <span class="arch-arrow">→</span>
+              <div class="arch-node arch-node-secure" data-tip="Continuous compliance scans — CIS K8s Benchmark, NSA hardening">
+                <span style="font-size:1.2rem">📊</span>
+                <div class="arch-node-info"><div class="arch-node-name">Compliance</div><div class="arch-node-role">CIS K8s + NSA guides</div></div>
+              </div>
+            </div>
+          </div><!-- /layer-observe -->
+
+        </div><!-- /arch-layers -->
+
+        <!-- Attack path illustration -->
+        <div class="arch-attack-row">
+          <span class="arch-attack-label">Attack Path Blocked:</span>
+          <div class="arch-attack-path">
+            <span class="arch-attack-step">Malicious Dep Introduced</span>
+            <span class="arch-attack-arrow">→</span>
+            <span class="arch-attack-step">Snyk SCA flags HIGH CVE</span>
+            <span class="arch-attack-arrow">→</span>
+            <span class="arch-attack-step">Pipeline blocked at gate 3</span>
+            <span class="arch-attack-arrow">→</span>
+            <span class="arch-attack-step">Alert fires to Slack</span>
+            <span class="arch-attack-arrow">→</span>
+            <span class="arch-attack-step">Never reaches cluster</span>
+          </div>
+          <span class="arch-control-badge">✓ Zero production incidents from supply chain</span>
+        </div>
+
+      </div><!-- /arch-diagram-wrap -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       VULNERABILITY MANAGEMENT FLOW (V23)
+  ═══════════════════════════════════════ -->
+  <section id="vulnmgmt" class="vulnmgmt-section">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Vuln Mgmt</span>
+        <h2>Vulnerability Management — Full Lifecycle</h2>
+        <p>From discovery to closure in defined SLAs — tracked, escalated, and audited.</p>
+      </div>
+
+      <!-- Flow stages -->
+      <div class="vm-flow">
+        <div class="vm-stage">
+          <span class="vm-stage-num">Stage 1</span>
+          <span class="vm-stage-icon">🔎</span>
+          <div class="vm-stage-title">Discover</div>
+          <div class="vm-stage-tools">
+            <div class="vm-stage-tool">Trivy (container)</div>
+            <div class="vm-stage-tool">Snyk (deps)</div>
+            <div class="vm-stage-tool">Semgrep (code)</div>
+          </div>
+        </div>
+        <div class="vm-connector">→</div>
+        <div class="vm-stage">
+          <span class="vm-stage-num">Stage 2</span>
+          <span class="vm-stage-icon">📊</span>
+          <div class="vm-stage-title">Prioritize</div>
+          <div class="vm-stage-tools">
+            <div class="vm-stage-tool">CVSS + EPSS score</div>
+            <div class="vm-stage-tool">Asset criticality</div>
+            <div class="vm-stage-tool">Exploitability</div>
+          </div>
+        </div>
+        <div class="vm-connector">→</div>
+        <div class="vm-stage">
+          <span class="vm-stage-num">Stage 3</span>
+          <span class="vm-stage-icon">📋</span>
+          <div class="vm-stage-title">Track</div>
+          <div class="vm-stage-tools">
+            <div class="vm-stage-tool">Jira tickets</div>
+            <div class="vm-stage-tool">Severity SLA clock</div>
+            <div class="vm-stage-tool">Weekly vuln review</div>
+          </div>
+        </div>
+        <div class="vm-connector">→</div>
+        <div class="vm-stage">
+          <span class="vm-stage-num">Stage 4</span>
+          <span class="vm-stage-icon">🔧</span>
+          <div class="vm-stage-title">Remediate</div>
+          <div class="vm-stage-tools">
+            <div class="vm-stage-tool">Base image rebuild</div>
+            <div class="vm-stage-tool">Dep version bump</div>
+            <div class="vm-stage-tool">Patch PR + review</div>
+          </div>
+        </div>
+        <div class="vm-connector">→</div>
+        <div class="vm-stage">
+          <span class="vm-stage-num">Stage 5</span>
+          <span class="vm-stage-icon">✅</span>
+          <div class="vm-stage-title">Verify &amp; Close</div>
+          <div class="vm-stage-tools">
+            <div class="vm-stage-tool">Re-scan confirms fix</div>
+            <div class="vm-stage-tool">Jira closed + evidence</div>
+            <div class="vm-stage-tool">Lessons learned</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLA targets -->
+      <div class="vm-sla-bar">
+        <div class="vm-sla-item">
+          <div class="vm-sla-severity critical">Critical (CVSS ≥ 9)</div>
+          <div class="vm-sla-target">24 hours</div>
+          <div class="vm-sla-label">Patch SLA</div>
+        </div>
+        <div class="vm-sla-item">
+          <div class="vm-sla-severity high">High (CVSS 7–8.9)</div>
+          <div class="vm-sla-target">7 days</div>
+          <div class="vm-sla-label">Patch SLA</div>
+        </div>
+        <div class="vm-sla-item">
+          <div class="vm-sla-severity medium">Medium (CVSS 4–6.9)</div>
+          <div class="vm-sla-target">30 days</div>
+          <div class="vm-sla-label">Patch SLA</div>
+        </div>
+        <div class="vm-sla-item">
+          <div class="vm-sla-severity low">Low (CVSS &lt; 4)</div>
+          <div class="vm-sla-target">Next release</div>
+          <div class="vm-sla-label">Patch SLA</div>
+        </div>
+      </div>
+
+      <!-- Score strip -->
+      <div class="vm-score-strip">
+        <div class="vm-score-card">
+          <div class="vm-score-val" data-count-to="94" data-count-suffix="%">0%</div>
+          <div class="vm-score-lbl">Critical SLA compliance (last 6 months)</div>
+        </div>
+        <div class="vm-score-card">
+          <div class="vm-score-val" data-count-to="1200" data-count-suffix="+">0+</div>
+          <div class="vm-score-lbl">Vulnerabilities triaged &amp; closed (2024)</div>
+        </div>
+        <div class="vm-score-card">
+          <div class="vm-score-val" data-count-to="0">0</div>
+          <div class="vm-score-lbl">Production incidents from known CVEs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       INCIDENT RESPONSE PLAYBOOKS (V23)
+  ═══════════════════════════════════════ -->
+  <section id="ir-playbooks" class="ir-playbooks-section">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Incident Response</span>
+        <h2>IR Playbooks — Authored &amp; Battle-Tested</h2>
+        <p>8 production IR playbooks authored. These are the most common ones — runbooks that real engineers use at 3am.</p>
+      </div>
+
+      <div class="ir-grid">
+
+        <div class="ir-card">
+          <span class="ir-card-icon">🔐</span>
+          <span class="ir-severity p1">P1 — Critical</span>
+          <div class="ir-title">Unsigned / Unattested Image in Production</div>
+          <ul class="ir-steps">
+            <li class="ir-step"><span class="ir-step-num">1</span> Falco alert fires: unsigned image running</li>
+            <li class="ir-step"><span class="ir-step-num">2</span> kubectl cordon the node, evict pod</li>
+            <li class="ir-step"><span class="ir-step-num">3</span> Audit Kyverno admission logs</li>
+            <li class="ir-step"><span class="ir-step-num">4</span> Identify how image bypassed gate</li>
+            <li class="ir-step"><span class="ir-step-num">5</span> Patch policy gap, re-verify all clusters</li>
+          </ul>
+          <div class="ir-mttr">
+            <div><div class="ir-mttr-val">15 min</div><div class="ir-mttr-lbl">MTTR target</div></div>
+          </div>
+        </div>
+
+        <div class="ir-card">
+          <span class="ir-card-icon">🗝️</span>
+          <span class="ir-severity p1">P1 — Critical</span>
+          <div class="ir-title">Leaked Secret / Credential Detected</div>
+          <ul class="ir-steps">
+            <li class="ir-step"><span class="ir-step-num">1</span> Gitleaks or SIEM alert fires</li>
+            <li class="ir-step"><span class="ir-step-num">2</span> Immediately rotate credential in Vault</li>
+            <li class="ir-step"><span class="ir-step-num">3</span> Audit access logs for usage (GCP CAAI)</li>
+            <li class="ir-step"><span class="ir-step-num">4</span> Scrub from git history (git-filter-repo)</li>
+            <li class="ir-step"><span class="ir-step-num">5</span> Root cause + process fix</li>
+          </ul>
+          <div class="ir-mttr">
+            <div><div class="ir-mttr-val">30 min</div><div class="ir-mttr-lbl">MTTR target</div></div>
+          </div>
+        </div>
+
+        <div class="ir-card">
+          <span class="ir-card-icon">⚡</span>
+          <span class="ir-severity p1">P1 — Critical</span>
+          <div class="ir-title">Container Privilege Escalation Attempt</div>
+          <ul class="ir-steps">
+            <li class="ir-step"><span class="ir-step-num">1</span> Falco rule fires: setuid/setgid syscall</li>
+            <li class="ir-step"><span class="ir-step-num">2</span> Kill pod immediately (kubectl delete pod)</li>
+            <li class="ir-step"><span class="ir-step-num">3</span> Review pod spec for securityContext gaps</li>
+            <li class="ir-step"><span class="ir-step-num">4</span> Snapshot node for forensics if needed</li>
+            <li class="ir-step"><span class="ir-step-num">5</span> Update Kyverno policy to block root</li>
+          </ul>
+          <div class="ir-mttr">
+            <div><div class="ir-mttr-val">20 min</div><div class="ir-mttr-lbl">MTTR target</div></div>
+          </div>
+        </div>
+
+        <div class="ir-card">
+          <span class="ir-card-icon">🌐</span>
+          <span class="ir-severity p2">P2 — High</span>
+          <div class="ir-title">Critical CVE in Production Base Image</div>
+          <ul class="ir-steps">
+            <li class="ir-step"><span class="ir-step-num">1</span> Trivy or Snyk alert: CVSS ≥ 9.0 in prod</li>
+            <li class="ir-step"><span class="ir-step-num">2</span> Identify all affected deployment images</li>
+            <li class="ir-step"><span class="ir-step-num">3</span> Build patched base image, trigger rebuild</li>
+            <li class="ir-step"><span class="ir-step-num">4</span> Rolling deploy via Argo CD (0 downtime)</li>
+            <li class="ir-step"><span class="ir-step-num">5</span> Confirm Trivy score cleared in all envs</li>
+          </ul>
+          <div class="ir-mttr">
+            <div><div class="ir-mttr-val">4 hours</div><div class="ir-mttr-lbl">MTTR target</div></div>
+          </div>
+        </div>
+
+        <div class="ir-card">
+          <span class="ir-card-icon">🔒</span>
+          <span class="ir-severity p2">P2 — High</span>
+          <div class="ir-title">Kyverno Policy Bypass Detected</div>
+          <ul class="ir-steps">
+            <li class="ir-step"><span class="ir-step-num">1</span> Audit admission webhook logs</li>
+            <li class="ir-step"><span class="ir-step-num">2</span> Identify bypass method (namespace label?)</li>
+            <li class="ir-step"><span class="ir-step-num">3</span> Close policy gap, apply cluster-wide</li>
+            <li class="ir-step"><span class="ir-step-num">4</span> Review all resources created in window</li>
+            <li class="ir-step"><span class="ir-step-num">5</span> Run Kyverno audit scan on all namespaces</li>
+          </ul>
+          <div class="ir-mttr">
+            <div><div class="ir-mttr-val">2 hours</div><div class="ir-mttr-lbl">MTTR target</div></div>
+          </div>
+        </div>
+
+        <div class="ir-card">
+          <span class="ir-card-icon">📡</span>
+          <span class="ir-severity p3">P3 — Medium</span>
+          <div class="ir-title">Suspicious Outbound Connection</div>
+          <ul class="ir-steps">
+            <li class="ir-step"><span class="ir-step-num">1</span> Cilium network policy alert fires</li>
+            <li class="ir-step"><span class="ir-step-num">2</span> Capture flow logs, identify source pod</li>
+            <li class="ir-step"><span class="ir-step-num">3</span> Isolate pod, inspect container processes</li>
+            <li class="ir-step"><span class="ir-step-num">4</span> Check image provenance &amp; SBOM</li>
+            <li class="ir-step"><span class="ir-step-num">5</span> Block IP in egress policy, report finding</li>
+          </ul>
+          <div class="ir-mttr">
+            <div><div class="ir-mttr-val">1 hour</div><div class="ir-mttr-lbl">MTTR target</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       KPI SECURITY DASHBOARD (V23)
+  ═══════════════════════════════════════ -->
+  <section id="kpi-dashboard" class="kpi-dashboard-section">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Impact Numbers</span>
+        <h2 style="color:#f1f5f9">Security KPIs — Production Numbers</h2>
+        <p style="color:#94a3b8">These are real numbers from ZEE Entertainment's security program, not estimates.</p>
+      </div>
+
+      <div class="kpi-grid">
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#a78bfa,#60a5fa)">
+          <span class="kpi-icon">🛡️</span>
+          <div class="kpi-val" data-count-to="350" data-count-suffix="+">350+</div>
+          <div class="kpi-label">Microservices secured end-to-end</div>
+          <div class="kpi-context">Kyverno policies + Cosign signing enforced across entire fleet. Every image verified at admission.</div>
+          <span class="kpi-trend up">↑ From 0 in Jan 2024</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#34d399,#06b6d4)">
+          <span class="kpi-icon">🔏</span>
+          <div class="kpi-val" data-count-to="100" data-count-suffix="%">100%</div>
+          <div class="kpi-label">Images signed + SBOM-attested</div>
+          <div class="kpi-context">100% of production container images now carry Cosign signatures and CycloneDX SBOM attestations.</div>
+          <span class="kpi-trend up">↑ From 0% coverage</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#f59e0b,#ef4444)">
+          <span class="kpi-icon">🔍</span>
+          <div class="kpi-val" data-count-to="1200" data-count-suffix="+">1200+</div>
+          <div class="kpi-label">Vulnerabilities triaged &amp; closed in 2024</div>
+          <div class="kpi-context">Tracked via Snyk + Trivy + Jira. 94% of Critical CVEs patched within 24h SLA.</div>
+          <span class="kpi-trend up">↑ 94% SLA compliance</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#a78bfa,#f472b6)">
+          <span class="kpi-icon">📋</span>
+          <div class="kpi-val" data-count-to="50" data-count-suffix="+">50+</div>
+          <div class="kpi-label">Kyverno policies in production</div>
+          <div class="kpi-context">ClusterPolicy library covering non-root, no-privileged, resource limits, image verification, and supply chain gates.</div>
+          <span class="kpi-trend flat">Stable — actively maintained</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#60a5fa,#34d399)">
+          <span class="kpi-icon">⚡</span>
+          <div class="kpi-val" data-count-to="4" data-count-suffix=" min">~4 min</div>
+          <div class="kpi-label">Average pipeline runtime (all 10 gates)</div>
+          <div class="kpi-context">Full SAST + SCA + container scan + sign + Kyverno verify from commit to deploy in under 4 minutes.</div>
+          <span class="kpi-trend up">↑ Down from 22 min (optimized)</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#10b981,#06b6d4)">
+          <span class="kpi-icon">🚨</span>
+          <div class="kpi-val" data-count-to="0">0</div>
+          <div class="kpi-label">Security breaches / production incidents</div>
+          <div class="kpi-context">Zero security-related production incidents since deploying the full DevSecOps stack in 2023.</div>
+          <span class="kpi-trend up">✓ 18+ months clean record</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#7c3aed,#2563eb)">
+          <span class="kpi-icon">📊</span>
+          <div class="kpi-val" data-count-to="8">8</div>
+          <div class="kpi-label">IR playbooks authored and tested</div>
+          <div class="kpi-context">Runbooks covering privilege escalation, secret leak, CVE in prod, policy bypass, and 4 more scenarios.</div>
+          <span class="kpi-trend flat">Used in 3 real incidents</span>
+        </div>
+
+        <div class="kpi-card" style="--kpi-color:linear-gradient(135deg,#f59e0b,#a78bfa)">
+          <span class="kpi-icon">☁️</span>
+          <div class="kpi-val" data-count-to="15" data-count-suffix="+">15+</div>
+          <div class="kpi-label">GH Actions security workflows authored</div>
+          <div class="kpi-context">Reusable workflow library for SAST, SCA, container scan, SBOM, sign, and compliance reporting.</div>
+          <span class="kpi-trend up">↑ Used by 12+ eng teams</span>
+        </div>
+
+      </div><!-- /kpi-grid -->
+
+      <div class="kpi-divider-row">
+        <div class="kpi-divider-line"></div>
+        <span class="kpi-divider-text">Compliance Posture</span>
+        <div class="kpi-divider-line"></div>
+      </div>
+
+      <div class="compliance-posture">
+        <div class="cp-item">
+          <div class="cp-score" style="--cp-color:#10b981">CIS</div>
+          <div class="cp-framework">CIS K8s Benchmark</div>
+          <div class="cp-status">Level 2 — ≥ 95% controls</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-score" style="--cp-color:#2563eb">NSA</div>
+          <div class="cp-framework">NSA K8s Hardening</div>
+          <div class="cp-status">All critical controls applied</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-score" style="--cp-color:#7c3aed">SLSA</div>
+          <div class="cp-framework">SLSA Supply Chain</div>
+          <div class="cp-status">Level 3 — Signed builds</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-score" style="--cp-color:#f59e0b">SOC</div>
+          <div class="cp-framework">SOC 2 Controls</div>
+          <div class="cp-status">Mapped + evidence collected</div>
+        </div>
+        <div class="cp-item">
+          <div class="cp-score" style="--cp-color:#ef4444">ZT</div>
+          <div class="cp-framework">Zero Trust Principles</div>
+          <div class="cp-status">Verify-always + least-priv</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CERTIFICATIONS ENHANCED (V23)
+  ═══════════════════════════════════════ -->
+  <section id="certs-enhanced" class="certs-enhanced-section">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Credentials</span>
+        <h2>Certifications — Active &amp; In Progress</h2>
+        <p>Industry certifications validating hands-on expertise — not just exam prep.</p>
+      </div>
+
+      <div class="cert-badge-wall">
+
+        <div class="cbw-card" style="--cert-color:#d97706">
+          <div class="cbw-logo-wrap">☁️</div>
+          <div class="cbw-info">
+            <div class="cbw-issuer">Google Cloud</div>
+            <div class="cbw-abbr">ACE</div>
+            <div class="cbw-name">Associate Cloud Engineer</div>
+            <div class="cbw-meta">
+              <span class="cbw-pill active">Active</span>
+              <span class="cbw-pill level">GCP</span>
+            </div>
+            <div class="cbw-domains">
+              <span class="cbw-domain">IAM &amp; Org Policy</span>
+              <span class="cbw-domain">GKE</span>
+              <span class="cbw-domain">VPC-SC</span>
+              <span class="cbw-domain">Cloud Armor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cbw-card" style="--cert-color:#1d4ed8">
+          <div class="cbw-logo-wrap">🔐</div>
+          <div class="cbw-info">
+            <div class="cbw-issuer">CompTIA</div>
+            <div class="cbw-abbr">Security+</div>
+            <div class="cbw-name">CompTIA Security+</div>
+            <div class="cbw-meta">
+              <span class="cbw-pill active">Active</span>
+              <span class="cbw-pill level">Foundational</span>
+            </div>
+            <div class="cbw-domains">
+              <span class="cbw-domain">Threats &amp; Vulnerabilities</span>
+              <span class="cbw-domain">Cryptography</span>
+              <span class="cbw-domain">Identity</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cbw-card" style="--cert-color:#16a34a">
+          <div class="cbw-logo-wrap">☸️</div>
+          <div class="cbw-info">
+            <div class="cbw-issuer">Linux Foundation / CNCF</div>
+            <div class="cbw-abbr">CKA</div>
+            <div class="cbw-name">Certified Kubernetes Administrator</div>
+            <div class="cbw-meta">
+              <span class="cbw-pill pursuing">Pursuing</span>
+              <span class="cbw-pill level">Advanced</span>
+            </div>
+            <div class="cbw-domains">
+              <span class="cbw-domain">Cluster Administration</span>
+              <span class="cbw-domain">RBAC</span>
+              <span class="cbw-domain">Network Policy</span>
+              <span class="cbw-domain">Troubleshooting</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cbw-card" style="--cert-color:#7c3aed">
+          <div class="cbw-logo-wrap">🛡️</div>
+          <div class="cbw-info">
+            <div class="cbw-issuer">Linux Foundation / CNCF</div>
+            <div class="cbw-abbr">CKS</div>
+            <div class="cbw-name">Certified Kubernetes Security Specialist</div>
+            <div class="cbw-meta">
+              <span class="cbw-pill pursuing">Pursuing</span>
+              <span class="cbw-pill level">Expert</span>
+            </div>
+            <div class="cbw-domains">
+              <span class="cbw-domain">Cluster Hardening</span>
+              <span class="cbw-domain">Microservice Security</span>
+              <span class="cbw-domain">Supply Chain</span>
+              <span class="cbw-domain">Runtime Security</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cbw-card" style="--cert-color:#dc2626">
+          <div class="cbw-logo-wrap">🔴</div>
+          <div class="cbw-info">
+            <div class="cbw-issuer">Offensive Security</div>
+            <div class="cbw-abbr">OSCP</div>
+            <div class="cbw-name">Offensive Security Certified Professional</div>
+            <div class="cbw-meta">
+              <span class="cbw-pill pursuing">On Roadmap</span>
+              <span class="cbw-pill level">Expert</span>
+            </div>
+            <div class="cbw-domains">
+              <span class="cbw-domain">Penetration Testing</span>
+              <span class="cbw-domain">Exploit Development</span>
+              <span class="cbw-domain">Red Team Ops</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cbw-card" style="--cert-color:#0891b2">
+          <div class="cbw-logo-wrap">🌊</div>
+          <div class="cbw-info">
+            <div class="cbw-issuer">Snyk</div>
+            <div class="cbw-abbr">Snyk Expert</div>
+            <div class="cbw-name">Snyk Security Expert Certification</div>
+            <div class="cbw-meta">
+              <span class="cbw-pill active">Active</span>
+              <span class="cbw-pill level">SCA</span>
+            </div>
+            <div class="cbw-domains">
+              <span class="cbw-domain">SCA</span>
+              <span class="cbw-domain">Container Scanning</span>
+              <span class="cbw-domain">IaC Scanning</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /cert-badge-wall -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECURITY JOURNEY TIMELINE (V23)
+  ═══════════════════════════════════════ -->
+  <section id="security-timeline" class="section" style="background:#fff">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">The Journey</span>
+        <h2>18 Months, 5 Phases — From 0 to Full DevSecOps</h2>
+        <p>The real story of how ZEE Entertainment's Kubernetes security posture was built from ground zero. Every phase is a shipped initiative, not a proposal.</p>
+      </div>
+      <!-- Rendered by MiniTimelineRenderer in enhancements-v22.js -->
+      <div id="securityTimeline"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SKILLS DEEP DIVE BARS (V23)
+  ═══════════════════════════════════════ -->
+  <section id="skills-deepdive-section" class="section" style="background:#f8fafc">
+    <div class="container">
+      <div class="sec-hd">
+        <span class="sec-num">Depth Chart</span>
+        <h2>Skill Depth — Production-Validated Proficiency</h2>
+        <p>Proficiency percentages reflect real production usage — not tutorial completion. Each bar maps to shipped features or ongoing ownership.</p>
+      </div>
+      <!-- Rendered by SkillBarsRenderer in enhancements-v22.js -->
+      <div id="skillsDeepDive"></div>
+
+      <div style="margin-top:2.5rem;padding:1.25rem 1.5rem;background:white;border:1px solid #e5e7eb;border-radius:12px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <span style="font-size:.75rem;color:#6b7280;line-height:1.6">
+          <strong style="color:#0f172a">How percentages are calculated:</strong> 50% = can implement from docs. 70% = implemented in production. 85% = own the feature, debug issues independently. 95%+ = authored policies/runbooks, onboarded others, resolved production incidents.
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        AVAILABILITY & INTERVIEW PROCESS
   ═══════════════════════════════════════ -->
   <section id="availability" class="section availability-section">
@@ -3144,7 +4193,7 @@
             <span class="avail-tag avail-active">Actively Looking</span>
           </div>
           <ul class="avail-details">
-            <li><strong>Notice Period:</strong> Negotiable (currently employed)</li>
+            <li><strong>Notice Period:</strong> 60 days · negotiable for urgent roles</li>
             <li><strong>Location:</strong> Bengaluru, India (open to hybrid/remote)</li>
             <li><strong>Visa:</strong> Indian Citizen · Open to relocation with visa sponsorship</li>
             <li><strong>Availability:</strong> Available for interviews within 48 hours of outreach</li>
@@ -3283,7 +4332,7 @@
                   <div class="rec-fact-key">Production incidents</div>
                 </div>
                 <div class="rec-fact">
-                  <div class="rec-fact-val">30 days</div>
+                  <div class="rec-fact-val">60 days</div>
                   <div class="rec-fact-key">Notice period</div>
                 </div>
                 <div class="rec-fact">
@@ -3951,7 +5000,7 @@
               <li><span class="wwm-check">✓</span> Reply within 24 hours on weekdays — usually same day</li>
               <li><span class="wwm-check">✓</span> Structured, direct answers — no walls of text</li>
               <li><span class="wwm-check">✓</span> Prepared for technical screens from day one</li>
-              <li><span class="wwm-check">✓</span> Joinable in 30 days, negotiable for urgent needs</li>
+              <li><span class="wwm-check">✓</span> Joinable in 60 days, negotiable for urgent needs</li>
               <li><span class="wwm-check">✓</span> Work samples, GitHub repos, and Credly certs ready to share</li>
             </ul>
             <div class="wwm-social-row">
@@ -3972,7 +5021,7 @@
               </div>
               <div class="tp-row">
                 <span class="tp-label">⏱ Notice period</span>
-                <span class="tp-val">30 days · negotiable for urgent roles</span>
+                <span class="tp-val">60 days · negotiable for urgent roles</span>
               </div>
               <div class="tp-row">
                 <span class="tp-label">🕐 Timezone</span>
@@ -4190,6 +5239,7 @@
   <!-- Only our portfolio.js -->
   <script src="./enhancements-v19-data.js?v=19" defer></script>
   <script src="./enhancements-v19.js?v=19" defer></script>
+  <script src="./enhancements-v22.js?v=22" defer></script>
   <script src="./portfolio.js?v=22" defer></script>
   <!-- Failsafe: force-hide loader if JS fails -->
   <script>
