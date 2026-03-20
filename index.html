@@ -60,8 +60,9 @@
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html,body{background:#f8fafc;color:#0f172a;font-family:'Inter',system-ui,sans-serif}
-    .pl-loader{position:fixed;inset:0;z-index:99999;background:#f8fafc;display:flex;align-items:center;justify-content:center;transition:opacity .5s .2s,visibility .5s .2s}
+    .pl-loader{position:fixed;inset:0;z-index:99999;background:#f8fafc;display:flex;align-items:center;justify-content:center;transition:opacity .5s .2s,visibility .5s .2s;animation:forceHideLoader 0s 3.5s forwards}
     .pl-loader.done{opacity:0;visibility:hidden;pointer-events:none}
+    @keyframes forceHideLoader{to{opacity:0;visibility:hidden;pointer-events:none}}
     .pl-inner{display:flex;flex-direction:column;align-items:center;gap:20px}
     .pl-shield{animation:plPulse 1.2s ease-in-out infinite alternate}
     @keyframes plPulse{from{transform:scale(1)}to{transform:scale(1.08)}}
@@ -70,14 +71,13 @@
     .pl-fill{height:100%;background:linear-gradient(90deg,#7c3aed,#2563eb);border-radius:3px;width:0;transition:width .08s linear}
   </style>
 
-  <!-- Service Worker -->
+  <!-- Nuke old service workers & stale caches, then register fresh -->
   <script>
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js?v=18')
-          .then(r => r.update())
-          .catch(() => {});
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(r => r.unregister());
       });
+      caches.keys().then(names => names.forEach(n => caches.delete(n)));
     }
   </script>
 
@@ -3112,5 +3112,12 @@
 
   <!-- Only our portfolio.js -->
   <script src="./portfolio.js?v=18" defer></script>
+  <!-- Failsafe: force-hide loader if JS fails -->
+  <script>
+    setTimeout(function(){
+      var l=document.getElementById('plLoader');
+      if(l)l.classList.add('done');
+    },2500);
+  </script>
 </body>
 </html>
