@@ -2165,6 +2165,23 @@
     });
   })();
 
+  /* ── 61b. SKILL BAR ANIMATION ── */
+  (function initSkillBars() {
+    var matrix = document.querySelector('.rec-skills-matrix');
+    if (!matrix) return;
+    var observed = false;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !observed) {
+          observed = true;
+          matrix.classList.add('bars-animated');
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(matrix);
+  })();
+
   /* ── 61. STICKY HIRING BAR ── */
   (function initStickyHireBar() {
     var bar = document.getElementById('stickyHireBar');
