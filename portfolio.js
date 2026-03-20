@@ -745,6 +745,39 @@
     AOS.init({ once: true, duration: 650, easing: 'ease-out-cubic', offset: 80 });
   }
 
+  (function ensureAOSVisibility() {
+    const aosElements = Array.from(document.querySelectorAll('[data-aos]'));
+    if (!aosElements.length) return;
+
+    function reveal(elements) {
+      elements.forEach(el => {
+        el.classList.add('aos-animate');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.pointerEvents = 'auto';
+      });
+    }
+
+    function findHidden() {
+      return aosElements.filter(el => {
+        const styles = window.getComputedStyle(el);
+        return parseFloat(styles.opacity || '1') < 0.35 || styles.visibility === 'hidden';
+      });
+    }
+
+    if (typeof AOS === 'undefined') {
+      reveal(aosElements);
+      return;
+    }
+
+    window.addEventListener('load', () => {
+      window.setTimeout(() => {
+        const hidden = findHidden();
+        if (hidden.length) reveal(hidden);
+      }, 1200);
+    }, { once: true });
+  })();
+
   /* ── CONTACT FORM ── */
   const form = document.getElementById('contactForm');
   if (form) {
