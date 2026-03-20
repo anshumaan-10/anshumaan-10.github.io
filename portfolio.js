@@ -232,9 +232,12 @@
     const canvas = document.getElementById('radarCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const SIZE = 420;
-    canvas.width = SIZE; canvas.height = SIZE;
-    const cx = SIZE / 2; const cy = SIZE / 2; const R = 160;
+    const dpr = window.devicePixelRatio || 1;
+    const SIZE = 500;
+    canvas.width = SIZE * dpr; canvas.height = SIZE * dpr;
+    canvas.style.width = SIZE + 'px'; canvas.style.height = SIZE + 'px';
+    ctx.scale(dpr, dpr);
+    const cx = SIZE / 2; const cy = SIZE / 2; const R = 175;
 
     const skills = [
       { label:'DevSecOps',   score:.95, color:'#7c3aed' },
@@ -314,12 +317,16 @@
         ctx.stroke();
       }
 
-      // labels
-      ctx.font = '700 12px Inter, sans-serif';
-      ctx.textAlign = 'center';
+      // labels — pushed further out and aligned to avoid clipping
+      ctx.font = '700 13px Inter, sans-serif';
       ctx.textBaseline = 'middle';
       for (let i = 0; i < N; i++) {
-        const p = pt(i, R * 1.18);
+        const a = getAngle(i);
+        const p = pt(i, R + 32);
+        // align text based on which side of the chart
+        if (Math.abs(Math.cos(a)) < 0.15) ctx.textAlign = 'center';
+        else if (Math.cos(a) > 0) ctx.textAlign = 'left';
+        else ctx.textAlign = 'right';
         ctx.fillStyle = '#374151';
         ctx.fillText(skills[i].label, p.x, p.y);
       }
@@ -773,12 +780,12 @@
     const canvas = document.getElementById('metricsCanvas');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const SIZE = 320;
+    const SIZE = 360;
     canvas.width = SIZE; canvas.height = SIZE;
     const metrics = [
-      { label:'CIS K8s', pct:1.00, color:'#7c3aed', r:140 },
-      { label:'OWASP',   pct:.93,  color:'#2563eb', r:110 },
-      { label:'SBOM',    pct:1.00, color:'#10b981', r:80  },
+      { label:'CIS K8s', pct:1.00, color:'#7c3aed', r:155 },
+      { label:'OWASP',   pct:.93,  color:'#2563eb', r:120 },
+      { label:'SBOM',    pct:1.00, color:'#10b981', r:85  },
       { label:'CI Gates',pct:1.00, color:'#f59e0b', r:50  },
     ];
     let drawn2 = false;
@@ -790,34 +797,40 @@
         ctx.beginPath();
         ctx.arc(SIZE/2, SIZE/2, m.r, 0, Math.PI*2);
         ctx.strokeStyle = 'rgba(0,0,0,.07)';
-        ctx.lineWidth = 14;
+        ctx.lineWidth = 16;
         ctx.stroke();
         // arc
         const end = -Math.PI/2 + m.pct * progress * Math.PI * 2;
         ctx.beginPath();
         ctx.arc(SIZE/2, SIZE/2, m.r, -Math.PI/2, end);
         ctx.strokeStyle = m.color;
-        ctx.lineWidth = 14;
+        ctx.lineWidth = 16;
         ctx.lineCap = 'round';
         ctx.stroke();
-        // label inside
-        if (progress > .8) {
-          ctx.font = `700 11px Inter, sans-serif`;
+        // percentage label at the arc tip (outside the ring)
+        if (progress > .6) {
+          const tipAngle = end;
+          const lx = SIZE/2 + (m.r + 16) * Math.cos(tipAngle);
+          const ly = SIZE/2 + (m.r + 16) * Math.sin(tipAngle);
+          ctx.font = `800 10px Inter, sans-serif`;
           ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
           ctx.fillStyle = m.color;
-          const lx = SIZE/2 + m.r * Math.cos(end - .3);
-          const ly = SIZE/2 + m.r * Math.sin(end - .3);
-          ctx.fillText(Math.round(m.pct*100)+'%', SIZE/2, SIZE/2 + m.r*.05 - (metrics.indexOf(m)*14));
+          const a = Math.min(1, (progress-.6)/.4);
+          ctx.globalAlpha = a;
+          ctx.fillText(Math.round(m.pct*100)+'%', lx, ly);
+          ctx.globalAlpha = 1;
         }
       });
       // center text
-      ctx.font = `800 20px Outfit, Inter, sans-serif`;
+      ctx.font = `800 22px Outfit, Inter, sans-serif`;
       ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
       ctx.fillStyle = '#0f172a';
-      ctx.fillText('0', SIZE/2, SIZE/2 - 4);
+      ctx.fillText('0', SIZE/2, SIZE/2 - 6);
       ctx.font = `500 11px Inter, sans-serif`;
       ctx.fillStyle = '#6b7280';
-      ctx.fillText('Incidents', SIZE/2, SIZE/2 + 14);
+      ctx.fillText('Incidents', SIZE/2, SIZE/2 + 12);
     }
 
     const ob = new IntersectionObserver(([e]) => {
