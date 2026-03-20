@@ -1763,4 +1763,352 @@
     });
   })();
 
+  /* ═══════════════════════════════════════════════════════
+     V18 HIRED — JS Interactions for New Sections
+     ═══════════════════════════════════════════════════════ */
+
+  /* ── 46. TESTIMONIAL CAROUSEL ── */
+  (function initTestimonialCarousel() {
+    var track = document.getElementById('testTrack');
+    var prevBtn = document.getElementById('testPrev');
+    var nextBtn = document.getElementById('testNext');
+    var dotsWrap = document.getElementById('testDots');
+    if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
+
+    var cards = track.querySelectorAll('.test-card');
+    if (!cards.length) return;
+    var current = 0;
+    var total = cards.length;
+    var autoTimer = null;
+
+    // Build dots
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('span');
+      dot.className = 'test-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('data-idx', i);
+      dot.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-idx'))); });
+      dotsWrap.appendChild(dot);
+    }
+
+    function goTo(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      current = idx;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      var dots = dotsWrap.querySelectorAll('.test-dot');
+      dots.forEach(function(d, j) { d.classList.toggle('active', j === current); });
+      cards.forEach(function(c, j) { c.setAttribute('data-active', j === current ? 'true' : 'false'); });
+      resetAuto();
+    }
+
+    function resetAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(function() { goTo(current + 1); }, 6000);
+    }
+
+    prevBtn.addEventListener('click', function() { goTo(current - 1); });
+    nextBtn.addEventListener('click', function() { goTo(current + 1); });
+
+    // Touch swipe support
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
+    });
+
+    // Init
+    goTo(0);
+  })();
+
+  /* ── 47. FRAMEWORK BAR SCROLL ANIMATION ── */
+  (function initFrameworkBars() {
+    var bars = document.querySelectorAll('.fw-fill[data-pct]');
+    if (!bars.length) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var bar = e.target;
+          bar.style.width = bar.getAttribute('data-pct') + '%';
+          bar.setAttribute('data-visible', 'true');
+          observer.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    bars.forEach(function(bar) { observer.observe(bar); });
+  })();
+
+  /* ── 48. CASE STUDY PHASE REVEAL ── */
+  (function initCaseStudyReveal() {
+    var phases = document.querySelectorAll('.cs-phase');
+    if (!phases.length) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    phases.forEach(function(phase) { observer.observe(phase); });
+  })();
+
+  /* ── 49. STRIDE CARDS STAGGER ANIMATION ── */
+  (function initStrideStagger() {
+    var cards = document.querySelectorAll('.stride-card');
+    if (!cards.length) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var idx = Array.prototype.indexOf.call(cards, e.target);
+          setTimeout(function() {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+          }, idx * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    cards.forEach(function(card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(16px)';
+      card.style.transition = 'all .4s cubic-bezier(.4,0,.2,1)';
+      observer.observe(card);
+    });
+  })();
+
+  /* ── 50. WHY-ME COUNTER ANIMATION ── */
+  (function initWhyMeCounters() {
+    var stats = document.querySelectorAll('.why-stat-num');
+    if (!stats.length) return;
+    var animated = false;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting && !animated) {
+          animated = true;
+          stats.forEach(function(stat) {
+            var text = stat.textContent.trim();
+            var num = parseInt(text.replace(/[^0-9]/g, ''), 10);
+            if (isNaN(num) || num === 0) return;
+            var suffix = text.replace(/[0-9]/g, '');
+            var start = 0;
+            var duration = 1200;
+            var startTime = null;
+            function tick(ts) {
+              if (!startTime) startTime = ts;
+              var progress = Math.min((ts - startTime) / duration, 1);
+              var eased = 1 - Math.pow(1 - progress, 3);
+              stat.textContent = Math.round(start + (num - start) * eased) + suffix;
+              if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    observer.observe(document.querySelector('.why-hero-card') || document.body);
+  })();
+
+  /* ── 51. AVAILABILITY ROLE CHIP HOVER SOUND ── */
+  (function initAvailRoles() {
+    var roles = document.querySelectorAll('.avail-role');
+    roles.forEach(function(role) {
+      role.addEventListener('mouseenter', function() {
+        role.style.transform = 'scale(1.05)';
+      });
+      role.addEventListener('mouseleave', function() {
+        role.style.transform = 'scale(1)';
+      });
+    });
+  })();
+
+  /* ── 52. SOCIAL PROOF COUNTER ANIMATE ── */
+  (function initSocialProofCounters() {
+    var nums = document.querySelectorAll('.sp-num');
+    if (!nums.length) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        var text = el.textContent.trim();
+        var match = text.match(/^([\d,.]+)/);
+        if (!match) return;
+        var raw = match[1].replace(/,/g, '');
+        var target = parseFloat(raw);
+        if (isNaN(target)) return;
+        var suffix = text.slice(match[0].length);
+        var hasComma = match[1].indexOf(',') !== -1;
+        var hasDot = match[1].indexOf('.') !== -1;
+        var duration = 1000;
+        var startTime = null;
+        function tick(ts) {
+          if (!startTime) startTime = ts;
+          var p = Math.min((ts - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = eased * target;
+          if (hasDot) {
+            el.innerHTML = val.toFixed(1) + suffix;
+          } else {
+            var num = Math.round(val);
+            el.innerHTML = (hasComma && num >= 1000 ? num.toLocaleString() : num) + suffix;
+          }
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    nums.forEach(function(n) { observer.observe(n); });
+  })();
+
+  /* ── 53. SOFT SKILLS CARD ICON FLOAT ── */
+  (function initSoftSkillsFloat() {
+    var icons = document.querySelectorAll('.soft-icon');
+    icons.forEach(function(icon) {
+      icon.style.transition = 'transform .3s cubic-bezier(.4,0,.2,1)';
+      var parent = icon.closest('.soft-card');
+      if (!parent) return;
+      parent.addEventListener('mouseenter', function() {
+        icon.style.transform = 'translateY(-4px) scale(1.1)';
+      });
+      parent.addEventListener('mouseleave', function() {
+        icon.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  })();
+
+  /* ── 54. KEYBOARD NAV FOR TESTIMONIAL CAROUSEL ── */
+  (function initTestimonialKeys() {
+    var carousel = document.getElementById('testimonialCarousel');
+    if (!carousel) return;
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') {
+        document.getElementById('testPrev').click();
+        e.preventDefault();
+      } else if (e.key === 'ArrowRight') {
+        document.getElementById('testNext').click();
+        e.preventDefault();
+      }
+    });
+  })();
+
+  /* ── 55. INTERSECTION OBSERVER FOR .fw-fill BARS ── */
+  (function initFWBarsObserve() {
+    var fills = document.querySelectorAll('.fw-fill');
+    if (!fills.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var pct = e.target.getAttribute('data-pct');
+          if (pct) e.target.style.width = pct + '%';
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    fills.forEach(function(f) { observer.observe(f); });
+  })();
+
+  /* ── 56. AVAILABILITY STATUS PULSE ── */
+  (function initAvailPulse() {
+    var dot = document.querySelector('.avail-dot-lg');
+    if (!dot) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        dot.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+      });
+    });
+    observer.observe(dot);
+  })();
+
+  /* ── 57. CASE STUDY ARCH CARD TILT ON HOVER ── */
+  (function initArchCardTilt() {
+    document.querySelectorAll('.cs-arch-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'perspective(600px) rotateX(' + (-y * 4) + 'deg) rotateY(' + (x * 4) + 'deg) translateY(-2px)';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+  })();
+
+  /* ── 58. PRINT HELPER — Expand All Testimonials ── */
+  (function initPrintHelper() {
+    window.addEventListener('beforeprint', function() {
+      var track = document.getElementById('testTrack');
+      if (track) {
+        track.style.display = 'block';
+        track.style.transform = 'none';
+      }
+    });
+    window.addEventListener('afterprint', function() {
+      var track = document.getElementById('testTrack');
+      if (track) {
+        track.style.display = 'flex';
+      }
+    });
+  })();
+
+  /* ── 59. LAZY LOAD FRAMEWORK SECTION ── */
+  (function initLazyFrameworks() {
+    var section = document.getElementById('frameworks');
+    if (!section) return;
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        section.querySelectorAll('.fw-card').forEach(function(card, i) {
+          setTimeout(function() {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, i * 100);
+        });
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+    section.querySelectorAll('.fw-card').forEach(function(card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all .5s cubic-bezier(.4,0,.2,1)';
+    });
+    observer.observe(section);
+  })();
+
+  /* ── 60. WHY-ME DIFFERENTIATOR REVEAL ── */
+  (function initWhyMeReveal() {
+    var cards = document.querySelectorAll('.why-diff-card');
+    if (!cards.length) return;
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var idx = Array.prototype.indexOf.call(cards, e.target);
+          setTimeout(function() {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+          }, idx * 100);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    cards.forEach(function(card) {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'all .5s cubic-bezier(.4,0,.2,1)';
+      observer.observe(card);
+    });
+  })();
+
 })();

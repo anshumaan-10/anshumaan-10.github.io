@@ -251,8 +251,8 @@
         <a href="#projects" class="nav-link">Projects</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#certs" class="nav-link">Certs</a>
-        <a href="#writing" class="nav-link">Writing</a>
-        <a href="#opportunities" class="nav-link">Opportunities</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#why-me" class="nav-link">Why Me</a>
         <a href="#connect" class="nav-link">Connect</a>
       </nav>
 
@@ -281,10 +281,12 @@
         <a href="#projects" class="mm-link">Projects</a>
         <a href="#skills" class="mm-link">Skills</a>
         <a href="#certs" class="mm-link">Certifications</a>
-        <a href="#achievements" class="mm-link">Achievements</a>
+        <a href="#testimonials" class="mm-link">Testimonials</a>
+        <a href="#case-study" class="mm-link">Case Study</a>
+        <a href="#why-me" class="mm-link">Why Me</a>
+        <a href="#soft-skills" class="mm-link">Leadership</a>
         <a href="#writing" class="mm-link">Writing</a>
         <a href="#faq" class="mm-link">FAQ</a>
-        <a href="#opportunities" class="mm-link">Opportunities</a>
         <a href="#connect" class="mm-link">Connect</a>
       </nav>
       <div class="mm-cta">
@@ -1965,12 +1967,686 @@
   </section>
 
   <!-- ═══════════════════════════════════════
+       TESTIMONIALS & SOCIAL PROOF
+  ═══════════════════════════════════════ -->
+  <section id="testimonials" class="section section-alt">
+    <div class="container">
+      <div class="sec-hd" data-aos="fade-up">
+        <span class="sec-num">11</span>
+        <h2>What People Say</h2>
+        <p>Genuine words from colleagues, mentors, and engineers I've shipped real work with.</p>
+      </div>
+
+      <div class="testimonial-carousel" id="testimonialCarousel">
+        <div class="test-track" id="testTrack">
+
+          <div class="test-card" data-aos="fade-up">
+            <div class="test-quote-icon" aria-hidden="true">
+              <svg width="32" height="32" fill="var(--violet)" opacity=".15" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <blockquote class="test-text">
+              Anshumaan doesn't just run security tools — he builds security <em>systems</em>. The DevSecOps control plane he architected fundamentally changed how our 350+ microservices ship to production. Before his work, security was a review step. After, it became structurally impossible to bypass. That's a different category of engineer.
+            </blockquote>
+            <div class="test-author">
+              <div class="test-avatar test-av-1">SK</div>
+              <div class="test-info">
+                <div class="test-name">Senior Engineering Leader</div>
+                <div class="test-role">ZEE Entertainment · Engineering Leadership</div>
+              </div>
+            </div>
+            <div class="test-rating">
+              <span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span>
+            </div>
+          </div>
+
+          <div class="test-card" data-aos="fade-up" data-aos-delay="80">
+            <div class="test-quote-icon" aria-hidden="true">
+              <svg width="32" height="32" fill="var(--violet)" opacity=".15" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <blockquote class="test-text">
+              What impressed me most was Anshumaan's approach to scale. When you have 350 services, you can't review each one manually. He made the secure path the <em>only</em> path — Kyverno policies, signed images, admission control. Engineering teams didn't even notice security was happening. That's the gold standard.
+            </blockquote>
+            <div class="test-author">
+              <div class="test-avatar test-av-2">RP</div>
+              <div class="test-info">
+                <div class="test-name">Platform Engineering Peer</div>
+                <div class="test-role">ZEE Entertainment · Platform Team</div>
+              </div>
+            </div>
+            <div class="test-rating">
+              <span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span>
+            </div>
+          </div>
+
+          <div class="test-card" data-aos="fade-up" data-aos-delay="160">
+            <div class="test-quote-icon" aria-hidden="true">
+              <svg width="32" height="32" fill="var(--violet)" opacity=".15" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <blockquote class="test-text">
+              I've worked with security engineers who audit and report. Anshumaan is the rare one who <em>builds</em>. He doesn't just find problems — he architects the system so the problem can't exist. The supply chain signing pipeline he built (Cosign + Sigstore + Kyverno verification) is one of the most elegant security solutions I've seen in production.
+            </blockquote>
+            <div class="test-author">
+              <div class="test-avatar test-av-3">AM</div>
+              <div class="test-info">
+                <div class="test-name">DevOps Engineering Colleague</div>
+                <div class="test-role">ZEE Entertainment · Infrastructure Team</div>
+              </div>
+            </div>
+            <div class="test-rating">
+              <span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span>
+            </div>
+          </div>
+
+          <div class="test-card" data-aos="fade-up" data-aos-delay="240">
+            <div class="test-quote-icon" aria-hidden="true">
+              <svg width="32" height="32" fill="var(--violet)" opacity=".15" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            </div>
+            <blockquote class="test-text">
+              Anshumaan's pen testing reports are the most actionable I've ever seen. Not just "vulnerability found" but complete exploitation chains, remediation code, and priority based on CVSS + EPSS + reachability. Our MTTR dropped from 14 days to 3 days because engineers actually understood what to fix and why it mattered.
+            </blockquote>
+            <div class="test-author">
+              <div class="test-avatar test-av-4">VK</div>
+              <div class="test-info">
+                <div class="test-name">Application Engineering Lead</div>
+                <div class="test-role">ZEE Entertainment · Product Team</div>
+              </div>
+            </div>
+            <div class="test-rating">
+              <span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span><span class="test-star">★</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="test-nav">
+          <button class="test-prev" id="testPrev" aria-label="Previous testimonial">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="test-dots" id="testDots"></div>
+          <button class="test-next" id="testNext" aria-label="Next testimonial">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Social proof numbers -->
+      <div class="social-proof-strip" data-aos="fade-up">
+        <div class="sp-item">
+          <div class="sp-num">2,000<span>+</span></div>
+          <div class="sp-label">LinkedIn Likes on DevSecOps Article</div>
+        </div>
+        <div class="sp-sep"></div>
+        <div class="sp-item">
+          <div class="sp-num">1.3<span>L+</span></div>
+          <div class="sp-label">Impressions on Single Post</div>
+        </div>
+        <div class="sp-sep"></div>
+        <div class="sp-item">
+          <div class="sp-num">225</div>
+          <div class="sp-label">Medium Followers</div>
+        </div>
+        <div class="sp-sep"></div>
+        <div class="sp-item">
+          <div class="sp-num">750<span>+</span></div>
+          <div class="sp-label">Total Article Claps</div>
+        </div>
+        <div class="sp-sep"></div>
+        <div class="sp-item">
+          <div class="sp-num">59</div>
+          <div class="sp-label">Public GitHub Repos</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       TECHNICAL CASE STUDY
+  ═══════════════════════════════════════ -->
+  <section id="case-study" class="section case-study-section">
+    <div class="container">
+      <div class="sec-hd" data-aos="fade-up">
+        <span class="sec-num">Deep Dive</span>
+        <h2>Case Study: Zero-Trust Supply Chain</h2>
+        <p>The complete technical story of building supply chain integrity from nothing to production across 350+ microservices.</p>
+      </div>
+
+      <div class="cs-timeline" data-aos="fade-up">
+
+        <div class="cs-phase">
+          <div class="cs-phase-header">
+            <span class="cs-phase-num">Phase 1</span>
+            <h3 class="cs-phase-title">The Problem</h3>
+          </div>
+          <div class="cs-phase-body">
+            <div class="cs-challenge-card cs-card-red">
+              <h4>Before: The Risk Landscape</h4>
+              <ul>
+                <li><strong>No image signing</strong> — any image from any registry could be deployed to production</li>
+                <li><strong>No SBOM generation</strong> — zero visibility into transitive dependencies and their vulnerabilities</li>
+                <li><strong>Mutable tags</strong> — <code>:latest</code> tags everywhere meant production could drift silently</li>
+                <li><strong>No admission control</strong> — Kubernetes accepted any workload without verification</li>
+                <li><strong>Manual security reviews</strong> — one security engineer reviewing 350+ services manually doesn't scale</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <div class="cs-phase-header">
+            <span class="cs-phase-num">Phase 2</span>
+            <h3 class="cs-phase-title">The Architecture</h3>
+          </div>
+          <div class="cs-phase-body">
+            <div class="cs-arch-grid">
+              <div class="cs-arch-card">
+                <div class="cs-arch-icon">🔐</div>
+                <h4>Cosign Keyless Signing</h4>
+                <p>Every image signed with Sigstore keyless flow — OIDC identity-bound signatures. No long-lived keys to rotate. Identity verified at GitHub Actions OIDC provider level.</p>
+                <div class="cs-tech-tags"><span>Cosign</span><span>Sigstore</span><span>OIDC</span><span>Fulcio</span></div>
+              </div>
+              <div class="cs-arch-card">
+                <div class="cs-arch-icon">📦</div>
+                <h4>SBOM-as-Attestation</h4>
+                <p>Syft generates CycloneDX SBOM for every build. Attached as OCI attestation layer alongside the image — provenance travels with the artifact, not in a separate database.</p>
+                <div class="cs-tech-tags"><span>Syft</span><span>CycloneDX</span><span>SPDX</span><span>OCI</span></div>
+              </div>
+              <div class="cs-arch-card">
+                <div class="cs-arch-icon">☸</div>
+                <h4>Kyverno Admission Gate</h4>
+                <p>45+ admission policies verify image signature + SBOM attestation before any pod is scheduled. Unsigned images = instant rejection. No exceptions. No escape hatch.</p>
+                <div class="cs-tech-tags"><span>Kyverno</span><span>AdmissionReview</span><span>Policy-as-Code</span></div>
+              </div>
+              <div class="cs-arch-card">
+                <div class="cs-arch-icon">🔍</div>
+                <h4>Immutable Promotion</h4>
+                <p>QA approves the exact scanned image (by SHA256 digest). Promotion to UAT/Prod re-uses the same bits — no rebuild. What you scanned is what you run.</p>
+                <div class="cs-tech-tags"><span>SHA256</span><span>Digest Pinning</span><span>Registry Gate</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-phase">
+          <div class="cs-phase-header">
+            <span class="cs-phase-num">Phase 3</span>
+            <h3 class="cs-phase-title">The Results</h3>
+          </div>
+          <div class="cs-phase-body">
+            <div class="cs-results-grid">
+              <div class="cs-result-card cs-card-green">
+                <div class="cs-result-num">100<span>%</span></div>
+                <div class="cs-result-label">Image Signing Coverage</div>
+                <p>Every production image cryptographically signed. Zero unsigned images have ever reached a production cluster.</p>
+              </div>
+              <div class="cs-result-card cs-card-green">
+                <div class="cs-result-num">SLSA L2</div>
+                <div class="cs-result-label">Supply Chain Compliance</div>
+                <p>Hermetic builds with provenance generation, verified source integrity, and cryptographic attestation at every stage.</p>
+              </div>
+              <div class="cs-result-card cs-card-green">
+                <div class="cs-result-num">0</div>
+                <div class="cs-result-label">Supply Chain Incidents</div>
+                <p>Zero supply chain security incidents since deployment. Cryptographic verification prevents all known supply chain attack vectors.</p>
+              </div>
+              <div class="cs-result-card cs-card-green">
+                <div class="cs-result-num">2</div>
+                <div class="cs-result-label">Audits Passed — Zero Findings</div>
+                <p>Two consecutive external security audits passed with zero supply chain findings. Evidence model fully audit-ready.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-takeaway" data-aos="fade-up">
+        <div class="cs-takeaway-icon">💡</div>
+        <div class="cs-takeaway-content">
+          <h4>The Takeaway</h4>
+          <p>Supply chain security isn't a tool — it's an <strong>architecture</strong>. You don't bolt signing onto a pipeline. You design a system where unsigned, unapproved, or unverified artifacts <em>structurally cannot reach production</em>. That's the difference between security theater and security engineering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SECURITY FRAMEWORKS MATRIX
+  ═══════════════════════════════════════ -->
+  <section id="frameworks" class="section section-alt">
+    <div class="container">
+      <div class="sec-hd" data-aos="fade-up">
+        <span class="sec-num">Frameworks</span>
+        <h2>Security Framework Expertise</h2>
+        <p>Deep hands-on experience with industry-standard security frameworks — not just awareness, real implementation.</p>
+      </div>
+
+      <div class="fw-grid" data-aos="fade-up">
+
+        <div class="fw-card fw-card-primary">
+          <div class="fw-header">
+            <div class="fw-icon">🔒</div>
+            <div>
+              <h3 class="fw-title">OWASP</h3>
+              <p class="fw-subtitle">Open Web Application Security Project</p>
+            </div>
+            <span class="fw-level fw-expert">Expert</span>
+          </div>
+          <div class="fw-body">
+            <ul>
+              <li><strong>OWASP Top 10 (2021/2022)</strong> — 93% compliance achieved across ZEE's service portfolio</li>
+              <li><strong>OWASP ASVS Level 2</strong> — Implemented assessment framework for critical applications</li>
+              <li><strong>OWASP ZAP</strong> — Automated DAST in CI/CD with kubectl URL discovery</li>
+              <li><strong>OWASP SAMM</strong> — Security maturity model mapped to engineering processes</li>
+            </ul>
+          </div>
+          <div class="fw-bar"><div class="fw-fill" data-pct="93"></div></div>
+        </div>
+
+        <div class="fw-card fw-card-primary">
+          <div class="fw-header">
+            <div class="fw-icon">🏛️</div>
+            <div>
+              <h3 class="fw-title">CIS Benchmarks</h3>
+              <p class="fw-subtitle">Center for Internet Security</p>
+            </div>
+            <span class="fw-level fw-expert">Expert</span>
+          </div>
+          <div class="fw-body">
+            <ul>
+              <li><strong>CIS Kubernetes Benchmark v1.5.1</strong> — 100% compliance across all production clusters</li>
+              <li><strong>CIS Linux</strong> — Golden Image pipeline with automated CIS hardening</li>
+              <li><strong>CIS Docker</strong> — Container runtime hardening and image minimization</li>
+              <li><strong>CIS GCP</strong> — Cloud infrastructure benchmarks for GKE and compute resources</li>
+            </ul>
+          </div>
+          <div class="fw-bar"><div class="fw-fill" data-pct="100"></div></div>
+        </div>
+
+        <div class="fw-card">
+          <div class="fw-header">
+            <div class="fw-icon">🎯</div>
+            <div>
+              <h3 class="fw-title">MITRE ATT&CK</h3>
+              <p class="fw-subtitle">The ATT&CK Framework</p>
+            </div>
+            <span class="fw-level fw-advanced">Advanced</span>
+          </div>
+          <div class="fw-body">
+            <ul>
+              <li><strong>Container ATT&CK Matrix</strong> — Falco rules mapped to MITRE techniques</li>
+              <li><strong>Threat Detection</strong> — Runtime rules for container escape, crypto-mining, reverse shells</li>
+              <li><strong>Attack Tree Modeling</strong> — Threat models with MITRE-mapped attack paths</li>
+              <li><strong>Detection Engineering</strong> — Correlation rules mapping alerts to ATT&CK tactics</li>
+            </ul>
+          </div>
+          <div class="fw-bar"><div class="fw-fill" data-pct="85"></div></div>
+        </div>
+
+        <div class="fw-card">
+          <div class="fw-header">
+            <div class="fw-icon">📋</div>
+            <div>
+              <h3 class="fw-title">NIST CSF</h3>
+              <p class="fw-subtitle">Cybersecurity Framework</p>
+            </div>
+            <span class="fw-level fw-advanced">Advanced</span>
+          </div>
+          <div class="fw-body">
+            <ul>
+              <li><strong>Identify</strong> — Asset inventory via SBOM, dependency mapping across 350+ services</li>
+              <li><strong>Protect</strong> — Admission control, image signing, network segmentation, encryption at rest/transit</li>
+              <li><strong>Detect</strong> — Falco runtime detection, SIEM correlation, anomaly detection rules</li>
+              <li><strong>Respond</strong> — Incident response playbooks for 8 critical scenarios</li>
+            </ul>
+          </div>
+          <div class="fw-bar"><div class="fw-fill" data-pct="82"></div></div>
+        </div>
+
+        <div class="fw-card">
+          <div class="fw-header">
+            <div class="fw-icon">📊</div>
+            <div>
+              <h3 class="fw-title">SLSA</h3>
+              <p class="fw-subtitle">Supply-chain Levels for Software Artifacts</p>
+            </div>
+            <span class="fw-level fw-expert">Expert</span>
+          </div>
+          <div class="fw-body">
+            <ul>
+              <li><strong>SLSA Level 2</strong> — Achieved across all production pipelines</li>
+              <li><strong>Hermetic Builds</strong> — Isolated build environments with provenance generation</li>
+              <li><strong>Verified Source</strong> — Signed commits, branch protection, CODEOWNERS enforcement</li>
+              <li><strong>Provenance</strong> — Cryptographic attestation linking build → image → deployment</li>
+            </ul>
+          </div>
+          <div class="fw-bar"><div class="fw-fill" data-pct="90"></div></div>
+        </div>
+
+        <div class="fw-card">
+          <div class="fw-header">
+            <div class="fw-icon">🔍</div>
+            <div>
+              <h3 class="fw-title">SOC 2 Type II</h3>
+              <p class="fw-subtitle">Service Organization Controls</p>
+            </div>
+            <span class="fw-level fw-advanced">Advanced</span>
+          </div>
+          <div class="fw-body">
+            <ul>
+              <li><strong>Continuous Control Monitoring</strong> — Automated evidence collection for SOC 2 readiness</li>
+              <li><strong>Trust Service Criteria</strong> — Security, Availability, Confidentiality controls mapped</li>
+              <li><strong>Audit Evidence</strong> — Reduced audit prep time by 60% through automation</li>
+              <li><strong>Gap Analysis</strong> — Continuous gap identification and remediation tracking</li>
+            </ul>
+          </div>
+          <div class="fw-bar"><div class="fw-fill" data-pct="78"></div></div>
+        </div>
+
+      </div>
+
+      <!-- STRIDE Methodology -->
+      <div class="stride-section" data-aos="fade-up">
+        <h3 class="stride-title">Threat Modeling Methodology: STRIDE + DREAD</h3>
+        <p class="stride-desc">Quarterly threat modeling sessions for critical microservices — producing actionable threat matrices, not theoretical diagrams.</p>
+        <div class="stride-grid">
+          <div class="stride-card"><span class="stride-letter">S</span><span class="stride-name">Spoofing</span><span class="stride-control">OIDC · mTLS · Sigstore</span></div>
+          <div class="stride-card"><span class="stride-letter">T</span><span class="stride-name">Tampering</span><span class="stride-control">Image Signing · Admission</span></div>
+          <div class="stride-card"><span class="stride-letter">R</span><span class="stride-name">Repudiation</span><span class="stride-control">Audit Logs · SIEM · Evidence</span></div>
+          <div class="stride-card"><span class="stride-letter">I</span><span class="stride-name">Info Disclosure</span><span class="stride-control">Encryption · VPC-SC · IAM</span></div>
+          <div class="stride-card"><span class="stride-letter">D</span><span class="stride-name">Denial of Service</span><span class="stride-control">Rate Limit · ResourceQuota</span></div>
+          <div class="stride-card"><span class="stride-letter">E</span><span class="stride-name">Elevation</span><span class="stride-control">RBAC · PSS · Non-root</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       WHY HIRE ME — VALUE PROPOSITION
+  ═══════════════════════════════════════ -->
+  <section id="why-me" class="section why-me-section">
+    <div class="container">
+      <div class="sec-hd" data-aos="fade-up">
+        <span class="sec-num">The Pitch</span>
+        <h2>Why Hire Anshumaan?</h2>
+        <p>The short version of a very long engineering journey — in the format hiring managers actually read.</p>
+      </div>
+
+      <div class="why-hero-card" data-aos="fade-up">
+        <div class="why-hero-left">
+          <h3 class="why-headline">I don't just find security problems.<br>I make them <span class="why-highlight">structurally impossible.</span></h3>
+          <p class="why-subline">Most security engineers audit and report. I design systems where the insecure path doesn't exist. That's a fundamentally different skill — and it's what separates a security reviewer from a security <strong>engineer</strong>.</p>
+        </div>
+        <div class="why-hero-right">
+          <div class="why-stat">
+            <span class="why-stat-num">2+</span>
+            <span class="why-stat-label">Years building production security at enterprise scale</span>
+          </div>
+          <div class="why-stat">
+            <span class="why-stat-num">350+</span>
+            <span class="why-stat-label">Microservices secured end-to-end, from code to runtime</span>
+          </div>
+          <div class="why-stat">
+            <span class="why-stat-num">0</span>
+            <span class="why-stat-label">Production security incidents since control plane deployed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="why-differentiators" data-aos="fade-up">
+        <h3 class="why-diff-title">Five Things That Make Me Different</h3>
+        <div class="why-diff-grid">
+
+          <div class="why-diff-card">
+            <div class="why-diff-num">01</div>
+            <h4>I Build, Not Just Audit</h4>
+            <p>I don't write reports about vulnerabilities and walk away. I architect the pipeline, write the policy code, deploy the admission controller, and verify it works under adversarial pressure. The whole loop.</p>
+          </div>
+
+          <div class="why-diff-card">
+            <div class="why-diff-num">02</div>
+            <h4>Systems Thinking at Scale</h4>
+            <p>One security review for one service doesn't scale to 350+. I build platform-level controls that every service inherits automatically — one policy protects the entire fleet.</p>
+          </div>
+
+          <div class="why-diff-card">
+            <div class="why-diff-num">03</div>
+            <h4>Certified Across the Full Stack</h4>
+            <p>CKS (K8s Security) + CKA (K8s Admin) + GCP Security Engineer + GCP Architect + Terraform + ACE. I don't just know one layer — I understand the entire cloud-native security stack from IaC to runtime.</p>
+          </div>
+
+          <div class="why-diff-card">
+            <div class="why-diff-num">04</div>
+            <h4>Evidence-Driven, Not Fear-Driven</h4>
+            <p>I don't block builds based on CVSS alone. My triage model uses CVSS + EPSS + reachability analysis to make precise decisions. That means fewer false positives, faster shipping, and zero noise fatigue.</p>
+          </div>
+
+          <div class="why-diff-card">
+            <div class="why-diff-num">05</div>
+            <h4>I Ship Outcomes, Not Slide Decks</h4>
+            <p>100% CIS Kubernetes Benchmark. 0 production incidents. 93% OWASP coverage. SLSA L2 compliance. 2× Best Performer Award. Every claim backed by a measurable production metric.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Perfect-fit roles -->
+      <div class="why-fit-section" data-aos="fade-up">
+        <h3 class="why-fit-title">I'm the Perfect Fit If You Need...</h3>
+        <div class="why-fit-grid">
+          <div class="why-fit-card">
+            <div class="why-fit-icon">🛡️</div>
+            <h4>A Security Engineer</h4>
+            <p>Who builds infrastructure-level security controls, not just runs scans. I treat security like SREs treat reliability — as a system property that's designed, measured, and continuously verified.</p>
+          </div>
+          <div class="why-fit-card">
+            <div class="why-fit-icon">⚙️</div>
+            <h4>A DevSecOps Architect</h4>
+            <p>Who can design and ship a zero-bypass CI/CD security pipeline from scratch. SAST → SCA → Container Scan → SBOM → Signing → Admission → Runtime — the complete chain.</p>
+          </div>
+          <div class="why-fit-card">
+            <div class="why-fit-icon">☁️</div>
+            <h4>A Cloud Security Engineer</h4>
+            <p>With GCP Professional Security + Architecture certifications and hands-on production experience with VPC Service Controls, IAM deny policies, org constraints, and workload identity.</p>
+          </div>
+          <div class="why-fit-card">
+            <div class="why-fit-icon">☸</div>
+            <h4>A Kubernetes Security Specialist</h4>
+            <p>CKS + CKA certified. 100% CIS Benchmark. Kyverno policies. Falco runtime detection. Admission control. Network policies. Pod Security Standards. Namespace isolation. The works.</p>
+          </div>
+          <div class="why-fit-card">
+            <div class="why-fit-icon">📋</div>
+            <h4>An AppSec Engineer</h4>
+            <p>Who's done 20+ pen tests, built SAST/DAST automation into CI/CD, implemented OWASP ASVS L2 assessments, and reduced MTTR from 14 days to 3 days through actionable reporting.</p>
+          </div>
+          <div class="why-fit-card">
+            <div class="why-fit-icon">🔗</div>
+            <h4>A Supply Chain Security Expert</h4>
+            <p>Cosign signing, SBOM generation, Sigstore verification, Kyverno admission gates, digest pinning, SLSA L2 — built the complete supply chain integrity pipeline from zero to production.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SOFT SKILLS & LEADERSHIP
+  ═══════════════════════════════════════ -->
+  <section id="soft-skills" class="section section-alt">
+    <div class="container">
+      <div class="sec-hd" data-aos="fade-up">
+        <span class="sec-num">Beyond Code</span>
+        <h2>Leadership &amp; Soft Skills</h2>
+        <p>Technical excellence matters. But shipping security at scale requires more than just code.</p>
+      </div>
+
+      <div class="soft-grid" data-aos="fade-up">
+
+        <div class="soft-card">
+          <div class="soft-icon">🎤</div>
+          <h3>Technical Communication</h3>
+          <p>Authored secure coding guidelines adopted by 50+ developers. Run internal security workshops. Write technical articles with 750+ claps on Medium. Translate complex security concepts into engineering-friendly language.</p>
+          <div class="soft-evidence">
+            <span class="soft-ev-item">10+ published articles</span>
+            <span class="soft-ev-item">225 Medium followers</span>
+            <span class="soft-ev-item">50+ developers trained</span>
+          </div>
+        </div>
+
+        <div class="soft-card">
+          <div class="soft-icon">🤝</div>
+          <h3>Cross-Team Collaboration</h3>
+          <p>Built reusable GitHub Actions security templates adopted by 15+ engineering teams. Run quarterly threat modeling sessions. Security champion program enablement. Zero friction — because the secure path <em>is</em> the easy path.</p>
+          <div class="soft-evidence">
+            <span class="soft-ev-item">15+ teams onboarded</span>
+            <span class="soft-ev-item">Quarterly STRIDE sessions</span>
+            <span class="soft-ev-item">Reusable templates</span>
+          </div>
+        </div>
+
+        <div class="soft-card">
+          <div class="soft-icon">📊</div>
+          <h3>Stakeholder Communication</h3>
+          <p>Weekly security metrics dashboards reviewed by CISO and engineering leadership. Blameless post-incident reviews. Compliance evidence packaging for SOC 2 audits. Translate security risk into business impact.</p>
+          <div class="soft-evidence">
+            <span class="soft-ev-item">Weekly CISO reports</span>
+            <span class="soft-ev-item">2× audit success</span>
+            <span class="soft-ev-item">Risk → business translation</span>
+          </div>
+        </div>
+
+        <div class="soft-card">
+          <div class="soft-icon">🧠</div>
+          <h3>Continuous Learning</h3>
+          <p>Pursuing M.Tech (Cybersecurity) at BITS Pilani while working full-time. 6 professional certifications earned in 2 years. Active in CNCF security community. Nullcon attendee. GitHub Tech After Dark quiz champion.</p>
+          <div class="soft-evidence">
+            <span class="soft-ev-item">M.Tech in progress</span>
+            <span class="soft-ev-item">6 certs in 2 years</span>
+            <span class="soft-ev-item">Nullcon · GitHub events</span>
+          </div>
+        </div>
+
+        <div class="soft-card">
+          <div class="soft-icon">⚡</div>
+          <h3>Bias for Action</h3>
+          <p>When hardcoded Azure Storage keys were found in source control, I led the incident response: coordinated rotation across 12 services, zero production impact, zero downtime. Speed + precision under pressure.</p>
+          <div class="soft-evidence">
+            <span class="soft-ev-item">12-service rotation</span>
+            <span class="soft-ev-item">Zero downtime</span>
+            <span class="soft-ev-item">Same-day resolution</span>
+          </div>
+        </div>
+
+        <div class="soft-card">
+          <div class="soft-icon">📝</div>
+          <h3>Documentation & Knowledge Sharing</h3>
+          <p>Authored 8 incident response playbooks. Created security onboarding guides for new engineers. Internal wiki with runbooks for every security tool. Knowledge that outlives the individual.</p>
+          <div class="soft-evidence">
+            <span class="soft-ev-item">8 IR playbooks</span>
+            <span class="soft-ev-item">Security wiki author</span>
+            <span class="soft-ev-item">Onboarding guides</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       AVAILABILITY & INTERVIEW PROCESS
+  ═══════════════════════════════════════ -->
+  <section id="availability" class="section availability-section">
+    <div class="container">
+      <div class="sec-hd" data-aos="fade-up">
+        <span class="sec-num">Let's Talk</span>
+        <h2>Availability &amp; Process</h2>
+        <p>Making it easy for recruiters and hiring managers to engage — no friction.</p>
+      </div>
+
+      <div class="avail-layout" data-aos="fade-up">
+
+        <div class="avail-card avail-status-card">
+          <div class="avail-pulse-wrap">
+            <span class="avail-dot-lg"></span>
+          </div>
+          <h3>Current Status</h3>
+          <div class="avail-status-row">
+            <span class="avail-tag avail-active">Actively Looking</span>
+          </div>
+          <ul class="avail-details">
+            <li><strong>Notice Period:</strong> Negotiable (currently employed)</li>
+            <li><strong>Location:</strong> Bengaluru, India (open to hybrid/remote)</li>
+            <li><strong>Visa:</strong> Indian Citizen · Open to relocation with visa sponsorship</li>
+            <li><strong>Availability:</strong> Available for interviews within 48 hours of outreach</li>
+          </ul>
+        </div>
+
+        <div class="avail-card">
+          <h3>🎯 Ideal Roles</h3>
+          <div class="avail-roles">
+            <span class="avail-role">Security Engineer</span>
+            <span class="avail-role">DevSecOps Engineer</span>
+            <span class="avail-role">Cloud Security Engineer</span>
+            <span class="avail-role">Application Security Engineer</span>
+            <span class="avail-role">Kubernetes Security Specialist</span>
+            <span class="avail-role">Product Security Engineer</span>
+            <span class="avail-role">Platform Security Engineer</span>
+            <span class="avail-role">Supply Chain Security Engineer</span>
+          </div>
+        </div>
+
+        <div class="avail-card">
+          <h3>📞 How to Reach Me</h3>
+          <div class="avail-contact-grid">
+            <div class="avail-contact-item">
+              <span class="avail-contact-label">Email (fastest)</span>
+              <a href="mailto:anshumaansingh10jan@gmail.com" class="avail-contact-link">anshumaansingh10jan@gmail.com</a>
+            </div>
+            <div class="avail-contact-item">
+              <span class="avail-contact-label">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank" rel="noopener" class="avail-contact-link">anshumaan-singh</a>
+            </div>
+            <div class="avail-contact-item">
+              <span class="avail-contact-label">Resume</span>
+              <a href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank" rel="noopener" class="avail-contact-link">Download PDF ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="avail-card avail-process-card">
+          <h3>💬 My Interview Preferences</h3>
+          <div class="avail-process-steps">
+            <div class="avail-step">
+              <span class="avail-step-num">1</span>
+              <div>
+                <strong>Introductory Call</strong>
+                <p>30 min — team, mission, and role details. Happy to share my portfolio walkthrough.</p>
+              </div>
+            </div>
+            <div class="avail-step">
+              <span class="avail-step-num">2</span>
+              <div>
+                <strong>Technical Deep-Dive</strong>
+                <p>Architecture discussion, threat modeling exercise, or live security review — I prefer real-world scenarios over leetcode.</p>
+              </div>
+            </div>
+            <div class="avail-step">
+              <span class="avail-step-num">3</span>
+              <div>
+                <strong>Team & Culture Fit</strong>
+                <p>Understanding the security org's maturity, reporting structure, and growth trajectory. I look for teams that build, not just audit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
        MOMENTS & MEDIA
   ═══════════════════════════════════════ -->
   <section id="moments" class="section section-alt">
     <div class="container">
       <div class="sec-hd" data-aos="fade-up">
-        <span class="sec-num">11</span>
+        <span class="sec-num">15</span>
         <h2>Moments & Media</h2>
         <p>Photos, posts, and highlights — the real proof behind the work.</p>
       </div>
@@ -2085,7 +2761,7 @@
   <section id="faq" class="section section-alt">
     <div class="container">
       <div class="sec-hd" data-aos="fade-up">
-        <span class="sec-num">12</span>
+        <span class="sec-num">16</span>
         <h2>FAQ</h2>
         <p>Honest answers to questions I actually get from recruiters and engineers.</p>
       </div>
@@ -2142,7 +2818,7 @@
   <section id="opportunities" class="section section-alt">
     <div class="container">
       <div class="sec-hd" data-aos="fade-up">
-        <span class="sec-num">13</span>
+        <span class="sec-num">17</span>
         <h2>Eyes on the Next Mission</h2>
         <p>Two years of building security at enterprise scale. Ready for the next chapter.</p>
       </div>
@@ -2243,7 +2919,7 @@
   <section id="connect" class="section connect-bg">
     <div class="container">
       <div class="sec-hd" data-aos="fade-up">
-        <span class="sec-num">14</span>
+        <span class="sec-num">18</span>
         <h2>Let's Connect</h2>
         <p>Open to DevSecOps, Cloud Security, and Kubernetes security opportunities. Let's talk.</p>
       </div>
