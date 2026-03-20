@@ -681,72 +681,89 @@ document.addEventListener('DOMContentLoaded', () => {
   initPipelineAutoStart(pipelineDemo);
 });
 
+
 /* ═══════════════════════════════════════════════════════════
-   SKILLS DEEP-DIVE BARS ANIMATION
+   SKILLS DEEP-DIVE BARS
 ═══════════════════════════════════════════════════════════ */
 const SKILLS_DATA = [
   {
     cat: 'Kubernetes Security',
-    color: 'default',
+    icon: '☸️',
     skills: [
-      { name: 'Kyverno Policy Authoring',     pct: 95 },
-      { name: 'Cluster Hardening (CIS/NSA)',   pct: 90 },
-      { name: 'RBAC Design',                   pct: 88 },
-      { name: 'Falco Rules',                   pct: 82 },
-      { name: 'Cilium Network Policy',         pct: 80 },
-      { name: 'OPA / Rego',                    pct: 72 },
-    ]
+      { name: 'Kyverno Policy Authoring',      pct: 95 },
+      { name: 'Cluster Hardening (CIS/NSA)',    pct: 90 },
+      { name: 'RBAC Design',                    pct: 88 },
+      { name: 'Falco Runtime Rules',            pct: 82 },
+      { name: 'Cilium Network Policy',          pct: 80 },
+      { name: 'OPA / Rego',                     pct: 72 },
+    ],
   },
   {
     cat: 'Supply Chain Security',
-    color: 'green',
+    icon: '🔏',
     skills: [
-      { name: 'Cosign Keyless Signing',        pct: 92 },
-      { name: 'Syft / SBOM Generation',        pct: 90 },
-      { name: 'Trivy Container Scanning',      pct: 95 },
-      { name: 'Grype SBOM Vulnerability',      pct: 85 },
-      { name: 'SLSA Framework',                pct: 78 },
-      { name: 'Binary Authorization',          pct: 75 },
-    ]
+      { name: 'Cosign Keyless Signing',         pct: 92 },
+      { name: 'Syft / SBOM Generation',         pct: 90 },
+      { name: 'Trivy Container Scanning',       pct: 95 },
+      { name: 'Grype SBOM Vulnerability',       pct: 85 },
+      { name: 'SLSA Framework',                 pct: 78 },
+      { name: 'Binary Authorization',           pct: 75 },
+    ],
   },
   {
     cat: 'CI/CD Security',
-    color: 'orange',
+    icon: '🔄',
     skills: [
-      { name: 'GitHub Actions Security',       pct: 93 },
-      { name: 'Semgrep SAST',                  pct: 85 },
-      { name: 'Snyk SCA',                      pct: 90 },
-      { name: 'Secrets Detection (Gitleaks)',  pct: 87 },
-      { name: 'Pipeline Hardening',            pct: 88 },
-      { name: 'Argo CD GitOps',                pct: 85 },
-    ]
+      { name: 'GitHub Actions Hardening',       pct: 93 },
+      { name: 'Semgrep SAST',                   pct: 85 },
+      { name: 'Snyk SCA',                       pct: 90 },
+      { name: 'Gitleaks Secret Detection',      pct: 87 },
+      { name: 'Pipeline Gate Enforcement',      pct: 88 },
+      { name: 'Argo CD GitOps',                 pct: 85 },
+    ],
   },
   {
     cat: 'Cloud Security (GCP)',
-    color: 'green',
+    icon: '☁️',
     skills: [
-      { name: 'IAM Least Privilege',           pct: 88 },
-      { name: 'VPC Service Controls',          pct: 80 },
-      { name: 'Cloud Armor WAF',             { pct: 75 },
-      { name: 'Workload Identity',             pct: 87 },
-      { name: 'GKE Security Posture',          pct: 8      { name: 'GKE Security Posture',          pct: 8  : 8      { name: 'GKE Security Posture',          pct: 8   to      { name: 'GKE Security Posture',          pct: 8kills      { name: 'GKE Security Posture',          pct: 8   nd    ;
-    t  s.    t  s.    t  s.    t  render() {
+      { name: 'IAM Least Privilege',            pct: 88 },
+      { name: 'VPC Service Controls',           pct: 80 },
+      { name: 'Cloud Armor WAF',                pct: 75 },
+      { name: 'Workload Identity',              pct: 87 },
+      { name: 'GKE Security Posture',           pct: 85 },
+      { name: 'Chronicle SIEM',                 pct: 78 },
+    ],
+  },
+];
+
+class SkillBarsRenderer {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+  }
+
+  render() {
+    if (!this.container) return;
     this.container.innerHTML = `
       <div class="skills-deepdive">
-        ${SKILL        ${SKILL        ${SKILL        ${SKILL        ${S>
-        ${SKILL        ${SKILL        ${SKILL        $v>
+        ${SKILLS_DATA.map(cat => `
+          <div class="sdiv-category">
+            <div class="sdiv-cat-header">
+              <span class="sdiv-cat-icon">${cat.icon}</span>
+              <span class="sdiv-cat-name">${cat.cat}</span>
+            </div>
             ${cat.skills.map(s => `
               <div class="sdiv-skill">
-                <div class="sdiv-skill-header">
+                <div class="sdiv-skill-meta">
                   <span class="sdiv-skill-name">${s.name}</span>
                   <span class="sdiv-skill-pct">${s.pct}%</span>
                 </div>
-                <div class="sdiv-bar-track">
-                  <div class="sdiv-bar-fill ${cat.color}" data-sla-fill="${s.pct}"></div>
+                <div class="sdiv-bar">
+                  <div class="sdiv-bar-fill" data-pct="${s.pct}" style="width:0%"></div>
                 </div>
               </div>`).join('')}
           </div>`).join('')}
       </div>`;
+    this.initAnimations();
   }
 
   initAnimations() {
@@ -755,116 +772,174 @@ const SKILLS_DATA = [
     const obs = new IntersectionObserver((entries) => {
       if (!entries[0].isIntersecting) return;
       fills.forEach(el => {
-        const pct = el.dataset.slaFill || '0';
-        el.style.transi        el.style.transi        el.5,        el.style.transi        el.style.transi        el.5,        elisco        el.style.transi        el.style.transi        is.container);
+        const pct = el.dataset.pct || '0';
+        el.style.transition = 'width .8s cubic-bezier(.22,1,.36,1)';
+        el.style.width = pct + '%';
+      });
+      obs.disconnect();
+    }, { threshold: 0.2 });
+    if (this.container) obs.observe(this.container);
   }
 }
 
-/* ════�/* ════�/* ════�/*��/* ════�/* ════�/* ═══�/* ════�/* ════�/* ════�/*��/* ═��/* ════MINI TIMELINE RENDERER
-═══════════════════════════════�═════════════════════════════�on══�INE_DATA = [
-                                 n:                           0'             'Joined                   �                                 n:erited a Kubernetes fleet with no admission control, no image signing, no runtime monitoring. Started documenting the security posture.',
-    impact: 'Gap analysis: 0 security controls on 350+ microservices',
+/* ═══════════════════════════════════════════════════════════
+   MINI SECURITY TIMELINE
+═══════════════════════════════════════════════════════════ */
+const TIMELINE_DATA = [
+  {
+    date: 'Jan 2023',
+    icon: '🔭',
+    color: '#7c3aed',
+    title: 'Phase 1 — Discovery & Gap Analysis',
+    desc: 'Inherited a Kubernetes fleet with no admission control, no image signing, no runtime monitoring. Documented the full security posture.',
+    impact: 'Gap analysis: 0 security controls across 350+ microservices',
   },
-  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ��container  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {  {  {  {  {  {  {  {  ���  {  {  {  {  {  {  {  {   color: '#2563eb',
-    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title: '    title:     impact: '0 static credentials remaining in prod cluster',
+  {
+    date: 'Feb – Apr 2023',
+    icon: '🛡️',
+    color: '#2563eb',
+    title: 'Phase 2 — Admission Control (Kyverno)',
+    desc: 'Deployed Kyverno across all clusters. Wrote 40+ policies covering image pull rules, non-root enforcement, resource limits, and network policies.',
+    impact: '100% policy coverage — 0 non-compliant workloads in prod',
+  },
+  {
+    date: 'May – Jun 2023',
+    icon: '🔑',
+    color: '#0891b2',
+    title: 'Phase 2b — Secrets Rotation (HashiCorp Vault)',
+    desc: 'Migrated 120+ static credentials to HashiCorp Vault dynamic secrets with automated rotation. Integrated Vault Agent injector into all Pod specs.',
+    impact: '0 static credentials remaining in production cluster',
   },
   {
     date: 'Jul – Sep 2023',
     icon: '🔏',
     color: '#10b981',
     title: 'Phase 3 — Supply Chain Security (Cosign + SBOM)',
-    desc:  'Implemented Cosign keyless signing for all images. Syft + Grype for SBOM generation and vulnerability matching. Kyverno policy to verify si    desc:  'Implemented Cosign keyless signing for all images. Syft + Grype for SBOM generation and vulnerability matching. Kyverno policy to verify si    desc:  'Implemented Cosign keyless signing for all images. Syft + Grype for SBOM generation and vulnerability matching. Kyverno policy to verify si    desc:  'Implemented Cosign keyless signing for all images. Syft + Grype for SBOM generation and vulnerability matching. Kyverno policy to verify ime monitoring',
+    desc: 'Implemented Cosign keyless signing for all images. Syft + Grype for SBOM generation. Kyverno policy blocks unsigned images cluster-wide.',
+    impact: '100% of container images signed and SBOM-verified before deploy',
+  },
+  {
+    date: 'Oct – Dec 2023',
+    icon: '👁️',
+    color: '#f59e0b',
+    title: 'Phase 4 — Runtime Security (Falco)',
+    desc: 'Deployed Falco with 80+ custom rules. Integrated with PagerDuty for P1 alerts and Chronicle SIEM for correlation. 0 false-positive rate after tuning.',
+    impact: 'Runtime threat detection + automated container isolation on P1',
   },
   {
     date: '2024',
     icon: '📊',
     color: '#a78bfa',
-    title: 'Phase 5 — Continuous Improvement + 1200+ Vulns Closed',
-    desc:  'Systematic vulnerability management program. Trivy full-fleet nightly scans. 1200+ CVEs triaged and closed with d   mented evidence. 94% Critical SLA hit rate.',
+    title: 'Phase 5 — Continuous Improvement (1200+ Vulns Closed)',
+    desc: 'Systematic vulnerability management. Trivy full-fleet nightly scans. 1200+ CVEs triaged and closed with documented evidence. 94% Critical SLA hit rate.',
     impact: '18 months, 0 security incidents in production',
   },
 ];
 
-class MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelinc}</divcl              <div class="mt-impact">�class MiniTimelineReivclass MiniTimelineRenderclass MiniTimelineRenderclass MiniTimelin  }
-}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}��═�}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}ing)
-══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�══�� start = Date.now();
-      const tick = () => {
-        const t = Math.min((Date.now() - start) / dur, 1);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - t, 3))) + (el.dataset.countSuffix || '');
-        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requestAnim        if (t < 1) requetr        if (t < 1) reques{i        if (t < 1) requestAnim        if (t < 1) requestobs = new IntersectionObserver((entries) => {
-      if (!entries[0].isIntersecting) return;
-      nodes.forEach(node => {
-        node.style.opacity = '1';
-        node.style.transform = 'translateX(0)';
-      });
-      obs.disconnect();
-    }, { threshold: .15 });
-    obs.observe(section);
+class MiniTimelineRenderer {
+  constructor(containerId) {
+    this.container = document.getElementById(containerId);
+  }
+
+  render() {
+    if (!this.container) return;
+    this.container.innerHTML = `
+      <div class="mini-timeline">
+        ${TIMELINE_DATA.map(item => `
+          <div class="mt-item" data-animate-in>
+            <div class="mt-dot" style="background:linear-gradient(135deg,${item.color},${item.color}99)">
+              ${item.icon}
+            </div>
+            <div class="mt-content">
+              <div class="mt-date">${item.date}</div>
+              <div class="mt-title">${item.title}</div>
+              <div class="mt-desc">${item.desc}</div>
+              <div class="mt-impact">${item.impact}</div>
+            </div>
+          </div>`).join('')}
+      </div>`;
   }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   TOOL ECOSYSTEM SCROLL REVEAL
+   COUNTER ANIMATION
 ═══════════════════════════════════════════════════════════ */
-function initEcoGridReveal() {
-  const grid = document.getElementById('ecoGrid');
-  if (!grid) return;
+function initCounters() {
+  const nodes = document.querySelectorAll('[data-count-to]');
+  if (!nodes.length) return;
   const obs = new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) return;
-    const cards = grid.querySelectorAll('.eco-tool-card');
-    cards.forEach((card, i) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(16px)';
-      setTimeout(() => {
-        card.style.trans        card.style.trans    fo        card.style.trans  le.opaci        card.style.trans        card.style.ranslateY(0)';
-        card.style.   })        card.style.   })  },   threshold: .05 });
-  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  obs.obser  o  const obs = new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) return;
-    section.querySelectorAll('[data-count-to]').forEach(el => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
       const end = parseInt(el.dataset.countTo, 10);
-      const dur = 1400;
-      co      co      co      co      co      co      co         co      co   .m      co      co      co      co      co      co ntent      co      co      co      co      c, 3))) + (el.dataset.countSuffix || '');
-        if (t < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    });
-    obs.disconnect();
-  }, { threshol  }, { threshol  }, { t(s  }, { threshol  }, { threshol  }, { t(s  }, { threshol  }, { threshol  }, { t(s  }, { threshol  }, { threshol  }, { t(s  }, { threshol  }, { t (!section) return;
-  const obs = new IntersectionObserver((entries) => {
-                                                                                                                                                                                                                                                        const t = Math.min((Date.now() - t0) / dur, 1);
-        const val = Math.round(end * (1 - Math.pow(1 - t, 3)));
-        el.textContent = val + (el.dataset.countSuffix || '');
-                                                                                                  ;
-    obs.disconnect();
-  }, { threshold: .2 });
-  obs.observe(section);
-}
-
-/* Vulnmgmt counter animation */
-function initVufunction initVufunction initVufunction initVu.getElementById('vulnmgmt');
-  if (!section) return;
-  const obs = new IntersectionObserver((entries) => {
-    if (!entries[0].isIntersecting) return;
-    section.querySelectorAll('[data-count-to]').forEach(el => {
-      const end = parseInt(el.dataset.countTo, 10);
-      const dur = 1400;
-      const t0 = Date.now();
+      const dur = parseInt(el.dataset.countDur || '1800', 10);
+      const suffix = el.dataset.countSuffix || '';
+      const start = Date.now();
       const tick = () => {
-        const t = Math.min((Date.now() - t0) / dur, 1);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - t, 3))) + (el.dataset.countSuffix || '');
+        const t = Math.min((Date.now() - start) / dur, 1);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - t, 3))) + suffix;
         if (t < 1) requestAnimationFrame(tick);
       };
       requestAnimationFrame(tick);
+      obs.unobserve(el);
     });
-    obs.disconnect();
-  }, { threshold: .3 });
-  obs.observe(section);
+  }, { threshold: 0.5 });
+  nodes.forEach(n => obs.observe(n));
 }
 
 /* ═══════════════════════════════════════════════════════════
-   EXTENDED BOOTSTR   EXTENDED BOOTSTR   ���   EXTENDED BOOTSTR   �═�   EXTENDED BOOTSTR   EXTENDED���   EXTENDED BOOTSTR   EXTENDED BOOTSTR   ���   EXTENDED BOOTSTR   �═�   EXTENDE��══   EXTENDED BOOTSTR ddEv   EXTENDED BOOTSTR   EXTENDED BOOTSTR   ���   EXTEBar   EXTENDED BOOTSTR   EXTENDED BOOTSTR   �
-                                                               nitEcoGridReveal();
-  initStackEvolutionCounters();
-  initKpiCounters();
-  initVulnMgmtCounters();
+   SCROLL ANIMATION OBSERVER
+═══════════════════════════════════════════════════════════ */
+function initScrollAnimations() {
+  const nodes = document.querySelectorAll('[data-animate-in]');
+  if (!nodes.length) return;
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('anim-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  nodes.forEach(n => obs.observe(n));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ARCH DIAGRAM ANIMATION
+═══════════════════════════════════════════════════════════ */
+function initArchAnimation() {
+  const nodes = document.querySelectorAll('.arch-node');
+  if (!nodes.length) return;
+  nodes.forEach((node, i) => {
+    node.style.opacity = '0';
+    node.style.transform = 'translateX(-20px)';
+    node.style.transition = `opacity .4s ease ${i * 0.08}s, transform .4s ease ${i * 0.08}s`;
+  });
+  const obs = new IntersectionObserver((entries) => {
+    if (!entries[0].isIntersecting) return;
+    nodes.forEach(node => {
+      node.style.opacity = '1';
+      node.style.transform = 'translateX(0)';
+    });
+    obs.disconnect();
+  }, { threshold: 0.2 });
+  const wrap = document.querySelector('.arch-diagram-wrap');
+  if (wrap) obs.observe(wrap);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INIT ALL V22 ENHANCEMENTS
+═══════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Render dynamic sections
+  const skillBars = new SkillBarsRenderer('skillsDeepDive');
+  skillBars.render();
+
+  const timeline = new MiniTimelineRenderer('securityTimeline');
+  timeline.render();
+
+  // Kick off utilities
+  initCounters();
+  initScrollAnimations();
+  initArchAnimation();
 });
