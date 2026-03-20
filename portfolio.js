@@ -2224,6 +2224,62 @@
         card.style.transform = 'translateY(0)';
       });
     });
+
+    /* ── Scroll progress bar ── */
+    (function() {
+      var bar = document.getElementById('scrollProgressBar');
+      if (!bar) return;
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = docHeight > 0 ? Math.min(100, Math.round((scrollTop / docHeight) * 100)) : 0;
+        bar.style.width = pct + '%';
+        bar.setAttribute('aria-valuenow', pct);
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      updateProgress();
+    })();
+
+    /* ── Copy email to clipboard ── */
+    (function() {
+      var btn = document.getElementById('copyEmailBtn');
+      if (!btn) return;
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var email = btn.getAttribute('data-email') || 'anshumaansingh10jan@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(function() {
+            showCopied(btn);
+          }).catch(function() { fallbackCopy(email, btn); });
+        } else {
+          fallbackCopy(email, btn);
+        }
+      });
+      function fallbackCopy(text, btn) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showCopied(btn); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+      function showCopied(btn) {
+        var orig = btn.innerHTML;
+        btn.innerHTML = '&#x2713; Copied!';
+        btn.style.background = '#dcfce7';
+        btn.style.color = '#166534';
+        btn.style.borderColor = '#86efac';
+        setTimeout(function() {
+          btn.innerHTML = orig;
+          btn.style.background = '';
+          btn.style.color = '';
+          btn.style.borderColor = '';
+        }, 2000);
+      }
+    })();
+
   })();
 
 })();

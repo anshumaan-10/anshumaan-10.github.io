@@ -24,7 +24,7 @@
   <meta property="og:title" content="Anshumaan Singh | Security Engineer · DevSecOps · CKS CKA GCP" />
   <meta property="og:description" content="Security Systems Engineer at ZEE Entertainment. 350+ microservices secured. DevSecOps pipeline architect: SAST, SCA, DAST, SBOM, Cosign signing, Kyverno, Falco, ArgoCD. 6 certifications. 0 incidents. Open to opportunities." />
   <meta property="og:url" content="https://www.devsecopswithanshu.com/" />
-  <meta property="og:image" content="https://www.devsecopswithanshu.com/assests/me.jpg" />
+  <meta property="og:image" content="https://www.devsecopswithanshu.com/assests/devsecops-workflow.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Anshumaan Singh — Security Systems Engineer Portfolio" />
@@ -37,7 +37,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Anshumaan Singh | Security Engineer · DevSecOps · Kubernetes Security" />
   <meta name="twitter:description" content="350+ microservices secured. CKS · CKA · GCP. SAST/DAST/SBOM/Cosign/Kyverno/Falco pipeline architect. Open to roles." />
-  <meta name="twitter:image" content="https://www.devsecopswithanshu.com/assests/me.jpg" />
+  <meta name="twitter:image" content="https://www.devsecopswithanshu.com/assests/devsecops-workflow.png" />
   <meta name="twitter:image:alt" content="Anshumaan Singh Security Engineer Portfolio" />
 
   <!-- Favicon -->
@@ -54,8 +54,33 @@
   <script defer src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <!-- Our fresh portfolio CSS ONLY — no old dark CSS loaded -->
-  <link rel="stylesheet" href="./portfolio.css?v=18" />
+  <link rel="stylesheet" href="./portfolio.css?v=22" />
   <link rel="stylesheet" href="./enhancements-v19.css?v=19" />
+
+  <!-- Schema.org Person structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Anshumaan Singh",
+    "jobTitle": "Security Systems Engineer",
+    "worksFor": {"@type": "Organization", "name": "ZEE Entertainment Enterprises Ltd"},
+    "url": "https://www.devsecopswithanshu.com/",
+    "image": "https://www.devsecopswithanshu.com/assests/me.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/anshumaan-singh-6b51b5239/",
+      "https://github.com/anshumaan-10",
+      "https://medium.com/@anshumaansingh10jan",
+      "https://www.credly.com/users/anshumaan-singh"
+    ],
+    "knowsAbout": ["DevSecOps","Kubernetes Security","Supply Chain Security","Cloud Security","Application Security","CI/CD Security","Threat Modeling"],
+    "alumniOf": [
+      {"@type": "EducationalOrganization", "name": "Vellore Institute of Technology"},
+      {"@type": "EducationalOrganization", "name": "BITS Pilani"}
+    ],
+    "address": {"@type": "PostalAddress", "addressLocality": "Bengaluru", "addressCountry": "IN"}
+  }
+  </script>
 
   <!-- Critical inline CSS to guarantee white bg before CSS loads -->
   <style>
@@ -156,6 +181,8 @@
 </head>
 
 <body>
+  <!-- Scroll progress bar -->
+  <div id="scrollProgressBar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,#7c3aed,#2563eb);z-index:99999;transition:width .08s linear"></div>
 
   <!-- ═══════════════════════════════════════
        PAGE LOADER
@@ -491,6 +518,10 @@
           <div class="bcw-item">
             <div class="bcw-name">M.Tech Cybersecurity — BITS Pilani</div>
             <div class="bcw-desc">Work-integrated learning · 2026–2028</div>
+          </div>
+          <div class="bcw-item">
+            <div class="bcw-name">📚 Currently Studying</div>
+            <div class="bcw-desc">eBPF security · OWASP ASVS L3 · AI/ML threat modeling</div>
           </div>
           <div class="bcw-clock" id="blrClock"></div>
         </div>
@@ -1980,26 +2011,6 @@
         </div>
       </div>
 
-      <!-- Security Posture Arcs -->
-      <div style="margin-top:5rem">
-        <div class="sec-hd" data-aos="fade-up" style="margin-bottom:2.5rem">
-          <span class="sec-num">Posture</span>
-          <h2 style="font-size:2rem">Security Posture Dashboard</h2>
-          <p>Live compliance scores across ZEE's 350+ microservice estate.</p>
-        </div>
-        <div style="display:grid;grid-template-columns:320px 1fr;gap:3rem;align-items:center;max-width:960px;margin:0 auto" data-aos="fade-up">
-          <canvas id="metricsCanvas" aria-label="Security posture arc chart" style="width:320px;height:320px"></canvas>
-          <div>
-            <div id="metricsLegend" style="display:flex;flex-direction:column;gap:12px"></div>
-            <div style="margin-top:20px;background:#f1f5f9;border-radius:14px;padding:16px 20px;border:1px solid #e5e7eb">
-              <p style="font-size:.78rem;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Status</p>
-              <p style="font-size:.9rem;color:#0f172a;font-weight:700">
-                <span style="color:#10b981">●</span> All systems nominal · 0 production incidents since control plane deployed
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -2204,6 +2215,26 @@
           </div>
         </div>
       </div>
+
+      <!-- GitHub Contribution Heatmap -->
+      <div data-aos="fade-up" style="margin-top:3.5rem;background:white;border:1px solid #e5e7eb;border-radius:16px;padding:2rem">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem">
+          <div>
+            <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6b7280;margin-bottom:.25rem">Contribution Activity</p>
+            <h3 style="font-size:1.1rem;font-weight:700;color:#0f172a">GitHub Commit History</h3>
+          </div>
+          <a href="https://github.com/anshumaan-10" target="_blank" rel="noopener" style="font-size:.82rem;font-weight:600;color:#7c3aed;text-decoration:none">View on GitHub &#x2197;</a>
+        </div>
+        <img
+          src="https://ghchart.rshah.org/7c3aed/anshumaan-10"
+          alt="Anshumaan Singh GitHub contribution heatmap"
+          title="GitHub contribution heatmap — anshumaan-10"
+          loading="lazy"
+          style="width:100%;border-radius:8px;display:block"
+          onerror="this.parentElement.style.display='none'"
+        />
+        <p style="font-size:.75rem;color:#9ca3af;margin-top:.75rem;text-align:center">59 public repositories · Security labs, CI/CD tooling, Kubernetes hardening guides</p>
+      </div>
     </div>
   </section>
 
@@ -2219,7 +2250,7 @@
       </div>
 
       <div class="writing-grid">
-        <a class="writing-card" href="https://medium.com/@anshumaansingh10jan/kubernetes-runtime-security-deploying-crowdstrike-falcon-sensor-on-kubernetes-using-helm-charts-b8b1b1b1b1b1" target="_blank" rel="noopener" data-aos="fade-up">
+        <a class="writing-card" href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener" data-aos="fade-up">
           <span class="wc-tag wc-k8s">Kubernetes</span>
           <span class="wc-claps">115 claps</span>
           <h3>Kubernetes Runtime Security: CrowdStrike Falcon via Helm</h3>
@@ -2263,7 +2294,8 @@
           <div class="wsc-num">225</div>
           <div class="wsc-lbl">Medium followers</div>
           <div class="wsc-sub">750+ total claps · 10+ articles published</div>
-          <a href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.5rem">Follow on Medium ↗</a>
+          <p style="font-size:.78rem;color:#6b7280;margin-top:1rem;line-height:1.5">Direct article links coming soon — find all published articles on the Medium profile.</p>
+          <a href="https://medium.com/@anshumaansingh10jan" target="_blank" rel="noopener" class="btn-primary" style="margin-top:1.25rem">View All Articles on Medium ↗</a>
         </div>
       </div>
     </div>
@@ -2568,6 +2600,8 @@
         </div>
       </div>
 
+      <p class="test-credibility-note" style="text-align:center;font-size:.8rem;color:#6b7280;margin-top:1.75rem;padding:0 1rem;line-height:1.6">All feedback is from colleagues and cross-functional partners at ZEE Entertainment. Names anonymised at requesters' preference — verified peer recommendations are available on <a href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank" rel="noopener" style="color:var(--violet);font-weight:600">LinkedIn ↗</a></p>
+
       <!-- Social proof numbers -->
       <div class="social-proof-strip" data-aos="fade-up">
         <div class="sp-item">
@@ -2636,6 +2670,46 @@
             <h3 class="cs-phase-title">The Architecture</h3>
           </div>
           <div class="cs-phase-body">
+
+            <!-- Before/After Pipeline Flow Diagram -->
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:1.5rem;align-items:start;margin-bottom:2.5rem" data-aos="fade-up">
+              <!-- BEFORE -->
+              <div style="background:#fef2f2;border:1.5px solid #fecaca;border-radius:14px;padding:1.5rem">
+                <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#ef4444;margin-bottom:1rem">BEFORE — No Controls</div>
+                <div style="display:flex;flex-direction:column;gap:.5rem;font-size:.8rem">
+                  <div style="background:white;border:1px solid #fecaca;border-radius:8px;padding:.4rem .7rem;font-weight:600">&#x1f4dd; Code Commit</div>
+                  <div style="text-align:center;color:#ef4444;font-weight:700;">&#x2193;</div>
+                  <div style="background:white;border:1px solid #fecaca;border-radius:8px;padding:.4rem .7rem;font-weight:600">&#x1f504; Pipeline Run</div>
+                  <div style="text-align:center;color:#ef4444;font-weight:700;">&#x2193;</div>
+                  <div style="background:#fca5a5;border-radius:8px;padding:.4rem .7rem;font-weight:700;color:#7f1d1d">&#x26a0;&#xfe0f; Direct Deploy — No Checks</div>
+                  <div style="text-align:center;color:#ef4444;font-weight:700;">&#x2193;</div>
+                  <div style="background:#fca5a5;border-radius:8px;padding:.4rem .7rem;font-weight:700;color:#7f1d1d">&#x1f513; Any Image · Any Registry</div>
+                </div>
+              </div>
+              <!-- Arrow -->
+              <div style="display:flex;align-items:center;justify-content:center;font-size:2rem;color:#7c3aed;padding-top:3.5rem;font-weight:800">→</div>
+              <!-- AFTER -->
+              <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:14px;padding:1.5rem">
+                <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#16a34a;margin-bottom:1rem">AFTER — Zero-Trust Supply Chain</div>
+                <div style="display:flex;flex-direction:column;gap:.5rem;font-size:.8rem">
+                  <div style="background:white;border:1px solid #86efac;border-radius:8px;padding:.4rem .7rem;font-weight:600">&#x1f4dd; Code Commit + SAST/SCA</div>
+                  <div style="text-align:center;color:#16a34a;font-weight:700;">&#x2193;</div>
+                  <div style="background:white;border:1px solid #86efac;border-radius:8px;padding:.4rem .7rem;font-weight:600">&#x1f528; Container Build + Trivy Scan</div>
+                  <div style="text-align:center;color:#16a34a;font-weight:700;">&#x2193;</div>
+                  <div style="background:white;border:1px solid #86efac;border-radius:8px;padding:.4rem .7rem;font-weight:600">&#x1f4e6; SBOM via Syft (CycloneDX)</div>
+                  <div style="text-align:center;color:#16a34a;font-weight:700;">&#x2193;</div>
+                  <div style="background:white;border:1px solid #86efac;border-radius:8px;padding:.4rem .7rem;font-weight:600">&#x270d;&#xfe0f; Cosign Keyless Signing</div>
+                  <div style="text-align:center;color:#16a34a;font-weight:700;">&#x2193;</div>
+                  <div style="background:#bbf7d0;border-radius:8px;padding:.4rem .7rem;font-weight:700;color:#14532d">&#x1f6e1;&#xfe0f; Kyverno Admission Gate (45+ policies)</div>
+                  <div style="text-align:center;color:#16a34a;font-weight:700;">&#x2193;</div>
+                  <div style="background:#bbf7d0;border-radius:8px;padding:.4rem .7rem;font-weight:700;color:#14532d">&#x1f680; Deploy by SHA256 Digest</div>
+                  <div style="text-align:center;color:#16a34a;font-weight:700;">&#x2193;</div>
+                  <div style="background:#bbf7d0;border-radius:8px;padding:.4rem .7rem;font-weight:700;color:#14532d">&#x1f441;&#xfe0f; Falco Runtime Detection</div>
+                </div>
+              </div>
+            </div>
+            <p style="text-align:center;font-size:.78rem;color:#6b7280;margin-bottom:2rem">Every stage is automated and non-bypassable. No manual approval = no silent bypass path.</p>
+
             <div class="cs-arch-grid">
               <div class="cs-arch-card">
                 <div class="cs-arch-icon">🔐</div>
@@ -3136,6 +3210,17 @@
           </div>
         </div>
 
+        <div class="avail-card" style="border:1.5px solid #fecaca;background:#fff8f8" data-aos="fade-up">
+          <h3 style="color:#dc2626">&#x1f6ab; Probably Not a Great Fit If…</h3>
+          <ul class="avail-details" style="margin-top:.75rem">
+            <li>The role is <strong>purely offensive security</strong> (red team, exploit dev) — my focus is defensive architecture, pipeline security, and platform hardening</li>
+            <li>The security team <strong>only audits</strong> — I thrive where security controls are designed, built, and measured, not just reviewed</li>
+            <li>Security is positioned as a <strong>blocker</strong> for engineering rather than an enabler — I build things that make teams faster, not slower</li>
+            <li>The role requires <strong>Windows or AD/LDAP specialisation</strong> — my production depth is GCP, Linux-based Kubernetes, and cloud-native stacks</li>
+            <li>Compliance-theater posture — checkbox audits with no engineering component aren't where I do my best work</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
@@ -3303,10 +3388,120 @@
         <p>Each artifact below maps hands-on security engineering work to control outcomes, delivery mechanics, and the kinds of evidence leadership teams, auditors, and platform owners actually trust.</p>
       </div>
 
-      <div id="proofFilterMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="40"></div>
-      <div id="proofMetricsMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80"></div>
-      <div id="proofArtifactMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="120"></div>
-      <div id="proofMatrixMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="160"></div>
+      <div id="proofFilterMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="40">
+        <!-- Static fallback — JS may replace this -->
+        <div style="display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem">
+          <button class="pe-filter-btn pe-active" style="padding:.4rem 1rem;border-radius:20px;border:1.5px solid #7c3aed;background:#7c3aed;color:white;font-size:.8rem;font-weight:600;cursor:pointer">All</button>
+          <button class="pe-filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1.5px solid #e5e7eb;background:white;color:#374151;font-size:.8rem;font-weight:600;cursor:pointer">CI/CD Security</button>
+          <button class="pe-filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1.5px solid #e5e7eb;background:white;color:#374151;font-size:.8rem;font-weight:600;cursor:pointer">Kubernetes</button>
+          <button class="pe-filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1.5px solid #e5e7eb;background:white;color:#374151;font-size:.8rem;font-weight:600;cursor:pointer">Cloud Security</button>
+          <button class="pe-filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1.5px solid #e5e7eb;background:white;color:#374151;font-size:.8rem;font-weight:600;cursor:pointer">AppSec</button>
+          <button class="pe-filter-btn" style="padding:.4rem 1rem;border-radius:20px;border:1.5px solid #e5e7eb;background:white;color:#374151;font-size:.8rem;font-weight:600;cursor:pointer">Supply Chain</button>
+        </div>
+      </div>
+      <div id="proofMetricsMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem">
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;text-align:center">
+            <div style="font-size:2.2rem;font-weight:800;color:#7c3aed">100%</div>
+            <div style="font-size:.82rem;color:#374151;font-weight:600;margin-top:.25rem">Image Signing Coverage</div>
+          </div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;text-align:center">
+            <div style="font-size:2.2rem;font-weight:800;color:#7c3aed">45+</div>
+            <div style="font-size:.82rem;color:#374151;font-weight:600;margin-top:.25rem">Kyverno Admission Policies</div>
+          </div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;text-align:center">
+            <div style="font-size:2.2rem;font-weight:800;color:#10b981">0</div>
+            <div style="font-size:.82rem;color:#374151;font-weight:600;margin-top:.25rem">Unsigned Images in Production</div>
+          </div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;text-align:center">
+            <div style="font-size:2.2rem;font-weight:800;color:#2563eb">SLSA L2</div>
+            <div style="font-size:.82rem;color:#374151;font-weight:600;margin-top:.25rem">Supply Chain Compliance</div>
+          </div>
+        </div>
+      </div>
+      <div id="proofArtifactMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="120">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:2rem">
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#7c3aed;margin-bottom:.75rem">CI/CD SECURITY</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">GitHub Actions Security Pipeline</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">SAST (Semgrep/CodeQL) → SCA (Snyk/Trivy) → DAST (OWASP ZAP) → SBOM (Syft) → Cosign sign → Kyverno admission. Zero bypass paths across all 350+ microservices.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+              <span style="font-size:.72rem;background:#f3e8ff;color:#7c3aed;padding:.2rem .5rem;border-radius:6px;font-weight:600">GitHub Actions</span>
+              <span style="font-size:.72rem;background:#f3e8ff;color:#7c3aed;padding:.2rem .5rem;border-radius:6px;font-weight:600">Cosign</span>
+              <span style="font-size:.72rem;background:#f3e8ff;color:#7c3aed;padding:.2rem .5rem;border-radius:6px;font-weight:600">Syft</span>
+            </div>
+          </div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#2563eb;margin-bottom:.75rem">KUBERNETES SECURITY</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">100% CIS K8s Benchmark</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">Full CIS Kubernetes Benchmark v1.5.1 coverage. Kyverno policies enforcing PSS, non-root containers, read-only root filesystems, resource quotas, and network isolation across all namespaces.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+              <span style="font-size:.72rem;background:#eff6ff;color:#2563eb;padding:.2rem .5rem;border-radius:6px;font-weight:600">Kyverno</span>
+              <span style="font-size:.72rem;background:#eff6ff;color:#2563eb;padding:.2rem .5rem;border-radius:6px;font-weight:600">Falco</span>
+              <span style="font-size:.72rem;background:#eff6ff;color:#2563eb;padding:.2rem .5rem;border-radius:6px;font-weight:600">CIS Benchmark</span>
+            </div>
+          </div>
+          <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#10b981;margin-bottom:.75rem">SUPPLY CHAIN</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">SBOM-Driven Policy Engine</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">CycloneDX SBOMs generated via Syft, attached as OCI attestations, and verified by Kyverno at admission time. Provenance travels with the artifact from commit to production deployment.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem">
+              <span style="font-size:.72rem;background:#ecfdf5;color:#10b981;padding:.2rem .5rem;border-radius:6px;font-weight:600">Syft</span>
+              <span style="font-size:.72rem;background:#ecfdf5;color:#10b981;padding:.2rem .5rem;border-radius:6px;font-weight:600">CycloneDX</span>
+              <span style="font-size:.72rem;background:#ecfdf5;color:#10b981;padding:.2rem .5rem;border-radius:6px;font-weight:600">SLSA L2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="proofMatrixMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="160">
+        <div style="background:white;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden">
+          <div style="background:#f8fafc;border-bottom:1px solid #e5e7eb;padding:1rem 1.5rem;font-size:.8rem;font-weight:700;color:#374151">Security Control Coverage Matrix</div>
+          <div style="overflow-x:auto">
+            <table style="width:100%;border-collapse:collapse;font-size:.8rem">
+              <thead>
+                <tr style="background:#f1f5f9">
+                  <th style="padding:.75rem 1rem;text-align:left;font-weight:700;color:#374151">Control Domain</th>
+                  <th style="padding:.75rem 1rem;text-align:center;font-weight:700;color:#374151">Tool</th>
+                  <th style="padding:.75rem 1rem;text-align:center;font-weight:700;color:#374151">Coverage</th>
+                  <th style="padding:.75rem 1rem;text-align:center;font-weight:700;color:#374151">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-top:1px solid #f1f5f9">
+                  <td style="padding:.7rem 1rem;font-weight:600;color:#0f172a">Static Analysis (SAST)</td>
+                  <td style="padding:.7rem 1rem;text-align:center;color:#6b7280">Semgrep, CodeQL</td>
+                  <td style="padding:.7rem 1rem;text-align:center;font-weight:700;color:#10b981">100%</td>
+                  <td style="padding:.7rem 1rem;text-align:center"><span style="background:#dcfce7;color:#166534;padding:.15rem .5rem;border-radius:6px;font-size:.72rem;font-weight:700">ACTIVE</span></td>
+                </tr>
+                <tr style="border-top:1px solid #f1f5f9;background:#fafafa">
+                  <td style="padding:.7rem 1rem;font-weight:600;color:#0f172a">Dependency Analysis (SCA)</td>
+                  <td style="padding:.7rem 1rem;text-align:center;color:#6b7280">Snyk, Trivy</td>
+                  <td style="padding:.7rem 1rem;text-align:center;font-weight:700;color:#10b981">100%</td>
+                  <td style="padding:.7rem 1rem;text-align:center"><span style="background:#dcfce7;color:#166534;padding:.15rem .5rem;border-radius:6px;font-size:.72rem;font-weight:700">ACTIVE</span></td>
+                </tr>
+                <tr style="border-top:1px solid #f1f5f9">
+                  <td style="padding:.7rem 1rem;font-weight:600;color:#0f172a">Image Signing &amp; Attestation</td>
+                  <td style="padding:.7rem 1rem;text-align:center;color:#6b7280">Cosign, Sigstore</td>
+                  <td style="padding:.7rem 1rem;text-align:center;font-weight:700;color:#10b981">100%</td>
+                  <td style="padding:.7rem 1rem;text-align:center"><span style="background:#dcfce7;color:#166534;padding:.15rem .5rem;border-radius:6px;font-size:.72rem;font-weight:700">ACTIVE</span></td>
+                </tr>
+                <tr style="border-top:1px solid #f1f5f9;background:#fafafa">
+                  <td style="padding:.7rem 1rem;font-weight:600;color:#0f172a">Runtime Threat Detection</td>
+                  <td style="padding:.7rem 1rem;text-align:center;color:#6b7280">Falco, SIEM</td>
+                  <td style="padding:.7rem 1rem;text-align:center;font-weight:700;color:#10b981">100%</td>
+                  <td style="padding:.7rem 1rem;text-align:center"><span style="background:#dcfce7;color:#166534;padding:.15rem .5rem;border-radius:6px;font-size:.72rem;font-weight:700">ACTIVE</span></td>
+                </tr>
+                <tr style="border-top:1px solid #f1f5f9">
+                  <td style="padding:.7rem 1rem;font-weight:600;color:#0f172a">Dynamic Analysis (DAST)</td>
+                  <td style="padding:.7rem 1rem;text-align:center;color:#6b7280">OWASP ZAP</td>
+                  <td style="padding:.7rem 1rem;text-align:center;font-weight:700;color:#f59e0b">93%</td>
+                  <td style="padding:.7rem 1rem;text-align:center"><span style="background:#fef3c7;color:#92400e;padding:.15rem .5rem;border-radius:6px;font-size:.72rem;font-weight:700">EXPANDING</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3320,7 +3515,40 @@
         <h2>How I Run Security Work in Production</h2>
         <p>Different orgs need different security lanes. This breaks down how I approach DevSecOps, platform hardening, AppSec, cloud guardrails, and incident response with repeatable operating models instead of heroics.</p>
       </div>
-      <div id="deliveryLabMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80"></div>
+      <div id="deliveryLabMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="80">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem">
+          <div style="background:white;border:1.5px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">&#x2699;&#xfe0f;</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">DevSecOps Lane</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">Embed security controls into CI/CD pipelines using shared GitHub Actions templates. SAST on every PR, SCA on every build, DAST post-deploy, SBOM attached to every release artifact. Teams adopt by default, not by request.</p>
+            <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid #f1f5f9;font-size:.75rem;color:#7c3aed;font-weight:600">Tools: Semgrep · Trivy · OWASP ZAP · Syft · Cosign</div>
+          </div>
+          <div style="background:white;border:1.5px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">&#x2638;&#xfe0f;</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">Platform Hardening Lane</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">Harden the platform layer: CIS Kubernetes Benchmark, Kyverno admission policies, Falco runtime detection, network policies, and namespace isolation. Policy-as-code means controls are version-controlled, peer-reviewed, and auditable.</p>
+            <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid #f1f5f9;font-size:.75rem;color:#2563eb;font-weight:600">Tools: Kyverno · Falco · Helm · OPA · CIS Benchmark</div>
+          </div>
+          <div style="background:white;border:1.5px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">&#x2601;&#xfe0f;</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">Cloud Governance Lane</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">GCP org-level constraint policies, VPC Service Controls, IAM deny policies, and workload identity federation. Cloud security enforced at the organization level — not per service, not per team.</p>
+            <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid #f1f5f9;font-size:.75rem;color:#10b981;font-weight:600">Tools: GCP Org Policy · VPC-SC · IAM · Terraform</div>
+          </div>
+          <div style="background:white;border:1.5px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">&#x1f6e1;&#xfe0f;</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">AppSec Lane</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">Pen testing, OWASP ASVS L2 assessments, and threat modeling for critical services. STRIDE+DREAD sessions quarterly, producing actionable threat matrices shared with engineering and architecture teams.</p>
+            <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid #f1f5f9;font-size:.75rem;color:#f59e0b;font-weight:600">Tools: Burp Suite · OWASP ZAP · STRIDE · Threat Model</div>
+          </div>
+          <div style="background:white;border:1.5px solid #e5e7eb;border-radius:14px;padding:1.5rem">
+            <div style="font-size:1.5rem;margin-bottom:.75rem">&#x1f6a8;</div>
+            <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">Incident Response Lane</h4>
+            <p style="font-size:.82rem;color:#6b7280;line-height:1.6">8 IR playbooks covering credential exposure, supply chain compromise, container escape, and API abuse. Blameless post-incident reviews with structured 5-Whys. Evidence collection automated into SIEM at detection time.</p>
+            <div style="margin-top:1rem;padding-top:.75rem;border-top:1px solid #f1f5f9;font-size:.75rem;color:#ef4444;font-weight:600">Process: IR Playbooks · SIEM · Blameless RCAs</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3335,9 +3563,73 @@
         <p>A realistic onboarding ramp for a security engineer joining a team that wants measurable progress: baseline the risk, remove the sharpest pain, improve defaults, and leave behind systems the team can keep operating.</p>
       </div>
 
-      <div id="first90RoadmapMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="50"></div>
-      <div id="first90PrinciplesMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="90"></div>
-      <div id="first90IssueMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="130"></div>
+      <div id="first90RoadmapMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="50">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-bottom:2rem">
+          <div style="background:white;border:1.5px solid #7c3aed30;border-radius:14px;padding:1.5rem;border-top:3px solid #7c3aed">
+            <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#7c3aed;margin-bottom:1rem">Days 1–30 — Listen &amp; Map</div>
+            <ul style="font-size:.82rem;color:#374151;line-height:1.8;list-style:none;padding:0">
+              <li>&#x2713; Shadow CI/CD pipelines and deployment workflows</li>
+              <li>&#x2713; Interview 5+ engineers on biggest security pain points</li>
+              <li>&#x2713; Map threat surface across all critical services</li>
+              <li>&#x2713; Inventory existing tools, controls, and gaps</li>
+              <li>&#x2713; Understand on-call and incident response process</li>
+            </ul>
+            <div style="margin-top:1rem;font-size:.75rem;color:#6b7280;font-style:italic">Deliverable: Security gap report with prioritized backlog</div>
+          </div>
+          <div style="background:white;border:1.5px solid #2563eb30;border-radius:14px;padding:1.5rem;border-top:3px solid #2563eb">
+            <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#2563eb;margin-bottom:1rem">Days 31–60 — Remove Sharpest Pain</div>
+            <ul style="font-size:.82rem;color:#374151;line-height:1.8;list-style:none;padding:0">
+              <li>&#x2713; Ship quick wins: secrets scanning, dependency alerts</li>
+              <li>&#x2713; Harden the highest-risk service end-to-end as a template</li>
+              <li>&#x2713; Stand up shared GitHub Actions security template</li>
+              <li>&#x2713; Tune false-positive noise in existing security tooling</li>
+              <li>&#x2713; Draft IR playbook for top 3 incident scenarios</li>
+            </ul>
+            <div style="margin-top:1rem;font-size:.75rem;color:#6b7280;font-style:italic">Deliverable: Working security pipeline template + 3 IR playbooks</div>
+          </div>
+          <div style="background:white;border:1.5px solid #10b98130;border-radius:14px;padding:1.5rem;border-top:3px solid #10b981">
+            <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#10b981;margin-bottom:1rem">Days 61–90 — Improve Defaults</div>
+            <ul style="font-size:.82rem;color:#374151;line-height:1.8;list-style:none;padding:0">
+              <li>&#x2713; Roll secure baseline to additional service cohorts</li>
+              <li>&#x2713; Deliver first security metrics dashboard to leadership</li>
+              <li>&#x2713; Establish vulnerability SLA tracking and reporting</li>
+              <li>&#x2713; Run first STRIDE threat modeling session with team</li>
+              <li>&#x2713; Present 6-month security roadmap with measurable outcomes</li>
+            </ul>
+            <div style="margin-top:1rem;font-size:.75rem;color:#6b7280;font-style:italic">Deliverable: Security metrics dashboard + 6-month roadmap</div>
+          </div>
+        </div>
+      </div>
+      <div id="first90PrinciplesMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="90">
+        <div style="background:#f8fafc;border:1px solid #e5e7eb;border-radius:14px;padding:1.5rem;margin-bottom:2rem">
+          <h4 style="font-size:.9rem;font-weight:700;color:#0f172a;margin-bottom:1rem">Operating Principles for Days 1–90</h4>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem">
+            <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:#374151">
+              <span style="color:#7c3aed;font-weight:700;flex-shrink:0">01</span>
+              <span><strong>Listen before building.</strong> Understand what engineering teams actually find painful before adding new tools or controls.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:#374151">
+              <span style="color:#7c3aed;font-weight:700;flex-shrink:0">02</span>
+              <span><strong>Ship one thing completely.</strong> One fully-hardened service template > partial controls across 50 services.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:#374151">
+              <span style="color:#7c3aed;font-weight:700;flex-shrink:0">03</span>
+              <span><strong>Measure from day one.</strong> Define what success looks like in metrics before any work starts. If it's not measurable, deprioritize it.</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:#374151">
+              <span style="color:#7c3aed;font-weight:700;flex-shrink:0">04</span>
+              <span><strong>Make security the easy path.</strong> The secure default should require less effort than the insecure alternative.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="first90IssueMount" class="v19-reveal" data-aos="fade-up" data-aos-delay="130">
+        <div style="background:white;border:1.5px solid #7c3aed30;border-radius:14px;padding:1.5rem">
+          <div style="font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#7c3aed;margin-bottom:.75rem">Most Common First Issue Found</div>
+          <h4 style="font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:.5rem">Secrets in Source Control / Misconfigured IAM</h4>
+          <p style="font-size:.82rem;color:#6b7280;line-height:1.6">In almost every org I've audited or joined, the first critical finding within 30 days is either secrets committed to version control (API keys, connection strings, JWT secrets) or IAM permissions that are far broader than required. Both are fixable fast, both have real blast radius, and both are leading indicators of a security culture that needs attention. This is where Days 1–30 tend to pay off most immediately.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -3507,6 +3799,27 @@
           <summary>How do you manage security at scale across 350+ microservices?</summary>
           <div class="faq-ans">
             Through platform standardization and policy-as-code. Manual review does not scale to 350+ services, so controls must be embedded in CI/CD and admission policies. Shared GitHub Actions templates and a consistent evidence model (scan output + digest + approvals) ensure every service follows the same secure baseline.
+          </div>
+        </details>
+
+        <details class="faq-item" data-aos="fade-up">
+          <summary>What's something you argued against that you turned out to be right about?</summary>
+          <div class="faq-ans">
+            Early in the DevSecOps rollout, there was a strong push to deploy the security pipeline to all 350+ services at once — "big bang" cut-over. I pushed back: a single misconfigured Kyverno policy would block every deployment across the entire platform simultaneously. Instead, we phased the rollout service-by-service, starting with non-critical services, running in &ldquo;audit&rdquo; mode before &ldquo;enforce&rdquo; mode. Three services had policy violations that would have caused production outages. The approach was right. The lesson: admission control mistakes fail loudly and immediately — test the blast radius before you flip the switch.
+          </div>
+        </details>
+
+        <details class="faq-item" data-aos="fade-up">
+          <summary>What was the hardest incident you've dealt with, and what did you get wrong first?</summary>
+          <div class="faq-ans">
+            The hardest was discovering hardcoded Azure Storage connection strings committed to GitHub Enterprise — affecting 12 services, all with live production access. My first instinct was to rotate the keys immediately. That was the wrong sequence. Rotating before the blast radius was mapped meant we might miss affected services, causing partial failures that were harder to trace. The correct order was: inventory all affected services → map all credentials to their dependent services → then rotate in order of blast radius, starting with the highest-access credential. We got it right eventually, zero downtime, but those first 20 minutes of wanting to "just fix it now" were the most dangerous. Incident response is a sequencing problem, not a speed problem.
+          </div>
+        </details>
+
+        <details class="faq-item" data-aos="fade-up">
+          <summary>How do you convince a VP of Engineering or CFO that security investment is worth the cost?</summary>
+          <div class="faq-ans">
+            I stop talking about CVEs and start talking about delivery confidence. The question isn't &ldquo;how bad could a breach be?&rdquo; — it's &ldquo;how much does uncertainty about your supply chain cost you per sprint?&rdquo; At ZEE, the reframe was simple: before the SBOM and admission gate pipeline, any deployment could silently include a vulnerable or unsigned image. That's not a security problem — it's a reliability and auditability problem. Framing security posture as &ldquo;operational confidence&rdquo; connects directly to what VPs and CFOs already measure. Once the audit evidence model was in place, our SOC 2 audit prep time dropped by 60%. That number converts to real engineering hours. That's the conversation that moves budget.
           </div>
         </details>
       </div>
@@ -3681,13 +3994,19 @@
           </div>
 
           <div class="contact-card-list">
-            <a class="cc" href="mailto:anshumaansingh10jan@gmail.com">
-              <div class="cc-ico">✉️</div>
-              <div class="cc-info">
-                <div class="cc-l">Email</div>
-                <div class="cc-v">anshumaansingh10jan@gmail.com</div>
-              </div>
-            </a>
+            <div style="position:relative">
+              <a class="cc" href="mailto:anshumaansingh10jan@gmail.com">
+                <div class="cc-ico">&#x2709;&#xfe0f;</div>
+                <div class="cc-info">
+                  <div class="cc-l">Email</div>
+                  <div class="cc-v">anshumaansingh10jan@gmail.com</div>
+                </div>
+              </a>
+              <button class="email-copy-btn" id="copyEmailBtn" data-email="anshumaansingh10jan@gmail.com" title="Copy email address" aria-label="Copy email">
+                <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                Copy
+              </button>
+            </div>
             <a class="cc" href="https://www.linkedin.com/in/anshumaan-singh-6b51b5239/" target="_blank" rel="noopener">
               <div class="cc-ico">💼</div>
               <div class="cc-info">
@@ -3717,10 +4036,17 @@
               </div>
             </a>
             <a class="cc" href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank" rel="noopener">
-              <div class="cc-ico">📄</div>
+              <div class="cc-ico">&#x1f4c4;</div>
               <div class="cc-info">
                 <div class="cc-l">Resume</div>
                 <div class="cc-v">Download latest PDF</div>
+              </div>
+            </a>
+            <a class="cc" href="mailto:anshumaansingh10jan@gmail.com?subject=Schedule+a+Call&body=Hi+Anshumaan%2C%0A%0AI%27d+like+to+schedule+a+30-minute+introductory+call+to+discuss+a+potential+opportunity.%0A%0ALooking+forward+to+connecting!" style="background:#f0fdf4;border-color:#86efac">
+              <div class="cc-ico">&#x1f4c5;</div>
+              <div class="cc-info">
+                <div class="cc-l">Schedule a Call</div>
+                <div class="cc-v">Request a 30-min intro call via email</div>
               </div>
             </a>
           </div>
@@ -3864,7 +4190,7 @@
   <!-- Only our portfolio.js -->
   <script src="./enhancements-v19-data.js?v=19" defer></script>
   <script src="./enhancements-v19.js?v=19" defer></script>
-  <script src="./portfolio.js?v=18" defer></script>
+  <script src="./portfolio.js?v=22" defer></script>
   <!-- Failsafe: force-hide loader if JS fails -->
   <script>
     setTimeout(function(){
