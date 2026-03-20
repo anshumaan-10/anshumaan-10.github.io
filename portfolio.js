@@ -467,19 +467,156 @@
     layers[0] && layers[0].click();
   })();
 
-  /* ── PIPELINE HOVER ANIMATION ── */
+  /* ── PIPELINE HOVER ANIMATION + CLICK TO DETAIL SUBFLOW ── */
   (function initPipeline() {
     const nodes = document.querySelectorAll('.pipe-node');
-    nodes.forEach(n => {
-      n.addEventListener('mouseenter', () => {
-        n.style.transform = 'scale(1.18) translateY(-8px)';
+    const stages = document.querySelectorAll('.pipe-stage');
+    const detailEl = document.getElementById('pipeDetail');
+
+    /* Substep data for each of the 7 stages (index 0-6) */
+    const stageData = [
+      {
+        name:'Code & PR Governance', emoji:'💻', color:'#7c3aed',
+        desc:'Every line of code goes through a verifiable, auditable gate before it ever touches the main branch.',
+        steps:[
+          { n:'01', icon:'🔀', title:'PR-Only Merges', desc:'CODEOWNERS enforces review ownership. No direct push to main — ever.', tool:'CODEOWNERS' },
+          { n:'02', icon:'🔒', title:'Branch Protection', desc:'Required status checks + signed commits enforced at org level via GitHub Enterprise.', tool:'Branch Rules' },
+          { n:'03', icon:'🔍', title:'Push-Time Secret Scan', desc:'Custom regex patterns catch org-specific credentials on every push before they enter history.', tool:'GH Advanced Security' },
+          { n:'04', icon:'✅', title:'Review Gates', desc:'Minimum reviews + conversation resolution enforced. No self-approval. Reviewer rotation tracked.', tool:'GitHub API' },
+          { n:'05', icon:'📋', title:'Audit Logging', desc:'All PR events, reviews, and merges stream to SIEM in real time. Full legal-grade record.', tool:'GitHub Audit Log' },
+        ]
+      },
+      {
+        name:'Build & Static Analysis', emoji:'🏗️', color:'#2563eb',
+        desc:'Before a container image exists, code and infrastructure are scanned at the source.',
+        steps:[
+          { n:'01', icon:'🔎', title:'SAST (Semgrep)', desc:'Static analysis catches injection, XSS, hardcoded secrets, insecure API usage across all languages.', tool:'Semgrep' },
+          { n:'02', icon:'📦', title:'SCA Dependency Scan', desc:'Snyk + Trivy cross-validate every dependency\'s CVE status against org-defined thresholds.', tool:'Snyk / Trivy' },
+          { n:'03', icon:'🏗️', title:'IaC Security Scan', desc:'Terraform plans and K8s manifests scanned for misconfigurations before any apply.', tool:'Checkov' },
+          { n:'04', icon:'🐳', title:'Dockerfile Lint', desc:'Dockerfile analysed for unsafe base images, root users, exposed ports, and missing healthchecks.', tool:'Hadolint' },
+          { n:'05', icon:'🚫', title:'Policy Threshold Gate', desc:'High/Critical CVEs halt the build. CVSS + EPSS used for triage. No noise — only block on exploitable risk.', tool:'Policy Engine' },
+        ]
+      },
+      {
+        name:'Container Scanning & CVE Triage', emoji:'🔍', color:'#10b981',
+        desc:'Two independent scanners. Cross-validated results. No scanner trust failures.',
+        steps:[
+          { n:'01', icon:'🔬', title:'Trivy Deep Scan', desc:'Full OS + language-package CVE scan against NVD, GitHub Advisory, and custom databases.', tool:'Trivy' },
+          { n:'02', icon:'☁️', title:'Prisma Cloud (twistcli)', desc:'Cloud-native scanner with org-defined compliance policies and policy-block enforcement.', tool:'Prisma Cloud' },
+          { n:'03', icon:'📊', title:'CVSS + EPSS Triage', desc:'Severity combined with exploitation probability. Avoids blocking on theoretical-only CVEs.', tool:'EPSS + NVD' },
+          { n:'04', icon:'📄', title:'Scan Report Attestation', desc:'JSON scan output signed and attached as an attestation layer to the image. Audit-ready.', tool:'Cosign Attach' },
+          { n:'05', icon:'🚧', title:'Block or Promote Gate', desc:'Critical/High = build dies. Medium/Low = document with expiry + required review ticket.', tool:'Policy Gate' },
+        ]
+      },
+      {
+        name:'SBOM Generation & Signing', emoji:'🔐', color:'#f59e0b',
+        desc:'Every artifact that ships carries verifiable provenance — who built it, from what, and when.',
+        steps:[
+          { n:'01', icon:'📦', title:'SBOM Generation (Syft)', desc:'CycloneDX/SPDX SBOM listing every dependency — name, version, license, and package hash.', tool:'Syft' },
+          { n:'02', icon:'🔏', title:'Cosign Image Signing', desc:'Keyless signing via Sigstore OIDC flow — identity-bound, no long-lived private keys stored.', tool:'Cosign / Sigstore' },
+          { n:'03', icon:'📜', title:'Attestation Attach', desc:'SBOM + scan output attached as signed attestations. Verifiable chain-of-custody established.', tool:'Cosign Attach' },
+          { n:'04', icon:'✍️', title:'Digest Pinning', desc:'Image digest (SHA256) written to deployment manifest. Mutable :latest tags are banned.', tool:'Registry Digest' },
+          { n:'05', icon:'🔗', title:'Provenance Record', desc:'Commit → build ID → image digest → SBOM hash all linked in Artifact Registry metadata.', tool:'Artifact Registry' },
+        ]
+      },
+      {
+        name:'Controlled Artifact Promotion', emoji:'🚀', color:'#6366f1',
+        desc:'No image reaches production without a verified signature, QA approval, and registry validation.',
+        steps:[
+          { n:'01', icon:'🔎', title:'Signature Verification', desc:'Promotion gate verifies Cosign signature before pull. An unsigned image is a hard rejection.', tool:'Cosign Verify' },
+          { n:'02', icon:'🗃️', title:'Registry Allowlist Check', desc:'Only images from approved registry paths pass. Unknown sources are silently blocked.', tool:'Registry Policy' },
+          { n:'03', icon:'👤', title:'QA Human Approval', desc:'Named QA owner approves promotion. No self-approval path. Action is logged to audit trail.', tool:'GitHub Environments' },
+          { n:'04', icon:'📦', title:'Image Promote (no rebuild)', desc:'QA copies approved image to UAT/Prod repo. The exact same bits that were scanned ship to prod.', tool:'Registry Copy' },
+          { n:'05', icon:'📋', title:'GitOps Manifest Update', desc:'Manifest updated with immutable digest. ArgoCD detects drift and triggers controlled rollout.', tool:'ArgoCD / Helm' },
+        ]
+      },
+      {
+        name:'Kubernetes Admission & Deploy', emoji:'☸️', color:'#0ea5e9',
+        desc:'Kyverno acts as the last enforcement layer before any workload reaches the cluster.',
+        steps:[
+          { n:'01', icon:'🛂', title:'Kyverno Admission Control', desc:'Every manifest validated at admission: no privileged pods, required labels, resource limits enforced.', tool:'Kyverno' },
+          { n:'02', icon:'📷', title:'Image Signature Check', desc:'ClusterPolicy verifies Cosign signature on every image at deploy time. Unsigned = rejected.', tool:'Kyverno + Cosign' },
+          { n:'03', icon:'🔗', title:'Registry Allowlist Enforce', desc:'Only images from approved registries admitted. Blocks supply-chain injection at the cluster gate.', tool:'Kyverno Policy' },
+          { n:'04', icon:'🔄', title:'ArgoCD GitOps Sync', desc:'Cluster state must mirror Git. Manual kubectl apply is blocked — GitOps is the only deploy path.', tool:'ArgoCD' },
+          { n:'05', icon:'💚', title:'Health Probe Validation', desc:'Readiness + liveness probes enforced via Kyverno. Pod receives no traffic before passing health checks.', tool:'K8s Probes' },
+        ]
+      },
+      {
+        name:'Runtime Monitoring & DAST', emoji:'📡', color:'#ec4899',
+        desc:'Post-deploy is not post-security. Runtime and dynamic testing run continuously.',
+        steps:[
+          { n:'01', icon:'🦅', title:'Falco Runtime Detection', desc:'eBPF syscall-level monitoring detects container escapes, privilege escalations, unexpected shell spawns.', tool:'Falco' },
+          { n:'02', icon:'🕷️', title:'OWASP ZAP DAST', desc:'Dynamic scanner uses kubectl-extracted live URLs to test auth bypass, injection, and header security.', tool:'OWASP ZAP' },
+          { n:'03', icon:'📱', title:'Slack Release Telemetry', desc:'Every deploy posts commit SHA, build actor, image digest, and scan status to the security channel.', tool:'Slack / GH Actions' },
+          { n:'04', icon:'📊', title:'SIEM Correlation', desc:'GitHub audit + GCP audit + Falco alerts correlated. Anomalies surface immediately, not in batch.', tool:'SIEM' },
+          { n:'05', icon:'🔔', title:'Runbook-Linked Alerts', desc:'Every alert includes a runbook link. No ambiguity: who responds, what they check, when it escalates.', tool:'Incident Runbook' },
+        ]
+      },
+    ];
+
+    function renderDetail(idx) {
+      const d = stageData[idx];
+      if (!d || !detailEl) return;
+
+      const stepsHtml = d.steps.map((s, i) => `
+        <div class="pd-step">
+          <div class="pd-step-inner">
+            <div class="pd-step-num">Step ${s.n}</div>
+            <div class="pd-step-icon">${s.icon}</div>
+            <div class="pd-step-name">${s.title}</div>
+            <div class="pd-step-desc">${s.desc}</div>
+            <span class="pd-step-tool">${s.tool}</span>
+          </div>
+        </div>
+        ${i < d.steps.length - 1 ? '<div class="pd-arrow"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>' : ''}
+      `).join('');
+
+      detailEl.innerHTML = `
+        <div class="pd-header">
+          <div class="pd-emoji">${d.emoji}</div>
+          <div class="pd-title-block">
+            <div class="pd-stage-label">Stage ${idx + 1} of 7</div>
+            <div class="pd-title">${d.name}</div>
+            <div class="pd-desc">${d.desc}</div>
+          </div>
+        </div>
+        <div class="pd-flow">${stepsHtml}</div>
+      `;
+
+      /* animate steps in */
+      detailEl.querySelectorAll('.pd-step').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(16px)';
+        el.style.transition = 'opacity .3s ease, transform .3s ease';
+        setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, i * 70);
       });
-      n.addEventListener('mouseleave', () => {
-        n.style.transform = '';
+    }
+
+    /* click handler */
+    stages.forEach((stage, idx) => {
+      stage.style.cursor = 'pointer';
+      stage.addEventListener('click', () => {
+        stages.forEach(s => s.classList.remove('pipe-active'));
+        stage.classList.add('pipe-active');
+        renderDetail(idx);
+        /* scroll detail panel into view softly */
+        const wrap = document.getElementById('pipeDetailWrap');
+        if (wrap) {
+          setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+        }
+      });
+      /* hover scale */
+      stage.addEventListener('mouseenter', () => {
+        const n = stage.querySelector('.pipe-node');
+        if (n) n.style.transform = 'scale(1.18) translateY(-8px)';
+      });
+      stage.addEventListener('mouseleave', () => {
+        const n = stage.querySelector('.pipe-node');
+        if (n) n.style.transform = '';
       });
     });
 
-    // animate pipeline in sequence on scroll
+    /* animate pipeline in sequence on scroll */
     const track = document.querySelector('.pipeline-track');
     if (!track) return;
     const ob = new IntersectionObserver(([e]) => {
@@ -499,6 +636,101 @@
       s.style.transform = 'translateY(30px)';
       s.style.transition = 'opacity .5s ease, transform .5s ease';
     });
+
+    /* pre-render first stage so panel isn't blank */
+    if (stages.length) {
+      stages[0].classList.add('pipe-active');
+      renderDetail(0);
+    }
+  })();
+
+  /* ── DARK METRICS COUNTER ANIMATION ── */
+  (function initDmCounters() {
+    const counters = document.querySelectorAll('.dm-counter[data-target]');
+    if (!counters.length) return;
+    const ob = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        if (isNaN(target)) return;
+        let start = null;
+        const dur = 1600;
+        function step(ts) {
+          if (!start) start = ts;
+          const p = Math.min((ts - start) / dur, 1);
+          const ease = 1 - Math.pow(1 - p, 4);
+          el.textContent = Math.round(ease * target);
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+        ob.unobserve(el);
+      });
+    }, { threshold:.3 });
+    counters.forEach(c => ob.observe(c));
+  })();
+
+  /* ── TERMINAL WIDGET ANIMATION ── */
+  (function initTerminal() {
+    const body = document.getElementById('termBody');
+    if (!body) return;
+    const lines = [
+      { type:'cmd',  text:'anshumaan --contact' },
+      { type:'out',  text:'> Anshumaan Singh — Security Systems Engineer' },
+      { type:'out',  text:'> Location  : Bengaluru, India (IST)' },
+      { type:'out',  text:'> Company   : ZEE Entertainment Enterprises Ltd' },
+      { type:'cmd',  text:'cat status.json' },
+      { type:'value',text:'{ "open_to_work": true, "role": "Security Engineering / DevSecOps" }' },
+      { type:'cmd',  text:'echo $EMAIL' },
+      { type:'value',text:'anshumaansingh10jan@gmail.com' },
+      { type:'cmd',  text:'curl linkedin.com/in/anshumaan-singh-6b51b5239' },
+      { type:'value',text:'→ 200 OK | Profile live' },
+    ];
+    let lineIdx = 0;
+    const ob = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      ob.disconnect();
+      typeLines();
+    }, { threshold:.4 });
+    ob.observe(body);
+
+    function typeLines() {
+      if (lineIdx >= lines.length) {
+        /* add blinking cursor at end */
+        const cur = document.createElement('div');
+        cur.className = 'tw-line';
+        cur.innerHTML = '<span class="tw-prompt">$</span> <span class="tw-cursor"></span>';
+        body.appendChild(cur);
+        return;
+      }
+      const l = lines[lineIdx++];
+      const div = document.createElement('div');
+      div.className = 'tw-line';
+      if (l.type === 'cmd') {
+        div.innerHTML = `<span class="tw-prompt">$</span> <span class="tw-cmd"></span>`;
+        body.appendChild(div);
+        const span = div.querySelector('.tw-cmd');
+        typeText(span, l.text, 38, typeLines);
+      } else if (l.type === 'value') {
+        div.innerHTML = `<span class="tw-value">${l.text}</span>`;
+        body.appendChild(div);
+        setTimeout(typeLines, 80);
+      } else {
+        div.innerHTML = `<span class="tw-out">${l.text}</span>`;
+        body.appendChild(div);
+        setTimeout(typeLines, 60);
+      }
+    }
+    function typeText(el, text, speed, done) {
+      let i = 0;
+      function t() {
+        el.textContent = text.slice(0, ++i);
+        if (i < text.length) setTimeout(t, speed);
+        else setTimeout(done, 200);
+      }
+      t();
+    }
   })();
 
   /* ── AOS INIT ── */
