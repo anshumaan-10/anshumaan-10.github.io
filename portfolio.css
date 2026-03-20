@@ -13150,14 +13150,14 @@ textarea:focus-visible {
    ═════════════════════════════════════════════════════════ */
 
 /* ── V18-1: TESTIMONIALS — Social Proof Section ── */
-.testimonial-carousel{position:relative;overflow:hidden;border-radius:20px;background:var(--bg-card);border:1px solid var(--border);padding:2.5rem 2rem}
-.test-track{display:flex;gap:2rem;transition:transform .5s cubic-bezier(.4,0,.2,1);will-change:transform}
-.test-card{min-width:100%;flex-shrink:0;position:relative;padding:2.5rem 2rem;background:linear-gradient(135deg,rgba(124,58,237,.03),rgba(37,99,235,.03));border-radius:16px;border:1px solid var(--border)}
+.testimonial-carousel{position:relative;overflow:hidden;border-radius:20px;background:var(--bg-card);border:1px solid var(--border);padding:2rem;isolation:isolate}
+.test-track{display:flex;gap:0;align-items:stretch;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
+.test-card{min-width:100%;flex-shrink:0;box-sizing:border-box;display:flex;flex-direction:column;position:relative;padding:2.35rem 2rem 1.85rem;background:linear-gradient(135deg,rgba(124,58,237,.03),rgba(37,99,235,.03));border-radius:16px;border:1px solid var(--border)}
 .test-card:hover{border-color:var(--violet);box-shadow:0 8px 32px rgba(124,58,237,.08)}
-.test-quote-icon{position:absolute;top:1.5rem;right:1.5rem}
-.test-text{font-size:1.08rem;line-height:1.75;color:var(--text);font-weight:400;margin-bottom:1.75rem;font-style:italic;position:relative;padding-left:.5rem}
+.test-quote-icon{position:absolute;top:1.4rem;right:1.4rem;pointer-events:none}
+.test-text{font-size:1.04rem;line-height:1.78;color:var(--text);font-weight:400;margin-bottom:1.6rem;font-style:italic;position:relative;padding:.15rem 3rem 0 .35rem;max-width:62rem}
 .test-text em{color:var(--violet);font-style:italic;font-weight:600}
-.test-author{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.test-author{display:flex;align-items:center;gap:1rem;margin-top:auto;margin-bottom:1rem;padding-top:1rem;border-top:1px solid rgba(148,163,184,.18)}
 .test-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:white;flex-shrink:0}
 .test-av-1{background:linear-gradient(135deg,#7c3aed,#2563eb)}
 .test-av-2{background:linear-gradient(135deg,#10b981,#059669)}
@@ -13173,7 +13173,7 @@ textarea:focus-visible {
 .test-role{font-size:.82rem;color:var(--text-muted)}
 .test-rating{display:flex;gap:2px}
 .test-star{color:#f59e0b;font-size:1.1rem}
-.test-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.5rem}
+.test-nav{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.5rem;padding-top:1.15rem;border-top:1px solid rgba(148,163,184,.16)}
 .test-prev,.test-next{width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--text)}
 .test-prev:hover,.test-next:hover{border-color:var(--violet);color:var(--violet);background:rgba(124,58,237,.05)}
 .test-dots{display:flex;gap:8px}
@@ -13386,8 +13386,9 @@ textarea:focus-visible {
   .cs-timeline{padding-left:2.5rem}
   .cs-phase-num{left:-2.5rem;width:2rem;height:2rem;font-size:.6rem}
   .cs-timeline::before{left:1rem}
+  .testimonial-carousel{padding:1.2rem}
   .test-card{padding:1.5rem 1rem}
-  .test-text{font-size:.95rem}
+  .test-text{font-size:.95rem;padding-right:2.2rem}
 }
 @media(max-width:480px){
   .stride-grid{grid-template-columns:1fr}

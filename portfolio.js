@@ -1802,11 +1802,12 @@
 
   /* ── 46. TESTIMONIAL CAROUSEL ── */
   (function initTestimonialCarousel() {
+    var carousel = document.getElementById('testimonialCarousel');
     var track = document.getElementById('testTrack');
     var prevBtn = document.getElementById('testPrev');
     var nextBtn = document.getElementById('testNext');
     var dotsWrap = document.getElementById('testDots');
-    if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
+    if (!carousel || !track || !prevBtn || !nextBtn || !dotsWrap) return;
 
     var cards = track.querySelectorAll('.test-card');
     if (!cards.length) return;
@@ -1823,15 +1824,21 @@
       dotsWrap.appendChild(dot);
     }
 
-    function goTo(idx) {
+    function syncPosition() {
+      var activeCard = cards[current];
+      if (!activeCard) return;
+      track.style.transform = 'translateX(-' + activeCard.offsetLeft + 'px)';
+    }
+
+    function goTo(idx, shouldResetAuto) {
       if (idx < 0) idx = total - 1;
       if (idx >= total) idx = 0;
       current = idx;
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      syncPosition();
       var dots = dotsWrap.querySelectorAll('.test-dot');
       dots.forEach(function(d, j) { d.classList.toggle('active', j === current); });
       cards.forEach(function(c, j) { c.setAttribute('data-active', j === current ? 'true' : 'false'); });
-      resetAuto();
+      if (shouldResetAuto !== false) resetAuto();
     }
 
     function resetAuto() {
@@ -1850,8 +1857,22 @@
       if (Math.abs(diff) > 50) { diff > 0 ? goTo(current + 1) : goTo(current - 1); }
     });
 
+    carousel.addEventListener('mouseenter', function() {
+      clearInterval(autoTimer);
+    });
+
+    carousel.addEventListener('mouseleave', function() {
+      resetAuto();
+    });
+
+    window.addEventListener('resize', function() {
+      goTo(current, false);
+    });
+
     // Init
-    goTo(0);
+    requestAnimationFrame(function() {
+      goTo(0);
+    });
   })();
 
   /* ── 47. FRAMEWORK BAR SCROLL ANIMATION ── */
