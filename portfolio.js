@@ -869,4 +869,285 @@
     el.style.animationDelay = (i * 0.3) + 's';
   });
 
+  /* ═══════════════════════════════════════════════════════
+     V15 MICRO-INTERACTIONS — Premium JS Enhancements
+     ═══════════════════════════════════════════════════════ */
+
+  /* ── 1. CARD MOUSE TRACKING GLOW ── */
+  document.querySelectorAll('.exp-domain, .cert-card, .opp-card, .achieve-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+      const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+      card.style.setProperty('--mouse-x', x + '%');
+      card.style.setProperty('--mouse-y', y + '%');
+    });
+  });
+
+  /* ── 2. BADGE ROW STAGGER ANIMATION ON SCROLL ── */
+  const badgeRow = document.querySelector('.exp-badge-row');
+  if (badgeRow) {
+    const badgeObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const badges = badgeRow.querySelectorAll('.exp-badge');
+          badges.forEach((b, i) => {
+            b.style.opacity = '0';
+            b.style.transform = 'translateY(12px) scale(0.9)';
+            setTimeout(() => {
+              b.style.transition = 'all .35s cubic-bezier(.34,1.56,.64,1)';
+              b.style.opacity = '1';
+              b.style.transform = 'translateY(0) scale(1)';
+            }, 40 * i);
+          });
+          badgeObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    badgeObs.observe(badgeRow);
+  }
+
+  /* ── 3. IMPACT STRIP COUNTER ANIMATION ── */
+  const impactNums = document.querySelectorAll('.is-num');
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const text = el.textContent.trim();
+        const span = el.querySelector('span');
+        const suffix = span ? span.textContent : '';
+        const numText = text.replace(suffix, '').trim();
+        const target = parseInt(numText, 10);
+        
+        if (!isNaN(target) && target > 0) {
+          let current = 0;
+          const step = Math.max(1, Math.ceil(target / 40));
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(interval);
+            }
+            el.childNodes[0].textContent = current;
+          }, 30);
+        }
+        counterObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  impactNums.forEach(n => counterObs.observe(n));
+
+  /* ── 4. SMOOTH SECTION REVEAL ON SCROLL ── */
+  const allSections = document.querySelectorAll('section');
+  const secObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section-visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  allSections.forEach(s => secObs.observe(s));
+
+  /* ── 5. BACK TO TOP BUTTON ── */
+  const btt = document.createElement('button');
+  btt.className = 'back-to-top';
+  btt.setAttribute('aria-label', 'Back to top');
+  btt.innerHTML = '↑';
+  document.body.appendChild(btt);
+  
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) {
+      btt.classList.add('visible');
+    } else {
+      btt.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  btt.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── 6. IMAGE LAZY LOAD FADE-IN ── */
+  document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    if (img.complete) {
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'));
+    }
+  });
+
+  /* ── 7. DOMAIN EXPAND/COLLAPSE ON MOBILE ── */
+  if (window.innerWidth < 768) {
+    document.querySelectorAll('.exp-domain').forEach(domain => {
+      const head = domain.querySelector('.epd-head');
+      const ul = domain.querySelector('ul');
+      if (head && ul) {
+        ul.style.maxHeight = '0';
+        ul.style.overflow = 'hidden';
+        ul.style.transition = 'max-height .5s cubic-bezier(.34,1.56,.64,1), opacity .3s ease';
+        ul.style.opacity = '0';
+        domain.dataset.expanded = 'false';
+        
+        head.style.cursor = 'pointer';
+        head.addEventListener('click', () => {
+          const isExpanded = domain.dataset.expanded === 'true';
+          if (isExpanded) {
+            ul.style.maxHeight = '0';
+            ul.style.opacity = '0';
+            domain.dataset.expanded = 'false';
+          } else {
+            ul.style.maxHeight = ul.scrollHeight + 'px';
+            ul.style.opacity = '1';
+            domain.dataset.expanded = 'true';
+          }
+        });
+      }
+    });
+  }
+
+  /* ── 8. TILT EFFECT FOR CERT CARDS ── */
+  document.querySelectorAll('.cert-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
+      card.style.transition = 'transform .5s cubic-bezier(.34,1.56,.64,1)';
+    });
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform .1s ease';
+    });
+  });
+
+  /* ── 9. MAGNETIC EFFECT FOR CTA BUTTONS ── */
+  document.querySelectorAll('.cta-btn, .opp-cta a, .hero-cta a').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+      btn.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1)';
+    });
+    btn.addEventListener('mouseenter', () => {
+      btn.style.transition = 'transform .1s ease';
+    });
+  });
+
+  /* ── 10. COPY EMAIL ON CLICK (TOAST) ── */
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const email = link.href.replace('mailto:', '');
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(email).then(() => {
+          showToast('Email copied to clipboard!', 'success');
+        });
+      }
+    });
+  });
+
+  function showToast(msg, type = 'info') {
+    const existing = document.querySelector('.toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `<span>${msg}</span><span class="toast-close">×</span>`;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => toast.classList.add('show'));
+    });
+
+    toast.querySelector('.toast-close').addEventListener('click', () => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    });
+
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 400);
+    }, 3000);
+  }
+
+  /* ── 11. SCROLL-LINKED SECTION PARALLAX ── */
+  const heroSection = document.querySelector('.hero-section');
+  if (heroSection) {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY < window.innerHeight) {
+        heroSection.style.transform = `translateY(${scrollY * 0.15}px)`;
+        heroSection.style.opacity = 1 - (scrollY / window.innerHeight) * 0.3;
+      }
+    }, { passive: true });
+  }
+
+  /* ── 12. EXPERIENCE DOMAIN COUNT INDICATOR ── */
+  document.querySelectorAll('.exp-domain').forEach((domain, i) => {
+    const head = domain.querySelector('.epd-head');
+    if (head) {
+      const counter = document.createElement('span');
+      counter.style.cssText = 'font-size:.68rem;color:var(--text-faint);font-weight:500;margin-left:auto;font-family:var(--font-mono);';
+      const bullets = domain.querySelectorAll('li').length;
+      counter.textContent = `${bullets} items`;
+      head.style.display = 'flex';
+      head.style.alignItems = 'center';
+      head.appendChild(counter);
+    }
+  });
+
+  /* ── 13. KEYBOARD SHORTCUTS ── */
+  document.addEventListener('keydown', e => {
+    // Press '/' to focus search or nav
+    if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+      const target = document.activeElement;
+      if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
+        e.preventDefault();
+        const firstInput = document.querySelector('input[type="text"], input[type="email"]');
+        if (firstInput) firstInput.focus();
+      }
+    }
+    // Press 'Escape' to close mobile menu
+    if (e.key === 'Escape') {
+      const mobileMenu = document.querySelector('.mobile-menu');
+      if (mobileMenu && mobileMenu.classList.contains('active')) {
+        mobileMenu.classList.remove('active');
+      }
+    }
+  });
+
+  /* ── 14. VIEWPORT ANIMATION STAGGER FOR MOMENT CARDS ── */
+  const momentCards = document.querySelectorAll('.moment-card');
+  const momentObs = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) scale(1)';
+        }, i * 80);
+        momentObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  
+  momentCards.forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px) scale(0.97)';
+    card.style.transition = 'all .5s cubic-bezier(.34,1.56,.64,1)';
+    momentObs.observe(card);
+  });
+
+  /* ── 15. PRINT-FRIENDLY TRIGGER ── */
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('[data-aos]').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  });
+
 })();
