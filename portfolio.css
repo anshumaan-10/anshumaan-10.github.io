@@ -1031,6 +1031,50 @@ body { padding-top:calc(var(--banner-h) + var(--ticker-h)); }
   line-height:1.6;
   color:var(--text-muted);
 }
+.edu-layout {
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  gap:24px;
+  align-items:start;
+}
+.edu-main-column,
+.edu-side-column,
+.edu-school-stack {
+  display:grid;
+  gap:24px;
+}
+.edu-side-panel {
+  background:linear-gradient(145deg, rgba(255,255,255,.96), rgba(37,99,235,.035));
+  border:1px solid var(--border);
+  border-radius:calc(var(--radius-lg) + 2px);
+  box-shadow:var(--shadow-sm);
+  padding:24px;
+}
+.edu-side-summary {
+  background:linear-gradient(145deg, rgba(255,255,255,.96), rgba(124,58,237,.04));
+}
+.edu-summary-list {
+  display:grid;
+  gap:14px;
+}
+.edu-summary-item {
+  padding:14px 16px;
+  border-radius:18px;
+  background:rgba(124,58,237,.05);
+  border:1px solid rgba(124,58,237,.08);
+}
+.edu-summary-item strong {
+  display:block;
+  color:var(--text-primary);
+  font-size:.88rem;
+  margin-bottom:4px;
+}
+.edu-summary-item span {
+  display:block;
+  color:var(--text-muted);
+  font-size:.82rem;
+  line-height:1.6;
+}
 .edu-cards { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:24px; }
 .edu-cards-extended { align-items:stretch; }
 .edu-card {
@@ -1041,6 +1085,14 @@ body { padding-top:calc(var(--banner-h) + var(--ticker-h)); }
 }
 .edu-card-featured { background:linear-gradient(145deg, #fff 0%, rgba(124,58,237,.045) 100%); }
 .edu-card-school { background:linear-gradient(145deg, #fff 0%, rgba(37,99,235,.03) 100%); }
+.edu-card-degree {
+  border-color:rgba(124,58,237,.12);
+  box-shadow:0 24px 54px rgba(15,23,42,.05);
+}
+.edu-card-school-compact {
+  padding:22px;
+  box-shadow:none;
+}
 .edu-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-violet); border-color:var(--border-violet); }
 .edu-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
 .edu-top h3 { font-size:1.05rem; font-weight:700; color:var(--text-primary); }
@@ -1059,11 +1111,53 @@ body { padding-top:calc(var(--banner-h) + var(--ticker-h)); }
 .edu-logo-school { background:linear-gradient(135deg, #64748b, #94a3b8); }
 .edu-degree { font-size:.85rem; color:var(--violet); font-weight:600; margin-top:4px; }
 .edu-meta { font-size:.76rem; color:var(--text-muted); font-family:var(--font-mono); margin-top:2px; }
+.edu-subtitle {
+  font-size:.74rem;
+  color:var(--text-muted);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:10px;
+}
 .edu-badge { font-size:.7rem; font-weight:700; padding:4px 10px; border-radius:var(--radius-full); flex-shrink:0; }
 .edu-postgrad { background:var(--violet-light); color:var(--violet); }
 .edu-ug { background:var(--blue-light); color:var(--blue); }
 .edu-school { background:rgba(148,163,184,.16); color:#475569; }
 .edu-desc { font-size:.875rem; color:var(--text-secondary); line-height:1.65; margin-bottom:14px; }
+.edu-content-grid {
+  display:grid;
+  grid-template-columns:minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap:18px;
+  margin-bottom:14px;
+}
+.edu-insight-panel {
+  padding:16px;
+  border-radius:20px;
+  background:rgba(15,23,42,.03);
+  border:1px solid rgba(124,58,237,.08);
+}
+.edu-metric-stack {
+  display:grid;
+  gap:10px;
+}
+.edu-metric-pill {
+  padding:12px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.75);
+  border:1px solid rgba(124,58,237,.08);
+}
+.edu-metric-pill strong {
+  display:block;
+  color:var(--text-primary);
+  font-size:.84rem;
+  margin-bottom:4px;
+}
+.edu-metric-pill span {
+  display:block;
+  color:var(--text-muted);
+  font-size:.79rem;
+  line-height:1.55;
+}
 .edu-detail-list {
   list-style:none;
   padding:0;
@@ -1122,9 +1216,88 @@ body { padding-top:calc(var(--banner-h) + var(--ticker-h)); }
   font-size:.78rem;
   font-weight:700;
 }
+.edu-journey-board {
+  margin-top:28px;
+  padding:28px;
+  border-radius:calc(var(--radius-lg) + 4px);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(124,58,237,.08), transparent 24%),
+    radial-gradient(circle at 100% 0%, rgba(37,99,235,.08), transparent 20%),
+    linear-gradient(145deg, rgba(255,255,255,.98), rgba(248,250,252,.96));
+  border:1px solid var(--border);
+  box-shadow:0 24px 60px rgba(15,23,42,.05);
+}
+.edu-journey-head {
+  max-width:760px;
+  margin-bottom:22px;
+}
+.edu-journey-head h3 {
+  font-size:1.25rem;
+  color:var(--text-primary);
+  line-height:1.28;
+  margin-bottom:8px;
+}
+.edu-journey-head p {
+  color:var(--text-secondary);
+  font-size:.92rem;
+  line-height:1.7;
+}
+.edu-flow-track {
+  display:grid;
+  grid-template-columns:repeat(7, auto);
+  align-items:stretch;
+  gap:12px;
+}
+.edu-flow-card {
+  min-width:0;
+  width:100%;
+  padding:18px;
+  border-radius:22px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(124,58,237,.10);
+  box-shadow:0 16px 36px rgba(15,23,42,.04);
+}
+.edu-flow-card h4 {
+  font-size:.98rem;
+  color:var(--text-primary);
+  line-height:1.3;
+  margin-bottom:8px;
+}
+.edu-flow-card p {
+  font-size:.84rem;
+  color:var(--text-secondary);
+  line-height:1.65;
+  margin-bottom:12px;
+}
+.edu-flow-card-accent {
+  background:linear-gradient(145deg, rgba(124,58,237,.07), rgba(37,99,235,.06));
+}
+.edu-flow-step {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:rgba(124,58,237,.11);
+  color:var(--violet);
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:.92rem;
+  margin-bottom:12px;
+}
+.edu-flow-arrow {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--violet);
+  font-size:1.4rem;
+  font-weight:900;
+  opacity:.6;
+}
 .edu-foundation-band {
   display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr));
+  grid-template-columns:repeat(4, minmax(0,1fr));
   gap:18px;
   margin-top:24px;
 }
@@ -8508,6 +8681,27 @@ section:nth-child(odd) {
   border-color: rgba(148,163,184,.14);
 }
 
+[data-theme="dark"] .edu-side-panel,
+[data-theme="dark"] .edu-journey-board,
+[data-theme="dark"] .edu-insight-panel,
+[data-theme="dark"] .edu-metric-pill,
+[data-theme="dark"] .edu-summary-item,
+[data-theme="dark"] .edu-flow-card,
+.dark-mode .edu-side-panel,
+.dark-mode .edu-journey-board,
+.dark-mode .edu-insight-panel,
+.dark-mode .edu-metric-pill,
+.dark-mode .edu-summary-item,
+.dark-mode .edu-flow-card {
+  background: rgba(15,23,42,.86);
+  border-color: rgba(148,163,184,.14);
+}
+
+[data-theme="dark"] .edu-flow-card-accent,
+.dark-mode .edu-flow-card-accent {
+  background: linear-gradient(145deg, rgba(124,58,237,.18), rgba(37,99,235,.16));
+}
+
 [data-theme="dark"] .edu-proof-item,
 .dark-mode .edu-proof-item {
   background: rgba(124,58,237,.10);
@@ -8530,6 +8724,28 @@ section:nth-child(odd) {
 .dark-mode .edu-detail-list li,
 .dark-mode .edu-foundation-item p {
   color: #94a3b8;
+}
+
+[data-theme="dark"] .edu-summary-item span,
+[data-theme="dark"] .edu-metric-pill span,
+[data-theme="dark"] .edu-journey-head p,
+[data-theme="dark"] .edu-flow-card p,
+.dark-mode .edu-summary-item span,
+.dark-mode .edu-metric-pill span,
+.dark-mode .edu-journey-head p,
+.dark-mode .edu-flow-card p {
+  color:#94a3b8;
+}
+
+[data-theme="dark"] .edu-summary-item strong,
+[data-theme="dark"] .edu-metric-pill strong,
+[data-theme="dark"] .edu-journey-head h3,
+[data-theme="dark"] .edu-flow-card h4,
+.dark-mode .edu-summary-item strong,
+.dark-mode .edu-metric-pill strong,
+.dark-mode .edu-journey-head h3,
+.dark-mode .edu-flow-card h4 {
+  color:#f8fafc;
 }
 
 [data-theme="dark"] .cmd-palette-item:hover,
@@ -8558,6 +8774,17 @@ section:nth-child(odd) {
   .edu-foundation-band {
     grid-template-columns: 1fr;
   }
+
+  .edu-layout,
+  .edu-content-grid,
+  .edu-flow-track {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-flow-arrow {
+    transform: rotate(90deg);
+    min-height: 24px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -8579,7 +8806,9 @@ section:nth-child(odd) {
 
   .edu-showcase-card,
   .edu-card,
-  .edu-foundation-item {
+  .edu-foundation-item,
+  .edu-side-panel,
+  .edu-journey-board {
     padding: 22px;
   }
 
@@ -8590,6 +8819,17 @@ section:nth-child(odd) {
   .edu-link-pill,
   .edu-status-pill {
     width: 100%;
+  }
+
+  .edu-foundation-band {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-summary-item,
+  .edu-proof-item,
+  .edu-metric-pill,
+  .edu-flow-card {
+    padding: 14px;
   }
 }
 
