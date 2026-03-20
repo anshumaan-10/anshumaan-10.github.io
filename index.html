@@ -298,6 +298,28 @@
   </div>
 
   <!-- ═══════════════════════════════════════
+       STICKY HIRING BAR
+  ═══════════════════════════════════════ -->
+  <div class="sticky-hire-bar" id="stickyHireBar" aria-hidden="true">
+    <div class="shb-inner">
+      <div class="shb-left">
+        <span class="shb-dot"></span>
+        <span class="shb-status">Open to opportunities</span>
+        <span class="shb-sep">·</span>
+        <span class="shb-roles">Security Engineering · DevSecOps · Cloud Security · AppSec</span>
+      </div>
+      <div class="shb-right">
+        <a href="https://drive.google.com/file/d/1jszWhJhFO3DbrWxVLpTgekNKkPDKPObb/view" target="_blank" rel="noopener" class="shb-btn shb-btn-resume">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Resume
+        </a>
+        <a href="#connect" class="shb-btn shb-btn-contact">Contact</a>
+        <button class="shb-close" id="stickyHireClose" aria-label="Close hiring bar">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
        HERO SECTION
   ═══════════════════════════════════════ -->
   <section id="hero" class="hero-section">
@@ -499,6 +521,79 @@
         designed, enforced, and continuously verified. Production behaviour must remain predictable 
         even under adversarial pressure.
       </blockquote>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CHOOSE YOUR PATH
+  ═══════════════════════════════════════ -->
+  <section id="choose-path" class="section cyp-section" aria-label="Visitor navigation">
+    <div class="container">
+      <div class="cyp-head" data-aos="fade-up">
+        <p class="cyp-kicker">Pick where you want to start ↓</p>
+        <h2 class="cyp-title">Who are you visiting as?</h2>
+        <p class="cyp-sub">Different roles need different answers. Skip straight to what matters to you.</p>
+      </div>
+      <div class="cyp-grid" data-aos="fade-up" data-aos-delay="60">
+        <a href="#recruiter-command" class="cyp-card cyp-recruiter">
+          <span class="cyp-emoji">🧑‍💼</span>
+          <h3>Recruiter</h3>
+          <p>Availability, roles, certifications, LinkedIn, and resume — fast.</p>
+          <span class="cyp-arrow">Start here →</span>
+        </a>
+        <a href="#recognition" class="cyp-card cyp-manager">
+          <span class="cyp-emoji">📊</span>
+          <h3>Hiring Manager</h3>
+          <p>Real impact numbers, business outcomes, 90-day plan, and team fit.</p>
+          <span class="cyp-arrow">See impact →</span>
+        </a>
+        <a href="#case-study" class="cyp-card cyp-engineer">
+          <span class="cyp-emoji">⚙️</span>
+          <h3>Senior Engineer</h3>
+          <p>Architecture decisions, toolchain rationale, tradeoffs, deep case studies.</p>
+          <span class="cyp-arrow">Explore systems →</span>
+        </a>
+        <a href="#proof-engine" class="cyp-card cyp-security">
+          <span class="cyp-emoji">🔐</span>
+          <h3>Security Lead</h3>
+          <p>Operational proof, control matrices, compliance posture, and pipeline design.</p>
+          <span class="cyp-arrow">View proof →</span>
+        </a>
+      </div>
+
+      <!-- Top 5 proof points strip -->
+      <div class="proof-strip" data-aos="fade-up" data-aos-delay="120">
+        <div class="ps-head">
+          <span class="ps-kicker">5 things that are true before you read further</span>
+        </div>
+        <div class="ps-items">
+          <div class="ps-item">
+            <span class="ps-num">01</span>
+            <span class="ps-badge ps-badge-prod">Production</span>
+            <span class="ps-text">350+ live microservices secured end-to-end — CI/CD → container → Kubernetes runtime</span>
+          </div>
+          <div class="ps-item">
+            <span class="ps-num">02</span>
+            <span class="ps-badge ps-badge-cert">Certified</span>
+            <span class="ps-text">CKS · CKA · GCP Professional Security · GCP Architect · Terraform Associate — all active</span>
+          </div>
+          <div class="ps-item">
+            <span class="ps-num">03</span>
+            <span class="ps-badge ps-badge-award">Award</span>
+            <span class="ps-text">ZeeOlympics Best Performer awarded two consecutive years — FY 2023–24 and FY 2024–25</span>
+          </div>
+          <div class="ps-item">
+            <span class="ps-num">04</span>
+            <span class="ps-badge ps-badge-metric">0 incidents</span>
+            <span class="ps-text">Zero production security incidents since deploying the DevSecOps control plane</span>
+          </div>
+          <div class="ps-item">
+            <span class="ps-num">05</span>
+            <span class="ps-badge ps-badge-repo">Public repo</span>
+            <span class="ps-text">59 public GitHub repositories: security labs, pipeline tooling, Kubernetes hardening guides</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1257,6 +1352,11 @@
             </a>
           </div>
           <p>10 real Kubernetes misconfigurations — each exploited end-to-end and documented with a hardening guide. Covers RBAC escapes, privileged pod exploits, host namespace attacks, and more.</p>
+          <div class="proj-evidence-row">
+            <span class="pe-badge pe-repo">Public Repo</span>
+            <span class="pe-badge pe-prod">Production-pattern</span>
+            <span class="pe-badge pe-cert">CKS-aligned</span>
+          </div>
           <div class="proj-topics">
             <span>kubernetes-security</span><span>misconfigurations</span><span>hardening</span><span>workshop</span><span>CKS</span>
           </div>
@@ -1277,6 +1377,11 @@
             </a>
           </div>
           <p>Container image signing and attestation using Sigstore Cosign. Full supply chain integrity flow — sign the image, attach SBOM, verify before deploy. No trusted image without a verified signature.</p>
+          <div class="proj-evidence-row">
+            <span class="pe-badge pe-repo">Public Repo</span>
+            <span class="pe-badge pe-prod">Used in ZEE production</span>
+            <span class="pe-badge pe-article">Written up on Medium</span>
+          </div>
           <div class="proj-topics">
             <span>cosign</span><span>sigstore</span><span>supply-chain</span><span>SBOM</span>
           </div>
@@ -1296,6 +1401,10 @@
             </a>
           </div>
           <p>Intentionally vulnerable Flask application for the Kubernetes security lab. Demonstrates RCE chains, container escape paths, and host namespace attacks — purpose-built to be exploited and studied.</p>
+          <div class="proj-evidence-row">
+            <span class="pe-badge pe-repo">Public Repo</span>
+            <span class="pe-badge pe-lab">Lab companion</span>
+          </div>
           <div class="proj-topics">
             <span>flask</span><span>vulnerable-app</span><span>RCE</span><span>container-escape</span>
           </div>
@@ -1315,6 +1424,10 @@
             </a>
           </div>
           <p>Policy-as-code with Kyverno for Kubernetes admission control. Block privileged pods, enforce image registries, require labels, auto-mutate workloads — governance without manual review.</p>
+          <div class="proj-evidence-row">
+            <span class="pe-badge pe-repo">Public Repo</span>
+            <span class="pe-badge pe-prod">45+ policies in production</span>
+          </div>
           <div class="proj-topics">
             <span>kyverno</span><span>policy-as-code</span><span>admission-control</span><span>OPA</span>
           </div>
@@ -1353,6 +1466,10 @@
             </a>
           </div>
           <p>Custom regex patterns detecting org-specific secrets in CI/CD pipelines. Azure storage keys, internal API tokens, custom service credentials — beyond what default scanners catch.</p>
+          <div class="proj-evidence-row">
+            <span class="pe-badge pe-repo">Public Repo</span>
+            <span class="pe-badge pe-prod">47 leaks prevented Q1</span>
+          </div>
           <div class="proj-topics">
             <span>secret-scanning</span><span>regex</span><span>CI/CD</span><span>supply-chain</span>
           </div>
@@ -3346,6 +3463,37 @@
           <h3>Get in touch</h3>
           <p>If you're hiring for a role focused on secure delivery, cloud-native risk reduction, or platform security engineering, I'd be glad to connect and discuss how I can contribute.</p>
 
+          <!-- Trust / working preferences panel -->
+          <div class="trust-panel">
+            <div class="tp-head">Working preferences · quick reference</div>
+            <div class="tp-rows">
+              <div class="tp-row">
+                <span class="tp-label">📍 Location</span>
+                <span class="tp-val">Bengaluru, India · open to hybrid / remote</span>
+              </div>
+              <div class="tp-row">
+                <span class="tp-label">⏱ Notice period</span>
+                <span class="tp-val">30 days · negotiable for urgent roles</span>
+              </div>
+              <div class="tp-row">
+                <span class="tp-label">🕐 Timezone</span>
+                <span class="tp-val">IST (UTC+5:30) · overlap comfortable with EU/US mornings</span>
+              </div>
+              <div class="tp-row">
+                <span class="tp-label">💼 Best-fit roles</span>
+                <span class="tp-val">Security Engineer · AppSec/ProdSec Engineer · DevSecOps Engineer · Cloud Security</span>
+              </div>
+              <div class="tp-row">
+                <span class="tp-label">🎯 Interview focus</span>
+                <span class="tp-val">Kubernetes security · CI/CD supply chain · Cloud-native risk · AppSec architecture</span>
+              </div>
+              <div class="tp-row">
+                <span class="tp-label">📬 Response time</span>
+                <span class="tp-val">Within 24 hours on weekdays · usually much faster</span>
+              </div>
+            </div>
+          </div>
+
           <div class="contact-card-list">
             <a class="cc" href="mailto:anshumaansingh10jan@gmail.com">
               <div class="cc-ico">✉️</div>
@@ -3475,7 +3623,7 @@
               <p class="footer-tagline">Security Systems Engineer · DevSecOps · CKS · CKA · GCP</p>
             </div>
           </div>
-          <p class="footer-desc">Building security control planes that make insecure releases structurally impossible. Bengaluru, India.</p>
+          <p class="footer-desc">Security engineer who reduces friction, not just risk. Building control planes that make insecure releases structurally impossible. Bengaluru, India.</p>
           <div class="footer-socials">
             <a href="https://github.com/anshumaan-10" target="_blank" rel="noopener" aria-label="GitHub">
               <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>

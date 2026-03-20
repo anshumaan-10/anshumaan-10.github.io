@@ -2165,4 +2165,48 @@
     });
   })();
 
+  /* ── 61. STICKY HIRING BAR ── */
+  (function initStickyHireBar() {
+    var bar = document.getElementById('stickyHireBar');
+    var closeBtn = document.getElementById('stickyHireClose');
+    if (!bar) return;
+    var hero = document.getElementById('hero');
+    var dismissed = false;
+    var shown = false;
+
+    function checkScroll() {
+      if (dismissed) return;
+      var heroBottom = hero ? hero.getBoundingClientRect().bottom : 400;
+      if (heroBottom < 0 && !shown) {
+        bar.classList.add('shb-visible');
+        bar.setAttribute('aria-hidden', 'false');
+        shown = true;
+      } else if (heroBottom > 0 && shown) {
+        bar.classList.remove('shb-visible');
+        bar.setAttribute('aria-hidden', 'true');
+        shown = false;
+      }
+    }
+
+    window.addEventListener('scroll', checkScroll, { passive: true });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function() {
+        bar.classList.remove('shb-visible');
+        bar.setAttribute('aria-hidden', 'true');
+        dismissed = true;
+      });
+    }
+
+    /* CYP card hover lift */
+    document.querySelectorAll('.cyp-card').forEach(function(card) {
+      card.addEventListener('mouseenter', function() {
+        card.style.transform = 'translateY(-4px)';
+      });
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+  })();
+
 })();
