@@ -3059,7 +3059,7 @@ body { padding-top:calc(var(--banner-h) + var(--ticker-h)); }
 }
 
 /* --- Mobile menu premium slide --- */
-.mobile-menu {
+.mobile-menu.open {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
