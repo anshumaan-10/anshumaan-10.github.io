@@ -1782,3 +1782,65 @@
   .kpi-grid           { grid-template-columns: 1fr; }
   .compliance-posture { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   CBW VERIFY LINK
+═══════════════════════════════════════════════════════════ */
+.cbw-verify-link {
+  display: inline-block;
+  margin-top: .6rem;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--cp-color, #7c3aed);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  opacity: .8;
+  transition: opacity .2s;
+}
+.cbw-verify-link:hover { opacity: 1; }
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — CVE TICKER (< 480px)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 479px) {
+  .cve-ticker-label {
+    display: none;
+  }
+  .cve-ticker-track {
+    font-size: .62rem;
+    gap: 14px;
+    padding: 0 10px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — PIPELINE DEMO (< 640px)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 640px) {
+  .pipeline-flow {
+    overflow-x: auto;
+    padding-bottom: .5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pipeline-track {
+    min-width: 540px;
+  }
+  .pd-stats-row {
+    flex-wrap: wrap;
+    gap: .75rem;
+  }
+  .pd-stat { flex: 1 1 45%; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MOBILE — STATS SECTION (< 540px)
+═══════════════════════════════════════════════════════════ */
+@media (max-width: 540px) {
+  .se-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .se-stat-val {
+    font-size: 2rem;
+  }
+}

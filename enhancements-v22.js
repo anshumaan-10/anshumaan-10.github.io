@@ -422,6 +422,7 @@ class PipelineDemo {
       this.runBtn.disabled = false;
       this.runBtn.textContent = '▶ Run Again';
     }
+    if (this.resetBtn) this.resetBtn.style.display = 'inline-flex';
     // Append final success to terminal
     const line = document.createElement('span');
     line.className = 'pd-term-line success';
@@ -446,6 +447,7 @@ class PipelineDemo {
       this.runBtn.disabled = false;
       this.runBtn.textContent = '▶ Run Secure Pipeline';
     }
+    if (this.resetBtn) this.resetBtn.style.display = 'none';
   }
 }
 
@@ -610,7 +612,7 @@ function animateCounters() {
       requestAnimationFrame(tick);
       obs.unobserve(el);
     });
-  }, { threshold: .5 });
+  }, { threshold: .1 });
   els.forEach(el => obs.observe(el));
 }
 
@@ -864,28 +866,7 @@ class MiniTimelineRenderer {
 /* ═══════════════════════════════════════════════════════════
    COUNTER ANIMATION
 ═══════════════════════════════════════════════════════════ */
-function initCounters() {
-  const nodes = document.querySelectorAll('[data-count-to]');
-  if (!nodes.length) return;
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const end = parseInt(el.dataset.countTo, 10);
-      const dur = parseInt(el.dataset.countDur || '1800', 10);
-      const suffix = el.dataset.countSuffix || '';
-      const start = Date.now();
-      const tick = () => {
-        const t = Math.min((Date.now() - start) / dur, 1);
-        el.textContent = Math.round(end * (1 - Math.pow(1 - t, 3))) + suffix;
-        if (t < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  nodes.forEach(n => obs.observe(n));
-}
+/* initCounters() removed — animateCounters() handles [data-count-to] */
 
 /* ═══════════════════════════════════════════════════════════
    SCROLL ANIMATION OBSERVER
@@ -939,7 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
   timeline.render();
 
   // Kick off utilities
-  initCounters();
+  animateCounters();
   initScrollAnimations();
   initArchAnimation();
 });

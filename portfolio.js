@@ -674,7 +674,7 @@
         requestAnimationFrame(step);
         ob.unobserve(el);
       });
-    }, { threshold:.3 });
+    }, { threshold:.1 });
     counters.forEach(c => ob.observe(c));
   })();
 
