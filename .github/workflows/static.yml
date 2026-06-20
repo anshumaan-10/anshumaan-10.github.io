@@ -33,11 +33,13 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Inject DRM token from secret
+      - name: Inject DRM token and device ID from secrets
         env:
           DRM_TOKEN: ${{ secrets.DRM_TOKEN }}
+          SUNDIRECT_DEVICE_ID: ${{ secrets.SUNDIRECT_DEVICE_ID }}
         run: |
           sed -i "s|__DRM_TOKEN__|${DRM_TOKEN}|g" sports.html
+          sed -i "s|__DEVICE_ID__|${SUNDIRECT_DEVICE_ID}|g" sports.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

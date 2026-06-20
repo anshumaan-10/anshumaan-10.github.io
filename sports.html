@@ -158,16 +158,43 @@
   </div>
 </div>
 <script>
-// Stream config — token injected by GitHub Actions (never stored in source)
+// Stream config — token/device injected by GitHub Actions (never stored in source)
 var CFG = {
-  mpd:     'https://sundirectgo-live.pc.cdn.bitgravity.com/svchd14/dth.mpd',
-  license: 'https://api.sundirectgo.in/licenseproxy/v3/nagravisionDRMProxy/' +
-           '?content_id=144982&token=__DRM_TOKEN__' +
-           '&x-myplex-tenant-id=32fdcbc2-8e4f-4d8e-a391-b59f4d9b070c',
-  proxy:   'http://localhost:8765/license-proxy'   // relative — served by same origin via proxy_server.py
+  mpd:        'https://sundirectgo-live.pc.cdn.bitgravity.com/svchd14/dth.mpd',
+  contentId:  '144982',
+  tenantId:   '32fdcbc2-8e4f-4d8e-a391-b59f4d9b070c',
+  deviceId:   '__DEVICE_ID__',       // injected from SUNDIRECT_DEVICE_ID secret
+  fallbackTok:'__DRM_TOKEN__',       // injected from DRM_TOKEN secret (backup only)
+  proxy:      'http://localhost:8765/license-proxy'
 };
-// Build full proxied license URL
-var PROXY_LIC = CFG.proxy + '?url=' + encodeURIComponent(CFG.license);
+
+// Build a proxied license URL from a raw token string
+function buildProxyLic(token) {
+  var lic = 'https://api.sundirectgo.in/licenseproxy/v3/nagravisionDRMProxy/' +
+            '?content_id=' + CFG.contentId +
+            '&token=' + token +
+            '&x-myplex-tenant-id=' + CFG.tenantId;
+  return CFG.proxy + '?url=' + encodeURIComponent(lic);
+}
+
+// Fetch a fresh token from the local proxy (returns the raw token string)
+function fetchFreshToken() {
+  if (!CFG.deviceId || CFG.deviceId === '__DEVICE_ID__') {
+    return Promise.reject(new Error('deviceId not set'));
+  }
+  return fetch('http://localhost:8765/fetch-token?contentId=' + CFG.contentId +
+               '&browserUniqueId=' + encodeURIComponent(CFG.deviceId))
+    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data) {
+      var m = data.licenseUrl && data.licenseUrl.match(/[?&]token=([^&]+)/);
+      if (!m) throw new Error('no token in response');
+      console.log('[DRM] Fresh token received, valid until next refresh.');
+      return decodeURIComponent(m[1]);
+    });
+}
+
+var PROXY_LIC = buildProxyLic(CFG.fallbackTok); // updated on first load via auto-refresh
+var refreshTimer = null;
 
 var video = document.getElementById('video'), player = null, tlTimer = null, chromeT = null;
 
@@ -192,8 +219,8 @@ function tickTL() {
   document.getElementById('tl-fill').style.width = (((Date.now()/60000)%1)*100).toFixed(2)+'%';
 }
 
-function boot() {
-  hideErr(); spin(true); setLive('buf');
+function bootWithToken(token) {
+  PROXY_LIC = buildProxyLic(token);
   shaka.polyfill.installAll();
   if (!shaka.Player.isBrowserSupported()) { showErr('Use Chrome or Edge for DRM playback.'); return; }
   if (player) { player.destroy(); player = null; }
@@ -209,18 +236,55 @@ function boot() {
         advanced: { 'com.widevine.alpha': { videoRobustness:'SW_SECURE_CRYPTO', audioRobustness:'SW_SECURE_CRYPTO' } }
       }
     });
-    player.addEventListener('error', function(e) { showErr('Playback error ['+e.detail.code+']. Token may have expired.'); });
+    player.addEventListener('error', function(e) { showErr('Playback error ['+e.detail.code+']. Proxy may be offline or token expired.'); });
     return player.load(CFG.mpd);
   }).then(function() {
     spin(false); setLive('live');
     video.play().catch(function(){});
     if (tlTimer) clearInterval(tlTimer);
     tlTimer = setInterval(tickTL, 800);
+    // Schedule next silent token refresh 80 min from now
+    if (refreshTimer) clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(silentRefresh, 80 * 60 * 1000);
   }).catch(function(e) {
-    var m = (e && e.code === 6007) ? 'DRM license rejected — token expired. Update DRM_TOKEN secret in GitHub.'
-          : (e && e.code >= 1000 && e.code < 2000) ? 'Network error — check connection.'
+    var m = (e && e.code === 6007) ? 'DRM license rejected. Run: python3 proxy_server.py — then retry.'
+          : (e && e.code >= 1000 && e.code < 2000) ? 'Network error — check connection or start proxy.'
           : 'Error ['+(e&&e.code||'?')+']: '+(e&&e.message||'load failed');
     showErr(m);
+  });
+}
+
+// Silent mid-stream token refresh — replaces Shaka config without interrupting playback
+function silentRefresh() {
+  fetchFreshToken().then(function(token) {
+    PROXY_LIC = buildProxyLic(token);
+    if (player) {
+      player.configure({
+        drm: {
+          servers: {
+            'com.widevine.alpha':      PROXY_LIC,
+            'com.microsoft.playready': PROXY_LIC
+          }
+        }
+      });
+      console.log('[DRM] Token silently rotated — playback uninterrupted.');
+    }
+    // Schedule next refresh
+    refreshTimer = setTimeout(silentRefresh, 80 * 60 * 1000);
+  }).catch(function(e) {
+    console.warn('[DRM] Silent refresh failed, will retry in 10 min:', e.message);
+    refreshTimer = setTimeout(silentRefresh, 10 * 60 * 1000);
+  });
+}
+
+function boot() {
+  hideErr(); spin(true); setLive('buf');
+  // Try to get a fresh token first; fall back to injected token
+  fetchFreshToken().then(function(token) {
+    bootWithToken(token);
+  }).catch(function(e) {
+    console.warn('[DRM] Auto-refresh unavailable (' + e.message + '), using injected token.');
+    bootWithToken(CFG.fallbackTok);
   });
 }
 
