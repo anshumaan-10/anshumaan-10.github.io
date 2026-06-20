@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DevSecOps With Anshu – Sports Live</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.compiled.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --red:#ff4c66; --accent:#00f0c8; --text:#e8f2ff; --muted:#8aa0c2; }
+    html, body { height:100%; background:#000; color:var(--text); font-family:"Segoe UI",system-ui,sans-serif; overflow:hidden; }
+    #stage { position:relative; width:100vw; height:100vh; background:#000; }
+    video  { display:block; width:100%; height:100%; object-fit:contain; background:#000; }
+    #grad-top,#grad-bot { position:absolute; left:0; right:0; pointer-events:none; transition:opacity .4s; }
+    #grad-top { top:0; height:180px; background:linear-gradient(180deg,rgba(0,0,0,.78),transparent); }
+    #grad-bot { bottom:0; height:240px; background:linear-gradient(0deg,rgba(0,0,0,.88),transparent); }
+    #stage.hide-chrome #grad-top,
+    #stage.hide-chrome #grad-bot,
+    #stage.hide-chrome #ch-badge,
+    #stage.hide-chrome #live-chip,
+    #stage.hide-chrome #prog-bar { opacity:0; pointer-events:none; }
+    /* channel badge */
+    #ch-badge { position:absolute; top:24px; left:28px; display:flex; align-items:center; gap:14px; transition:opacity .4s; }
+    .ch-logo {
+      width:54px; height:54px; border-radius:16px;
+      background:linear-gradient(135deg,#00f0c8,#008cff);
+      display:grid; place-items:center;
+      font-size:13px; font-weight:800; color:#04121f; letter-spacing:.02em;
+      box-shadow:0 0 36px rgba(0,240,200,.45);
+    }
+    .ch-copy strong { display:block; font-size:17px; font-weight:700; text-shadow:0 2px 12px rgba(0,0,0,.8); }
+    .ch-copy span   { display:block; font-size:13px; color:rgba(255,255,255,.5); margin-top:3px; }
+    /* live chip */
+    #live-chip {
+      position:absolute; top:28px; right:28px;
+      display:flex; align-items:center; gap:8px; padding:8px 16px; border-radius:999px;
+      background:rgba(255,76,102,.18); border:1px solid rgba(255,76,102,.4);
+      color:#ffd7de; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      backdrop-filter:blur(12px); transition:opacity .4s;
+    }
+    #live-dot { width:9px; height:9px; border-radius:50%; background:var(--red); box-shadow:0 0 10px rgba(255,76,102,.9); animation:pulse 2s ease-in-out infinite; }
+    #live-dot.off { background:var(--muted); box-shadow:none; animation:none; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(.78)} }
+    /* program bar */
+    #prog-bar { position:absolute; bottom:0; left:0; right:0; padding:0 28px 28px; display:flex; flex-direction:column; gap:10px; transition:opacity .4s; }
+    #timeline { height:4px; border-radius:999px; background:rgba(255,255,255,.2); overflow:hidden; }
+    #tl-fill  { height:100%; background:linear-gradient(90deg,var(--accent),#41d1ff); box-shadow:0 0 14px rgba(0,240,200,.5); width:0%; transition:width .8s linear; }
+    #prog-row { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
+    .prog-title { font-size:clamp(18px,2.8vw,32px); font-weight:700; line-height:1.1; text-shadow:0 2px 16px rgba(0,0,0,.9); }
+    .prog-meta  { display:flex; align-items:center; gap:10px; margin-top:6px; font-size:13px; color:rgba(255,255,255,.55); }
+    .prog-meta .sep { opacity:.35; }
+    .tag { padding:3px 8px; border-radius:6px; background:rgba(255,255,255,.11); border:1px solid rgba(255,255,255,.18); font-size:12px; font-weight:600; color:var(--text); }
+    #qual-badge { padding:6px 11px; border-radius:999px; background:rgba(8,18,36,.8); border:1px solid rgba(255,255,255,.14); font-size:12px; color:rgba(255,255,255,.7); backdrop-filter:blur(10px); }
+    /* controls */
+    #controls { display:flex; align-items:center; gap:14px; }
+    .ctrl-btn {
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18); border-radius:50%;
+      width:46px; height:46px; flex:0 0 46px; display:grid; place-items:center;
+      cursor:pointer; color:#fff; backdrop-filter:blur(10px); transition:background .2s,transform .1s;
+    }
+    .ctrl-btn:hover  { background:rgba(255,255,255,.22); }
+    .ctrl-btn:active { transform:scale(.92); }
+    .ctrl-btn.play-btn {
+      width:58px; height:58px; flex:0 0 58px;
+      background:linear-gradient(135deg,var(--accent),#41d1ff); border:none; color:#04121f;
+      box-shadow:0 0 32px rgba(0,240,200,.35);
+    }
+    .ctrl-btn.play-btn:hover { opacity:.88; }
+    #vol-slider { -webkit-appearance:none; appearance:none; width:90px; height:4px; border-radius:999px; background:rgba(255,255,255,.25); outline:none; cursor:pointer; }
+    #vol-slider::-webkit-slider-thumb { -webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:#fff; cursor:pointer; }
+    .ctrl-spacer { flex:1; }
+    .time-lbl { font-size:13px; color:rgba(255,255,255,.6); white-space:nowrap; }
+    /* spinner */
+    #spinner { position:absolute; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.45); opacity:0; transition:opacity .3s; pointer-events:none; }
+    #spinner.on { opacity:1; }
+    .spin-ring { width:58px; height:58px; border-radius:50%; border:4px solid rgba(255,255,255,.15); border-top-color:var(--accent); animation:spin .85s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    /* error */
+    #err-screen { position:absolute; inset:0; display:none; flex-direction:column; align-items:center; justify-content:center; gap:14px; background:rgba(0,0,0,.72); text-align:center; padding:32px; }
+    #err-screen.on { display:flex; }
+    #err-screen .err-ico { width:60px; height:60px; border-radius:20px; background:rgba(255,76,102,.2); display:grid; place-items:center; }
+    #err-screen h2 { font-size:20px; }
+    #err-screen p  { color:var(--muted); font-size:14px; line-height:1.6; max-width:340px; margin-top:4px; }
+    #err-screen button { padding:12px 28px; border-radius:14px; cursor:pointer; background:var(--accent); color:#04121f; border:none; font-weight:700; font-size:15px; margin-top:8px; }
+  </style>
+</head>
+<body>
+<div id="stage">
+  <video id="video" playsinline autoplay muted></video>
+  <div id="grad-top"></div>
+  <div id="grad-bot"></div>
+
+  <div id="ch-badge">
+    <div class="ch-logo">DSOA</div>
+    <div class="ch-copy">
+      <strong>DevSecOps With Anshu</strong>
+      <span>Sports · Live Broadcast</span>
+    </div>
+  </div>
+
+  <div id="live-chip">
+    <div id="live-dot" class="off"></div>
+    <span id="live-label">Connecting</span>
+  </div>
+
+  <div id="spinner"><div class="spin-ring"></div></div>
+
+  <div id="err-screen">
+    <div class="err-ico">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff4c66" stroke-width="2.2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+    </div>
+    <h2>Stream Unavailable</h2>
+    <p id="err-msg">Could not connect to the live feed. Please try again shortly.</p>
+    <button onclick="boot()">Retry</button>
+  </div>
+
+  <div id="prog-bar">
+    <div id="prog-row">
+      <div>
+        <div class="prog-title">DevSecOps With Anshu – Sports Live</div>
+        <div class="prog-meta">
+          <span id="prog-time">—</span>
+          <span class="sep">·</span>
+          <span>Live</span>
+          <span class="sep">·</span>
+          <span class="tag">HD</span>
+          <span class="sep">·</span>
+          <span class="tag">DRM</span>
+        </div>
+      </div>
+      <div id="qual-badge">Auto</div>
+    </div>
+    <div id="timeline"><div id="tl-fill"></div></div>
+    <div id="controls">
+      <button class="ctrl-btn play-btn" onclick="togglePlay()">
+        <svg id="ico-play"  width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        <svg id="ico-pause" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+      </button>
+      <button class="ctrl-btn" onclick="toggleMute()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+        </svg>
+      </button>
+      <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="setVol(this.value)" />
+      <span class="time-lbl">LIVE</span>
+      <div class="ctrl-spacer"></div>
+      <button class="ctrl-btn" onclick="toggleFS()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+          <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+// Stream config — token injected by GitHub Actions (never stored in source)
+var CFG = {
+  mpd:     'https://sundirectgo-live.pc.cdn.bitgravity.com/svchd14/dth.mpd',
+  license: 'https://api.sundirectgo.in/licenseproxy/v3/nagravisionDRMProxy/' +
+           '?content_id=144982&token=__DRM_TOKEN__' +
+           '&x-myplex-tenant-id=32fdcbc2-8e4f-4d8e-a391-b59f4d9b070c',
+  proxy:   'http://localhost:8765/license-proxy'   // relative — served by same origin via proxy_server.py
+};
+// Build full proxied license URL
+var PROXY_LIC = CFG.proxy + '?url=' + encodeURIComponent(CFG.license);
+
+var video = document.getElementById('video'), player = null, tlTimer = null, chromeT = null;
+
+function tickClock() {
+  var d = new Date();
+  document.getElementById('prog-time').textContent =
+    [d.getHours(),d.getMinutes(),d.getSeconds()].map(function(n){return String(n).padStart(2,'0');}).join(':');
+}
+setInterval(tickClock, 1000); tickClock();
+
+function spin(v)  { document.getElementById('spinner').classList.toggle('on', v); }
+function setLive(s) {
+  var dot = document.getElementById('live-dot'), lbl = document.getElementById('live-label');
+  if (s === 'live')   { dot.className = '';    lbl.textContent = 'Live';       }
+  else if (s === 'buf') { dot.className = 'off'; lbl.textContent = 'Buffering'; }
+  else                { dot.className = 'off'; lbl.textContent = 'Offline';    }
+}
+function showErr(msg) { document.getElementById('err-msg').textContent = msg; document.getElementById('err-screen').classList.add('on'); spin(false); setLive('off'); if(tlTimer)clearInterval(tlTimer); }
+function hideErr()    { document.getElementById('err-screen').classList.remove('on'); }
+
+function tickTL() {
+  document.getElementById('tl-fill').style.width = (((Date.now()/60000)%1)*100).toFixed(2)+'%';
+}
+
+function boot() {
+  hideErr(); spin(true); setLive('buf');
+  shaka.polyfill.installAll();
+  if (!shaka.Player.isBrowserSupported()) { showErr('Use Chrome or Edge for DRM playback.'); return; }
+  if (player) { player.destroy(); player = null; }
+  player = new shaka.Player();
+  player.attach(video).then(function() {
+    player.configure({
+      streaming: { bufferingGoal: 15, rebufferingGoal: 3 },
+      drm: {
+        servers: {
+          'com.widevine.alpha':      PROXY_LIC,
+          'com.microsoft.playready': PROXY_LIC
+        },
+        advanced: { 'com.widevine.alpha': { videoRobustness:'SW_SECURE_CRYPTO', audioRobustness:'SW_SECURE_CRYPTO' } }
+      }
+    });
+    player.addEventListener('error', function(e) { showErr('Playback error ['+e.detail.code+']. Token may have expired.'); });
+    return player.load(CFG.mpd);
+  }).then(function() {
+    spin(false); setLive('live');
+    video.play().catch(function(){});
+    if (tlTimer) clearInterval(tlTimer);
+    tlTimer = setInterval(tickTL, 800);
+  }).catch(function(e) {
+    var m = (e && e.code === 6007) ? 'DRM license rejected — token expired. Update DRM_TOKEN secret in GitHub.'
+          : (e && e.code >= 1000 && e.code < 2000) ? 'Network error — check connection.'
+          : 'Error ['+(e&&e.code||'?')+']: '+(e&&e.message||'load failed');
+    showErr(m);
+  });
+}
+
+function togglePlay() { video.paused ? video.play() : video.pause(); }
+function toggleMute() { video.muted = !video.muted; document.getElementById('vol-slider').value = video.muted ? 0 : video.volume; }
+function setVol(v)    { video.volume = parseFloat(v); video.muted = parseFloat(v) === 0; }
+function toggleFS()   { document.fullscreenElement ? document.exitFullscreen() : document.getElementById('stage').requestFullscreen().catch(function(){}); }
+
+video.addEventListener('play',    function(){ document.getElementById('ico-play').style.display='none'; document.getElementById('ico-pause').style.display=''; setLive('live'); spin(false); });
+video.addEventListener('pause',   function(){ document.getElementById('ico-play').style.display=''; document.getElementById('ico-pause').style.display='none'; });
+video.addEventListener('waiting', function(){ spin(true); setLive('buf'); });
+video.addEventListener('playing', function(){ spin(false); setLive('live'); });
+
+function showChrome() {
+  document.getElementById('stage').classList.remove('hide-chrome');
+  clearTimeout(chromeT);
+  chromeT = setTimeout(function(){ if(!video.paused) document.getElementById('stage').classList.add('hide-chrome'); }, 4000);
+}
+document.getElementById('stage').addEventListener('mousemove',  showChrome);
+document.getElementById('stage').addEventListener('touchstart', showChrome);
+document.getElementById('prog-bar').addEventListener('mouseover', showChrome);
+showChrome();
+boot();
+</script>
+</body>
+</html>
